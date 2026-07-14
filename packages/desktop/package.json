@@ -1,0 +1,10 @@
+{
+  "name": "@cora-cowork/desktop",
+  "version": "0.0.0",
+  "private": true,
+  "description": "CoraCowork desktop Electron application",
+  "main": "../../out/main/index.js",
+  "dependencies": {
+    "@aionui/web-host": "workspace:*"
+  }
+}
