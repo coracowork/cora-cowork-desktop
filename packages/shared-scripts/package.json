@@ -1,5 +1,5 @@
 {
-  "name": "@aionui/shared-scripts",
+  "name": "@cora-cowork/shared-scripts",
   "version": "0.0.0",
   "private": true,
   "description": "Shared build scripts for CoraCowork packages",

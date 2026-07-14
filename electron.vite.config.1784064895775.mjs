@@ -293,9 +293,9 @@ var electron_vite_config_default = defineConfig2(({ mode }) => {
       plugins: [
         // externalizeDepsPlugin replaces our custom getExternalDeps() + pluginExternalizeDynamicImports.
         // 'fix-path' excluded so it gets bundled inline (only 3KB).
-        // '@aionui/web-host' excluded so its compiled JS sources are bundled by esbuild
+        // '@cora-cowork/web-host' excluded so its compiled JS sources are bundled by esbuild
         // rather than left as external require() calls, keeping the dependency self-contained.
-        externalizeDepsPlugin({ exclude: ["fix-path", "@aionui/web-host"] }),
+        externalizeDepsPlugin({ exclude: ["fix-path", "@cora-cowork/web-host"] }),
         ...isDevelopment ? [
           {
             name: "dev-build-mcp-servers",

@@ -69,8 +69,8 @@ files:
   - '!packages/web-cli/**'
   - '!packages/shared-scripts/**'
   - '!packages/desktop/src/**'
-  # Exclude workspace-linked @aionui/web-host (TS source already bundled by Vite)
-  - '!**/node_modules/@aionui/**'
+  # Exclude workspace-linked @cora-cowork/web-host (TS source already bundled by Vite)
+  - '!**/node_modules/@cora-cowork/**'
   - '!**/node_modules/*.d.ts'
   - '!**/node_modules/.bin'
   - '!**/node_modules/*/{docs,documentation,doc}'

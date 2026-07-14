@@ -705,9 +705,9 @@ try {
   // 2. Check if we can skip Vite build (incremental build)
   const skipViteBuild = shouldSkipViteBuild(skipVite, forceBuild);
 
-  // 0. Build @aionui/web-host workspace package (TS → JS) so its compiled
+  // 0. Build @cora-cowork/web-host workspace package (TS → JS) so its compiled
   //    output is available for electron-vite to resolve via "exports".
-  console.log('📦 Building @aionui/web-host...');
+  console.log('📦 Building @cora-cowork/web-host...');
   execSync('bunx tsc -p packages/web-host/tsconfig.json', {
     stdio: 'inherit',
     shell: process.platform === 'win32',

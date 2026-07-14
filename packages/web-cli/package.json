@@ -16,8 +16,8 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@aionui/shared-scripts": "workspace:*",
-    "@aionui/web-host": "workspace:*"
+    "@cora-cowork/shared-scripts": "workspace:*",
+    "@cora-cowork/web-host": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
