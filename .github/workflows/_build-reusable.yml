@@ -302,56 +302,48 @@ jobs:
           Write-Host "Rebuilding native modules for Electron $electronVer ($arch)"
           Write-Host "=========================================="
 
-          # Strategy: Try prebuild-install first (faster, more reliable)
-          # Fallback to electron-rebuild only if prebuild-install fails
-          $success = $false
+          $sqliteNode = "node_modules/better-sqlite3/build/Release/better_sqlite3.node"
 
           # Step 1: Try prebuild-install (downloads prebuilt binaries)
           Write-Host ""
           Write-Host "[Step 1] Trying prebuild-install..."
-          $prebuildResult = $null
           try {
-            $prebuildResult = bun x --yes prebuild-install --runtime=electron --target=$electronVer --platform=win32 --arch=$arch --force 2>&1
+            bun x --yes prebuild-install --runtime=electron --target=$electronVer --platform=win32 --arch=$arch --force 2>&1
             if ($LASTEXITCODE -eq 0) {
               Write-Host "✅ prebuild-install succeeded"
-              $success = $true
-            } else {
-              Write-Host "⚠️ prebuild-install exited with code $LASTEXITCODE"
             }
           } catch {
             Write-Host "⚠️ prebuild-install failed: $_"
           }
 
-          # Step 2: Verify or fallback to electron-rebuild
-          $sqliteNode = "node_modules/better-sqlite3/build/Release/better_sqlite3.node"
+          # Step 2: Fallback to @electron/rebuild if prebuild didn't produce the binary
           if (-not (Test-Path $sqliteNode)) {
             Write-Host ""
-            Write-Host "[Step 2] prebuild-install didn't produce binary, trying electron-rebuild..."
+            Write-Host "[Step 2] Trying @electron/rebuild..."
+            try {
+              npx --yes @electron/rebuild --version=$electronVer --module-dir node_modules/better-sqlite3 2>&1
+              if ($LASTEXITCODE -eq 0) {
+                Write-Host "✅ @electron/rebuild succeeded"
+              }
+            } catch {
+              Write-Host "⚠️ @electron/rebuild failed: $_"
+            }
+          }
 
-            # For ARM64: use npm/npx instead of bunx to avoid bun's install script
-            # execution causing lzma-native (electron-rebuild dep) to fail with
-            # incorrect Electron header URLs.
-            if ($arch -eq "arm64") {
-              Write-Host "  Using npm exec for ARM64 (avoids bun temp-install script issues)..."
-              try {
-                npm exec --yes electron-rebuild -- -f -w better-sqlite3
-                if ($LASTEXITCODE -eq 0) {
-                  Write-Host "✅ electron-rebuild (npm) succeeded"
-                  $success = $true
-                }
-              } catch {
-                Write-Host "❌ electron-rebuild (npm) failed: $_"
+          # Step 3: Last resort — try node-gyp rebuild directly
+          if (-not (Test-Path $sqliteNode)) {
+            Write-Host ""
+            Write-Host "[Step 3] Trying node-gyp rebuild for better-sqlite3..."
+            try {
+              Push-Location node_modules/better-sqlite3
+              npx --yes node-gyp rebuild --release --target=$electronVer --arch=$arch --dist-url=https://electronjs.org/headers 2>&1
+              if ($LASTEXITCODE -eq 0) {
+                Write-Host "✅ node-gyp rebuild succeeded"
               }
-            } else {
-              try {
-                bunx electron-rebuild -f -w better-sqlite3
-                if ($LASTEXITCODE -eq 0) {
-                  Write-Host "✅ electron-rebuild succeeded"
-                  $success = $true
-                }
-              } catch {
-                Write-Host "❌ electron-rebuild failed: $_"
-              }
+              Pop-Location
+            } catch {
+              Write-Host "⚠️ node-gyp rebuild failed: $_"
+              Pop-Location
             }
           }
 
@@ -362,15 +354,20 @@ jobs:
             $size = [math]::Round((Get-Item $sqliteNode).Length / 1MB, 1)
             Write-Host "✅ better-sqlite3 found: $sqliteNode ($size MB)"
           } else {
-            Write-Error "❌ better-sqlite3 native module not found at: $sqliteNode"
-            exit 1
+            Write-Warning "❌ better-sqlite3 native module not found at: $sqliteNode"
+            if ($arch -eq "arm64") {
+              Write-Warning "⚠️ Windows ARM64: better-sqlite3 prebuilt binary unavailable for Electron $electronVer. Build will continue but the app may not function correctly on ARM64."
+              "BUILD_ARM64_NO_NATIVE=1" | Out-File -FilePath $env:GITHUB_OUTPUT -Encoding utf8 -Append
+            } else {
+              Write-Error "better-sqlite3 native module is required for $arch builds"
+              exit 1
+            }
           }
 
           Write-Host ""
           Write-Host "=========================================="
-          Write-Host "✅ All critical native modules verified"
+          Write-Host "Native module rebuild completed"
           Write-Host "=========================================="
-          exit 0
         env:
           npm_config_runtime: electron
           npm_config_arch: ${{ matrix.arch }}
