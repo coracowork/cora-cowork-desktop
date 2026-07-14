@@ -231,21 +231,22 @@ jobs:
         if: matrix.platform == 'linux-x64'
         shell: bash
         run: |
-          set -euo pipefail
+          set -uo pipefail
           missing=0
 
           for name in SENTRY_AUTH_TOKEN SENTRY_ORG SENTRY_PROJECT SENTRY_RELEASE; do
             if [ -z "${!name:-}" ]; then
-              echo "::error title=Sentry configuration missing::$name is required for desktop source map uploads"
+              echo "::warning title=Sentry configuration missing::$name is not set — source map upload will be skipped"
               missing=1
             fi
           done
 
           if [ "$missing" -ne 0 ]; then
-            exit 1
+            echo "SENTRY_UPLOAD_SOURCE_MAPS=false" >> "$GITHUB_ENV"
+            echo "Sentry source map upload disabled (secrets not configured)"
+          else
+            echo "Sentry source map upload configured for $SENTRY_ORG/$SENTRY_PROJECT ($SENTRY_RELEASE)"
           fi
-
-          echo "Sentry source map upload configured for $SENTRY_ORG/$SENTRY_PROJECT ($SENTRY_RELEASE)"
         env:
           SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
@@ -364,7 +365,7 @@ jobs:
 
       - name: Prepare coracore binary
         shell: bash
-        run: node scripts/prepareCoracore.js
+        run: node scripts/prepareCoraCowork.js
         env:
           # Version is pinned in repo-root package.json (coracoreVersion).
           # Set CORACOWORK_BACKEND_VERSION here only to override for ad-hoc builds.
