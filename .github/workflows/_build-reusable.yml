@@ -311,7 +311,7 @@ jobs:
           Write-Host "[Step 1] Trying prebuild-install..."
           $prebuildResult = $null
           try {
-          $prebuildResult = bun x --yes prebuild-install --runtime=electron --target=$electronVer --platform=win32 --arch=$arch --force 2>&1
+            $prebuildResult = bun x --yes prebuild-install --runtime=electron --target=$electronVer --platform=win32 --arch=$arch --force 2>&1
             if ($LASTEXITCODE -eq 0) {
               Write-Host "✅ prebuild-install succeeded"
               $success = $true
@@ -327,14 +327,31 @@ jobs:
           if (-not (Test-Path $sqliteNode)) {
             Write-Host ""
             Write-Host "[Step 2] prebuild-install didn't produce binary, trying electron-rebuild..."
-            try {
-              bunx electron-rebuild -f -w better-sqlite3
-              if ($LASTEXITCODE -eq 0) {
-                Write-Host "✅ electron-rebuild succeeded"
-                $success = $true
+
+            # For ARM64: use npm/npx instead of bunx to avoid bun's install script
+            # execution causing lzma-native (electron-rebuild dep) to fail with
+            # incorrect Electron header URLs.
+            if ($arch -eq "arm64") {
+              Write-Host "  Using npm exec for ARM64 (avoids bun temp-install script issues)..."
+              try {
+                npm exec --yes electron-rebuild -- -f -w better-sqlite3
+                if ($LASTEXITCODE -eq 0) {
+                  Write-Host "✅ electron-rebuild (npm) succeeded"
+                  $success = $true
+                }
+              } catch {
+                Write-Host "❌ electron-rebuild (npm) failed: $_"
               }
-            } catch {
-              Write-Host "❌ electron-rebuild failed: $_"
+            } else {
+              try {
+                bunx electron-rebuild -f -w better-sqlite3
+                if ($LASTEXITCODE -eq 0) {
+                  Write-Host "✅ electron-rebuild succeeded"
+                  $success = $true
+                }
+              } catch {
+                Write-Host "❌ electron-rebuild failed: $_"
+              }
             }
           }
 

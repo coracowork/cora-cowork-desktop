@@ -257,7 +257,7 @@
   "engines": {
     "node": ">=22 <25"
   },
-  "coracoreVersion": "v0.2.4",
+  "coracoreVersion": "v0.2.5",
   "electronRebuild": {
     "electronVersion": "^37.3.1"
   },
