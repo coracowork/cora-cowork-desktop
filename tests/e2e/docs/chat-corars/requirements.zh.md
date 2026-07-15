@@ -265,7 +265,7 @@ if (!binary) {
 
 **源码追溯**: `src/process/agent/Corars/binaryResolver.ts`
 
-- 解析顺序: 环境变量 `AION_CLI_PATH` → `~/.coracowork/bin/aion-<platform>-<arch>` → 系统 PATH 中的 `aion` 命令
+- 解析顺序: 环境变量 `CORA_CLI_PATH` → `~/.coracowork/bin/cora-<platform>-<arch>` → 系统 PATH 中的 `cora` 命令
 
 **验证命令**（team-lead 已确认）:
 

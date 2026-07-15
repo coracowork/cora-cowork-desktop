@@ -129,7 +129,7 @@ describe('UpdateModal manual install fallback', () => {
     render(<UpdateModal />);
 
     act(() => {
-      window.dispatchEvent(new Event('coracowork-open-update-modal'));
+      window.dispatchEvent(new Event('cora-cowork-open-update-modal'));
     });
 
     const downloadAndInstall = await screen.findByText('update.downloadButton');

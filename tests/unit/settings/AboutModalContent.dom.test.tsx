@@ -90,7 +90,7 @@ describe('AboutModalContent update ready state', () => {
 
     await act(async () => {
       window.dispatchEvent(
-        new CustomEvent('coracowork-update-ready-state-changed', {
+        new CustomEvent('cora-cowork-update-ready-state-changed', {
           detail: {
             ready: true,
             version: '2.1.14',
@@ -117,7 +117,7 @@ describe('AboutModalContent update ready state', () => {
 
     await act(async () => {
       window.dispatchEvent(
-        new CustomEvent('coracowork-update-ready-state-changed', {
+        new CustomEvent('cora-cowork-update-ready-state-changed', {
           detail: {
             ready: true,
             version: '2.1.14',
@@ -157,7 +157,7 @@ describe('AboutModalContent update ready state', () => {
       },
     });
     const availableListener = vi.fn();
-    window.addEventListener('coracowork-update-available', availableListener);
+    window.addEventListener('cora-cowork-update-available', availableListener);
 
     render(<AboutModalContent />);
     fireEvent.click(screen.getByRole('button', { name: 'settings.checkForUpdates' }));
@@ -170,12 +170,12 @@ describe('AboutModalContent update ready state', () => {
     expect(detail.updateInfo.version).toBe('2.1.14');
     expect(mocks.messageInfoMock).not.toHaveBeenCalled();
 
-    window.removeEventListener('coracowork-update-available', availableListener);
+    window.removeEventListener('cora-cowork-update-available', availableListener);
   });
 
   it('shows an up-to-date toast and no card when there is no update', async () => {
     const availableListener = vi.fn();
-    window.addEventListener('coracowork-update-available', availableListener);
+    window.addEventListener('cora-cowork-update-available', availableListener);
 
     render(<AboutModalContent />);
     fireEvent.click(screen.getByRole('button', { name: 'settings.checkForUpdates' }));
@@ -185,7 +185,7 @@ describe('AboutModalContent update ready state', () => {
     });
     expect(availableListener).not.toHaveBeenCalled();
 
-    window.removeEventListener('coracowork-update-available', availableListener);
+    window.removeEventListener('cora-cowork-update-available', availableListener);
   });
 });
 

@@ -238,6 +238,7 @@ ipcMain.handle('backend:recover-corrupted-database', async () => {
   const { recoverCorruptedDatabaseAfterUserConfirmation } = await import('./process/startup/recoverCorruptedDatabase');
 
   await recoverCorruptedDatabaseAfterUserConfirmation({
+
     getFailure: () => backendStartupFailureInfo,
     stopBackend: () => backendManager.stop(),
     startBackendWithRecovery: async () => {
@@ -285,6 +286,52 @@ ipcMain.handle('backend:recover-corrupted-database', async () => {
     logInfo: console.info,
     logWarn: console.warn,
   });
+});
+
+ipcMain.handle('backend:reset-database', async (): Promise<{ success: boolean; error?: string }> => {
+  try {
+    const { getDataPath } = await import('./process/utils/utils');
+    const dataDir = getDataPath();
+    const dbPath = path.join(dataDir, 'cora-cowork-backend.db');
+    await backendManager.stop();
+    // Delete database, WAL, SHM, and lock files so the backend starts fresh
+    for (const suffix of ['', '-wal', '-shm', '.migrate.lock']) {
+      const f = dbPath + suffix;
+      if (fs.existsSync(f)) {
+        fs.unlinkSync(f);
+        console.log(`[CoraCowork] Deleted database file: ${f}`);
+      }
+    }
+    console.log(`[CoraCowork] Database reset complete, relaunching app`);
+    setImmediate(() => { app.relaunch(); app.exit(0); });
+    return { success: true };
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error('[CoraCowork] Failed to reset database:', message);
+    return { success: false, error: message };
+  }
+});
+
+ipcMain.handle('backend:restore-pre-update-backup', async (): Promise<{ success: boolean; error?: string }> => {
+  try {
+    const { getDataPath } = await import('./process/utils/utils');
+    const dataDir = getDataPath();
+    const dbPath = path.join(dataDir, 'cora-cowork-backend.db');
+    const backupPath = dbPath + '.pre-update.bak';
+    if (!fs.existsSync(backupPath)) {
+      return { success: false, error: 'No pre-update backup found' };
+    }
+    await backendManager.stop();
+    fs.copyFileSync(backupPath, dbPath);
+    console.log(`[CoraCowork] Restored database from pre-update backup: ${backupPath}`);
+    // Relaunch so the backend restarts fresh with the restored database
+    setImmediate(() => { app.relaunch(); app.exit(0); });
+    return { success: true };
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    console.error('[CoraCowork] Failed to restore from pre-update backup:', message);
+    return { success: false, error: message };
+  }
 });
 
 function markBackendStartupFailed(error: unknown): void {
@@ -535,9 +582,23 @@ const createWindow = ({ showOnReady = true }: { showOnReady?: boolean } = {}): v
         // Create status broadcast callback that emits via ipcBridge (pure emitter, no window binding)
         const statusBroadcast = createAutoUpdateStatusBroadcast();
         autoUpdaterService.initialize(statusBroadcast);
-        autoUpdaterService.setBeforeQuitAndInstall(async () => {
-          await backendManager.stop();
-        });
+autoUpdaterService.setBeforeQuitAndInstall(async () => {
+  // Backup the CoraCore database before update so it can be restored
+  // if the new version's database migration fails.
+  try {
+    const { getDataPath } = await import('./process/utils/utils');
+    const dataDir = getDataPath();
+    const dbPath = path.join(dataDir, 'cora-cowork-backend.db');
+    if (fs.existsSync(dbPath)) {
+      const backupPath = dbPath + '.pre-update.bak';
+      fs.copyFileSync(dbPath, backupPath);
+      console.log(`[CoraCowork] Database backed up to ${backupPath} before update`);
+    }
+  } catch (error) {
+    console.error('[CoraCowork] Failed to backup database before update:', error);
+  }
+  await backendManager.stop();
+});
         // Check for updates after 3 seconds delay
         // 3秒后检查更新
         setTimeout(() => {
@@ -731,6 +792,35 @@ const handleAppReady = async (): Promise<void> => {
     mark(`backendManager.start pending health (port=${backendPort})`);
   },
   captureFailure: async (error) => {
+    const failure = classifyBackendStartupFailure(error);
+    // Auto-recovery for data migration failures:
+    // 1. If a pre-update backup exists → restore it, delete backup, relaunch
+    // 2. If no backup → reset database (delete DB files), relaunch
+    // This avoids an infinite loop since the backup is consumed (deleted) on first attempt.
+    if (failure.reason === 'backend_data_migration_failed') {
+      const { getDataPath } = await import('./process/utils/utils');
+      const dataDir = getDataPath();
+      const dbPath = path.join(dataDir, 'cora-cowork-backend.db');
+      const backupPath = dbPath + '.pre-update.bak';
+
+      if (fs.existsSync(backupPath)) {
+        console.log('[CoraCowork] Auto-recovery: restoring database from backup');
+        fs.copyFileSync(backupPath, dbPath);
+        fs.unlinkSync(backupPath);
+        console.log('[CoraCowork] Auto-recovery: backup consumed, relaunching');
+        setImmediate(() => { app.relaunch(); app.exit(0); });
+        return;
+      }
+
+      console.log('[CoraCowork] Auto-recovery: no backup found, resetting database');
+      for (const suffix of ['', '-wal', '-shm', '.migrate.lock']) {
+        const f = dbPath + suffix;
+        if (fs.existsSync(f)) fs.unlinkSync(f);
+      }
+      console.log('[CoraCowork] Auto-recovery: database reset, relaunching');
+      setImmediate(() => { app.relaunch(); app.exit(0); });
+      return;
+    }
     markBackendStartupFailed(error);
     await captureBackendStartupFailure(error);
   },

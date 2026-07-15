@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 CoraCowork (cora-cowork.com)
+ * Copyright 2025 CoraCowork (coracowork.shop)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -12,7 +12,7 @@ import { assistantRuntimeKey, type AssistantDetail } from '@/common/types/agent/
  *
  * Backend `service.rs` consumes `input.model` verbatim with no default, so an
  * empty or backend-name-only value (e.g. "gemini") ends up persisted as
- * `use_model: null`. Downstream, GeminiSendBox / CoraCoworkrsSendBox gate the
+ * `use_model: null`. Downstream, GeminiSendBox / CorarsSendBox gate the
  * textarea on `current_model?.useModel` and render disabled. See mnemo #297.
  *
  * This resolver reads assistant-owned defaults first and then falls back to
@@ -84,8 +84,6 @@ async function resolveAcpDefaultModel(_assistant_backend: string): Promise<strin
 async function resolveGeminiDefaultModel(): Promise<string> {
   // The legacy 'gemini.defaultModel' config key has been removed after the
   // Gemini → ACP consolidation. Always fall back to the 'auto' alias.
-  // coracli-core alias: 'auto' maps to PREVIEW_GEMINI_MODEL_AUTO. See
-  // src/common/utils/geminiModes.ts for the full list of aliases.
   return 'auto';
 }
 

@@ -60,7 +60,7 @@ describe('TeamWarmupOverlay failure states', () => {
       />
     );
     // single failure → title names the member
-    expect(screen.getByText('Member Aion CLI failed to start')).toBeInTheDocument();
+    expect(screen.getByText('Member Cora CLI failed to start')).toBeInTheDocument();
     // error is simplified (wrapper prefixes stripped)
     expect(screen.getByTestId('team-warmup-error')).toHaveTextContent("Provider 'aionrs' not found");
     // teammate is removable → hint mentions removal

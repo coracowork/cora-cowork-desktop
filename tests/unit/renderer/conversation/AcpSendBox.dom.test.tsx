@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 CoraCowork (coracowork.com)
+ * Copyright 2025 AionUi (aionui.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -274,6 +274,40 @@ describe('AcpSendBox', () => {
     });
   });
 
+  it('suppresses internal error cards and loading reset for active-turn busy conflicts', async () => {
+    sendMessageInvokeMock.mockRejectedValue(
+      new BackendHttpError({
+        method: 'POST',
+        path: '/api/conversations/conv-1/messages',
+        status: 409,
+        body: {
+          success: false,
+          code: 'CONFLICT',
+          error: 'conversation conv-1 is already running',
+        },
+      })
+    );
+
+    render(
+      <AcpSendBox
+        conversation_id='conv-1'
+        backend='codex'
+        workspacePath='/tmp/workspace'
+        messageState={makeMessageState()}
+      />
+    );
+
+    await act(async () => {
+      screen.getByRole('button', { name: 'send' }).click();
+    });
+
+    await waitFor(() => {
+      expect(sendMessageInvokeMock).toHaveBeenCalledTimes(1);
+    });
+    expect(addOrUpdateMessageMock).not.toHaveBeenCalled();
+    expect(resetStateMock).not.toHaveBeenCalled();
+  });
+
   it('uses container-responsive fluid width instead of a fixed max width', () => {
     render(
       <AcpSendBox
@@ -511,4 +545,3 @@ describe('AcpSendBox', () => {
     });
   });
 });
-

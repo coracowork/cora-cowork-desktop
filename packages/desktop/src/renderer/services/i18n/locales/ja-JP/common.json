@@ -98,7 +98,11 @@
       "sendDiagnostics": "Send diagnostics",
       "diagnosticsSent": "Diagnostics sent",
       "diagnosticsReportSuccess": "Diagnostics report sent",
-      "diagnosticsReportFailed": "Failed to send diagnostics report"
+      "diagnosticsReportFailed": "Failed to send diagnostics report",
+      "restoreFromBackup": "バックアップから復元",
+      "restoreFailed": "バックアップ復元失敗",
+      "resetDatabase": "データリセット",
+      "resetFailed": "データリセット失敗"
     },
     "localDataRepair": {
       "title": "Local data repair failed",

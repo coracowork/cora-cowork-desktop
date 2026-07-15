@@ -12,10 +12,9 @@ type ElectronApi = {
  *
  * Preferred path: map `key` to a backend HTTP route and issue a `fetch` from
  * the renderer against `window.__backendPort`. This matches how the running
- * app talks to CoraCore.
+ * app talks to coracore.
  *
- * Fallback: for any key not in the route map, fall back to the legacy
- * `@office-ai/platform` IPC protocol:
+ * Fallback: for any key not in the route map, fall back to the desktop IPC protocol:
  *   emit('subscribe-{key}', { id, data }) -> on('subscribe.callback-{key}{id}', result)
  */
 export async function invokeBridge<T = unknown>(
@@ -146,4 +145,3 @@ export async function invokeBridge<T = unknown>(
     { requestKey: key, requestData: data, requestTimeoutMs: timeoutMs }
   ) as Promise<T>;
 }
-

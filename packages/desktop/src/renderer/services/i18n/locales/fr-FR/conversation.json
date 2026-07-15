@@ -125,7 +125,7 @@
       "send_feedback": "Envoyez des commentaires avec des journaux afin que l'équipe puisse enquêter."
     },
     "ownership": {
-      "coracoworkui": "Application",
+      "coracowork": "Application",
       "user_agent": "Agent",
       "user_llm_provider": "Fournisseur de modèles",
       "unknown_upstream": "En amont"

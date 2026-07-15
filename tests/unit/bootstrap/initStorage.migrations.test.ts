@@ -1,32 +1,10 @@
 /**
  * @license
- * Copyright 2025 CoraCowork (coracowork.com)
+ * Copyright 2025 AionUi (aionui.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-
-vi.mock('@office-ai/platform', () => ({
-  StorageManager: class {
-    getKeys() {
-      return [];
-    }
-    get() {
-      return null;
-    }
-    set() {}
-  },
-  ConfigPaths: {
-    appData: '/mock/appdata',
-  },
-  Logger: {
-    getLogger: () => ({
-      info: vi.fn(),
-      error: vi.fn(),
-      warn: vi.fn(),
-    }),
-  },
-}));
 
 describe('initStorage.migrations', () => {
   beforeEach(() => {
@@ -53,4 +31,3 @@ describe('initStorage.migrations', () => {
     expect(true).toBe(true);
   });
 });
-

@@ -1,10 +1,10 @@
 /**
  * @license
- * Copyright 2026 CoraCowork (cora-cowork.com)
+ * Copyright 2025 CoraCowork (coracowork.shop)
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { AuthType } from '@office-ai/aioncli-core';
+import { AuthType } from '@/common/types/provider/authType';
 import { isNewApiPlatform } from './platformConstants';
 
 /**

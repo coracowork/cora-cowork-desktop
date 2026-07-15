@@ -1,12 +1,12 @@
 /**
  * @license
- * Copyright 2025 CoraCowork (coracowork.com)
+ * Copyright 2025 AionUi (aionui.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 
-vi.mock('@office-ai/platform', () => ({
+vi.mock('@/common/platform/bridge', () => ({
   bridge: {
     buildProvider: vi.fn(() => {
       const handlerMap = new Map<string, Function>();
@@ -23,14 +23,6 @@ vi.mock('@office-ai/platform', () => ({
       emit: vi.fn(),
       on: vi.fn(),
     })),
-  },
-  storage: {
-    buildStorage: () => ({
-      getSync: () => undefined,
-      setSync: () => {},
-      get: () => Promise.resolve(undefined),
-      set: () => Promise.resolve(),
-    }),
   },
 }));
 
@@ -79,28 +71,28 @@ const makeGitHubReleaseResponse = () => [
     tag_name: 'v1.9.22',
     name: 'v1.9.22',
     body: 'release notes',
-    html_url: 'https://github.com/coracowork/CoraCowork/releases/tag/v1.9.22',
+    html_url: 'https://github.com/iOfficeAI/AionUi/releases/tag/v1.9.22',
     published_at: '2026-04-29T00:00:00Z',
     prerelease: false,
     draft: false,
     assets: [
       {
-        name: 'CoraCowork-1.9.22-mac-arm64.dmg',
+        name: 'AionUi-1.9.22-mac-arm64.dmg',
         browser_download_url:
-          'https://github.com/coracowork/CoraCowork/releases/download/v1.9.22/CoraCowork-1.9.22-mac-arm64.dmg',
+          'https://github.com/iOfficeAI/AionUi/releases/download/v1.9.22/AionUi-1.9.22-mac-arm64.dmg',
         size: 123,
         content_type: 'application/x-apple-diskimage',
       },
       {
-        name: 'CoraCowork-1.9.22-win-x64.exe',
-        browser_download_url: 'https://github.com/coracowork/CoraCowork/releases/download/v1.9.22/CoraCowork-1.9.22-win-x64.exe',
+        name: 'AionUi-1.9.22-win-x64.exe',
+        browser_download_url: 'https://github.com/iOfficeAI/AionUi/releases/download/v1.9.22/AionUi-1.9.22-win-x64.exe',
         size: 456,
         content_type: 'application/vnd.microsoft.portable-executable',
       },
       {
-        name: 'CoraCowork-1.9.22-linux-amd64.deb',
+        name: 'AionUi-1.9.22-linux-amd64.deb',
         browser_download_url:
-          'https://github.com/coracowork/CoraCowork/releases/download/v1.9.22/CoraCowork-1.9.22-linux-amd64.deb',
+          'https://github.com/iOfficeAI/AionUi/releases/download/v1.9.22/AionUi-1.9.22-linux-amd64.deb',
         size: 789,
       },
     ],
@@ -156,22 +148,22 @@ describe('updateBridge CDN URL rewriting', () => {
 
     try {
       const handler = await getCheckHandler();
-      const result = await handler({ repo: 'coracowork/CoraCowork' });
+      const result = await handler({ repo: 'iOfficeAI/AionUi' });
 
       expect(result.success).toBe(true);
       expect(result.data?.currentVersion).toBe('1.0.0');
       const assets = result.data?.latest?.assets ?? [];
       expect(assets.length).toBe(3);
 
-      const macAsset = assets.find((a: { name: string }) => a.name === 'CoraCowork-1.9.22-mac-arm64.dmg');
+      const macAsset = assets.find((a: { name: string }) => a.name === 'AionUi-1.9.22-mac-arm64.dmg');
       expect(macAsset).toBeDefined();
-      expect(macAsset?.url).toBe('https://static.coracowork.com/releases/1.9.22/CoraCowork-1.9.22-mac-arm64.dmg');
+      expect(macAsset?.url).toBe('https://static.aionui.com/releases/1.9.22/AionUi-1.9.22-mac-arm64.dmg');
       expect(macAsset?.fallbackUrl).toBe(
-        'https://github.com/coracowork/CoraCowork/releases/download/v1.9.22/CoraCowork-1.9.22-mac-arm64.dmg'
+        'https://github.com/iOfficeAI/AionUi/releases/download/v1.9.22/AionUi-1.9.22-mac-arm64.dmg'
       );
 
-      const linuxAsset = assets.find((a: { name: string }) => a.name === 'CoraCowork-1.9.22-linux-amd64.deb');
-      expect(linuxAsset?.url).toBe('https://static.coracowork.com/releases/1.9.22/CoraCowork-1.9.22-linux-amd64.deb');
+      const linuxAsset = assets.find((a: { name: string }) => a.name === 'AionUi-1.9.22-linux-amd64.deb');
+      expect(linuxAsset?.url).toBe('https://static.aionui.com/releases/1.9.22/AionUi-1.9.22-linux-amd64.deb');
     } finally {
       vi.unstubAllGlobals();
     }
@@ -186,9 +178,9 @@ describe('updateBridge CDN URL rewriting', () => {
 
     try {
       const handler = await getCheckHandler();
-      const result = await handler({ repo: 'coracowork/CoraCowork' });
+      const result = await handler({ repo: 'iOfficeAI/AionUi' });
       const asset = result.data?.latest?.assets?.[0];
-      expect(asset?.url).toMatch(/^https:\/\/static\.coracowork\.com\/releases\/1\.9\.22\//);
+      expect(asset?.url).toMatch(/^https:\/\/static\.aionui\.com\/releases\/1\.9\.22\//);
       expect(asset?.url).not.toMatch(/\/v1\.9\.22\//);
     } finally {
       vi.unstubAllGlobals();
@@ -197,7 +189,7 @@ describe('updateBridge CDN URL rewriting', () => {
 });
 
 describe('updateBridge allowlist includes CDN host', () => {
-  it('accepts static.coracowork.com URLs for download', async () => {
+  it('accepts static.aionui.com URLs for download', async () => {
     vi.resetModules();
     vi.clearAllMocks();
 
@@ -225,8 +217,8 @@ describe('updateBridge allowlist includes CDN host', () => {
 
       const result = await handler({
         downloadId: 'manual-download-1',
-        url: 'https://static.coracowork.com/releases/1.9.22/CoraCowork-1.9.22-mac-arm64.dmg',
-        file_name: 'CoraCowork-1.9.22-mac-arm64.dmg',
+        url: 'https://static.aionui.com/releases/1.9.22/AionUi-1.9.22-mac-arm64.dmg',
+        file_name: 'AionUi-1.9.22-mac-arm64.dmg',
       });
 
       expect(result.success).toBe(true);
@@ -353,4 +345,3 @@ describe('autoUpdate quitAndInstall lifecycle', () => {
     await expect(handler()).rejects.toThrow('native readiness failed');
   });
 });
-

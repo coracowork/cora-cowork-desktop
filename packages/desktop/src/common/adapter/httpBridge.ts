@@ -1,8 +1,8 @@
 /**
  * HTTP/WS bridge factory — drop-in replacement for bridge.buildProvider / bridge.buildEmitter
- * that routes calls to CoraCore via REST API and WebSocket.
+ * that routes calls to coracore via REST API and WebSocket.
  *
- * Exported helpers produce objects with the same shape as @office-ai/platform bridge,
+ * Exported helpers produce objects with the same shape as the local IPC bridge,
  * so existing renderer code works without changes.
  */
 
@@ -33,20 +33,11 @@ declare global {
  *   will still fail cleanly with ECONNREFUSED rather than masking the bug.
  */
 function getBackendPort(): number {
-  if (typeof window !== 'undefined') {
-    // Prefer mutable port info — updated asynchronously by preload on 'backend-port-update'
-    const portInfo = (window as Window & { __backendPortInfo?: { port: number } }).__backendPortInfo;
-    if (portInfo && typeof portInfo.port === 'number' && portInfo.port > 0) {
-      return portInfo.port;
-    }
-    // Fallback to static port (set once by preload — may be 0 if backend not ready)
-    const port = (window as Window).__backendPort as number | undefined;
-    if (typeof port === 'number' && port > 0) {
-      return port;
-    }
+  if (typeof window !== 'undefined' && (window as Window).__backendPort) {
+    return (window as Window).__backendPort as number;
   }
   const g = globalThis as typeof globalThis & { __backendPort?: number };
-  return g.__backendPort || 13400;
+  return g.__backendPort ?? 13400;
 }
 
 /**
@@ -55,11 +46,7 @@ function getBackendPort(): number {
  * proxy / WS upgrade to the backend.
  */
 function isWebUiBrowserMode(): boolean {
-  return (
-    typeof window !== 'undefined' &&
-    typeof document !== 'undefined' &&
-    !('__backendPort' in (window as Window))
-  );
+  return typeof window !== 'undefined' && typeof document !== 'undefined' && !(window as Window).__backendPort;
 }
 
 export function getBaseUrl(): string {

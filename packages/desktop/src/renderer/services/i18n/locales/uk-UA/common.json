@@ -98,7 +98,11 @@
       "sendDiagnostics": "Send diagnostics",
       "diagnosticsSent": "Diagnostics sent",
       "diagnosticsReportSuccess": "Diagnostics report sent",
-      "diagnosticsReportFailed": "Failed to send diagnostics report"
+      "diagnosticsReportFailed": "Failed to send diagnostics report",
+      "restoreFromBackup": "Відновити з резервної копії",
+      "restoreFailed": "Не вдалося відновити",
+      "resetDatabase": "Скинути дані",
+      "resetFailed": "Не вдалося скинути"
     },
     "localDataRepair": {
       "title": "Local data repair failed",

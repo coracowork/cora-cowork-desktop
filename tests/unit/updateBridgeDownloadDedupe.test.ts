@@ -1,13 +1,13 @@
 /**
  * @license
- * Copyright 2026 CoraCowork (coracowork.com)
+ * Copyright 2026 Cora-cowork (Cora-cowork.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 
 import fs from 'fs';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-vi.mock('@office-ai/platform', () => ({
+vi.mock('@/common/platform/bridge', () => ({
   bridge: {
     buildProvider: vi.fn(() => {
       const handlerMap = new Map<string, Function>();
@@ -25,20 +25,12 @@ vi.mock('@office-ai/platform', () => ({
       on: vi.fn(),
     })),
   },
-  storage: {
-    buildStorage: () => ({
-      getSync: () => undefined,
-      setSync: () => {},
-      get: () => Promise.resolve(undefined),
-      set: () => Promise.resolve(),
-    }),
-  },
 }));
 
 vi.mock('electron', () => ({
   app: {
     getVersion: vi.fn(() => '1.0.0'),
-    getPath: vi.fn(() => '/tmp/coracowork-update-dedupe-test'),
+    getPath: vi.fn(() => '/tmp/cora-cowork-update-dedupe-test'),
     exit: vi.fn(),
     isPackaged: true,
   },
@@ -120,8 +112,8 @@ describe('updateBridge manual download dedupe', () => {
   it('reuses the active manual download for the same URL, fallback URL, and file name', async () => {
     const handler = await getDownloadHandler();
     const request = {
-      url: 'https://static.coracowork.com/releases/2.2.0/CoraCowork-2.2.0-mac-arm64.dmg',
-      fallbackUrl: 'https://github.com/coracowork/CoraCowork/releases/download/v2.2.0/CoraCowork-2.2.0-mac-arm64.dmg',
+      url: 'https://coracowork.shop/releases/2.2.0/Cora-cowork-2.2.0-mac-arm64.dmg',
+      fallbackUrl: 'https://github.com/coracowork/cora-cowork-desktop/releases/download/v2.2.0/Cora-cowork-2.2.0-mac-arm64.dmg',
       file_name: 'CoraCowork-2.2.0-mac-arm64.dmg',
     };
 
@@ -141,7 +133,7 @@ describe('updateBridge manual download dedupe', () => {
   });
 
   it('creates a new manual download after the prior matching task reaches a terminal state', async () => {
-    fs.mkdirSync('/tmp/coracowork-update-dedupe-test', { recursive: true });
+    fs.mkdirSync('/tmp/cora-cowork-update-dedupe-test', { recursive: true });
     vi.stubGlobal(
       'fetch',
       vi.fn().mockResolvedValue({
@@ -157,9 +149,9 @@ describe('updateBridge manual download dedupe', () => {
 
     const handler = await getDownloadHandler();
     const request = {
-      url: 'https://static.coracowork.com/releases/2.2.0/CoraCowork-2.2.0-mac-arm64.dmg',
-      fallbackUrl: 'https://github.com/coracowork/CoraCowork/releases/download/v2.2.0/CoraCowork-2.2.0-mac-arm64.dmg',
-      file_name: 'CoraCowork-2.2.0-mac-arm64.dmg',
+      url: 'https://coracowork.shop/releases/2.2.0/Cora-cowork-2.2.0-mac-arm64.dmg',
+      fallbackUrl: 'https://github.com/coracowork/cora-cowork-desktop/releases/download/v2.2.0/Cora-cowork-2.2.0-mac-arm64.dmg',
+      file_name: 'Cora-cowork-2.2.0-mac-arm64.dmg',
     };
 
     const first = await handler({
@@ -186,7 +178,7 @@ describe('updateBridge manual download dedupe', () => {
   });
 
   it('cancels an active manual download by download id and clears its dedupe slot', async () => {
-    fs.mkdirSync('/tmp/coracowork-update-dedupe-test', { recursive: true });
+    fs.mkdirSync('/tmp/cora-cowork-update-dedupe-test', { recursive: true });
     vi.stubGlobal(
       'fetch',
       vi.fn((_url: string, init?: RequestInit) => {
@@ -201,9 +193,9 @@ describe('updateBridge manual download dedupe', () => {
 
     const { download, cancel, ipcBridge } = await getDownloadHandlers();
     const request = {
-      url: 'https://static.coracowork.com/releases/2.2.0/CoraCowork-2.2.0-mac-arm64.dmg',
-      fallbackUrl: 'https://github.com/coracowork/CoraCowork/releases/download/v2.2.0/CoraCowork-2.2.0-mac-arm64.dmg',
-      file_name: 'CoraCowork-2.2.0-mac-arm64.dmg',
+      url: 'https://coracowork.shop/releases/2.2.0/Cora-cowork-2.2.0-mac-arm64.dmg',
+      fallbackUrl: 'https://github.com/coracowork/cora-cowork-desktop/releases/download/v2.2.0/Cora-cowork-2.2.0-mac-arm64.dmg',
+      file_name: 'Cora-cowork-2.2.0-mac-arm64.dmg',
     };
 
     const first = await download({
@@ -231,4 +223,3 @@ describe('updateBridge manual download dedupe', () => {
     expect(second.data?.downloadId).toBe('second-download');
   });
 });
-

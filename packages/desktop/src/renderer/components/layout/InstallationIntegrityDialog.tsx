@@ -216,6 +216,8 @@ const InstallationIntegrityFooter: React.FC<{
   const [reported, setReported] = useState(false);
   const [reporting, setReporting] = useState(false);
   const [recovering, setRecovering] = useState(false);
+  const [restoring, setRestoring] = useState(false);
+  const [resetting, setResetting] = useState(false);
   const actions = getInstallationIntegrityModalActions(t, {
     diagnosticsKind,
     onRecoverCorruptedDatabase: () => window.electronAPI?.recoverCorruptedDatabase?.(),
@@ -265,6 +267,38 @@ const InstallationIntegrityFooter: React.FC<{
     }
   };
 
+  const handleRestoreFromBackup = async () => {
+    if (restoring) return;
+    setRestoring(true);
+    try {
+      const result = await window.electronAPI?.backendRestorePreUpdateBackup?.();
+      if (!result?.success) {
+        Message.error(result?.error ?? t('common.backendStartup.dataMigration.restoreFailed'));
+        setRestoring(false);
+      }
+    } catch {
+      Message.error(t('common.backendStartup.dataMigration.restoreFailed'));
+      setRestoring(false);
+    }
+  };
+
+  const handleResetDatabase = async () => {
+    if (resetting) return;
+    setResetting(true);
+    try {
+      const result = await window.electronAPI?.backendResetDatabase?.();
+      if (!result?.success) {
+        Message.error(result?.error ?? t('common.backendStartup.dataMigration.resetFailed'));
+        setResetting(false);
+      }
+    } catch {
+      Message.error(t('common.backendStartup.dataMigration.resetFailed'));
+      setResetting(false);
+    }
+  };
+
+  const isDataMigration = diagnosticsKind === 'data_migration';
+
   return (
     <Space>
       <Button
@@ -275,6 +309,16 @@ const InstallationIntegrityFooter: React.FC<{
       >
         {reported ? getInstallationIntegrityDiagnosticsSentText(t, diagnosticsKind) : actions.reportText}
       </Button>
+      {isDataMigration ? (
+        <>
+          <Button type='secondary' loading={restoring} onClick={handleRestoreFromBackup}>
+            {t('common.backendStartup.dataMigration.restoreFromBackup')}
+          </Button>
+          <Button type='primary' status='warning' loading={resetting} onClick={handleResetDatabase}>
+            {t('common.backendStartup.dataMigration.resetDatabase')}
+          </Button>
+        </>
+      ) : null}
       {actions.downloadText ? (
         <Button data-testid='installation-integrity-download' type='primary' onClick={actions.onDownloadLatest}>
           {actions.downloadText}

@@ -8,7 +8,7 @@ import { describe, expect, it } from 'vitest';
 import { buildDisplayMessage } from '@/renderer/utils/file/messageFiles';
 
 describe('buildDisplayMessage', () => {
-  const workspace = '/tmp/aion/workspace-1';
+  const workspace = '/tmp/cora/workspace-1';
 
   it('stores workspace files with workspace prefix', () => {
     const files = [`${workspace}/uploads/photo.jpg`];
@@ -40,7 +40,7 @@ describe('buildDisplayMessage', () => {
     expect(result).toBe('hello');
   });
 
-  it('strips AIONUI timestamp separators from filenames while keeping prefix', () => {
+  it('strips CORACOWORK timestamp separators from filenames while keeping prefix', () => {
     const files = [`${workspace}/uploads/photo_coracowork_1234567890123.jpg`];
     const result = buildDisplayMessage('hello', files, workspace);
     expect(result).toContain(`${workspace}/uploads/photo.jpg`);

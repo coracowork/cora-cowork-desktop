@@ -4,7 +4,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 const usePresetAssistantInfoMock = vi.fn();
 const acpChatMock = vi.fn(() => <div data-testid='mock-acp-chat' />);
-const aionrsChatMock = vi.fn(() => <div data-testid='mock-aionrs-chat' />);
+const corarsChatMock = vi.fn(() => <div data-testid='mock-corars-chat' />);
 
 vi.mock('react-i18next', () => ({
   useTranslation: () => ({
@@ -21,9 +21,9 @@ vi.mock('@/renderer/pages/conversation/platforms/acp/AcpChat', () => ({
   default: (props: unknown) => acpChatMock(props),
 }));
 
-vi.mock('@/renderer/pages/conversation/platforms/aionrs/AionrsChat', () => ({
+vi.mock('@/renderer/pages/conversation/platforms/corars/CorarsChat', () => ({
   __esModule: true,
-  default: (props: unknown) => aionrsChatMock(props),
+  default: (props: unknown) => corarsChatMock(props),
 }));
 
 vi.mock('@/renderer/pages/conversation/platforms/legacy/LegacyReadOnlyConversation', () => ({
@@ -37,7 +37,7 @@ describe('TeamChatView', () => {
   beforeEach(() => {
     usePresetAssistantInfoMock.mockReset();
     acpChatMock.mockClear();
-    aionrsChatMock.mockClear();
+    corarsChatMock.mockClear();
   });
 
   it('prefers preset assistant backend over legacy conversation extra backend', async () => {
@@ -151,7 +151,7 @@ describe('TeamChatView', () => {
       <TeamChatView
         conversation={{
           id: 'conv-1',
-          type: 'aionrs',
+          type: 'corars',
           name: 'Team - AionRS',
           created_at: Date.now(),
           updated_at: Date.now(),
@@ -173,8 +173,8 @@ describe('TeamChatView', () => {
       />
     );
 
-    expect(await screen.findByTestId('mock-aionrs-chat')).toBeInTheDocument();
-    expect(aionrsChatMock.mock.calls[0]?.[0]).toEqual(
+    expect(await screen.findByTestId('mock-corars-chat')).toBeInTheDocument();
+    expect(corarsChatMock.mock.calls[0]?.[0]).toEqual(
       expect.objectContaining({
         loadedSkills: ['excel'],
         loadedMcpServers: ['office'],

@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 CoraCowork (coracowork.com)
+ * Copyright 2025 CoraUi (aionui.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -19,12 +19,6 @@ vi.mock('react-i18next', () => ({
     t: (key: string) => key,
     i18n: { language: 'zh-CN' },
   }),
-}));
-
-// CreateTaskDialog renders through CoraCoworkModal, which reads ThemeContext for font scaling.
-// Provide a minimal theme so it mounts without a full ThemeProvider (which pulls in IPC-backed theme loading).
-vi.mock('@/renderer/hooks/context/ThemeContext', () => ({
-  useThemeContext: () => ({ theme: 'light', fontScale: 1 }),
 }));
 
 vi.mock('@arco-design/web-react', async () => {
@@ -51,7 +45,7 @@ vi.mock('@/common', () => ({
   },
 }));
 
-vi.mock('@renderer/components/base/AionModal', () => ({
+vi.mock('@renderer/components/base/CoraModal', () => ({
   __esModule: true,
   default: ({ visible, children, onOk }: { visible: boolean; children: React.ReactNode; onOk?: () => void }) =>
     visible ? (
@@ -88,11 +82,11 @@ vi.mock('@renderer/components/workspace', () => ({
 }));
 
 vi.mock('@renderer/pages/cron/cronUtils', () => ({
-  createCronSchedule: () => ({
+  createCronSchedule: (expr: string, description: string) => ({
     kind: 'cron',
-    expr: '0 10 * * *',
+    expr,
     timezone: 'Asia/Shanghai',
-    description: 'daily',
+    description,
   }),
 }));
 
@@ -160,6 +154,70 @@ describe('CreateTaskDialog', () => {
     expect(screen.queryByText('cron.page.form.description')).not.toBeInTheDocument();
   });
 
+  it('offers custom frequency when creating a task', async () => {
+    const user = userEvent.setup();
+
+    render(<CreateTaskDialog visible onClose={() => {}} />);
+
+    await user.click(await screen.findByTestId('cron-frequency-select'));
+
+    expect(await screen.findByText('cron.page.freq.custom')).toBeInTheDocument();
+  });
+
+  it('submits the default visual custom schedule as every five minutes', async () => {
+    const user = userEvent.setup();
+
+    render(<CreateTaskDialog visible onClose={() => {}} editJob={job()} />);
+
+    await user.click(await screen.findByTestId('cron-frequency-select'));
+    fireEvent.click(await screen.findByText('cron.page.freq.custom'));
+    expect(await screen.findByText('*/5 * * * *')).toBeInTheDocument();
+    await user.click(screen.getByTestId('modal-ok'));
+
+    await waitFor(() => expect(ipcBridge.cron.updateJob.invoke).toHaveBeenCalledTimes(1));
+    const [{ updates }] = vi.mocked(ipcBridge.cron.updateJob.invoke).mock.calls[0];
+    expect(updates.schedule).toMatchObject({
+      kind: 'cron',
+      expr: '*/5 * * * *',
+    });
+  });
+
+  it('keeps advanced cron input available for complex expressions', async () => {
+    const user = userEvent.setup();
+
+    render(<CreateTaskDialog visible onClose={() => {}} editJob={job()} />);
+
+    await user.click(await screen.findByTestId('cron-frequency-select'));
+    fireEvent.click(await screen.findByText('cron.page.freq.custom'));
+    await user.click(await screen.findByTestId('custom-frequency-mode'));
+    fireEvent.click(await screen.findByText('cron.page.custom.advanced'));
+    const cronInput = await screen.findByTestId('custom-cron-expression');
+    await user.type(cronInput, '*/15 9-18 * * MON-FRI');
+    await user.click(screen.getByTestId('modal-ok'));
+
+    await waitFor(() => expect(ipcBridge.cron.updateJob.invoke).toHaveBeenCalledTimes(1));
+    const [{ updates }] = vi.mocked(ipcBridge.cron.updateJob.invoke).mock.calls[0];
+    expect(updates.schedule).toMatchObject({
+      kind: 'cron',
+      expr: '*/15 9-18 * * MON-FRI',
+    });
+  });
+
+  it('does not save advanced mode without a cron expression', async () => {
+    const user = userEvent.setup();
+
+    render(<CreateTaskDialog visible onClose={() => {}} editJob={job()} />);
+
+    await user.click(await screen.findByTestId('cron-frequency-select'));
+    fireEvent.click(await screen.findByText('cron.page.freq.custom'));
+    await user.click(await screen.findByTestId('custom-frequency-mode'));
+    fireEvent.click(await screen.findByText('cron.page.custom.advanced'));
+    await user.click(screen.getByTestId('modal-ok'));
+
+    expect(await screen.findByText('cron.page.form.cronExprRequired')).toBeInTheDocument();
+    expect(ipcBridge.cron.updateJob.invoke).not.toHaveBeenCalled();
+  });
+
   it('does not reset edited prompt text when the assistant catalog refreshes in edit mode', async () => {
     const user = userEvent.setup();
     const editJob = job();
@@ -219,7 +277,7 @@ describe('CreateTaskDialog', () => {
 
     render(<CreateTaskDialog visible onClose={() => {}} editJob={ongoingConversationJob()} />);
 
-    await user.click(await screen.findByRole('button', { name: 'cron.page.save' }));
+    await user.click(await screen.findByTestId('modal-ok'));
 
     await waitFor(() => expect(ipcBridge.cron.updateJob.invoke).toHaveBeenCalledTimes(1));
     expect(resolveCronAgentConfig).not.toHaveBeenCalled();
@@ -286,7 +344,7 @@ describe('CreateTaskDialog', () => {
     expect(screen.getByText('cron.page.form.teamTaskExecutionModeLockedReason')).toBeInTheDocument();
 
     await user.click(await screen.findByText('cron.page.form.newConversation'));
-    await user.click(screen.getByRole('button', { name: 'cron.page.save' }));
+    await user.click(screen.getByTestId('modal-ok'));
 
     await waitFor(() => expect(ipcBridge.cron.updateJob.invoke).toHaveBeenCalledTimes(1));
     expect(resolveCronAgentConfig).not.toHaveBeenCalled();
@@ -310,7 +368,7 @@ describe('CreateTaskDialog', () => {
       return option;
     });
     fireEvent.click(assistantOption);
-    await user.click(screen.getByRole('button', { name: 'cron.page.save' }));
+    await user.click(screen.getByTestId('modal-ok'));
 
     await waitFor(() => expect(resolveCronAgentConfig).toHaveBeenCalledTimes(1));
     expect(vi.mocked(resolveCronAgentConfig).mock.calls[0][0]).toMatchObject({
@@ -446,4 +504,3 @@ function bareAssistant(): Assistant {
     models: [],
   } as Assistant;
 }
-

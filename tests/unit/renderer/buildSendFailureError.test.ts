@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 CoraCowork (coracowork.com)
+ * Copyright 2025 AionUi (aionui.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -25,12 +25,38 @@ describe('buildSendFailureError', () => {
     expect(result).toEqual({
       message: 'Conflict: Conversation is already processing a message',
       code: 'CORA_COWORK_CONVERSATION_BUSY',
-      ownership: 'coracowork',
+      ownership: 'aionui',
       detail: 'Conflict: Conversation is already processing a message',
       retryable: false,
       feedback_recommended: false,
       resolution: { kind: 'wait_for_current_response' },
     });
+  });
+
+  it('classifies 409 already-running as CORA_COWORK_CONVERSATION_BUSY', () => {
+    const err = httpError(409, 'CONFLICT', 'conversation 7261e2b5 is already running');
+
+    const result = buildSendFailureError(err, 'conversation 7261e2b5 is already running');
+
+    expect(result).toMatchObject({
+      code: 'CORA_COWORK_CONVERSATION_BUSY',
+      ownership: 'aionui',
+      retryable: false,
+      feedback_recommended: false,
+      resolution: { kind: 'wait_for_current_response' },
+    });
+    expect(result.rawError).toBeUndefined();
+  });
+
+  it('classifies runtime shutdown conflict as non-retryable busy without raw internal diagnostics', () => {
+    const err = httpError(409, 'CONFLICT', 'conversation runtime is shutting down');
+
+    const result = buildSendFailureError(err, 'conversation runtime is shutting down');
+
+    expect(result.code).toBe('CORA_COWORK_CONVERSATION_BUSY');
+    expect(result.retryable).toBe(false);
+    expect(result.feedback_recommended).toBe(false);
+    expect(result.rawError).toBeUndefined();
   });
 
   it('classifies 502 BAD_GATEWAY as UNKNOWN_UPSTREAM_ERROR (retryable)', () => {
@@ -84,7 +110,7 @@ describe('buildSendFailureError', () => {
     expect(result).toEqual({
       message: 'The existing workspace path "/tmp/Archive " is no longer supported for send or warmup.',
       code: 'WORKSPACE_PATH_RUNTIME_UNAVAILABLE',
-      ownership: 'coracowork',
+      ownership: 'aionui',
       detail: 'The existing workspace path "/tmp/Archive " is no longer supported for send or warmup.',
       workspacePath: '/tmp/Archive ',
       retryable: false,
@@ -105,7 +131,7 @@ describe('buildSendFailureError', () => {
     const result = buildSendFailureError(new Error('boom'), 'boom');
 
     expect(result.code).toBe('CORA_COWORK_INTERNAL_ERROR');
-    expect(result.ownership).toBe('coracowork');
+    expect(result.ownership).toBe('aionui');
     expect(result.retryable).toBe(true);
   });
 
@@ -155,4 +181,3 @@ describe('buildSendFailureError', () => {
     expect(result.rawError).toBeUndefined();
   });
 });
-

@@ -98,7 +98,11 @@
       "sendDiagnostics": "Send diagnostics",
       "diagnosticsSent": "Diagnostics sent",
       "diagnosticsReportSuccess": "Diagnostics report sent",
-      "diagnosticsReportFailed": "Failed to send diagnostics report"
+      "diagnosticsReportFailed": "Failed to send diagnostics report",
+      "restoreFromBackup": "Restore from backup",
+      "restoreFailed": "Failed to restore from backup",
+      "resetDatabase": "Reset data",
+      "resetFailed": "Failed to reset data"
     },
     "localDataRepair": {
       "title": "Local data repair failed",

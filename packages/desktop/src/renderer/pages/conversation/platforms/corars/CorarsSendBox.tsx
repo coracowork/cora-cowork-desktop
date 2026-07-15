@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 CoraCowork (cora-cowork.com)
+ * Copyright 2025 CoraCowork (coracowork.shop)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -50,8 +50,9 @@ import { Message, Tag } from '@arco-design/web-react';
 import { Brain, MagicHat, Shield } from '@icon-park/react';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useCoraCoworkrsMessage } from './useCoraCoworkrsMessage';
-import type { CoraCoworkrsModelSelection } from './useCoraCoworkrsModelSelection';
+import { classifyConversationBusyError } from '../conversationBusyError';
+import { useCorarsMessage } from './useCorarsMessage';
+import type { CorarsModelSelection } from './useCorarsModelSelection';
 
 const configErrorMessageKey = (error: unknown) => {
   const errorKind = classifyConfigSetError(error);
@@ -70,7 +71,7 @@ const toModeLabel = (value: string): string =>
 const modeOptionsFromCapabilities = (modes: string[]): AgentModeOption[] =>
   modes.map((value) => ({ value, label: toModeLabel(value) }));
 
-const useCoraCoworkrsSendBoxDraft = getSendBoxDraftHook('corars', {
+const useCorarsSendBoxDraft = getSendBoxDraftHook('corars', {
   _type: 'corars',
   atPath: [],
   content: '',
@@ -81,7 +82,7 @@ const EMPTY_AT_PATH: Array<string | FileOrFolderItem> = [];
 const EMPTY_UPLOAD_FILES: string[] = [];
 
 const useSendBoxDraft = (conversation_id: string) => {
-  const { data, mutate } = useCoraCoworkrsSendBoxDraft(conversation_id);
+  const { data, mutate } = useCorarsSendBoxDraft(conversation_id);
 
   const atPath = data?.atPath ?? EMPTY_AT_PATH;
   const uploadFile = data?.uploadFile ?? EMPTY_UPLOAD_FILES;
@@ -113,9 +114,9 @@ const useSendBoxDraft = (conversation_id: string) => {
   };
 };
 
-const CoraCoworkrsSendBox: React.FC<{
+const CorarsSendBox: React.FC<{
   conversation_id: string;
-  modelSelection: CoraCoworkrsModelSelection;
+  modelSelection: CorarsModelSelection;
   session_mode?: string;
   agent_name?: string;
   teamSendMessage?: (payload: { input: string; files: string[] }) => Promise<void>;
@@ -142,7 +143,7 @@ const CoraCoworkrsSendBox: React.FC<{
   const teamPermission = useTeamPermission();
   const propagateMode = teamPermission?.propagateMode;
 
-  const { thought, running, setActiveMsgId, setWaitingResponse, resetState } = useCoraCoworkrsMessage(conversation_id, {
+  const { thought, running, setActiveMsgId, setWaitingResponse, resetState } = useCorarsMessage(conversation_id, {
     onConfigChanged: (capabilities) => {
       const modes = (capabilities as { modes?: string[] })?.modes;
       if (modes && modes.length > 0) {
@@ -151,6 +152,7 @@ const CoraCoworkrsSendBox: React.FC<{
     },
   });
   const runtimeView = useConversationRuntimeView(conversation_id);
+  const { markSendStarted, markSendAccepted, markSendFailed } = runtimeView;
 
   const { atPath, uploadFile, setAtPath, setUploadFile, content, setContent } = useSendBoxDraft(conversation_id);
 
@@ -163,19 +165,20 @@ const CoraCoworkrsSendBox: React.FC<{
 
   const [agentWarmed, setAgentWarmed] = useState(false);
   const prepareRuntimeConfig = useCallback(async () => {
-    if (teamPermission) {
-      await teamPermission.warmupSession();
-    }
+    if (teamPermission) return;
   }, [teamPermission]);
   const prepareRuntimeSync = useCallback(async () => {
     if (teamPermission) {
       await teamPermission.warmupSession();
+      return;
     }
     await ensureConversationRuntime(conversation_id);
   }, [conversation_id, teamPermission]);
   const runtimeConfig = useAcpConfigOptions({
     conversation_id,
     prepareRuntime: prepareRuntimeConfig,
+    prepareSetRuntime: teamPermission?.warmupSession,
+    loadConfigOptions: teamPermission?.loadConfigOptions,
     enabled: Boolean(conversation_id),
   });
   const runtimeMode = runtimeConfig.mode;
@@ -208,6 +211,7 @@ const CoraCoworkrsSendBox: React.FC<{
   const slash_commands = useSlashCommands(conversation_id, {
     conversation_type: 'corars',
     agentStatus: agentWarmed ? 'active' : null,
+    prepareRuntime: teamPermission ? prepareRuntimeSync : undefined,
   });
 
   const { setSendBoxHandler } = usePreviewContext();
@@ -270,7 +274,7 @@ const CoraCoworkrsSendBox: React.FC<{
           return;
         }
 
-        runtimeView.markSendStarted();
+        markSendStarted();
         setWaitingResponse(true);
         const res = await ipcBridge.conversation.sendMessage.invoke({
           input: displayMessage,
@@ -278,7 +282,7 @@ const CoraCoworkrsSendBox: React.FC<{
           files,
         });
         setActiveMsgId(res.msg_id);
-        runtimeView.markSendAccepted(res.turn_id, res.runtime, res.msg_id);
+        markSendAccepted(res.turn_id, res.runtime, res.msg_id);
         emitter.emit('chat.history.refresh');
         if (files.length > 0) {
           emitter.emit('corars.workspace.refresh');
@@ -287,7 +291,19 @@ const CoraCoworkrsSendBox: React.FC<{
         const errorMessage =
           getConversationRuntimeWorkspaceErrorMessage(error, t) ||
           (error instanceof Error ? error.message : String(error));
-        runtimeView.markSendFailed(errorMessage);
+        const busyError = classifyConversationBusyError(error);
+        if (busyError) {
+          markSendFailed({
+            kind: 'busy_conflict',
+            reason: errorMessage,
+            busyKind: busyError.kind,
+            status: busyError.status,
+            code: busyError.code,
+          });
+          throw error;
+        }
+
+        markSendFailed({ kind: 'ordinary', reason: errorMessage });
         Message.error(errorMessage);
         throw error;
       }
@@ -296,7 +312,9 @@ const CoraCoworkrsSendBox: React.FC<{
       checkAndUpdateTitle,
       conversation_id,
       current_model?.use_model,
-      runtimeView,
+      markSendAccepted,
+      markSendFailed,
+      markSendStarted,
       setActiveMsgId,
       setWaitingResponse,
       t,
@@ -308,12 +326,16 @@ const CoraCoworkrsSendBox: React.FC<{
 
   const {
     items: queuedCommands,
+    mode: queueMode,
     isInteractionLocked: isQueueInteractionLocked,
     hasPendingCommands,
     enqueue,
     remove,
+    prioritize,
+    sendNow,
     clear,
     reorder,
+    toggleMode,
     lockInteraction,
     unlockInteraction,
     resetActiveExecution,
@@ -344,7 +366,7 @@ const CoraCoworkrsSendBox: React.FC<{
         const { input, files: initialFiles } = JSON.parse(storedMessage);
         await executeCommand({ input, files: initialFiles || [] });
       } catch (error) {
-        console.error('[CoraCoworkrsSendBox] Failed to send initial message:', error);
+        console.error('[CorarsSendBox] Failed to send initial message:', error);
         sessionStorage.removeItem(processedKey);
       }
     };
@@ -407,7 +429,7 @@ const CoraCoworkrsSendBox: React.FC<{
         propagateMode?.(mode);
         Message.success(t('agentMode.switchSuccess'));
       } catch (error) {
-        console.error('[CoraCoworkrsSendBox] Failed to switch mode via sheet:', error);
+        console.error('[CorarsSendBox] Failed to switch mode via sheet:', error);
         Message.error(t(configErrorMessageKey(error)));
       }
     },
@@ -524,10 +546,10 @@ const CoraCoworkrsSendBox: React.FC<{
       entries.push({
         key: 'skills',
         icon: <MagicHat theme='outline' size='16' />,
-        label: t('common.skills', { defaultValue: 'Skills' }),
+        label: t('common.selectedSkills', { defaultValue: 'Selected skills' }),
         variant: 'muted',
         submenu: {
-          title: t('common.skills', { defaultValue: 'Skills' }),
+          title: t('common.selectedSkills', { defaultValue: 'Selected skills' }),
           selectable: false,
           options: skillOptions,
           onSelect: (name) => {
@@ -551,10 +573,10 @@ const CoraCoworkrsSendBox: React.FC<{
       entries.push({
         key: 'mcp',
         icon: <Shield theme='outline' size='16' />,
-        label: t('conversation.mcp.loaded', { defaultValue: 'Loaded MCP' }),
+        label: t('conversation.mcp.selected', { defaultValue: 'Selected MCP' }),
         variant: 'muted',
         submenu: {
-          title: t('conversation.mcp.loaded', { defaultValue: 'Loaded MCP' }),
+          title: t('conversation.mcp.selected', { defaultValue: 'Selected MCP' }),
           selectable: false,
           options: mcpOptions,
           onSelect: () => undefined,
@@ -603,7 +625,7 @@ const CoraCoworkrsSendBox: React.FC<{
       const result = await ipcBridge.conversation.stop.invoke({ conversation_id, turn_id: turnId });
       runtimeView.markStopAcknowledged(turnId, result.runtime);
     } catch (error) {
-      console.warn('[CoraCoworkrsSendBox] stop request failed', error);
+      console.warn('[CorarsSendBox] stop request failed', error);
       runtimeView.resetLocalGate('stop_failed');
     } finally {
       resetState();
@@ -611,21 +633,42 @@ const CoraCoworkrsSendBox: React.FC<{
     }
   };
   const effectiveHandleStop = teamRuntime?.onStop ?? handleStop;
+  const handleSendNowQueued = useCallback(
+    async (item: ConversationCommandQueueItem) => {
+      // Stop the current reply (best-effort), then promote the chosen command
+      // to the front of the queue in auto mode.  The drain effect will fire it
+      // once the execution gate shows canExecute — avoiding the 409 race that
+      // occurs when sendNow() calls onExecute() directly before the backend
+      // has finished processing the stop.
+      await effectiveHandleStop();
+      prioritize(item.id);
+    },
+    [effectiveHandleStop, prioritize]
+  );
   const sendBoxWidthClass = getChatSurfaceWidthClass(Boolean(teamPermission));
 
   return (
     <div className={`${sendBoxWidthClass} flex flex-col mt-auto mb-16px`}>
       <CommandQueuePanel
         items={queuedCommands}
+        mode={queueMode}
+        isMobile={isMobile}
         interactionLocked={isQueueInteractionLocked}
         onInteractionLock={lockInteraction}
         onInteractionUnlock={unlockInteraction}
         onEdit={handleEditQueuedCommand}
+        onSendNow={handleSendNowQueued}
+        onToggleMode={toggleMode}
         onReorder={reorder}
         onRemove={remove}
         onClear={clear}
       />
-      <ThoughtDisplay thought={thought} running={teamRuntime?.loading ?? running} onStop={effectiveHandleStop} />
+      <ThoughtDisplay
+        thought={thought}
+        running={teamRuntime?.loading ?? running}
+        statusText={teamRuntime?.statusText}
+        onStop={effectiveHandleStop}
+      />
 
       <SendBox
         data-testid='corars-sendbox'
@@ -675,6 +718,8 @@ const CoraCoworkrsSendBox: React.FC<{
               hideCompactLabelPrefixOnMobile
               onModeChanged={propagateMode}
               beforeRuntimeSync={prepareRuntimeConfig}
+              beforeRuntimeSet={teamPermission?.warmupSession}
+              loadConfigOptions={teamPermission?.loadConfigOptions}
             />
           </div>
         }
@@ -740,4 +785,4 @@ const CoraCoworkrsSendBox: React.FC<{
   );
 };
 
-export default CoraCoworkrsSendBox;
+export default CorarsSendBox;

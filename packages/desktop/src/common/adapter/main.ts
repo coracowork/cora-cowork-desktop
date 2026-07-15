@@ -1,13 +1,13 @@
 /**
  * @license
- * Copyright 2026 CoraCowork (cora-cowork.com)
+ * Copyright 2025 CoraCowork (coracowork.shop)
  * SPDX-License-Identifier: Apache-2.0
  */
 
 import type { BrowserWindow } from 'electron';
 import { ipcMain } from 'electron';
 
-import { bridge } from '@office-ai/platform';
+import { bridge } from '@/common/platform/bridge';
 import { ADAPTER_BRIDGE_EVENT_KEY } from './constant';
 import { registerWebSocketBroadcaster, getBridgeEmitter, setBridgeEmitter, broadcastToAll } from './registry';
 

@@ -98,7 +98,11 @@
       "sendDiagnostics": "ارسال گزارش تشخیصی",
       "diagnosticsSent": "گزارش تشخیصی ارسال شد",
       "diagnosticsReportSuccess": "گزارش تشخیصی ارسال شد",
-      "diagnosticsReportFailed": "ارسال گزارش تشخیصی ناموفق بود"
+      "diagnosticsReportFailed": "ارسال گزارش تشخیصی ناموفق بود",
+      "restoreFromBackup": "بازیابی از پشتیبان",
+      "restoreFailed": "بازیابی ناموفق بود",
+      "resetDatabase": "بازنشانی داده‌ها",
+      "resetFailed": "بازنشانی ناموفق بود"
     },
     "localDataRepair": {
       "title": "ترمیم داده‌های محلی ناموفق بود",

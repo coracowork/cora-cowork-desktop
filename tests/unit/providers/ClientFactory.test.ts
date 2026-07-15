@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 CoraCowork (coracowork.com)
+ * Copyright 2025 AionUi (aionui.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -9,7 +9,7 @@ import { ClientFactory, normalizeNewApiBaseUrl } from '@/common/api/ClientFactor
 import { OpenAIRotatingClient } from '@/common/api/OpenAIRotatingClient';
 import { GeminiRotatingClient } from '@/common/api/GeminiRotatingClient';
 import { AnthropicRotatingClient } from '@/common/api/AnthropicRotatingClient';
-import { AuthType } from '@office-ai/aioncli-core';
+import { AuthType } from '@/common/types/provider/authType';
 
 // Mock rotating clients
 vi.mock('@/common/api/OpenAIRotatingClient');
@@ -162,7 +162,7 @@ describe('ClientFactory', () => {
       const calls = (OpenAIRotatingClient as any).mock.calls;
       const config = calls[0][1];
       expect(config.defaultHeaders).toEqual({
-        'HTTP-Referer': 'https://coracowork.com',
+        'HTTP-Referer': 'https://coracowork.shop',
         'X-Title': 'CoraCowork',
       });
     });
@@ -208,4 +208,3 @@ describe('ClientFactory', () => {
     });
   });
 });
-

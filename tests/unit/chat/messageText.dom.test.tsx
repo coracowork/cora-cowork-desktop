@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 CoraCowork (coracowork.com)
+ * Copyright 2025 AionUi (aionui.com)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -11,6 +11,7 @@ import type { IMessageText } from '@/common/chat/chatLib';
 import { ipcBridge } from '@/common';
 import { ConversationProvider } from '@/renderer/hooks/context/ConversationContext';
 import MessageText from '@/renderer/pages/conversation/Messages/components/MessageText';
+import { copyText } from '@/renderer/utils/ui/clipboard';
 import {
   LARGE_TEXT_PREVIEW_MAX_LENGTH,
   LARGE_TEXT_PREVIEW_THRESHOLD,
@@ -113,6 +114,11 @@ vi.mock('@/renderer/utils/model/agentLogo', () => ({
   resolveAgentLogo: () => null,
 }));
 
+vi.mock('@/renderer/pages/conversation/Messages/components/TeammateMessageAvatar', () => ({
+  __esModule: true,
+  default: ({ senderName }: { senderName?: string }) => <span data-testid='teammate-avatar'>{senderName}</span>,
+}));
+
 vi.mock('@/renderer/utils/ui/clipboard', () => ({
   copyText: vi.fn().mockResolvedValue(undefined),
 }));
@@ -145,6 +151,8 @@ const fileMetadata = (path: string) => ({
 
 describe('MessageText attachment paths', () => {
   beforeEach(() => {
+    mockFilePreview.mockClear();
+    vi.mocked(copyText).mockClear();
     previewMocks.openPreview.mockClear();
     localFileLinkMocks.payload = {
       path: '/missing/report.xlsx',
@@ -175,6 +183,32 @@ describe('MessageText attachment paths', () => {
     );
   };
 
+  const renderMessageText = (
+    content: string,
+    overrides: Partial<IMessageText> = {},
+    contentOverrides: Partial<IMessageText['content']> = {}
+  ) => {
+    const message: IMessageText = {
+      id: 'msg-marker',
+      msg_id: 'msg-marker',
+      conversation_id: 'conv-1',
+      type: 'text',
+      position: 'left',
+      createdAt: Date.now(),
+      content: {
+        content,
+        ...contentOverrides,
+      },
+      ...overrides,
+    };
+
+    render(
+      <ConversationProvider value={{ conversationId: 'conv-1', workspace: '/workspace/demo', type: 'acp' }}>
+        <MessageText message={message} />
+      </ConversationProvider>
+    );
+  };
+
   it('resolves relative attachment paths against the current workspace before previewing', () => {
     const message: IMessageText = {
       id: 'msg-1',
@@ -184,7 +218,7 @@ describe('MessageText attachment paths', () => {
       position: 'right',
       createdAt: Date.now(),
       content: {
-        content: 'look at this\n\n[[AION_FILES]]\nuploads/photo.png',
+        content: 'look at this\n\n[[CORA_FILES]]\nuploads/photo.png',
       },
     };
 
@@ -230,7 +264,7 @@ describe('MessageText attachment paths', () => {
       position: 'right',
       createdAt: Date.now(),
       content: {
-        content: 'look at this\n\n[[AION_FILES]]\n/Users/demo/Desktop/photo.png',
+        content: 'look at this\n\n[[CORA_FILES]]\n/Users/demo/Desktop/photo.png',
       },
     };
 
@@ -241,6 +275,156 @@ describe('MessageText attachment paths', () => {
     );
 
     expect(screen.getByTestId('file-preview')).toHaveTextContent('/Users/demo/Desktop/photo.png');
+  });
+
+  it('previews valid user attachment paths with Windows, relative, spaces, and Chinese filenames', () => {
+    const content = [
+      'look at these',
+      '',
+      '[[CORA_FILES]]',
+      'C:\\Users\\demo\\Desktop\\图片 文件.png',
+      'uploads/中文 文件.txt',
+      '设计 图.png',
+    ].join('\n');
+
+    renderMessageText(content, { position: 'right' });
+
+    const previews = screen.getAllByTestId('file-preview');
+    expect(previews).toHaveLength(3);
+    expect(previews[0]).toHaveTextContent('C:\\Users\\demo\\Desktop\\图片 文件.png');
+    expect(previews[1]).toHaveTextContent('/workspace/demo/uploads/中文 文件.txt');
+    expect(previews[2]).toHaveTextContent('/workspace/demo/设计 图.png');
+    expect(screen.getByTestId('message-text-content')).toHaveTextContent('look at these');
+  });
+
+  it('renders assistant marker mentions as full message text without file previews', () => {
+    const content = '请不要使用 [[CORA_FILES]] 这种格式';
+
+    renderMessageText(content);
+
+    expect(screen.getByTestId('message-text-content')).toHaveTextContent(content);
+    expect(screen.queryByTestId('file-preview')).not.toBeInTheDocument();
+    expect(mockFilePreview).not.toHaveBeenCalled();
+    expect(ipcBridge.fs.getFileMetadata.invoke).not.toHaveBeenCalled();
+  });
+
+  it('keeps assistant marker-tail markdown visible as message text', () => {
+    const content = [
+      '不是用 `[[CORA_FILES]]` 路径形式。',
+      '',
+      '[[CORA_FILES]]',
+      '## 怎么解决',
+      '- 路径引用...模型看不到像素',
+    ].join('\n');
+
+    renderMessageText(content);
+
+    const messageContent = screen.getByTestId('message-text-content');
+    expect(messageContent).toHaveTextContent('不是用 `[[CORA_FILES]]` 路径形式。');
+    expect(messageContent).toHaveTextContent('[[CORA_FILES]]');
+    expect(messageContent).toHaveTextContent('## 怎么解决');
+    expect(messageContent).toHaveTextContent('- 路径引用...模型看不到像素');
+    expect(screen.queryByTestId('file-preview')).not.toBeInTheDocument();
+    expect(mockFilePreview).not.toHaveBeenCalled();
+    expect(ipcBridge.fs.getFileMetadata.invoke).not.toHaveBeenCalled();
+  });
+
+  it('keeps assistant fenced-code marker text visible without file previews', () => {
+    const content = ['```md', '[[CORA_FILES]]', 'uploads/photo.png', '```'].join('\n');
+
+    renderMessageText(content);
+
+    const messageContent = screen.getByTestId('message-text-content');
+    expect(messageContent).toHaveTextContent('```md');
+    expect(messageContent).toHaveTextContent('[[CORA_FILES]]');
+    expect(messageContent).toHaveTextContent('uploads/photo.png');
+    expect(screen.queryByTestId('file-preview')).not.toBeInTheDocument();
+    expect(mockFilePreview).not.toHaveBeenCalled();
+    expect(ipcBridge.fs.getFileMetadata.invoke).not.toHaveBeenCalled();
+  });
+
+  it('keeps teammate marker text visible without file previews', () => {
+    const content = '请不要使用 [[CORA_FILES]] 这种格式';
+
+    renderMessageText(
+      content,
+      {},
+      {
+        teammateMessage: true,
+        senderName: 'Agent A',
+        senderConversationId: 'agent-a',
+      }
+    );
+
+    expect(screen.getByTestId('message-text-content')).toHaveTextContent(content);
+    expect(screen.queryByTestId('file-preview')).not.toBeInTheDocument();
+    expect(mockFilePreview).not.toHaveBeenCalled();
+    expect(ipcBridge.fs.getFileMetadata.invoke).not.toHaveBeenCalled();
+  });
+
+  it.each([
+    {
+      name: 'markdown heading and list',
+      tailLines: ['## 怎么解决', '- 路径引用...模型看不到像素'],
+    },
+    {
+      name: 'code fence',
+      tailLines: ['```md', 'uploads/photo.png', '```'],
+    },
+    {
+      name: 'url',
+      tailLines: ['https://example.com/photo.png'],
+    },
+  ])('keeps invalid user marker block text visible for $name', ({ tailLines }) => {
+    const content = ['look', '', '[[CORA_FILES]]', ...tailLines].join('\n');
+
+    renderMessageText(content, { position: 'right' });
+
+    const messageContent = screen.getByTestId('message-text-content');
+    expect(messageContent).toHaveTextContent('look');
+    expect(messageContent).toHaveTextContent('[[CORA_FILES]]');
+    for (const line of tailLines) {
+      expect(messageContent).toHaveTextContent(line);
+    }
+    expect(screen.queryByTestId('file-preview')).not.toBeInTheDocument();
+    expect(mockFilePreview).not.toHaveBeenCalled();
+    expect(ipcBridge.fs.getFileMetadata.invoke).not.toHaveBeenCalled();
+  });
+
+  it('copies complete assistant marker text', async () => {
+    const content = '请不要使用 [[CORA_FILES]] 这种格式';
+
+    renderMessageText(content);
+
+    const copyControl = screen.getByTestId('copy-icon').parentElement;
+    expect(copyControl).not.toBeNull();
+    fireEvent.click(copyControl as HTMLElement);
+
+    await waitFor(() => {
+      expect(copyText).toHaveBeenCalledWith(content);
+    });
+  });
+
+  it('copies complete teammate marker text', async () => {
+    const content = '请不要使用 [[CORA_FILES]] 这种格式';
+
+    renderMessageText(
+      content,
+      {},
+      {
+        teammateMessage: true,
+        senderName: 'Agent A',
+        senderConversationId: 'agent-a',
+      }
+    );
+
+    const copyControl = screen.getByTestId('copy-icon').parentElement;
+    expect(copyControl).not.toBeNull();
+    fireEvent.click(copyControl as HTMLElement);
+
+    await waitFor(() => {
+      expect(copyText).toHaveBeenCalledWith(content);
+    });
   });
 
   it('opens a missing-file preview when a local markdown link no longer exists', async () => {
@@ -431,4 +615,3 @@ describe('MessageText attachment paths', () => {
     });
   });
 });
-

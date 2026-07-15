@@ -204,7 +204,7 @@ describe('SystemModalContent directory settings', () => {
     await screen.findByText('/work');
     const workDirItem = screen.getByText('settings.workDir').closest('.arco-form-item');
     expect(workDirItem).not.toBeNull();
-    const fieldBody = (workDirItem as HTMLElement).querySelector('.aion-dir-input');
+    const fieldBody = (workDirItem as HTMLElement).querySelector('.cora-dir-input');
     expect(fieldBody).not.toBeNull();
 
     await user.click(fieldBody as HTMLElement);

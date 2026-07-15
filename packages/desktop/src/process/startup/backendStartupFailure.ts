@@ -4,6 +4,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
 import type { BackendStartupFailureInfo } from '@/common/types/platform/electron';
 
 type ErrorWithDetails = Error & {
@@ -25,6 +27,7 @@ type ErrorWithDetails = Error & {
     deviceArch?: unknown;
     expectedDownloadArch?: unknown;
     isRosettaTranslated?: unknown;
+    dataDir?: unknown;
   };
 };
 
@@ -251,10 +254,14 @@ export function classifyBackendStartupFailure(error: unknown): BackendStartupFai
     backendBoundaryStage &&
     DATA_MIGRATION_BOUNDARY_STAGES.has(backendBoundaryStage)
   ) {
+    const dataDir = typeof details?.dataDir === 'string' ? details.dataDir : undefined;
+    const hasPreUpdateBackup =
+      dataDir ? existsSync(join(dataDir, 'cora-cowork-backend.db.pre-update.bak')) : undefined;
     return {
       reason: 'backend_data_migration_failed',
       backendBoundaryCode,
       backendBoundaryStage,
+      hasPreUpdateBackup,
     };
   }
 

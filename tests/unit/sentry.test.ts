@@ -94,7 +94,7 @@ describe('listLogFilesSync', () => {
       const datedDir = path.join(logsDir, '2026', '07', '02');
       mkdirSync(datedDir, { recursive: true });
       writeFileSync(path.join(datedDir, '2026-07-02.CoraCore.log'), 'backend\n');
-      writeFileSync(path.join(datedDir, '2026-07-02.aionrs.log'), 'aionrs\n');
+      writeFileSync(path.join(datedDir, '2026-07-02.corars.log'), 'corars\n');
       writeFileSync(path.join(logsDir, '2026-07-02.log'), 'frontend\n');
 
       const files = listLogFilesSync(logsDir);
@@ -103,7 +103,7 @@ describe('listLogFilesSync', () => {
       expect(relative).toEqual([
         '2026-07-02.log',
         '2026/07/02/2026-07-02.CoraCore.log',
-        '2026/07/02/2026-07-02.aionrs.log',
+        '2026/07/02/2026-07-02.corars.log',
       ]);
     } finally {
       rmSync(logsDir, { recursive: true, force: true });

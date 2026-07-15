@@ -98,7 +98,11 @@
       "sendDiagnostics": "Send diagnostics",
       "diagnosticsSent": "Diagnostics sent",
       "diagnosticsReportSuccess": "Diagnostics report sent",
-      "diagnosticsReportFailed": "Failed to send diagnostics report"
+      "diagnosticsReportFailed": "Failed to send diagnostics report",
+      "restoreFromBackup": "Yedekten geri yükle",
+      "restoreFailed": "Geri yükleme başarısız",
+      "resetDatabase": "Verileri sıfırla",
+      "resetFailed": "Sıfırlama başarısız"
     },
     "localDataRepair": {
       "title": "Local data repair failed",

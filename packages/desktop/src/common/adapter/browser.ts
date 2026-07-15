@@ -1,17 +1,16 @@
 /**
  * @license
- * Copyright 2026 CoraCowork (cora-cowork.com)
+ * Copyright 2025 CoraCowork (coracowork.shop)
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { bridge, logger } from '@office-ai/platform';
+import { bridge } from '@/common/platform/bridge';
 import { WEBUI_DEFAULT_PORT } from '@/common/config/constants';
 import type { ElectronBridgeAPI } from '@/common/types/platform/electron';
 
 interface CustomWindow extends Window {
   electronAPI?: ElectronBridgeAPI;
   __bridgeEmitter?: { emit: (name: string, data: unknown) => void };
-  __emitBridgeCallback?: (name: string, data: unknown) => void;
   __websocketReconnect?: () => void;
 }
 
@@ -53,15 +52,13 @@ const win = window as CustomWindow;
  * 适配electron的API到浏览器中,建立renderer和main的通信桥梁, 与preload.ts中的注入对应
  * */
 if (win.electronAPI) {
-  // ✅ Guarda em variável local
-  const electronAPI = win.electronAPI;
-  
+  // Electron 环境 - 使用 IPC 通信
   bridge.adapter({
     emit(name, data) {
-      return electronAPI.emit(name, data);
+      return win.electronAPI.emit(name, data);
     },
     on(emitter) {
-      electronAPI.on((event) => {
+      win.electronAPI?.on((event) => {
         try {
           const { value } = event;
           const { name, data } = JSON.parse(value);
@@ -251,12 +248,6 @@ if (win.electronAPI) {
       emitterRef = emitter;
       win.__bridgeEmitter = emitter;
 
-      // Expose callback emitter for bridge provider pattern
-      // Used by components to send responses back through WebSocket
-      win.__emitBridgeCallback = (name: string, data: unknown) => {
-        emitter.emit(name, data);
-      };
-
       ensureSocket();
     },
   });
@@ -270,12 +261,3 @@ if (win.electronAPI) {
     connect();
   };
 }
-
-logger.provider({
-  log(log) {
-    console.log('process.log', log.type, ...log.logs);
-  },
-  path() {
-    return Promise.resolve('');
-  },
-});

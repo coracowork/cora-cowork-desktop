@@ -1,9 +1,9 @@
 <p align="center">
-  <img src="../../resources/cora-cowork-banner-1.png" alt="CoraCowork - Cowork with AI Agents" width="100%">
+  <img src="../../resources/aionui-banner-1.png" alt="AionUi - Cowork with AI Agents" width="100%">
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/v/release/iOfficeAI/CoraCowork?style=flat-square&color=32CD32" alt="Version">
+  <img src="https://img.shields.io/github/v/release/iOfficeAI/AionUi?style=flat-square&color=32CD32" alt="Version">
   &nbsp;
   <img src="https://img.shields.io/badge/license-Apache--2.0-32CD32?style=flat-square&logo=apache&logoColor=white" alt="License">
   &nbsp;
@@ -19,66 +19,66 @@
 ---
 
 <p align="center">
-  <strong>AI Agents ile �cretsiz, a�ik kaynakli Cowork uygulamasi</strong><br>
-  <em>Yerlesik Agent | Sifir Kurulum | Herhangi bir API Anahtari | �oklu Agent | Uzaktan Erisim | �apraz Platform | 7/24 Otomasyon</em>
+  <strong>AI Agents ile ücretsiz, açık kaynaklı Cowork uygulaması</strong><br>
+  <em>Yerleşik Agent | Sıfır Kurulum | Herhangi bir API Anahtarı | Çoklu Agent | Uzaktan Erişim | Çapraz Platform | 7/24 Otomasyon</em>
 </p>
 
 <p align="center">
-  <a href="https://github.com/coracowork/cora-cowork-desktop/releases/">
-    <img src="https://img.shields.io/badge/??%20Simdi%20Indir-En%20Son%20S�r�m-32CD32?style=for-the-badge&logo=github&logoColor=white" alt="En Son S�r�m� Indir" height="50">
+  <a href="https://github.com/iOfficeAI/AionUi/releases">
+    <img src="https://img.shields.io/badge/⬇️%20Şimdi%20İndir-En%20Son%20Sürüm-32CD32?style=for-the-badge&logo=github&logoColor=white" alt="En Son Sürümü İndir" height="50">
   </a>
 </p>
 
 <p align="center">
-  <a href="../../readme.md">English</a> | <a href="./readme_ch.md">????</a> | <a href="./readme_tw.md">????</a> | <a href="./readme_jp.md">???</a> | <a href="./readme_ko.md">???</a> | <a href="./readme_es.md">Espa�ol</a> | <a href="./readme_pt.md">Portugu�s</a> | <strong>T�rk�e</strong> | <a href="./readme_ru.md">???????</a> | <a href="./readme_uk.md">??????????</a> | <a href="https://www.cora-cowork.com" target="_blank">Resmi Web Sitesi</a>
+  <a href="../../readme.md">English</a> | <a href="./readme_ch.md">简体中文</a> | <a href="./readme_tw.md">繁體中文</a> | <a href="./readme_jp.md">日本語</a> | <a href="./readme_ko.md">한국어</a> | <a href="./readme_es.md">Español</a> | <a href="./readme_pt.md">Português</a> | <strong>Türkçe</strong> | <a href="./readme_ru.md">Русский</a> | <a href="./readme_uk.md">Українська</a> | <a href="https://www.aionui.com" target="_blank">Resmi Web Sitesi</a>
 </p>
 
 <p align="center">
-  <strong>?? Topluluk:</strong> <a href="https://discord.gg/2QAwJn7Egx" target="_blank">Discord (English)</a> | <a href="../../resources/wx-15.png" target="_blank">?? (???)</a> | <a href="https://twitter.com/CoraCowork" target="_blank">Twitter</a>
+  <strong>💬 Topluluk:</strong> <a href="https://discord.gg/2QAwJn7Egx" target="_blank">Discord (English)</a> | <a href="../../resources/wx-16.png" target="_blank">微信 (中文群)</a> | <a href="https://twitter.com/AionUI" target="_blank">Twitter</a>
 </p>
 
 ---
 
-## ?? Hizli Gezinme
+## 📋 Hızlı Gezinme
 
 <p align="center">
 
-[? Cowork Eylemde](#-cowork-eylemde) �
-[?? Neden CoraCowork'yi Se�melisiniz?](#-neden-cora-cowork-claude-cowork-yerine) �
-[?? Hizli Baslangi�](#-hizli-baslangi�) �
-[?? Topluluk](#-topluluk-ve-destek)
+[✨ Cowork Eylemde](#-cowork-eylemde) ·
+[🤔 Neden AionUi'yi Seçmelisiniz?](#-neden-aionui-claude-cowork-yerine) ·
+[🚀 Hızlı Başlangıç](#-hızlı-başlangıç) ·
+[💬 Topluluk](#-topluluk-ve-destek)
 
 </p>
 
 ---
 
-## Cowork � Sizinle �alisan AI Agents
+## Cowork — Sizinle Çalışan AI Agents
 
-**CoraCowork sadece bir sohbet istemcisi degil.** AI Agents'in bilgisayarinizda sizinle �alistigi bir Cowork platformudur � dosya okuma, kod yazma, web'de gezinme ve g�revleri otomatiklestirme. Agent'in yaptigi her seyi g�r�rs�n�z ve her zaman kontrol sizdedir.
+**AionUi sadece bir sohbet istemcisi değil.** AI Agents'ın bilgisayarınızda sizinle çalıştığı bir Cowork platformudur — dosya okuma, kod yazma, web'de gezinme ve görevleri otomatikleştirme. Agent'ın yaptığı her şeyi görürsünüz ve her zaman kontrol sizdedir.
 
-|                                        | Geleneksel AI Sohbet Istemcileri | **CoraCowork (Cowork)**                                                                                                             |
+|                                        | Geleneksel AI Sohbet İstemcileri | **AionUi (Cowork)**                                                                                                             |
 | :------------------------------------- | :------------------------------- | :------------------------------------------------------------------------------------------------------------------------------ |
-| AI dosyalarinizda islem yapabilir      | Sinirli veya Yok                 | **Evet � tam dosya erisimi ile yerlesik Agent**                                                                                 |
-| AI �ok adimli g�revleri �alistirabilir | Sinirli                          | **Evet � onayinizla �zerk**                                                                                                     |
-| Telefondan uzaktan erisim              | Nadiren                          | **WebUI + Telegram / Lark / DingTalk**                                                                                          |
-| Zamanlanmis otomasyon                  | Hayir                            | **Cron � 7/24 g�zetimsiz**                                                                                                      |
-| Ayni anda birden fazla AI Agent        | Hayir                            | **Claude Code, Codex, Qwen Code, Hermes Agent, Snow CLI, Cursor Agent ve 13+ daha fazla � otomatik algilanan, birlesik aray�z** |
-| Fiyat                                  | �cretsiz / �cretli               | **�cretsiz ve A�ik Kaynak**                                                                                                     |
+| AI dosyalarınızda işlem yapabilir      | Sınırlı veya Yok                 | **Evet — tam dosya erişimi ile yerleşik Agent**                                                                                 |
+| AI çok adımlı görevleri çalıştırabilir | Sınırlı                          | **Evet — onayınızla özerk**                                                                                                     |
+| Telefondan uzaktan erişim              | Nadiren                          | **WebUI + Telegram / Lark / DingTalk**                                                                                          |
+| Zamanlanmış otomasyon                  | Hayır                            | **Cron — 7/24 gözetimsiz**                                                                                                      |
+| Aynı anda birden fazla AI Agent        | Hayır                            | **Claude Code, Codex, Qwen Code, Hermes Agent, Snow CLI, Cursor Agent ve 13+ daha fazla — otomatik algılanan, birleşik arayüz** |
+| Fiyat                                  | Ücretsiz / Ücretli               | **Ücretsiz ve Açık Kaynak**                                                                                                     |
 
 <p align="center">
-  <img src="../../resources/offica-ai BANNER-function.png" alt="CoraCowork Cowork Platform" width="800">
+  <img src="../../resources/offica-ai BANNER-function.png" alt="AionUi Cowork Platform" width="800">
 </p>
 
 ---
 
-## Yerlesik Agent � Kur ve Kullan, Sifir Yapilandirma
+## Yerleşik Agent — Kur ve Kullan, Sıfır Yapılandırma
 
-CoraCowork tam bir AI Agent motoru ile birlikte gelir. CLI Agent'lari ayri olarak kurmanizi gerektiren ara�larin aksine, **CoraCowork kurdugunuz anda �alisir**.
+AionUi tam bir AI Agent motoru ile birlikte gelir. CLI Agent'ları ayrı olarak kurmanızı gerektiren araçların aksine, **AionUi kurduğunuz anda çalışır**.
 
-- **Kurulacak CLI ara�lari yok** � Agent motoru yerlesiktir
-- **Karmasik kurulum yok** � baslamak i�in herhangi bir API anahtari yapistirin
-- **Tam Agent yetenekleri** � dosya okuma/yazma, web arama, g�r�nt� olusturma, MCP ara�lari
-- **Kullanima hazir asistanlar** � 21 yerlesik profesyonel asistan (Cowork, PPT Creator, Morph PPT, Morph PPT 3D, Word Creator, Word Form Creator, Excel Creator, Pitch Deck Creator, Dashboard Creator, Academic Paper Writer, Financial Model Creator ve daha fazlasi) hemen kullanima hazir
+- **Kurulacak CLI araçları yok** — Agent motoru yerleşiktir
+- **Karmaşık kurulum yok** — başlamak için herhangi bir API anahtarı yapıştırın
+- **Tam Agent yetenekleri** — dosya okuma/yazma, web arama, görüntü oluşturma, MCP araçları
+- **Kullanıma hazır asistanlar** — 21 yerleşik profesyonel asistan (Cowork, PPT Creator, Morph PPT, Morph PPT 3D, Word Creator, Word Form Creator, Excel Creator, Pitch Deck Creator, Dashboard Creator, Academic Paper Writer, Financial Model Creator ve daha fazlası) hemen kullanıma hazır
 
 <p align="center">
   <img src="../../resources/homepage.png" alt="Built-in Agents" width="800">
@@ -86,127 +86,127 @@ CoraCowork tam bir AI Agent motoru ile birlikte gelir. CLI Agent'lari ayri olara
 
 ---
 
-## �oklu Agent Modu � Zaten CLI Agent'lariniz var mi? Getirin
+## Çoklu Agent Modu — Zaten CLI Agent'larınız var mı? Getirin
 
-Zaten Claude Code, Codex, Hermes Agent veya OpenClaw kullaniyorsaniz, CoraCowork bunlari otomatik olarak algilar ve hepsiyle Cowork yapmaniza izin verir � yerlesik Agent ile birlikte.
+Zaten Claude Code, Codex, Hermes Agent veya OpenClaw kullanıyorsanız, AionUi bunları otomatik olarak algılar ve hepsiyle Cowork yapmanıza izin verir — yerleşik Agent ile birlikte.
 
-**Desteklenen Agents:** Yerlesik Agent (sifir kurulum) � Claude Code � Codex � Qwen Code � Goose AI � OpenClaw � Augment Code � CodeBuddy � Kimi CLI � OpenCode � Factory Droid � GitHub Copilot � Qoder CLI � Mistral Vibe � Nanobot � Cora CLI (corars, CoraCowork ile birlikte dagitilan Rust tabanli arka u� servisi) � Snow CLI � Hermes Agent � Cursor Agent ve daha fazlasi
-
-<p align="center">
-  <img src="../../resources/multi-agent??openclaw.gif" alt="Multi-Agent Cowork" width="800">
-</p>
-
-- **Otomatik Algilama** � kurulu CLI ara�larini otomatik olarak tanir
-- **Birlesik Aray�z** � t�m AI Agent'lariniz i�in tek bir Cowork platformu
-- **Paralel Oturumlar** � bagimsiz baglam ile birden fazla Agent'i ayni anda �alistirin
-- **MCP Birlesik Y�netimi** � MCP (Model Context Protocol) ara�larini bir kez yapilandirin, t�m Agent'lara otomatik olarak senkronize edilir � her Agent'i ayri ayri yapilandirmaniza gerek yok
-- **YOLO Mode** (t�m Agent eylemlerini manuel onay olmadan otomatik onayla) / **Tam Otomatik Mod** � tek tikla izin istemlerini atlayin; t�m Agent'lar g�zetimsiz �alistirma i�in tam otomatik modu destekler
-
-### Team Mode � Koordineli �oklu Agent Isbirligi
-
-Birden fazla AI Agent'i organize bir ekip olarak �alistirin: bir **Leader** Agent talimatlarinizi alir, bunlari alt g�revlere b�ler ve yerlesik Team MCP Server araciligiyla **Teammate** Agent'lara devreder. Teammate'ler paralel olarak �alisir, asenkron posta kutusu �zerinden sonu�lari paylasir ve paylasilan g�rev panosuna yazar.
+**Desteklenen Agents:** Yerleşik Agent (sıfır kurulum) • Claude Code • Codex • Qwen Code • Goose AI • OpenClaw • Augment Code • CodeBuddy • Kimi CLI • OpenCode • Factory Droid • GitHub Copilot • Qoder CLI • Mistral Vibe • Nanobot • Aion CLI (aionrs, AionUi ile birlikte dağıtılan Rust tabanlı arka uç servisi) • Snow CLI • Hermes Agent • Cursor Agent ve daha fazlası
 
 <p align="center">
-  <img src="../../resources/CoraCowork_team.gif" alt="Team Mode overview" width="800">
+  <img src="../../resources/multi-agent支持openclaw.gif" alt="Multi-Agent Cowork" width="800">
 </p>
 
-- **Paralel �oklu agent �alistirma** � Leader g�revleri alt g�revlere b�lerek paralel �alisan Teammate Agent'lara devreder; her Teammate ACP (Agent Communication Protocol, CoraCowork'nin �oklu agent koordinasyon katmani), Gemini veya Corars araciligiyla kendi modelini kullanir
-- **Leader orkestrasyonu** � Leader atar, izler ve sonu�lari toplar; desteklenen arka u�lar: Claude Code, Codex, Hermes Agent, Gemini, Snow CLI ve Cora CLI
-- **Ekip izole �alisma alani** � t�m Agent'lar ayni klas�r� paylasir; her birinin bekleyen onaylar i�in kenar �ubugu rozeti ile kendi izin onay iletisim kutusu vardir
+- **Otomatik Algılama** — kurulu CLI araçlarını otomatik olarak tanır
+- **Birleşik Arayüz** — tüm AI Agent'larınız için tek bir Cowork platformu
+- **Paralel Oturumlar** — bağımsız bağlam ile birden fazla Agent'ı aynı anda çalıştırın
+- **MCP Birleşik Yönetimi** — MCP (Model Context Protocol) araçlarını bir kez yapılandırın, tüm Agent'lara otomatik olarak senkronize edilir — her Agent'ı ayrı ayrı yapılandırmanıza gerek yok
+- **YOLO Mode** (tüm Agent eylemlerini manuel onay olmadan otomatik onayla) / **Tam Otomatik Mod** — tek tıkla izin istemlerini atlayın; tüm Agent'lar gözetimsiz çalıştırma için tam otomatik modu destekler
+
+### Team Mode — Koordineli Çoklu Agent İşbirliği
+
+Birden fazla AI Agent'ı organize bir ekip olarak çalıştırın: bir **Leader** Agent talimatlarınızı alır, bunları alt görevlere böler ve yerleşik Team MCP Server aracılığıyla **Teammate** Agent'lara devreder. Teammate'ler paralel olarak çalışır, asenkron posta kutusu üzerinden sonuçları paylaşır ve paylaşılan görev panosuna yazar.
+
+<p align="center">
+  <img src="../../resources/AionUi_team.gif" alt="Team Mode overview" width="800">
+</p>
+
+- **Paralel çoklu agent çalıştırma** — Leader görevleri alt görevlere bölerek paralel çalışan Teammate Agent'lara devreder; her Teammate ACP (Agent Communication Protocol, AionUi'nin çoklu agent koordinasyon katmanı), Gemini veya Aionrs aracılığıyla kendi modelini kullanır
+- **Leader orkestrasyonu** — Leader atar, izler ve sonuçları toplar; desteklenen arka uçlar: Claude Code, Codex, Hermes Agent, Gemini, Snow CLI ve Aion CLI
+- **Ekip izole çalışma alanı** — tüm Agent'lar aynı klasörü paylaşır; her birinin bekleyen onaylar için kenar çubuğu rozeti ile kendi izin onay iletişim kutusu vardır
 
 <details>
-<summary><strong>?? Team Mode Detaylarini G�r�nt�le ??</strong></summary>
+<summary><strong>🔍 Team Mode Detaylarını Görüntüle ▶️</strong></summary>
 
 <br>
 
-- **Paylasilan �alisma alani** � t�m Agent'lar ayni klas�r� okur/yazar; dosya paneli s�re� boyunca g�r�n�r kalir
-- **Desteklenen arka u�lar** � Claude Code, Codex, Gemini, Snow CLI, Cora CLI (corars); `mcpCapabilities.stdio` ile diger ACP arka u�lari otomatik desteklenir
-- **Dinamik �l�eklendirme** � ekip �alisirken Teammate ekleyip kaldirabilirsiniz; sessiz Agent'lar otomatik olarak basarisiz durumuna y�kseltilir ve tek tikla kaldirilabilir
-- **Ayrintili izinler** � her Agent'in kendi izin onay iletisim kutusu var; kenar �ubugu rozeti bekleyen onaylari g�sterir
-- **Dosya paylasimi** � Leader, Teammate'lere dosya eklerini iletebilir
+- **Paylaşılan çalışma alanı** — tüm Agent'lar aynı klasörü okur/yazar; dosya paneli süreç boyunca görünür kalır
+- **Desteklenen arka uçlar** — Claude Code, Codex, Gemini, Snow CLI, Aion CLI (aionrs); `mcpCapabilities.stdio` ile diğer ACP arka uçları otomatik desteklenir
+- **Dinamik ölçeklendirme** — ekip çalışırken Teammate ekleyip kaldırabilirsiniz; sessiz Agent'lar otomatik olarak başarısız durumuna yükseltilir ve tek tıkla kaldırılabilir
+- **Ayrıntılı izinler** — her Agent'ın kendi izin onay iletişim kutusu var; kenar çubuğu rozeti bekleyen onayları gösterir
+- **Dosya paylaşımı** — Leader, Teammate'lere dosya eklerini iletebilir
 
 </details>
 
 ---
 
-## Herhangi bir API Anahtari, Tam Cowork Agent G�c�
+## Herhangi bir API Anahtarı, Tam Cowork Agent Gücü
 
-Diger AI uygulamalari size API anahtarinizla bir sohbet kutusu verir. **CoraCowork size tam bir Cowork Agent verir.**
+Diğer AI uygulamaları size API anahtarınızla bir sohbet kutusu verir. **AionUi size tam bir Cowork Agent verir.**
 
-| API Anahtariniz            | Ne Alirsiniz                 |
+| API Anahtarınız            | Ne Alırsınız                 |
 | :------------------------- | :--------------------------- |
-| Gemini API Anahtari        | Gemini destekli Cowork Agent |
-| OpenAI API Anahtari        | GPT destekli Cowork Agent    |
-| Anthropic API Anahtari     | Claude destekli Cowork Agent |
+| Gemini API Anahtarı        | Gemini destekli Cowork Agent |
+| OpenAI API Anahtarı        | GPT destekli Cowork Agent    |
+| Anthropic API Anahtarı     | Claude destekli Cowork Agent |
 | Ollama / LM Studio (yerel) | Yerel model Cowork Agent     |
-| NewAPI Gateway             | 20+ modele birlesik erisim   |
+| NewAPI Gateway             | 20+ modele birleşik erişim   |
 
-Ayni Agent yetenekleri � dosya okuma/yazma, web arama, g�r�nt� olusturma, ara� kullanimi � hangi modelin g�� verdigine bakilmaksizin. CoraCowork bulut hizmetleri ve yerel dagitimlar dahil **30+ AI platformunu** destekler.
+Aynı Agent yetenekleri — dosya okuma/yazma, web arama, görüntü oluşturma, araç kullanımı — hangi modelin güç verdiğine bakılmaksızın. AionUi bulut hizmetleri ve yerel dağıtımlar dahil **30+ AI platformunu** destekler.
 
 <p align="center">
   <img src="../../resources/llm_newapi.png" alt="Multi-Model Support" width="800">
 </p>
 
 <details>
-<summary><strong>?? Desteklenen 30+ Platformun T�m�n� G�r�nt�le ??</strong></summary>
+<summary><strong>🔍 Desteklenen 30+ Platformun Tümünü Görüntüle ▶️</strong></summary>
 
 <br>
 
-**Kapsamli Platform Destegi:**
+**Kapsamlı Platform Desteği:**
 
-- **Resmi Platformlar** � Gemini, Gemini (Vertex AI), Anthropic (Claude), OpenAI
-- **Bulut Saglayicilari** � AWS Bedrock, New API (birlesik AI model ag ge�idi)
-- **�in Platformlari** � Dashscope (Qwen), Dashscope Coding Plan, Zhipu, Moonshot (Kimi), Qianfan (Baidu), Hunyuan (Tencent), Lingyi, ModelScope, InfiniAI, Ctyun, StepFun, SiliconFlow-CN, PPIO
-- **Uluslararasi Platformlar** � DeepSeek, MiniMax, Novita, OpenRouter, SiliconFlow, xAI, Ark (Volcengine), Poe
-- **Yerel Modeller** � Ollama, LM Studio (yerel API u� noktasi ile �zel platform araciligiyla)
+- **Resmi Platformlar** — Gemini, Gemini (Vertex AI), Anthropic (Claude), OpenAI
+- **Bulut Sağlayıcıları** — AWS Bedrock, New API (birleşik AI model ağ geçidi)
+- **Çin Platformları** — Dashscope (Qwen), Dashscope Coding Plan, Zhipu, Moonshot (Kimi), Qianfan (Baidu), Hunyuan (Tencent), Lingyi, ModelScope, InfiniAI, Ctyun, StepFun, SiliconFlow-CN, PPIO
+- **Uluslararası Platformlar** — DeepSeek, MiniMax, Novita, OpenRouter, SiliconFlow, xAI, Ark (Volcengine), Poe
+- **Yerel Modeller** — Ollama, LM Studio (yerel API uç noktası ile özel platform aracılığıyla)
 
-CoraCowork ayrica [NewAPI](https://github.com/QuantumNous/new-api) ag ge�idi hizmetini destekler � �esitli LLM'leri toplayan ve dagitan birlesik bir AI model merkezi. �esitli g�rev gereksinimlerini karsilamak i�in ayni aray�zde farkli modeller arasinda esnek bir sekilde ge�is yapin.
+AionUi ayrıca [NewAPI](https://github.com/QuantumNous/new-api) ağ geçidi hizmetini destekler — çeşitli LLM'leri toplayan ve dağıtan birleşik bir AI model merkezi. Çeşitli görev gereksinimlerini karşılamak için aynı arayüzde farklı modeller arasında esnek bir şekilde geçiş yapın.
 
 </details>
 
 ---
 
-## Genisletilebilir Asistanlar ve Beceriler
+## Genişletilebilir Asistanlar ve Beceriler
 
-_21 yerlesik profesyonel asistan ve �� katmanli beceri sistemi ile genisletilebilir asistan sistemi. Kendi asistanlarinizi ve becerilerinizi olusturun ve y�netin._
+_21 yerleşik profesyonel asistan ve üç katmanlı beceri sistemi ile genişletilebilir asistan sistemi. Kendi asistanlarınızı ve becerilerinizi oluşturun ve yönetin._
 
-- **�zel Asistanlar Olustur** � �zel kurallar ve yeteneklerle kendi asistanlarinizi tanimlayin
-- **�� katmanli Beceriler** � Yerlesik beceriler (CoraCowork ile birlikte gelen), �zel beceriler (kendinizinkiler) ve Extension becerileri (���nc� taraf uzantilar tarafindan katkida bulunulan); beceri g�stergesi ile konusma basina etkinlestirin/devre disi birakin
-- **Konusma Basina Kontrol** � Sohbet basligindaki beceri g�stergesi aktif becerileri g�sterir; ihtiya� halinde becerileri arayin ve hari� tutun
+- **Özel Asistanlar Oluştur** — Özel kurallar ve yeteneklerle kendi asistanlarınızı tanımlayın
+- **Üç katmanlı Beceriler** — Yerleşik beceriler (AionUi ile birlikte gelen), özel beceriler (kendinizinkiler) ve Extension becerileri (üçüncü taraf uzantılar tarafından katkıda bulunulan); beceri göstergesi ile konuşma başına etkinleştirin/devre dışı bırakın
+- **Konuşma Başına Kontrol** — Sohbet başlığındaki beceri göstergesi aktif becerileri gösterir; ihtiyaç halinde becerileri arayın ve hariç tutun
 
 <p align="center">
   <img src="../../resources/assitants.png" alt="AI Assistants & Skills Ecosystem" width="800">
 </p>
 
 <details>
-<summary><strong>?? Asistan Detaylarini ve �zel Becerileri G�r�nt�le ??</strong></summary>
+<summary><strong>🔍 Asistan Detaylarını ve Özel Becerileri Görüntüle ▶️</strong></summary>
 
 <br>
 
-CoraCowork �nceden tanimlanmis yeteneklere sahip **21 profesyonel asistan** i�erir, �zel beceriler araciligiyla genisletilebilir:
+AionUi önceden tanımlanmış yeteneklere sahip **21 profesyonel asistan** içerir, özel beceriler aracılığıyla genişletilebilir:
 
-- **?? Cowork** � �zerk g�rev y�r�tme (dosya islemleri, belge isleme, is akisi planlama)
-- **?? PPT Creator / Morph PPT / Morph PPT 3D** � Morph ge�isleri ile PPTX sunumlari olusturur ve canlandirir
-- **?? Pitch Deck Creator** � Yatirimciya hazir sunum destesi olusturma
-- **?? Dashboard Creator** � Veri panosu olusturma
-- **?? Word Creator** � �retime hazir Word (`.docx`) belge olusturma
-- **?? Word Form Creator** � Yapilandirilmis Word formu / s�zlesme sablonu olusturma
-- **?? Excel Creator** � Analiz, grafikler ve otomatik bi�imlendirme ile elektronik tablo olusturma
-- **?? Academic Paper Writer** � Yapilandirilmis akademik makale yazimi
-- **?? Financial Model Creator** � Finansal modeller ve projeksiyonlar
-- **?? 3D Oyun** � Tek dosya 3D oyun olusturma
-- **?? UI/UX Pro Max** � Profesyonel UI/UX tasarimi (57 stil, 95 renk paleti)
-- **?? Dosyalarla Planlama** � Karmasik g�revler i�in dosya tabanli planlama (Manus tarzi kalici Markdown planlama)
-- **?? HUMAN 3.0 Ko�u** � Kisisel gelisim ko�u
-- **?? Sosyal Is Yayincisi** � Is ilani ve yayinlama
-- **?? moltbook** � Sifir dagitim AI Agent sosyal agi
-- **?? Beautiful Mermaid** � Akis semalari, sira diyagramlari ve daha fazlasi
-- **?? OpenClaw Kurulumu** � OpenClaw entegrasyonu i�in kurulum ve yapilandirma asistani
-- **?? Hikaye Rol Oynama** � Karakter kartlari ve d�nya bilgisi ile s�r�kleyici hikaye rol oynama (SillyTavern uyumlu)
+- **🤝 Cowork** — Özerk görev yürütme (dosya işlemleri, belge işleme, iş akışı planlama)
+- **📊 PPT Creator / Morph PPT / Morph PPT 3D** — Morph geçişleri ile PPTX sunumları oluşturur ve canlandırır
+- **📐 Pitch Deck Creator** — Yatırımcıya hazır sunum destesi oluşturma
+- **📊 Dashboard Creator** — Veri panosu oluşturma
+- **📝 Word Creator** — Üretime hazır Word (`.docx`) belge oluşturma
+- **📋 Word Form Creator** — Yapılandırılmış Word formu / sözleşme şablonu oluşturma
+- **📗 Excel Creator** — Analiz, grafikler ve otomatik biçimlendirme ile elektronik tablo oluşturma
+- **🎓 Academic Paper Writer** — Yapılandırılmış akademik makale yazımı
+- **💰 Financial Model Creator** — Finansal modeller ve projeksiyonlar
+- **🎮 3D Oyun** — Tek dosya 3D oyun oluşturma
+- **🎨 UI/UX Pro Max** — Profesyonel UI/UX tasarımı (57 stil, 95 renk paleti)
+- **📋 Dosyalarla Planlama** — Karmaşık görevler için dosya tabanlı planlama (Manus tarzı kalıcı Markdown planlama)
+- **🧭 HUMAN 3.0 Koçu** — Kişisel gelişim koçu
+- **📣 Sosyal İş Yayıncısı** — İş ilanı ve yayınlama
+- **🦞 moltbook** — Sıfır dağıtım AI Agent sosyal ağı
+- **📈 Beautiful Mermaid** — Akış şemaları, sıra diyagramları ve daha fazlası
+- **🔧 OpenClaw Kurulumu** — OpenClaw entegrasyonu için kurulum ve yapılandırma asistanı
+- **📖 Hikaye Rol Oynama** — Karakter kartları ve dünya bilgisi ile sürükleyici hikaye rol oynama (SillyTavern uyumlu)
 
-**�zel Beceriler**: `skills/` dizininde beceriler olusturun, AI yeteneklerini genisletmek i�in asistanlar i�in becerileri etkinlestirin/devre disi birakin. Beceriler �� kaynaktan gelir: yerlesik (CoraCowork ile birlikte gelen), �zel (kendinizinkiler) ve Extension (Extension SDK araciligiyla katkida bulunulan). Yerlesik beceriler `pptx`, `docx`, `pdf`, `xlsx`, `mermaid` ve daha fazlasini i�erir.
+**Özel Beceriler**: `skills/` dizininde beceriler oluşturun, AI yeteneklerini genişletmek için asistanlar için becerileri etkinleştirin/devre dışı bırakın. Beceriler üç kaynaktan gelir: yerleşik (AionUi ile birlikte gelen), özel (kendinizinkiler) ve Extension (Extension SDK aracılığıyla katkıda bulunulan). Yerleşik beceriler `pptx`, `docx`, `pdf`, `xlsx`, `mermaid` ve daha fazlasını içerir.
 
-> ?? Her asistan bir markdown dosyasi ile tanimlanir. �rnekler i�in `assistant/` dizinine bakin.
+> 💡 Her asistan bir markdown dosyası ile tanımlanır. Örnekler için `assistant/` dizinine bakın.
 
 </details>
 
@@ -214,306 +214,306 @@ CoraCowork �nceden tanimlanmis yeteneklere sahip **21 profesyonel asistan** i�er
 
 ## Her Yerden Cowork
 
-_7/24 AI asistaniniz � CoraCowork'ye herhangi bir cihazdan, her yerden erisin._
+_7/24 AI asistanınız — AionUi'ye herhangi bir cihazdan, her yerden erişin._
 
-- **WebUI Modu** � telefondan, tabletten veya herhangi bir bilgisayardan tarayici araciligiyla erisin. LAN, �apraz ag ve sunucu dagitimini destekler. QR kod veya sifre girisi.
+- **WebUI Modu** — telefondan, tabletten veya herhangi bir bilgisayardan tarayıcı aracılığıyla erişin. LAN, çapraz ağ ve sunucu dağıtımını destekler. QR kod veya şifre girişi.
 
 - **Sohbet Platformu Entegrasyonu**
-  - **Telegram** � AI Agent'inizla dogrudan Telegram'dan Cowork yapin
-  - **Lark (Feishu)** � Kurumsal isbirligi i�in Feishu botlari araciligiyla Cowork
-  - **DingTalk** � Otomatik geri d�n�s ile AI Card akisi
-  - **WeChat** � Kisisel WeChat hesabi entegrasyonu
-  - **WeCom (????), Slack, Discord** ve yakinda daha fazla platform
+  - **Telegram** — AI Agent'ınızla doğrudan Telegram'dan Cowork yapın
+  - **Lark (Feishu)** — Kurumsal işbirliği için Feishu botları aracılığıyla Cowork
+  - **DingTalk** — Otomatik geri dönüş ile AI Card akışı
+  - **WeChat** — Kişisel WeChat hesabı entegrasyonu
+  - **WeCom (企业微信), Slack, Discord** ve yakında daha fazla platform
 
-> **Kurulum:** CoraCowork Ayarlari ? WebUI Ayarlari ? Kanal, Bot Token'i yapilandirin.
+> **Kurulum:** AionUi Ayarları → WebUI Ayarları → Kanal, Bot Token'ı yapılandırın.
 
 <p align="center">
   <img src="../../resources/webui-remote.gif" alt="WebUI remote access demo" width="800">
 </p>
 
-<p align="center"><em>Agent'inizi uzaktan kontrol edin ve izleyin � Claude, Gemini, Codex. Tarayici veya telefondan, Claude Code remote gibi.</em></p>
+<p align="center"><em>Agent'ınızı uzaktan kontrol edin ve izleyin — Claude, Gemini, Codex. Tarayıcı veya telefondan, Claude Code remote gibi.</em></p>
 
-> [Uzaktan Internet Erisimi �greticisi](https://github.com/coracowork/cora-cowork-desktop/wiki/Remote-Internet-Access-Guide-Chinese)
+> [Uzaktan İnternet Erişimi Öğreticisi](https://github.com/iOfficeAI/AionUi/wiki/Remote-Internet-Access-Guide-Chinese)
 
-## ? Cowork Eylemde
+## ✨ Cowork Eylemde
 
-### **Zamanlanmis G�revler � Otomatik Pilotta Cowork**
+### **Zamanlanmış Görevler — Otomatik Pilotta Cowork**
 
-_Bir kez ayarlayin, AI Agent zamanlamaya g�re otomatik olarak �alisir � ger�ek 7/24 g�zetimsiz islem._
+_Bir kez ayarlayın, AI Agent zamanlamaya göre otomatik olarak çalışır — gerçek 7/24 gözetimsiz işlem._
 
-- **Dogal Dil** � Agent'a ne yapacagini s�yleyin, sadece sohbet ediyormus gibi
-- **�� zamanlama modu** � standart cron ifadesi (saat dilimi destegiyle), sabit aralik (her N dakika/saat) veya tek seferlik tetikleme
-- **AI tarafindan olusturulan g�revler** � Agent'lar bir konusma sirasinda �zerk olarak zamanlanmis g�revler olusturabilir
-- **Kullanim Senaryolari:** zamanlanmis veri toplama, rapor olusturma, dosya organizasyonu, hatirlaticilar
+- **Doğal Dil** — Agent'a ne yapacağını söyleyin, sadece sohbet ediyormuş gibi
+- **Üç zamanlama modu** — standart cron ifadesi (saat dilimi desteğiyle), sabit aralık (her N dakika/saat) veya tek seferlik tetikleme
+- **AI tarafından oluşturulan görevler** — Agent'lar bir konuşma sırasında özerk olarak zamanlanmış görevler oluşturabilir
+- **Kullanım Senaryoları:** zamanlanmış veri toplama, rapor oluşturma, dosya organizasyonu, hatırlatıcılar
 
 <p align="center">
   <img src="../../resources/alart-task.png" alt="Scheduled Tasks" width="800">
 </p>
 
 <details>
-<summary><strong>?? Zamanlanmis G�rev Detaylarini G�r�nt�le ??</strong></summary>
+<summary><strong>🔍 Zamanlanmış Görev Detaylarını Görüntüle ▶️</strong></summary>
 
 <br>
 
-**Zamanlama modlari:**
+**Zamanlama modları:**
 
-- `Cron ifadesi` � saat dilimi destegiyle standart 5 alan cron (�rn. `0 9 * * 1`, `Asia/Shanghai`)
-- `Her N dakika/saat` � sabit aralik, �rn. her 30 dakikada bir �alistir
-- `Tek seferlik` � belirtilen tarih/saatte bir kez tetikle, sonra otomatik olarak devre disi birak
+- `Cron ifadesi` — saat dilimi desteğiyle standart 5 alan cron (örn. `0 9 * * 1`, `Asia/Shanghai`)
+- `Her N dakika/saat` — sabit aralık, örn. her 30 dakikada bir çalıştır
+- `Tek seferlik` — belirtilen tarih/saatte bir kez tetikle, sonra otomatik olarak devre dışı bırak
 
-**�alistirma modlari:**
+**Çalıştırma modları:**
 
-- `Mevcut konusmada devam et` � bagli konusmaya ekler, AI tam baglam ge�misini korur
-- `Her seferinde yeni konusma olustur` � her tetiklemede yeni bir oturum a�ar, bagimsiz periyodik raporlar i�in idealdir
+- `Mevcut konuşmada devam et` — bağlı konuşmaya ekler, AI tam bağlam geçmişini korur
+- `Her seferinde yeni konuşma oluştur` — her tetiklemede yeni bir oturum açar, bağımsız periyodik raporlar için idealdir
 
-**Diger yetenekler:**
+**Diğer yetenekler:**
 
-- **Konusmaya Bagli** � Her zamanlanmis g�rev bir konusmaya baglidir, baglami ve ge�misi korur
-- **Otomatik Y�r�tme** � G�revler zamanlanmis saatlerde otomatik olarak �alisir, konusmaya mesaj g�nderir
-- **Kolay Y�netim** � Zamanlanmis g�revleri istediginiz zaman olusturun, degistirin, etkinlestirin/devre disi birakin, silin ve g�r�nt�leyin
-- **Uyanik kal** � CoraCowork g�revler aktifken sistem uyku moduna ge�meyi otomatik olarak �nler ve uyandiktan sonra ka�irilan tetikleyicileri algilar
-- **Gelismis yapilandirma** � her g�revin kendi model, �alisma alani dizini ve akil y�r�tme eforu ayarlari olabilir
+- **Konuşmaya Bağlı** — Her zamanlanmış görev bir konuşmaya bağlıdır, bağlamı ve geçmişi korur
+- **Otomatik Yürütme** — Görevler zamanlanmış saatlerde otomatik olarak çalışır, konuşmaya mesaj gönderir
+- **Kolay Yönetim** — Zamanlanmış görevleri istediğiniz zaman oluşturun, değiştirin, etkinleştirin/devre dışı bırakın, silin ve görüntüleyin
+- **Uyanık kal** — AionUi görevler aktifken sistem uyku moduna geçmeyi otomatik olarak önler ve uyandıktan sonra kaçırılan tetikleyicileri algılar
+- **Gelişmiş yapılandırma** — her görevin kendi model, çalışma alanı dizini ve akıl yürütme eforu ayarları olabilir
 
-**Ger�ek D�nya �rnekleri:**
+**Gerçek Dünya Örnekleri:**
 
-- G�nl�k hava durumu raporu olusturma
-- Haftalik satis verisi toplama
-- Aylik yedek dosya organizasyonu
-- �zel hatirlatici bildirimleri
+- Günlük hava durumu raporu oluşturma
+- Haftalık satış verisi toplama
+- Aylık yedek dosya organizasyonu
+- Özel hatırlatıcı bildirimleri
 
 </details>
 
 ---
 
-### **�nizleme Paneli � AI Tarafindan Olusturulan Sonu�lari Aninda G�r�nt�le**
+### **Önizleme Paneli — AI Tarafından Oluşturulan Sonuçları Anında Görüntüle**
 
-_10+ format: PDF, Word, Excel, PPT, kod, Markdown, g�r�nt�ler, HTML, Diff � uygulamalar arasinda ge�is yapmadan her seyi g�r�nt�leyin._
+_10+ format: PDF, Word, Excel, PPT, kod, Markdown, görüntüler, HTML, Diff — uygulamalar arasında geçiş yapmadan her şeyi görüntüleyin._
 
-- **Aninda �nizleme** � Agent dosyalari olusturduktan sonra, uygulamalar arasinda ge�is yapmadan sonu�lari hemen g�r�nt�leyin
-- **Ger�ek Zamanli Takip + D�zenlenebilir** � dosya degisikliklerini otomatik olarak takip eder; Markdown, kod, HTML'in canli d�zenlemesini destekler
-- **�oklu Sekme Destegi** � birden fazla dosyayi ayni anda a�in, her biri kendi sekmesinde
-- **S�r�m Ge�misi** � dosyalarin ge�mis s�r�mlerini g�r�nt�leyin ve geri y�kleyin (Git tabanli)
+- **Anında Önizleme** — Agent dosyaları oluşturduktan sonra, uygulamalar arasında geçiş yapmadan sonuçları hemen görüntüleyin
+- **Gerçek Zamanlı Takip + Düzenlenebilir** — dosya değişikliklerini otomatik olarak takip eder; Markdown, kod, HTML'in canlı düzenlemesini destekler
+- **Çoklu Sekme Desteği** — birden fazla dosyayı aynı anda açın, her biri kendi sekmesinde
+- **Sürüm Geçmişi** — dosyaların geçmiş sürümlerini görüntüleyin ve geri yükleyin (Git tabanlı)
 
 <p align="center">
   <img src="../../resources/preview.gif" alt="Preview Panel" width="800">
 </p>
 
 <details>
-<summary><strong>?? Tam Format Listesini G�r�nt�le ??</strong></summary>
+<summary><strong>🔍 Tam Format Listesini Görüntüle ▶️</strong></summary>
 
 <br>
 
-**Desteklenen �nizleme Formatlari:**
+**Desteklenen Önizleme Formatları:**
 
-- **Belgeler** � PDF, Word (`.doc`, `.docx`, `.odt`), Excel (`.xls`, `.xlsx`, `.ods`, `.csv`), PowerPoint (`.ppt`, `.pptx`, `.odp`)
-- **Kod** � JavaScript, TypeScript, Python, Java, Go, Rust, C/C++, CSS, JSON, XML, YAML, Shell betikleri ve 30+ programlama dili
-- **Isaretleme** � Markdown (`.md`, `.markdown`), HTML (`.html`, `.htm`)
-- **G�r�nt�ler** � PNG, JPG, JPEG, GIF, SVG, WebP, BMP, ICO, TIFF, AVIF
-- **Diger** � Diff dosyalari (`.diff`, `.patch`)
+- **Belgeler** — PDF, Word (`.doc`, `.docx`, `.odt`), Excel (`.xls`, `.xlsx`, `.ods`, `.csv`), PowerPoint (`.ppt`, `.pptx`, `.odp`)
+- **Kod** — JavaScript, TypeScript, Python, Java, Go, Rust, C/C++, CSS, JSON, XML, YAML, Shell betikleri ve 30+ programlama dili
+- **İşaretleme** — Markdown (`.md`, `.markdown`), HTML (`.html`, `.htm`)
+- **Görüntüler** — PNG, JPG, JPEG, GIF, SVG, WebP, BMP, ICO, TIFF, AVIF
+- **Diğer** — Diff dosyaları (`.diff`, `.patch`)
 
 </details>
 
 ---
 
-### **Akilli Dosya Y�netimi � Otomatik Dosya Islemleri**
+### **Akıllı Dosya Yönetimi — Otomatik Dosya İşlemleri**
 
-_Toplu yeniden adlandirma, otomatik organizasyon, akilli siniflandirma, dosya birlestirme � Cowork Agent sizin i�in halleder._
+_Toplu yeniden adlandırma, otomatik organizasyon, akıllı sınıflandırma, dosya birleştirme — Cowork Agent sizin için halleder._
 
 <p align="center">
-  <img src="../../resources/cora-cowork sort file 2.gif" alt="Smart File Management" width="800">
+  <img src="../../resources/aionui sort file 2.gif" alt="Smart File Management" width="800">
 </p>
 
 <details>
-<summary><strong>?? Dosya Y�netimi �zellik Detaylarini G�r�nt�le ??</strong></summary>
+<summary><strong>🔍 Dosya Yönetimi Özellik Detaylarını Görüntüle ▶️</strong></summary>
 
 <br>
 
-- **Otomatik Organize Et** � I�erigi akillica tanimlar ve otomatik olarak siniflandirir, klas�rleri d�zenli tutar
-- **Verimli Toplu Islem** � Tek tikla yeniden adlandirma, dosya birlestirme, sikici manuel g�revlere veda edin
-- **Otomatik Y�r�tme** � AI Agent'lar bagimsiz olarak dosya islemlerini y�r�tebilir, dosyalari okuyup yazabilir ve g�revleri otomatik olarak tamamlayabilir
+- **Otomatik Organize Et** — İçeriği akıllıca tanımlar ve otomatik olarak sınıflandırır, klasörleri düzenli tutar
+- **Verimli Toplu İşlem** — Tek tıkla yeniden adlandırma, dosya birleştirme, sıkıcı manuel görevlere veda edin
+- **Otomatik Yürütme** — AI Agent'lar bağımsız olarak dosya işlemlerini yürütebilir, dosyaları okuyup yazabilir ve görevleri otomatik olarak tamamlayabilir
 
-**Kullanim Senaryolari:**
+**Kullanım Senaryoları:**
 
-- Dosya t�r�ne g�re daginik indirme klas�rlerini organize edin
-- Anlamli isimlerle fotograflari toplu olarak yeniden adlandirin
-- Birden fazla belgeyi birlestirin
-- I�erige g�re dosyalari otomatik olarak siniflandirin
+- Dosya türüne göre dağınık indirme klasörlerini organize edin
+- Anlamlı isimlerle fotoğrafları toplu olarak yeniden adlandırın
+- Birden fazla belgeyi birleştirin
+- İçeriğe göre dosyaları otomatik olarak sınıflandırın
 
 </details>
 
 ---
 
-### **Excel Veri Isleme � AI Destekli Analiz**
+### **Excel Veri İşleme — AI Destekli Analiz**
 
-_Excel verilerini derinlemesine analiz edin, raporlari otomatik olarak g�zellestirin ve i�g�r�ler olusturun � hepsi AI Agent'lar tarafindan desteklenir._
+_Excel verilerini derinlemesine analiz edin, raporları otomatik olarak güzelleştirin ve içgörüler oluşturun — hepsi AI Agent'lar tarafından desteklenir._
 
 <p align="center">
   <img src="../../resources/readme-demo-generate-excel.gif" alt="Excel Processing" width="800">
 </p>
 
 <details>
-<summary><strong>?? Excel Isleme �zelliklerini G�r�nt�le ??</strong></summary>
+<summary><strong>🔍 Excel İşleme Özelliklerini Görüntüle ▶️</strong></summary>
 
 <br>
 
-- **Akilli Analiz** � AI veri kaliplarini analiz eder ve i�g�r�ler olusturur
-- **Otomatik Bi�imlendirme** � Profesyonel stillendirme ile Excel raporlarini otomatik olarak g�zellestirir
-- **Veri D�n�s�m�** � Dogal dil komutlariyla verileri d�n�st�r�n, birlestirin ve yeniden yapilandirin
-- **Rapor Olusturma** � Ham verilerden kapsamli raporlar olusturun
+- **Akıllı Analiz** — AI veri kalıplarını analiz eder ve içgörüler oluşturur
+- **Otomatik Biçimlendirme** — Profesyonel stillendirme ile Excel raporlarını otomatik olarak güzelleştirir
+- **Veri Dönüşümü** — Doğal dil komutlarıyla verileri dönüştürün, birleştirin ve yeniden yapılandırın
+- **Rapor Oluşturma** — Ham verilerden kapsamlı raporlar oluşturun
 
-**Kullanim Senaryolari:**
+**Kullanım Senaryoları:**
 
-- Satis verilerini analiz edin ve aylik raporlar olusturun
-- Daginik Excel dosyalarini temizleyin ve bi�imlendirin
-- Birden fazla elektronik tabloyu akillica birlestirin
-- Veri g�rsellestirmeleri ve grafikler olusturun
+- Satış verilerini analiz edin ve aylık raporlar oluşturun
+- Dağınık Excel dosyalarını temizleyin ve biçimlendirin
+- Birden fazla elektronik tabloyu akıllıca birleştirin
+- Veri görselleştirmeleri ve grafikler oluşturun
 
 </details>
 
 ---
 
-### **AI G�r�nt� Olusturma ve D�zenleme**
+### **AI Görüntü Oluşturma ve Düzenleme**
 
-_Gemini tarafindan desteklenen akilli g�r�nt� olusturma, d�zenleme ve tanima_
+_Gemini tarafından desteklenen akıllı görüntü oluşturma, düzenleme ve tanıma_
 
 <p align="center">
   <img src="../../resources/Image_Generation.gif" alt="AI Image Generation" width="800">
 </p>
 
 <details>
-<summary><strong>?? G�r�nt� Olusturma �zelliklerini G�r�nt�le ??</strong></summary>
+<summary><strong>🔍 Görüntü Oluşturma Özelliklerini Görüntüle ▶️</strong></summary>
 
 <br>
 
-- **Metinden G�r�nt�ye** � Dogal dil a�iklamalarindan g�r�nt�ler olusturun
-- **G�r�nt� D�zenleme** � Mevcut g�r�nt�leri degistirin ve gelistirin
-- **G�r�nt� Tanima** � G�r�nt� i�erigini analiz edin ve a�iklayin
-- **Toplu Isleme** � Ayni anda birden fazla g�r�nt� olusturun
+- **Metinden Görüntüye** — Doğal dil açıklamalarından görüntüler oluşturun
+- **Görüntü Düzenleme** — Mevcut görüntüleri değiştirin ve geliştirin
+- **Görüntü Tanıma** — Görüntü içeriğini analiz edin ve açıklayın
+- **Toplu İşleme** — Aynı anda birden fazla görüntü oluşturun
 
 </details>
 
-> [G�r�nt� olusturma modeli yapilandirma kilavuzu](https://github.com/coracowork/cora-cowork-desktop/wiki/CoraCowork-Image-Generation-Tool-Model-Configuration-Guide)
+> [Görüntü oluşturma modeli yapılandırma kılavuzu](https://github.com/iOfficeAI/AionUi/wiki/AionUi-Image-Generation-Tool-Model-Configuration-Guide)
 
 ---
 
-### **Belge Olusturma � PPT, Word, Markdown**
+### **Belge Oluşturma — PPT, Word, Markdown**
 
-_AI Agent'lar ile profesyonel belgeleri otomatik olarak olusturun � sunumlar, raporlar ve daha fazlasi._
+_AI Agent'lar ile profesyonel belgeleri otomatik olarak oluşturun — sunumlar, raporlar ve daha fazlası._
 
 <p align="center">
   <img src="../../resources/file_generation_preview.png" alt="Document Generation" width="800">
 </p>
 
 <details>
-<summary><strong>?? Belge Olusturma �zelliklerini G�r�nt�le ??</strong></summary>
+<summary><strong>🔍 Belge Oluşturma Özelliklerini Görüntüle ▶️</strong></summary>
 
 <br>
 
-- **PPTX Olusturucu** � Anahatlar veya konulardan profesyonel sunumlar olusturun
-- **Word Belgeleri** � Uygun yapiya sahip bi�imlendirilmis Word belgeleri olusturun
-- **Markdown Dosyalari** � Dok�mantasyon i�in Markdown belgeleri olusturun ve bi�imlendirin
-- **PDF D�n�s�m�** � �esitli belge formatlari arasinda d�n�st�r�n
+- **PPTX Oluşturucu** — Anahatlar veya konulardan profesyonel sunumlar oluşturun
+- **Word Belgeleri** — Uygun yapıya sahip biçimlendirilmiş Word belgeleri oluşturun
+- **Markdown Dosyaları** — Dokümantasyon için Markdown belgeleri oluşturun ve biçimlendirin
+- **PDF Dönüşümü** — Çeşitli belge formatları arasında dönüştürün
 
-**Kullanim Senaryolari:**
+**Kullanım Senaryoları:**
 
-- �� aylik is sunumlari olusturun
-- Teknik dok�mantasyon olusturun
-- PDF'yi d�zenlenebilir formatlara d�n�st�r�n
-- Arastirma makalelerini otomatik olarak bi�imlendirin
+- Üç aylık iş sunumları oluşturun
+- Teknik dokümantasyon oluşturun
+- PDF'yi düzenlenebilir formatlara dönüştürün
+- Araştırma makalelerini otomatik olarak biçimlendirin
 
 </details>
 
-### **Kisisellestirilmis Aray�z �zellestirme**
+### **Kişiselleştirilmiş Arayüz Özelleştirme**
 
-_Kendi CSS kodunuzla �zellestirin, aray�z�n�z� tercihlerinize uygun hale getirin_
+_Kendi CSS kodunuzla özelleştirin, arayüzünüzü tercihlerinize uygun hale getirin_
 
 <p align="center">
   <img src="../../resources/css with skin.gif" alt="CSS Customization" width="800">
 </p>
 
-- ? **Tamamen �zellestirilebilir** � CSS kodu araciligiyla aray�z renklerini, stillerini, d�zenini �zg�rce �zellestirin, �zel deneyiminizi olusturun
+- ✅ **Tamamen Özelleştirilebilir** — CSS kodu aracılığıyla arayüz renklerini, stillerini, düzenini özgürce özelleştirin, özel deneyiminizi oluşturun
 
 ---
 
-### **�oklu G�rev Paralel Isleme**
+### **Çoklu Görev Paralel İşleme**
 
-_Birden fazla konusma a�in, g�revler karismaz, bagimsiz bellek, verimlilik iki katina �ikar_
+_Birden fazla konuşma açın, görevler karışmaz, bağımsız bellek, verimlilik iki katına çıkar_
 
 <p align="center">
   <img src="../../resources/multichat-side-by-side.gif" alt="Multi-Task Parallel" width="800">
 </p>
 
-- ? **Bagimsiz Baglam** � Her konusma kendi baglamini ve ge�misini korur
-- ? **Paralel Y�r�tme** � M�dahale olmadan birden fazla g�revi ayni anda �alistirin
-- ? **Akilli Y�netim** � G�rsel g�stergelerle konusmalar arasinda kolay ge�is
+- ✅ **Bağımsız Bağlam** — Her konuşma kendi bağlamını ve geçmişini korur
+- ✅ **Paralel Yürütme** — Müdahale olmadan birden fazla görevi aynı anda çalıştırın
+- ✅ **Akıllı Yönetim** — Görsel göstergelerle konuşmalar arasında kolay geçiş
 
 ---
 
-## ?? Neden CoraCowork, Claude Cowork Yerine?
+## 🤔 Neden AionUi, Claude Cowork Yerine?
 
 <details>
-<summary><strong>Detayli karsilastirmayi g�rmek i�in tiklayin</strong></summary>
+<summary><strong>Detaylı karşılaştırmayı görmek için tıklayın</strong></summary>
 
 <br>
 
-CoraCowork **�cretsiz ve a�ik kaynakli bir �oklu AI Agent Masa�st�** uygulamasidir. Sadece macOS'ta �alisan ve Claude'ye kilitli Claude Cowork ile karsilastirildiginda, CoraCowork tam model, �apraz platform gelistirilmis versiyonudur.
+AionUi **ücretsiz ve açık kaynaklı bir Çoklu AI Agent Masaüstü** uygulamasıdır. Sadece macOS'ta çalışan ve Claude'ye kilitli Claude Cowork ile karşılaştırıldığında, AionUi tam model, çapraz platform geliştirilmiş versiyonudur.
 
-| Boyut           | Claude Cowork | CoraCowork                                            |
+| Boyut           | Claude Cowork | AionUi                                            |
 | :-------------- | :------------ | :------------------------------------------------ |
-| Isletim Sistemi | Sadece macOS  | macOS / Windows / Linux                           |
-| Model Destegi   | Sadece Claude | Gemini, Claude, DeepSeek, OpenAI, Ollama, ...     |
-| Etkilesim       | Masa�st� GUI  | Masa�st� GUI + WebUI + Telegram / Lark / DingTalk |
-| Otomasyon       | Sadece manuel | Cron zamanlanmis g�revler � 7/24 g�zetimsiz       |
-| Maliyet         | $100/ay       | �cretsiz ve A�ik Kaynak                           |
+| İşletim Sistemi | Sadece macOS  | macOS / Windows / Linux                           |
+| Model Desteği   | Sadece Claude | Gemini, Claude, DeepSeek, OpenAI, Ollama, ...     |
+| Etkileşim       | Masaüstü GUI  | Masaüstü GUI + WebUI + Telegram / Lark / DingTalk |
+| Otomasyon       | Sadece manuel | Cron zamanlanmış görevler — 7/24 gözetimsiz       |
+| Maliyet         | $100/ay       | Ücretsiz ve Açık Kaynak                           |
 
-Derin AI Ofis Senaryosu Destegi:
+Derin AI Ofis Senaryosu Desteği:
 
-- **Dosya Y�netimi**: Yerel klas�rleri akillica organize edin ve tek tikla toplu yeniden adlandirin.
-- **Veri Isleme**: Excel raporlarini derinlemesine analiz edin ve otomatik olarak g�zellestirin.
-- **Belge Olusturma**: PPT, Word ve Markdown belgelerini otomatik olarak yazin ve bi�imlendirin.
-- **Aninda �nizleme**: Yerlesik 10+ format �nizleme panelleri, AI isbirligi sonu�lari aninda g�r�n�r.
+- **Dosya Yönetimi**: Yerel klasörleri akıllıca organize edin ve tek tıkla toplu yeniden adlandırın.
+- **Veri İşleme**: Excel raporlarını derinlemesine analiz edin ve otomatik olarak güzelleştirin.
+- **Belge Oluşturma**: PPT, Word ve Markdown belgelerini otomatik olarak yazın ve biçimlendirin.
+- **Anında Önizleme**: Yerleşik 10+ format önizleme panelleri, AI işbirliği sonuçları anında görünür.
 
 </details>
 
 ---
 
-## Hizli Soru-Cevap
+## Hızlı Soru-Cevap
 
 <details>
-<summary><strong>S: �nce Gemini CLI veya Claude Code'u kurmam gerekiyor mu?</strong></summary>
-C: <strong>Hayir.</strong> CoraCowork kurulumdan hemen sonra �alisan yerlesik bir AI Agent'a sahiptir. Baslamak i�in herhangi bir API anahtari girmeniz yeterli. Ayrica Claude Code veya Gemini CLI gibi CLI ara�lariniz da kuruluysa, CoraCowork bunlari otomatik olarak algilayacak ve daha fazla yetenek i�in entegre edecektir.
+<summary><strong>S: Önce Gemini CLI veya Claude Code'u kurmam gerekiyor mu?</strong></summary>
+C: <strong>Hayır.</strong> AionUi kurulumdan hemen sonra çalışan yerleşik bir AI Agent'a sahiptir. Başlamak için herhangi bir API anahtarı girmeniz yeterli. Ayrıca Claude Code veya Gemini CLI gibi CLI araçlarınız da kuruluysa, AionUi bunları otomatik olarak algılayacak ve daha fazla yetenek için entegre edecektir.
 </details>
 
 <details>
-<summary><strong>S: CoraCowork ile ne yapabilirim?</strong></summary>
-C: CoraCowork sizin <strong>�zel Cowork �alisma alaninizdir</strong>. Yerlesik Agent klas�rleri toplu olarak organize edebilir, Excel verilerini isleyebilir, belgeler olusturabilir, web'de arama yapabilir ve g�r�nt�ler olusturabilir. �oklu Agent Modu ile ayni aray�z �zerinden Claude Code, Codex ve diger g��l� CLI Agent'larindan da yararlanabilirsiniz.
+<summary><strong>S: AionUi ile ne yapabilirim?</strong></summary>
+C: AionUi sizin <strong>özel Cowork çalışma alanınızdır</strong>. Yerleşik Agent klasörleri toplu olarak organize edebilir, Excel verilerini işleyebilir, belgeler oluşturabilir, web'de arama yapabilir ve görüntüler oluşturabilir. Çoklu Agent Modu ile aynı arayüz üzerinden Claude Code, Codex ve diğer güçlü CLI Agent'larından da yararlanabilirsiniz.
 </details>
 
 <details>
-<summary><strong>S: �cretsiz mi?</strong></summary>
-C: CoraCowork tamamen �cretsiz ve a�ik kaynaklidir. Yalnizca se�tiginiz saglayicinin API kullanimi i�in �deme yaparsiniz ve tercih ettiginiz herhangi bir saglayicidan API anahtarlari kullanabilirsiniz.
+<summary><strong>S: Ücretsiz mi?</strong></summary>
+C: AionUi tamamen ücretsiz ve açık kaynaklıdır. Yalnızca seçtiğiniz sağlayıcının API kullanımı için ödeme yaparsınız ve tercih ettiğiniz herhangi bir sağlayıcıdan API anahtarları kullanabilirsiniz.
 </details>
 
 <details>
-<summary><strong>S: Verilerim g�vende mi?</strong></summary>
-C: T�m veriler yerel olarak bir SQLite veritabaninda saklanir. Hi�bir sey herhangi bir sunucuya y�klenmez.
+<summary><strong>S: Verilerim güvende mi?</strong></summary>
+C: Tüm veriler yerel olarak bir SQLite veritabanında saklanır. Hiçbir şey herhangi bir sunucuya yüklenmez.
 </details>
 
 ---
 
-## Insanlarin CoraCowork'yi Nasil Kullandigini G�r�n
+## İnsanların AionUi'yi Nasıl Kullandığını Görün
 
 <p align="center">
   <a href="https://www.youtube.com/watch?v=vWxE6VO9TKo" target="_blank">
-    <img src="https://img.youtube.com/vi/vWxE6VO9TKo/maxresdefault.jpg" alt="Hermes + Cora UI is Insane (FREE)!" width="400">
+    <img src="https://img.youtube.com/vi/vWxE6VO9TKo/maxresdefault.jpg" alt="Hermes + Aion UI is Insane (FREE)!" width="400">
   </a>
   &nbsp;&nbsp;
   <a href="https://www.youtube.com/watch?v=RgSLdOhICZw" target="_blank">
-    <img src="https://img.youtube.com/vi/RgSLdOhICZw/maxresdefault.jpg" alt="OpenClaw + Cora UI is Insane (FREE!)" width="400">
+    <img src="https://img.youtube.com/vi/RgSLdOhICZw/maxresdefault.jpg" alt="OpenClaw + Aion UI is Insane (FREE!)" width="400">
   </a>
 </p>
 <p align="center">
-  <em>Julian Goldie SEO � Hermes + Cora UI is Insane (FREE!) � 27K views</em> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>Julian Goldie SEO � OpenClaw + Cora UI is Insane (FREE!) � 11K views</em>
+  <em>Julian Goldie SEO — Hermes + Aion UI is Insane (FREE!) · 27K views</em> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>Julian Goldie SEO — OpenClaw + Aion UI is Insane (FREE!) · 11K views</em>
 </p>
 
 <p align="center">
@@ -531,132 +531,132 @@ C: T�m veriler yerel olarak bir SQLite veritabaninda saklanir. Hi�bir sey herhan
 
 ### Topluluk Makaleleri
 
-- [A�ik kaynak �cretsiz Cowork, tam model entegrasyonu + �zerk dosya islemleri](https://mp.weixin.qq.com/s/F3f-CCsVPaK3lK00jXhOOg) � A�ik Kaynak AI Projesi Uygulamasi
-- [Siradan insanlarin Claude Code'u bir APP gibi kullanmasini saglamak](https://mp.weixin.qq.com/s/TsMojSbkUUFvsd-HQCazZg) � Tembel Kedi Balik Sever
-- [5500 Stars: A�ik Kaynak Anthropic'in AI Ara� Setini Nasil Kiriyor](https://mp.weixin.qq.com/s/saEk49cYV6MqBgw19Lw6Gw) � AI Silikon Ani
+- [Açık kaynak ücretsiz Cowork, tam model entegrasyonu + özerk dosya işlemleri](https://mp.weixin.qq.com/s/F3f-CCsVPaK3lK00jXhOOg) — Açık Kaynak AI Projesi Uygulaması
+- [Sıradan insanların Claude Code'u bir APP gibi kullanmasını sağlamak](https://mp.weixin.qq.com/s/TsMojSbkUUFvsd-HQCazZg) — Tembel Kedi Balık Sever
+- [5500 Stars: Açık Kaynak Anthropic'in AI Araç Setini Nasıl Kırıyor](https://mp.weixin.qq.com/s/saEk49cYV6MqBgw19Lw6Gw) — AI Silikon Anı
 
-> **CoraCowork hakkinda bir video yaptiniz mi?** [X'te bize bildirin](https://x.com/CoraCowork) ve burada �ne �ikaralim!
+> **AionUi hakkında bir video yaptınız mı?** [X'te bize bildirin](https://x.com/AionUi) ve burada öne çıkaralım!
 
 ---
 
-## ?? Hizli Baslangi�
+## 🚀 Hızlı Başlangıç
 
 ### Sistem Gereksinimleri
 
-- **macOS**: 10.15 veya �zeri
-- **Windows**: Windows 10 veya �zeri
+- **macOS**: 10.15 veya üzeri
+- **Windows**: Windows 10 veya üzeri
 - **Linux**: Ubuntu 18.04+ / Debian 10+ / Fedora 32+
-- **Bellek**: 4GB+ �nerilir
-- **Depolama**: 500MB+ kullanilabilir alan
+- **Bellek**: 4GB+ önerilir
+- **Depolama**: 500MB+ kullanılabilir alan
 
 ### Kurulum
 
 <p>
-  <a href="https://github.com/coracowork/cora-cowork-desktop/releases/">
-    <img src="https://img.shields.io/badge/Indir-En%20Son%20S�r�m-32CD32?style=for-the-badge&logo=github&logoColor=white" alt="En Son S�r�m� Indir" height="50">
+  <a href="https://github.com/iOfficeAI/AionUi/releases">
+    <img src="https://img.shields.io/badge/İndir-En%20Son%20Sürüm-32CD32?style=for-the-badge&logo=github&logoColor=white" alt="En Son Sürümü İndir" height="50">
   </a>
 </p>
 
-Releases sayfasina gitmek ve platformunuz i�in y�kleyiciyi indirmek i�in yukaridaki butona tiklayin (macOS / Windows / Linux).
+Releases sayfasına gitmek ve platformunuz için yükleyiciyi indirmek için yukarıdaki butona tıklayın (macOS / Windows / Linux).
 
 ```bash
 # Alternatively, macOS via Homebrew
-brew install cora-cowork
+brew install aionui
 ```
 
-### 3 Adimda Baslayin
+### 3 Adımda Başlayın
 
-1. **Kurun** CoraCowork
-2. **Girin** baslamak i�in herhangi bir API anahtari
-3. **Cowork'a baslayin** � yerlesik AI Agent kullanima hazir
+1. **Kurun** AionUi
+2. **Girin** başlamak için herhangi bir API anahtarı
+3. **Cowork'a başlayın** — yerleşik AI Agent kullanıma hazır
 
-### ?? Detayli Kilavuzlar
+### 📖 Detaylı Kılavuzlar
 
 <details>
-<summary><strong>?? Tam Kullanim Kilavuzunu G�r�nt�lemek I�in Genisletin</strong></summary>
+<summary><strong>📖 Tam Kullanım Kılavuzunu Görüntülemek İçin Genişletin</strong></summary>
 
 <br>
 
-**?? Hizli Baslangi�**
+**🚀 Hızlı Başlangıç**
 
-- [?? Tam Kurulum Kilavuzu](https://github.com/coracowork/cora-cowork-desktop/wiki/Getting-Started) � Indirmeden yapilandirmaya kadar detayli adimlar
-- [?? LLM Yapilandirma Kilavuzu](https://github.com/coracowork/cora-cowork-desktop/wiki/LLM-Configuration) � �oklu platform AI model yapilandirmasi
-- [?? �oklu Agent Modu Kurulumu](https://github.com/coracowork/cora-cowork-desktop/wiki/ACP-Setup) � Terminal AI Agent'larini entegre edin
-- [?? MCP Ara� Yapilandirmasi](https://github.com/coracowork/cora-cowork-desktop/wiki/MCP-Configuration-Guide) � Model Context Protocol sunucu kurulumu
-- [?? WebUI Yapilandirma Kilavuzu](https://github.com/coracowork/cora-cowork-desktop/wiki/WebUI-Configuration-Guide) � Tam WebUI kurulum ve yapilandirma �greticisi
+- [📖 Tam Kurulum Kılavuzu](https://github.com/iOfficeAI/AionUi/wiki/Getting-Started) — İndirmeden yapılandırmaya kadar detaylı adımlar
+- [⚙️ LLM Yapılandırma Kılavuzu](https://github.com/iOfficeAI/AionUi/wiki/LLM-Configuration) — Çoklu platform AI model yapılandırması
+- [🤖 Çoklu Agent Modu Kurulumu](https://github.com/iOfficeAI/AionUi/wiki/ACP-Setup) — Terminal AI Agent'larını entegre edin
+- [🔌 MCP Araç Yapılandırması](https://github.com/iOfficeAI/AionUi/wiki/MCP-Configuration-Guide) — Model Context Protocol sunucu kurulumu
+- [🌐 WebUI Yapılandırma Kılavuzu](https://github.com/iOfficeAI/AionUi/wiki/WebUI-Configuration-Guide) — Tam WebUI kurulum ve yapılandırma öğreticisi
 
-**?? Kullanim Senaryolari**
+**🎯 Kullanım Senaryoları**
 
-- [?? Dosya Y�netimi](https://github.com/coracowork/cora-cowork-desktop/wiki/file-management) � Akilli dosya organizasyonu
-- [?? Excel Isleme](https://github.com/coracowork/cora-cowork-desktop/wiki/excel-processing) � AI destekli veri isleme
-- [?? G�r�nt� Olusturma](https://github.com/coracowork/cora-cowork-desktop/wiki/CoraCowork-Image-Generation-Tool-Model-Configuration-Guide) � AI g�r�nt� olusturma
-- [?? Daha Fazla Kullanim Senaryosu](https://github.com/coracowork/cora-cowork-desktop/wiki/Use-Cases-Overview)
+- [📁 Dosya Yönetimi](https://github.com/iOfficeAI/AionUi/wiki/file-management) — Akıllı dosya organizasyonu
+- [📊 Excel İşleme](https://github.com/iOfficeAI/AionUi/wiki/excel-processing) — AI destekli veri işleme
+- [🎨 Görüntü Oluşturma](https://github.com/iOfficeAI/AionUi/wiki/AionUi-Image-Generation-Tool-Model-Configuration-Guide) — AI görüntü oluşturma
+- [📚 Daha Fazla Kullanım Senaryosu](https://github.com/iOfficeAI/AionUi/wiki/Use-Cases-Overview)
 
-**? Destek ve Yardim**
+**❓ Destek ve Yardım**
 
-- [? SSS](https://github.com/coracowork/cora-cowork-desktop/wiki/FAQ) � Sorular ve sorun giderme
-- [?? Yapilandirma ve Kullanim �greticileri](https://github.com/coracowork/cora-cowork-desktop/wiki/Configuration-Guides) � Tam yapilandirma dok�mantasyonu
+- [❓ SSS](https://github.com/iOfficeAI/AionUi/wiki/FAQ) — Sorular ve sorun giderme
+- [🔧 Yapılandırma ve Kullanım Öğreticileri](https://github.com/iOfficeAI/AionUi/wiki/Configuration-Guides) — Tam yapılandırma dokümantasyonu
 
 </details>
 
 ---
 
-## ?? Topluluk ve Destek
+## 💬 Topluluk ve Destek
 
-**Fikirleriniz �nemli!** Her �neri ve geri bildirimi degerli g�r�yoruz.
+**Fikirleriniz önemli!** Her öneri ve geri bildirimi değerli görüyoruz.
 
 <p align="center">
-  <a href="https://x.com/CoraCowork" target="_blank">
+  <a href="https://x.com/AionUi" target="_blank">
     <img src="../../resources/contactus-x.png" alt="Contact Us on X" width="600">
   </a>
 </p>
 
-- [GitHub Discussions](https://github.com/coracowork/cora-cowork-desktop/discussions) � fikirleri paylasin ve ipu�lari alisverisi yapin
-- [Sorun Bildir](https://github.com/coracowork/cora-cowork-desktop/issues) � hatalar ve �zellik istekleri
-- [S�r�m G�ncellemeleri](https://github.com/coracowork/cora-cowork-desktop/releases/) � en son s�r�m� alin
-- [Discord Toplulugu](https://discord.gg/2QAwJn7Egx) � Ingilizce topluluk
-- [WeChat Grubu](../../resources/wx-15.png) � �ince topluluk
+- [GitHub Discussions](https://github.com/iOfficeAI/AionUi/discussions) — fikirleri paylaşın ve ipuçları alışverişi yapın
+- [Sorun Bildir](https://github.com/iOfficeAI/AionUi/issues) — hatalar ve özellik istekleri
+- [Sürüm Güncellemeleri](https://github.com/iOfficeAI/AionUi/releases) — en son sürümü alın
+- [Discord Topluluğu](https://discord.gg/2QAwJn7Egx) — İngilizce topluluk
+- [WeChat Grubu](../../resources/wx-16.png) — Çince topluluk
 
-### Katkida Bulunma
+### Katkıda Bulunma
 
 1. Bu projeyi fork edin
-2. Bir �zellik dali olusturun (`git checkout -b feature/AmazingFeature`)
-3. Degisikliklerinizi commit edin (`git commit -m 'Add some AmazingFeature'`)
+2. Bir özellik dalı oluşturun (`git checkout -b feature/AmazingFeature`)
+3. Değişikliklerinizi commit edin (`git commit -m 'Add some AmazingFeature'`)
 4. Dala push edin (`git push origin feature/AmazingFeature`)
-5. Bir Pull Request a�in
+5. Bir Pull Request açın
 
-### Gelistirme Ortami
+### Geliştirme Ortamı
 
-CoraCowork yerel gelistirme iki depo kullanir: Electron frontend i�in CoraCowork ve yerel backend i�in CoraCore. macOS, Linux ve Windows i�in tam kurulum adimlari i�in [Development Guide](../contributing/development.md) belgesine bakin.
+AionUi yerel geliştirme iki depo kullanır: Electron frontend için AionUi ve yerel backend için AionCore. macOS, Linux ve Windows için tam kurulum adımları için [Development Guide](../contributing/development.md) belgesine bakın.
 
 ---
 
 ## Lisans
 
-Bu proje [Apache-2.0](../../LICENSE) lisansi altinda lisanslanmistir.
+Bu proje [Apache-2.0](../../LICENSE) lisansı altında lisanslanmıştır.
 
 ---
 
-## Katkida Bulunanlar
+## Katkıda Bulunanlar
 
 <p align="center">
-  <a href="https://github.com/coracowork/cora-cowork-desktop/graphs/contributors">
-    <img src="https://contrib.rocks/image?repo=iOfficeAI/CoraCowork&max=100" alt="Contributors" />
+  <a href="https://github.com/iOfficeAI/AionUi/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=iOfficeAI/AionUi&max=100" alt="Contributors" />
   </a>
 </p>
 
-## Yildiz Ge�misi
+## Yıldız Geçmişi
 
 <p align="center">
-  <a href="https://www.star-history.com/#iOfficeAI/cora-cowork&Date" target="_blank">
-    <img src="https://api.star-history.com/svg?repos=iOfficeAI/cora-cowork&type=Date" alt="Star History" width="600">
+  <a href="https://www.star-history.com/#iOfficeAI/aionui&Date" target="_blank">
+    <img src="https://api.star-history.com/svg?repos=iOfficeAI/aionui&type=Date" alt="Star History" width="600">
   </a>
 </p>
 
 <div align="center">
 
-**Begendiyseniz, bize bir yildiz verin**
+**Beğendiyseniz, bize bir yıldız verin**
 
-[Hata Bildir](https://github.com/coracowork/cora-cowork-desktop/issues) � [�zellik Iste](https://github.com/coracowork/cora-cowork-desktop/issues)
+[Hata Bildir](https://github.com/iOfficeAI/AionUi/issues) · [Özellik İste](https://github.com/iOfficeAI/AionUi/issues)
 
 </div>

@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 CoraCowork (cora-cowork.com)
+ * Copyright 2025 CoraCowork (coracowork.shop)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -544,6 +544,16 @@ const TaskDetailPage: React.FC = () => {
                     {t('cron.page.form.executionModeEditHint')}
                   </p>
                 </div>
+              </div>
+            </section>
+
+            <section className='flex flex-col gap-10px'>
+              <h2 className='m-0 text-13px font-medium text-t-secondary'>{t('cron.page.form.queue')}</h2>
+              <div className='flex items-start gap-10px'>
+                <Switch size='small' checked={job.state.queue_enabled} disabled />
+                <span className='min-w-0 flex-1 text-13px leading-20px text-t-secondary'>
+                  {t('cron.page.form.queueHint')}
+                </span>
               </div>
             </section>
 

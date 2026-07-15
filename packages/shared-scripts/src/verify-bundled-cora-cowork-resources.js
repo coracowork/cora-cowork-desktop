@@ -1,20 +1,10 @@
 const fs = require('fs');
 const path = require('path');
-const { execFileSync } = require('child_process');
-const os = require('os');
+
+const REQUIRED_ACP_TOOL_SLUGS = ['codex-acp', 'claude-agent-acp'];
 
 function backendBinaryName(platform) {
-  // Match the binary name used by prepare-cora-cowork.js and other scripts
-  // Windows build produces 'cora-cowork-app.exe'; other platforms use 'CoraCore'
-  return platform === 'win32' ? 'cora-cowork-app.exe' : 'CoraCore';
-}
-
-function nodeBinaryName(platform) {
-  return platform === 'win32' ? 'node.exe' : 'node';
-}
-
-function nodeExecutableParts(platform) {
-  return platform === 'win32' ? [nodeBinaryName(platform)] : ['bin', nodeBinaryName(platform)];
+  return platform === 'win32' ? 'coracore.exe' : 'coracore';
 }
 
 function normalize(relativePath) {
@@ -22,124 +12,50 @@ function normalize(relativePath) {
 }
 
 function bundledPath(runtimeKey, ...parts) {
-  return normalize(path.join('bundled-cora-cowork', runtimeKey, ...parts));
-}
-
-function requireRelativePath(baseDir, runtimeKey, parts, checked, missing) {
-  const relativePath = bundledPath(runtimeKey, ...parts);
-  checked.push(relativePath);
-
-  if (!isFile(path.join(baseDir, ...parts))) {
-    missing.push(relativePath);
-  }
-}
-
-function requireRelativeDirectory(baseDir, runtimeKey, parts, checked, missing) {
-  const relativePath = bundledPath(runtimeKey, ...parts);
-  checked.push(relativePath);
-
-  const fullPath = path.join(baseDir, ...parts);
-  if (!fs.existsSync(fullPath) || !fs.statSync(fullPath).isDirectory()) {
-    missing.push(relativePath);
-  }
-}
-
-function readDirectories(root) {
-  if (!fs.existsSync(root) || !fs.statSync(root).isDirectory()) return [];
-
-  return fs
-    .readdirSync(root, { withFileTypes: true })
-    .filter((entry) => entry.isDirectory())
-    .map((entry) => entry.name)
-    .toSorted();
+  return normalize(path.join('bundled-coracore', runtimeKey, ...parts));
 }
 
 function isFile(filePath) {
   return fs.existsSync(filePath) && fs.statSync(filePath).isFile();
 }
 
-function requireFile(baseDir, runtimeKey, parts, checked, missing) {
+function isDirectory(dirPath) {
+  return fs.existsSync(dirPath) && fs.statSync(dirPath).isDirectory();
+}
+
+function addFailure(failures, missing, checked, failure) {
+  if (failure.path) checked.push(failure.path);
+  failures.push(failure);
+  if (failure.path) {
+    missing.push(
+      failure.reason === 'missing_file' || failure.reason === 'missing_directory'
+        ? failure.path
+        : `${failure.path}<${failure.reason}>`
+    );
+  }
+}
+
+function requireRelativePath(baseDir, runtimeKey, parts, checked, missing, failures) {
   const relativePath = bundledPath(runtimeKey, ...parts);
   checked.push(relativePath);
 
   if (!isFile(path.join(baseDir, ...parts))) {
+    const failure = { component: 'coracore', reason: 'missing_file', path: relativePath };
+    failures.push(failure);
     missing.push(relativePath);
   }
 }
 
-function requireDirectory(baseDir, runtimeKey, parts, checked, missing) {
+function requireRelativeDirectory(baseDir, runtimeKey, parts, checked, missing, failures) {
   const relativePath = bundledPath(runtimeKey, ...parts);
   checked.push(relativePath);
 
   const fullPath = path.join(baseDir, ...parts);
-  if (!fs.existsSync(fullPath) || !fs.statSync(fullPath).isDirectory()) {
+  if (!isDirectory(fullPath)) {
+    const failure = { component: 'managed-resources', reason: 'missing_directory', path: relativePath };
+    failures.push(failure);
     missing.push(relativePath);
   }
-}
-
-function verifyBundleManifest(baseDir, runtimeKey, electronPlatformName, targetArch, checked, missing) {
-  const parts = ['manifest.json'];
-  const relativePath = bundledPath(runtimeKey, ...parts);
-  const manifestPath = path.join(baseDir, ...parts);
-  checked.push(relativePath);
-
-  if (!isFile(manifestPath)) {
-    missing.push(relativePath);
-    return;
-  }
-
-  const manifest = readManifest(manifestPath);
-  if (!manifest) {
-    missing.push(`${relativePath}<invalid-json>`);
-    return;
-  }
-
-  if (manifest.platform !== electronPlatformName) {
-    missing.push(`${relativePath}<platform:${electronPlatformName}>`);
-  }
-
-  if (manifest.arch !== targetArch) {
-    missing.push(`${relativePath}<arch:${targetArch}>`);
-  }
-}
-
-function requireManagedNode(baseDir, runtimeKey, platform, checked, missing) {
-  const nodeRoot = path.join(baseDir, 'managed-resources', 'node');
-  const versions = readDirectories(nodeRoot);
-  const executableParts = nodeExecutableParts(platform);
-
-  if (versions.length === 0) {
-    const relativePath = bundledPath(runtimeKey, 'managed-resources', 'node', '*', ...executableParts);
-    checked.push(relativePath);
-    missing.push(relativePath);
-    return;
-  }
-
-  for (const version of versions) {
-    requireFile(baseDir, runtimeKey, ['managed-resources', 'node', version, ...executableParts], checked, missing);
-  }
-}
-
-const CODEX_VENDOR_TRIPLE_BY_RUNTIME_KEY = {
-  'win32-arm64': 'aarch64-pc-windows-msvc',
-  'win32-x64': 'x86_64-pc-windows-msvc',
-};
-
-function acpToolPlatformExecutableParts(platform, runtimeKey, toolId) {
-  if (platform !== 'win32') return null;
-
-  if (toolId === 'codex-acp') {
-    const vendorTriple = CODEX_VENDOR_TRIPLE_BY_RUNTIME_KEY[runtimeKey];
-    if (!vendorTriple) return null;
-
-    return ['node_modules', '@openai', `codex-${runtimeKey}`, 'vendor', vendorTriple, 'bin', 'codex.exe'];
-  }
-
-  if (toolId === 'claude-agent-acp') {
-    return ['node_modules', '@anthropic-ai', `claude-agent-sdk-${runtimeKey}`, 'claude.exe'];
-  }
-
-  return null;
 }
 
 function readManifest(manifestPath) {
@@ -150,275 +66,353 @@ function readManifest(manifestPath) {
   }
 }
 
-function requireManagedAcpTool(baseDir, runtimeKey, platform, toolId, checked, missing) {
-  const toolRoot = path.join(baseDir, 'managed-resources', 'acp', toolId);
-  const versions = readDirectories(toolRoot);
+function verifyBundleManifest(baseDir, runtimeKey, electronPlatformName, targetArch, checked, missing, failures) {
+  const parts = ['manifest.json'];
+  const relativePath = bundledPath(runtimeKey, ...parts);
+  const manifestPath = path.join(baseDir, ...parts);
+  checked.push(relativePath);
 
-  if (versions.length === 0) {
-    const relativePath = bundledPath(runtimeKey, 'managed-resources', 'acp', toolId, '*', runtimeKey, 'manifest.json');
-    checked.push(relativePath);
+  if (!isFile(manifestPath)) {
     missing.push(relativePath);
+    failures.push({ component: 'bundle-manifest', reason: 'missing_file', path: relativePath });
     return;
   }
 
-  for (const version of versions) {
-    const platformRoot = path.join(toolRoot, version, runtimeKey);
-    const manifestRelativePath = bundledPath(
-      runtimeKey,
-      'managed-resources',
-      'acp',
-      toolId,
-      version,
-      runtimeKey,
-      'manifest.json'
-    );
-    checked.push(manifestRelativePath);
+  const manifest = readManifest(manifestPath);
+  if (!manifest) {
+    missing.push(`${relativePath}<invalid-json>`);
+    failures.push({ component: 'bundle-manifest', reason: 'invalid_json', path: relativePath });
+    return;
+  }
 
-    const manifestPath = path.join(platformRoot, 'manifest.json');
-    if (!isFile(manifestPath)) {
-      missing.push(manifestRelativePath);
-      continue;
-    }
+  if (manifest.platform !== electronPlatformName) {
+    missing.push(`${relativePath}<platform:${electronPlatformName}>`);
+    failures.push({ component: 'bundle-manifest', reason: 'runtime_key_mismatch', path: relativePath });
+  }
 
-    const manifest = readManifest(manifestPath);
-    const entrypoint = typeof manifest?.entrypoint === 'string' ? manifest.entrypoint : null;
-    if (!entrypoint) {
-      missing.push(bundledPath(runtimeKey, 'managed-resources', 'acp', toolId, version, runtimeKey, '<entrypoint>'));
-      continue;
-    }
-
-    const entrypointRelativePath = bundledPath(
-      runtimeKey,
-      'managed-resources',
-      'acp',
-      toolId,
-      version,
-      runtimeKey,
-      entrypoint
-    );
-    checked.push(entrypointRelativePath);
-
-    if (!isFile(path.join(platformRoot, entrypoint))) {
-      missing.push(entrypointRelativePath);
-    }
-
-    requireFile(
-      baseDir,
-      runtimeKey,
-      ['managed-resources', 'acp', toolId, version, runtimeKey, 'package.json'],
-      checked,
-      missing
-    );
-    requireFile(
-      baseDir,
-      runtimeKey,
-      ['managed-resources', 'acp', toolId, version, runtimeKey, 'package-lock.json'],
-      checked,
-      missing
-    );
-    requireDirectory(
-      baseDir,
-      runtimeKey,
-      ['managed-resources', 'acp', toolId, version, runtimeKey, 'node_modules'],
-      checked,
-      missing
-    );
-
-    const platformExecutableParts = acpToolPlatformExecutableParts(platform, runtimeKey, toolId);
-    if (platformExecutableParts) {
-      requireFile(
-        baseDir,
-        runtimeKey,
-        ['managed-resources', 'acp', toolId, version, runtimeKey, ...platformExecutableParts],
-        checked,
-        missing
-      );
-
-      // Fallback: some prepared artifacts pack a different package layout
-      // (e.g. @zed-industries/codex-acp-<runtimeKey>/bin/codex-acp.exe). If the
-      // primary expected path is missing but a known alternative exists, accept it
-      // and remove the earlier missing marker.
-      if (toolId === 'codex-acp') {
-        const expectedRelative = bundledPath(
-          runtimeKey,
-          'managed-resources',
-          'acp',
-          toolId,
-          version,
-          runtimeKey,
-          ...platformExecutableParts
-        );
-        const altPath = path.join(
-          baseDir,
-          'managed-resources',
-          'acp',
-          toolId,
-          version,
-          runtimeKey,
-          'node_modules',
-          '@zed-industries',
-          `codex-acp-${runtimeKey}`,
-          'bin',
-          process.platform === 'win32' ? 'codex-acp.exe' : 'codex-acp'
-        );
-
-        if (fs.existsSync(altPath) && fs.statSync(altPath).isFile()) {
-          const altRelative = normalize(path.join('bundled-cora-cowork', runtimeKey, 'managed-resources', 'acp', toolId, version, runtimeKey, 'node_modules', '@zed-industries', `codex-acp-${runtimeKey}`, 'bin', path.basename(altPath)));
-          checked.push(altRelative);
-          // remove expectedRelative from missing if present
-          const idx = missing.indexOf(expectedRelative);
-          if (idx !== -1) missing.splice(idx, 1);
-        }
-      }
-    }
+  if (manifest.arch !== targetArch) {
+    missing.push(`${relativePath}<arch:${targetArch}>`);
+    failures.push({ component: 'bundle-manifest', reason: 'runtime_key_mismatch', path: relativePath });
   }
 }
 
-function verifyBundledCoraCoreResources({ resourcesDir, electronPlatformName, targetArch }) {
+function readManagedResourcesContract(manifestPath) {
+  try {
+    return { contract: JSON.parse(fs.readFileSync(manifestPath, 'utf8')) };
+  } catch (error) {
+    return { error };
+  }
+}
+
+function validateContractRelativePath(value) {
+  if (typeof value !== 'string') return false;
+  if (!value || value.includes('\\') || path.isAbsolute(value)) return false;
+  return value.split('/').every((segment) => segment && segment !== '.' && segment !== '..');
+}
+
+function joinContractPath(root, relativePath) {
+  return path.join(root, ...relativePath.split('/'));
+}
+
+function contractBundledPath(runtimeKey, ...parts) {
+  return bundledPath(runtimeKey, 'managed-resources', ...parts);
+}
+
+function addSchemaFailure(failures, missing, component, reason, path) {
+  addFailure(failures, missing, [], { component, reason, path });
+}
+
+function stringField(value) {
+  return typeof value === 'string' && value.length > 0;
+}
+
+function stringArray(value) {
+  return Array.isArray(value) && value.every((entry) => typeof entry === 'string' && entry.length > 0);
+}
+
+function validateContractPathField(value, component, pathLabel, failures) {
+  if (!validateContractRelativePath(value)) {
+    failures.push({
+      component,
+      reason: 'invalid_contract_path',
+      detail: pathLabel,
+    });
+    return false;
+  }
+  return true;
+}
+
+function verifyManagedResourcesContract(baseDir, runtimeKey, checked, missing, failures) {
+  const managedRoot = path.join(baseDir, 'managed-resources');
+  const relativePath = contractBundledPath(runtimeKey, 'manifest.json');
+  const manifestPath = path.join(managedRoot, 'manifest.json');
+  checked.push(relativePath);
+
+  if (!isFile(manifestPath)) {
+    addFailure(failures, missing, [], {
+      component: 'managed-resources',
+      reason: 'missing_file',
+      path: relativePath,
+    });
+    return;
+  }
+
+  const { contract, error } = readManagedResourcesContract(manifestPath);
+  if (error) {
+    addFailure(failures, missing, [], {
+      component: 'managed-resources',
+      reason: 'invalid_json',
+      path: relativePath,
+    });
+    return;
+  }
+
+  if (!contract || typeof contract !== 'object' || Array.isArray(contract)) {
+    addSchemaFailure(failures, missing, 'managed-resources', 'invalid_schema', relativePath);
+    return;
+  }
+  if (contract.schemaVersion !== 1) {
+    addSchemaFailure(
+      failures,
+      missing,
+      'managed-resources',
+      typeof contract.schemaVersion === 'number' ? 'unsupported_schema_version' : 'invalid_schema',
+      relativePath
+    );
+    return;
+  }
+  if (contract.runtimeKey !== runtimeKey) {
+    addSchemaFailure(failures, missing, 'managed-resources', 'runtime_key_mismatch', relativePath);
+    return;
+  }
+  if (!contract.node || typeof contract.node !== 'object' || Array.isArray(contract.node)) {
+    addSchemaFailure(failures, missing, 'managed-resources', 'invalid_schema', relativePath);
+    return;
+  }
+  if (!Array.isArray(contract.acpTools)) {
+    addSchemaFailure(failures, missing, 'managed-resources', 'invalid_schema', relativePath);
+    return;
+  }
+
+  verifyManagedNodeFromContract(managedRoot, runtimeKey, contract, checked, missing, failures);
+  verifyManagedAcpToolsFromContract(managedRoot, runtimeKey, contract, checked, missing, failures);
+}
+
+function verifyManagedNodeFromContract(baseDir, runtimeKey, contract, checked, missing, failures) {
+  const node = contract.node;
+  const manifestPath = contractBundledPath(runtimeKey, 'manifest.json');
+  if (!stringField(node.version) || !stringField(node.root) || !stringField(node.executable)) {
+    addSchemaFailure(failures, missing, 'managed-node', 'invalid_schema', manifestPath);
+    return;
+  }
+  if (
+    !validateContractPathField(node.root, 'managed-node', 'node.root', failures) ||
+    !validateContractPathField(node.executable, 'managed-node', 'node.executable', failures)
+  ) {
+    return;
+  }
+
+  const executablePath = joinContractPath(joinContractPath(baseDir, node.root), node.executable);
+  const relativePath = contractBundledPath(runtimeKey, node.root, node.executable);
+  checked.push(relativePath);
+  if (!isFile(executablePath)) {
+    missing.push(relativePath);
+    failures.push({
+      component: 'managed-node',
+      reason: 'missing_file',
+      version: node.version,
+      runtimeKey,
+      path: relativePath,
+    });
+  }
+}
+
+function verifyManagedAcpToolsFromContract(baseDir, runtimeKey, contract, checked, missing, failures) {
+  const seen = new Set();
+  const validTools = [];
+  const manifestPath = contractBundledPath(runtimeKey, 'manifest.json');
+
+  for (const tool of contract.acpTools) {
+    if (!tool || typeof tool !== 'object' || Array.isArray(tool) || !stringField(tool.slug)) {
+      addSchemaFailure(failures, missing, 'managed-resources', 'invalid_schema', manifestPath);
+      continue;
+    }
+    if (seen.has(tool.slug)) {
+      failures.push({
+        component: tool.slug,
+        reason: 'duplicate_tool_slug',
+      });
+      continue;
+    }
+    seen.add(tool.slug);
+    validTools.push(tool);
+  }
+
+  for (const requiredSlug of REQUIRED_ACP_TOOL_SLUGS) {
+    if (!seen.has(requiredSlug)) {
+      failures.push({
+        component: requiredSlug,
+        reason: 'missing_required_tool',
+      });
+    }
+  }
+
+  for (const tool of validTools) {
+    verifyManagedAcpToolFromContract(baseDir, runtimeKey, tool, checked, missing, failures);
+  }
+}
+
+function verifyManagedAcpToolFromContract(baseDir, runtimeKey, tool, checked, missing, failures) {
+  const manifestPath = contractBundledPath(runtimeKey, 'manifest.json');
+  const requiredStringFields = [
+    'version',
+    'packageName',
+    'root',
+    'platformDirectory',
+    'manifest',
+    'entrypoint',
+    'platformExecutable',
+  ];
+  if (requiredStringFields.some((field) => !stringField(tool[field]))) {
+    addSchemaFailure(failures, missing, tool.slug, 'invalid_schema', manifestPath);
+    return;
+  }
+  if (!stringArray(tool.pathEntries) || !stringArray(tool.requiredFiles) || !stringArray(tool.requiredDirectories)) {
+    addSchemaFailure(failures, missing, tool.slug, 'invalid_schema', manifestPath);
+    return;
+  }
+  if (tool.platformDirectory !== runtimeKey) {
+    addSchemaFailure(failures, missing, tool.slug, 'runtime_key_mismatch', manifestPath);
+    return;
+  }
+
+  const pathFields = [
+    ['root', tool.root],
+    ['manifest', tool.manifest],
+    ['entrypoint', tool.entrypoint],
+    ['platformExecutable', tool.platformExecutable],
+    ...tool.pathEntries.map((entry, index) => [`pathEntries[${index}]`, entry]),
+    ...tool.requiredFiles.map((entry, index) => [`requiredFiles[${index}]`, entry]),
+    ...tool.requiredDirectories.map((entry, index) => [`requiredDirectories[${index}]`, entry]),
+  ];
+  if (pathFields.some(([field, value]) => !validateContractPathField(value, tool.slug, field, failures))) {
+    return;
+  }
+
+  const toolRoot = joinContractPath(baseDir, tool.root);
+  const localManifestRelative = contractBundledPath(runtimeKey, tool.root, tool.manifest);
+  const localManifestPath = joinContractPath(toolRoot, tool.manifest);
+  checked.push(localManifestRelative);
+  if (!isFile(localManifestPath)) {
+    missing.push(localManifestRelative);
+    failures.push({
+      component: tool.slug,
+      reason: 'missing_file',
+      version: tool.version,
+      packageName: tool.packageName,
+      runtimeKey,
+      path: localManifestRelative,
+    });
+    return;
+  }
+
+  const localManifest = readManifest(localManifestPath);
+  if (!localManifest) {
+    missing.push(`${localManifestRelative}<invalid_json>`);
+    failures.push({
+      component: tool.slug,
+      reason: 'invalid_json',
+      version: tool.version,
+      packageName: tool.packageName,
+      runtimeKey,
+      path: localManifestRelative,
+    });
+    return;
+  }
+  if (localManifest.entrypoint !== tool.entrypoint) {
+    missing.push(`${localManifestRelative}<manifest_entrypoint_mismatch>`);
+    failures.push({
+      component: tool.slug,
+      reason: 'manifest_entrypoint_mismatch',
+      version: tool.version,
+      packageName: tool.packageName,
+      runtimeKey,
+      path: localManifestRelative,
+    });
+  }
+  const localPathEntries = Array.isArray(localManifest.path_entries) ? localManifest.path_entries : [];
+  if (JSON.stringify(localPathEntries) !== JSON.stringify(tool.pathEntries)) {
+    missing.push(`${localManifestRelative}<manifest_path_entries_mismatch>`);
+    failures.push({
+      component: tool.slug,
+      reason: 'manifest_path_entries_mismatch',
+      version: tool.version,
+      packageName: tool.packageName,
+      runtimeKey,
+      path: localManifestRelative,
+    });
+  }
+
+  requireContractFile(baseDir, runtimeKey, tool, tool.root, tool.entrypoint, checked, missing, failures);
+  for (const requiredFile of tool.requiredFiles) {
+    requireContractFile(baseDir, runtimeKey, tool, tool.root, requiredFile, checked, missing, failures);
+  }
+  for (const requiredDirectory of tool.requiredDirectories) {
+    requireContractDirectory(baseDir, runtimeKey, tool, tool.root, requiredDirectory, checked, missing, failures);
+  }
+  requireContractFile(baseDir, runtimeKey, tool, tool.root, tool.platformExecutable, checked, missing, failures);
+}
+
+function requireContractFile(baseDir, runtimeKey, tool, root, relativePath, checked, missing, failures) {
+  const bundledRelative = contractBundledPath(runtimeKey, root, relativePath);
+  checked.push(bundledRelative);
+  if (!isFile(joinContractPath(joinContractPath(baseDir, root), relativePath))) {
+    missing.push(bundledRelative);
+    failures.push({
+      component: tool.slug,
+      reason: 'missing_file',
+      version: tool.version,
+      packageName: tool.packageName,
+      runtimeKey,
+      path: bundledRelative,
+    });
+  }
+}
+
+function requireContractDirectory(baseDir, runtimeKey, tool, root, relativePath, checked, missing, failures) {
+  const bundledRelative = contractBundledPath(runtimeKey, root, relativePath);
+  checked.push(bundledRelative);
+  if (!isDirectory(joinContractPath(joinContractPath(baseDir, root), relativePath))) {
+    missing.push(bundledRelative);
+    failures.push({
+      component: tool.slug,
+      reason: 'missing_directory',
+      version: tool.version,
+      packageName: tool.packageName,
+      runtimeKey,
+      path: bundledRelative,
+    });
+  }
+}
+
+function verifyBundledCoracoreResources({ resourcesDir, electronPlatformName, targetArch }) {
   const runtimeKey = `${electronPlatformName}-${targetArch}`;
-  const baseDir = path.join(resourcesDir, 'bundled-cora-cowork', runtimeKey);
+  const baseDir = path.join(resourcesDir, 'bundled-coracore', runtimeKey);
   const checked = [];
   const missing = [];
+  const failures = [];
 
-  function performChecks() {
-    checked.length = 0;
-    missing.length = 0;
-
-    requireRelativePath(baseDir, runtimeKey, [backendBinaryName(electronPlatformName)], checked, missing);
-    verifyBundleManifest(baseDir, runtimeKey, electronPlatformName, targetArch, checked, missing);
-    requireRelativeDirectory(baseDir, runtimeKey, ['managed-resources'], checked, missing);
-    requireManagedNode(baseDir, runtimeKey, electronPlatformName, checked, missing);
-    requireManagedAcpTool(baseDir, runtimeKey, electronPlatformName, 'codex-acp', checked, missing);
-    requireManagedAcpTool(baseDir, runtimeKey, electronPlatformName, 'claude-agent-acp', checked, missing);
+  requireRelativePath(baseDir, runtimeKey, [backendBinaryName(electronPlatformName)], checked, missing, failures);
+  verifyBundleManifest(baseDir, runtimeKey, electronPlatformName, targetArch, checked, missing, failures);
+  requireRelativeDirectory(baseDir, runtimeKey, ['managed-resources'], checked, missing, failures);
+  verifyManagedResourcesContract(baseDir, runtimeKey, checked, missing, failures);
+  if (failures.length > 0 && missing.length === 0) {
+    missing.push(`${contractBundledPath(runtimeKey, 'manifest.json')}<contract_failure>`);
   }
 
-  performChecks();
-
-  // If ACP tool artifacts are missing, try to download them from the managed ACP CDN
-  // This helps local builds where artifacts were not prepared/uploaded yet.
-  const MANAGED_ACP_CDN_BASE = process.env.MANAGED_ACP_CDN_BASE || 'https://coracowork.shop/managed/acp';
-
-  function httpDownload(url, dest) {
-    ensureDir(path.dirname(dest));
-    try {
-      if (process.platform === 'win32') {
-        const ps = `$ProgressPreference='SilentlyContinue'; Invoke-WebRequest -Uri '${url.replace(/'/g, "''")}' -OutFile '${dest.replace(/'/g, "''")}'`;
-        execFileSync('powershell', ['-NoProfile', '-NonInteractive', '-Command', ps], { stdio: 'inherit', timeout: 120000 });
-      } else {
-        execFileSync('curl', ['-L', '--fail', '--silent', '--show-error', '-o', dest, url], { stdio: 'inherit', timeout: 120000 });
-      }
-      return true;
-    } catch (e) {
-      try {
-        // fallback to gh if available
-        execFileSync('gh', ['api', url, '--output', dest], { stdio: 'inherit', timeout: 120000 });
-        return true;
-      } catch {
-        return false;
-      }
-    }
-  }
-
-  function ensureDir(d) {
-    if (!fs.existsSync(d)) fs.mkdirSync(d, { recursive: true });
-  }
-
-  function extractArchive(archivePath, outDir) {
-    ensureDir(outDir);
-    try {
-      if (process.platform === 'win32' || archivePath.endsWith('.zip')) {
-        if (process.platform === 'win32') {
-          const ps = `Expand-Archive -LiteralPath '${archivePath.replace(/'/g, "''")}' -DestinationPath '${outDir.replace(/'/g, "''")}' -Force`;
-          execFileSync('powershell', ['-NoProfile', '-NonInteractive', '-Command', ps], { stdio: 'inherit' });
-        } else {
-          execFileSync('unzip', ['-o', archivePath, '-d', outDir], { stdio: 'inherit' });
-        }
-      } else if (archivePath.endsWith('.tar.zst') || archivePath.endsWith('.tar.gz') || archivePath.endsWith('.tgz')) {
-        if (archivePath.endsWith('.tar.zst')) {
-          execFileSync('zstd', ['-d', archivePath, '-c'], { stdio: ['ignore', 'pipe', 'inherit'] });
-          // fall through to tar extraction not implemented here; prefer server-provided zip for Windows
-        } else {
-          execFileSync('tar', ['-xzf', archivePath, '-C', outDir], { stdio: 'inherit' });
-        }
-      }
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
-
-  function tryDownloadManagedAcpTool(toolId) {
-    try {
-      const rootManifestUrl = `${MANAGED_ACP_CDN_BASE}/manifest.json`;
-      const tmp = path.join(os.tmpdir(), `managed-acp-${toolId}-${Date.now()}`);
-      ensureDir(tmp);
-      const rootManifestPath = path.join(tmp, 'root-manifest.json');
-      if (!httpDownload(rootManifestUrl, rootManifestPath)) return false;
-      const root = JSON.parse(fs.readFileSync(rootManifestPath, 'utf8'));
-      const toolInfo = root.tools?.[toolId];
-      if (!toolInfo || !toolInfo.version || !toolInfo.manifest_url) return false;
-      const version = toolInfo.version;
-      const versionManifestUrl = toolInfo.manifest_url;
-      const versionManifestPath = path.join(tmp, 'version-manifest.json');
-      if (!httpDownload(versionManifestUrl, versionManifestPath)) return false;
-      const vmanifest = JSON.parse(fs.readFileSync(versionManifestPath, 'utf8'));
-      const artifact = vmanifest.artifacts?.[runtimeKey];
-      if (!artifact || !artifact.url) return false;
-      const artifactUrl = artifact.url;
-      const artifactFilename = path.basename(new URL(artifactUrl).pathname);
-      const artifactPath = path.join(tmp, artifactFilename);
-      if (!httpDownload(artifactUrl, artifactPath)) return false;
-
-      const platformRoot = path.join(baseDir, 'managed-resources', 'acp', toolId, version, runtimeKey);
-      // ensure parent and extract into a temp dir then move
-      const extractDir = path.join(tmp, 'extract');
-      ensureDir(extractDir);
-      if (!extractArchive(artifactPath, extractDir)) return false;
-
-      // The artifact packs the project root contents; copy them into platformRoot
-      ensureDir(platformRoot);
-      // Copy files
-      const entries = fs.readdirSync(extractDir, { withFileTypes: true });
-      for (const entry of entries) {
-        const src = path.join(extractDir, entry.name);
-        const dst = path.join(platformRoot, entry.name);
-        if (entry.isDirectory()) {
-          // recursive copy
-          fs.cpSync(src, dst, { recursive: true, force: true });
-        } else {
-          ensureDir(path.dirname(dst));
-          fs.copyFileSync(src, dst);
-        }
-      }
-
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
-
-  // If initial checks found missing ACP tool files, attempt to fetch them from CDN and re-run checks.
-  const needsAcpDownload = missing.some((p) => p.includes('managed-resources/acp/'));
-  if (needsAcpDownload) {
-    let downloaded = false;
-    if (missing.some((p) => p.includes('managed-resources/acp/codex-acp/'))) {
-      console.log('   ⚠️  Missing codex-acp artifacts; attempting download from MANAGED_ACP_CDN_BASE');
-      if (tryDownloadManagedAcpTool('codex-acp')) downloaded = true;
-    }
-    if (missing.some((p) => p.includes('managed-resources/acp/claude-agent-acp/'))) {
-      console.log('   ⚠️  Missing claude-agent-acp artifacts; attempting download from MANAGED_ACP_CDN_BASE');
-      if (tryDownloadManagedAcpTool('claude-agent-acp')) downloaded = true;
-    }
-
-    if (downloaded) {
-      // re-run checks
-      performChecks();
-    }
-  }
-
-  return { runtimeKey, checked, missing };
+  return { runtimeKey, checked, missing, failures };
 }
 
 module.exports = {
-  verifyBundledCoraCoreResources,
+  verifyBundledCoracoreResources,
 };

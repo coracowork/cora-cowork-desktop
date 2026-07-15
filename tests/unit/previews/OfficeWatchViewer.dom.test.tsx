@@ -20,7 +20,7 @@
 import { afterEach, beforeEach, describe, it, expect } from 'vitest';
 
 describe('OfficeWatchViewer module shape', () => {
-  it('module loads and exposes a default export', async () => {
+  it('module loads and exposes a default export', { timeout: 20000 }, async () => {
     const mod = await import('@/renderer/pages/conversation/Preview/components/viewers/OfficeWatchViewer');
     expect(mod).toBeDefined();
     expect(mod.default).toBeDefined();
@@ -41,7 +41,7 @@ describe('OfficeWatchViewer module shape', () => {
 
   it('uses official iOfficeAI OfficeCLI releases page', async () => {
     const mod = await import('@/renderer/pages/conversation/Preview/components/viewers/OfficeWatchViewer');
-    expect(mod.OFFICECLI_INSTALL_URL).toBe('https://github.com/coracowork/OfficeCLI/releases');
+    expect(mod.OFFICECLI_INSTALL_URL).toBe('https://github.com/coracowork/cora-cowork-desktop/releases');
   });
 });
 

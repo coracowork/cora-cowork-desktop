@@ -98,7 +98,11 @@
       "sendDiagnostics": "傳送診斷報告",
       "diagnosticsSent": "診斷報告已傳送",
       "diagnosticsReportSuccess": "診斷報告已傳送",
-      "diagnosticsReportFailed": "診斷報告傳送失敗"
+      "diagnosticsReportFailed": "診斷報告傳送失敗",
+      "restoreFromBackup": "从备份恢复",
+      "restoreFailed": "从备份恢复失败",
+      "resetDatabase": "重置数据",
+      "resetFailed": "重置数据失败"
     },
     "localDataRepair": {
       "title": "本機資料修復失敗",

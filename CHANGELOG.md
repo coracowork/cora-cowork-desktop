@@ -1,7 +1,32 @@
 # Changelog
 
-## [2.1.34](https://github.com/coracowork/cora-cowork-desktop
-/compare/v2.1.33...v2.1.34) (2026-07-13)
+## [2.1.35](https://github.com/coracowork/cora-cowork-desktop/compare/v2.1.34...v2.1.35) (2026-07-14)
+
+### Desktop
+
+#### Bug Fixes
+
+- **renderer:** restrict message file marker parsing (#3590)
+- **conversation:** handle busy send conflicts (#3589)
+- **packaging:** verify bundled resources from manifest (#3587)
+- **feedback:** attach team route context
+- **startup:** classify assistant bootstrap failures (#3583)
+
+### Core ([v0.1.47](https://github.com/coracowork/CoraCore/releases/tag/v0.1.47))
+
+#### Features
+
+- **cron:** deduplicate and protect scheduled executions (#601)
+- **diagnostics:** expand feedback runtime evidence (#612)
+
+#### Bug Fixes
+
+- **assistant:** skip dirty assistant bootstrap records (#615)
+- **managed-resources:** emit bundled resource manifest (#617)
+
+---
+
+## [2.1.34](https://github.com/coracowork/cora-cowork-desktop/compare/v2.1.33...v2.1.34) (2026-07-13)
 
 ### Desktop
 
@@ -10,8 +35,7 @@
 - **team:** show accepted team work as processing (#3576)
 - **conversation:** prevent queue drain from racing backend idle state (#3571)
 
-### Core ([v0.1.46](https://github.com/coracowork/CoraCore
-/releases/tag/v0.1.46))
+### Core ([v0.1.46](https://github.com/coracowork/CoraCore/releases/tag/v0.1.46))
 
 #### Bug Fixes
 
@@ -20,8 +44,7 @@
 
 ---
 
-## [2.1.33](https://github.com/coracowork/cora-cowork-desktop
-/compare/v2.1.32...v2.1.33) (2026-07-11)
+## [2.1.33](https://github.com/coracowork/cora-cowork-desktop/compare/v2.1.32...v2.1.33) (2026-07-11)
 
 ### Desktop
 
@@ -31,8 +54,7 @@
 
 ---
 
-## [2.1.32](https://github.com/coracowork/cora-cowork-desktop
-/compare/v2.1.31...v2.1.32) (2026-07-10)
+## [2.1.32](https://github.com/coracowork/cora-cowork-desktop/compare/v2.1.31...v2.1.32) (2026-07-10)
 
 ### Desktop
 
@@ -52,8 +74,7 @@
 
 - **conversation:** fold draft box help into the mode toggle (#3553)
 
-### Core ([v0.1.45](https://github.com/coracowork/CoraCore
-/releases/tag/v0.1.45))
+### Core ([v0.1.45](https://github.com/coracowork/CoraCore/releases/tag/v0.1.45))
 
 #### Features
 
@@ -71,8 +92,7 @@
 
 ---
 
-## [2.1.31](https://github.com/coracowork/cora-cowork-desktop
-/compare/v2.1.30...v2.1.31) (2026-07-08)
+## [2.1.31](https://github.com/coracowork/cora-cowork-desktop/compare/v2.1.30...v2.1.31) (2026-07-08)
 
 ### Desktop
 
@@ -87,8 +107,7 @@
 - **feedback:** attach core diagnostics to reports (#3529)
 - **settings:** assistant editor and settings UI polish (#3528)
 
-### Core ([v0.1.44](https://github.com/coracowork/CoraCore
-/releases/tag/v0.1.44))
+### Core ([v0.1.44](https://github.com/coracowork/CoraCore/releases/tag/v0.1.44))
 
 #### Features
 
@@ -104,8 +123,7 @@
 
 ---
 
-## [2.1.30](https://github.com/coracowork/cora-cowork-desktop
-/compare/v2.1.29...v2.1.30) (2026-07-06)
+## [2.1.30](https://github.com/coracowork/cora-cowork-desktop/compare/v2.1.29...v2.1.30) (2026-07-06)
 
 ### Desktop
 
@@ -130,8 +148,7 @@
 
 - **settings:** match agent availability filter to assistant home tabs
 
-### Core ([v0.1.43](https://github.com/coracowork/CoraCore
-/releases/tag/v0.1.43))
+### Core ([v0.1.43](https://github.com/coracowork/CoraCore/releases/tag/v0.1.43))
 
 #### Features
 
@@ -145,8 +162,7 @@
 
 ---
 
-## [2.1.29](https://github.com/coracowork/cora-cowork-desktop
-/compare/v2.1.28...v2.1.29) (2026-07-03)
+## [2.1.29](https://github.com/coracowork/cora-cowork-desktop/compare/v2.1.28...v2.1.29) (2026-07-03)
 
 ### Desktop
 
@@ -173,8 +189,7 @@
 
 - **assistant:** apply oxfmt formatting to assistant home components
 
-### Core ([v0.1.42](https://github.com/coracowork/CoraCore
-/releases/tag/v0.1.42))
+### Core ([v0.1.42](https://github.com/coracowork/CoraCore/releases/tag/v0.1.42))
 
 #### Bug Fixes
 
@@ -191,8 +206,7 @@
 
 ---
 
-## [2.1.28](https://github.com/coracowork/cora-cowork-desktop
-/compare/v2.1.27...v2.1.28) (2026-07-02)
+## [2.1.28](https://github.com/coracowork/cora-cowork-desktop/compare/v2.1.27...v2.1.28) (2026-07-02)
 
 ### Desktop
 
@@ -220,8 +234,7 @@
 - **conversation:** reveal active conversation by expanding its section and folder
 - **conversation:** surface session skills in slash command menu
 
-### Core ([v0.1.41](https://github.com/coracowork/CoraCore
-/releases/tag/v0.1.41))
+### Core ([v0.1.41](https://github.com/coracowork/CoraCore/releases/tag/v0.1.41))
 
 #### Bug Fixes
 
@@ -240,8 +253,7 @@
 
 ---
 
-## [2.1.27](https://github.com/coracowork/cora-cowork-desktop
-/compare/v2.1.26...v2.1.27) (2026-06-30)
+## [2.1.27](https://github.com/coracowork/cora-cowork-desktop/compare/v2.1.26...v2.1.27) (2026-06-30)
 
 ### Desktop
 
@@ -253,8 +265,7 @@
 - **mcp:** isolate backend cwd for stdio tools (#3476)
 - **agent:** show ACP model descriptions (#3463)
 
-### Core ([v0.1.40](https://github.com/coracowork/CoraCore
-/releases/tag/v0.1.40))
+### Core ([v0.1.40](https://github.com/coracowork/CoraCore/releases/tag/v0.1.40))
 
 #### Features
 
@@ -270,8 +281,7 @@
 
 ---
 
-## [2.1.26](https://github.com/coracowork/cora-cowork-desktop
-/compare/v2.1.25...v2.1.26) (2026-06-29)
+## [2.1.26](https://github.com/coracowork/cora-cowork-desktop/compare/v2.1.25...v2.1.26) (2026-06-29)
 
 ### Desktop
 
@@ -287,21 +297,19 @@
 
 - **settings:** clean up assistant card more-button
 
-### Core ([v0.1.39](https://github.com/coracowork/CoraCore
-/releases/tag/v0.1.39))
+### Core ([v0.1.39](https://github.com/coracowork/CoraCore/releases/tag/v0.1.39))
 
 #### Bug Fixes
 
 - **agent:** adapt corars compat API (#528)
-- **agent:** guard internal Aion CLI command overrides (#538)
+- **agent:** guard internal Cora CLI command overrides (#538)
 - **app:** reuse conversation service for channel messages (#531)
 - **assistant:** preserve builtin override selections (#535)
 - **file:** trust local workspace roots for fs routes (#527)
 
 ---
 
-## [2.1.25](https://github.com/coracowork/cora-cowork-desktop
-/compare/v2.1.24...v2.1.25) (2026-06-26)
+## [2.1.25](https://github.com/coracowork/cora-cowork-desktop/compare/v2.1.24...v2.1.25) (2026-06-26)
 
 ### Desktop
 
@@ -333,8 +341,7 @@
 
 - **cron:** hide conversation header entry when no scheduled task exists
 
-### Core ([v0.1.38](https://github.com/coracowork/CoraCore
-/releases/tag/v0.1.38))
+### Core ([v0.1.38](https://github.com/coracowork/CoraCore/releases/tag/v0.1.38))
 
 #### Features
 
@@ -349,8 +356,7 @@
 
 ---
 
-## [2.1.24](https://github.com/coracowork/cora-cowork-desktop
-/compare/v2.1.23...v2.1.24) (2026-06-25)
+## [2.1.24](https://github.com/coracowork/cora-cowork-desktop/compare/v2.1.23...v2.1.24) (2026-06-25)
 
 ### Desktop
 
@@ -366,8 +372,7 @@
 - **release:** restore mac zip artifacts (#3415)
 - **settings:** prevent capabilities tab flicker (#3414)
 
-### Core ([v0.1.37](https://github.com/coracowork/CoraCore
-/releases/tag/v0.1.37))
+### Core ([v0.1.37](https://github.com/coracowork/CoraCore/releases/tag/v0.1.37))
 
 #### Features
 
@@ -384,8 +389,7 @@
 
 ---
 
-## [2.1.23](https://github.com/coracowork/cora-cowork-desktop
-/compare/v2.1.22...v2.1.23) (2026-06-23)
+## [2.1.23](https://github.com/coracowork/cora-cowork-desktop/compare/v2.1.22...v2.1.23) (2026-06-23)
 
 ### Desktop
 
@@ -397,8 +401,7 @@
 
 - **preview:** correct OfficeCLI repo slug casing and de-DE install hint (#3399)
 
-### Core ([v0.1.36](https://github.com/coracowork/CoraCore
-/releases/tag/v0.1.36))
+### Core ([v0.1.36](https://github.com/coracowork/CoraCore/releases/tag/v0.1.36))
 
 #### Bug Fixes
 
@@ -408,8 +411,7 @@
 
 ---
 
-## [2.1.22](https://github.com/coracowork/cora-cowork-desktop
-/compare/v2.1.21...v2.1.22) (2026-06-22)
+## [2.1.22](https://github.com/coracowork/cora-cowork-desktop/compare/v2.1.21...v2.1.22) (2026-06-22)
 
 ### Desktop
 
@@ -425,8 +427,7 @@
 - **preview:** improve file diffs and local file links (#3379)
 - **installer:** harden win arm64 install (#3387)
 
-### Core ([v0.1.34](https://github.com/coracowork/CoraCore
-/releases/tag/v0.1.34))
+### Core ([v0.1.34](https://github.com/coracowork/CoraCore/releases/tag/v0.1.34))
 
 #### Bug Fixes
 
@@ -438,8 +439,7 @@
 
 ---
 
-## [2.1.21](https://github.com/coracowork/cora-cowork-desktop
-/compare/v2.1.20...v2.1.21) (2026-06-18)
+## [2.1.21](https://github.com/coracowork/cora-cowork-desktop/compare/v2.1.20...v2.1.21) (2026-06-18)
 
 ### Desktop
 
@@ -453,30 +453,24 @@
 - **preview:** build valid file:// URL for PDF preview on Windows (#3366)
 - **i18n:** wire pt-BR into language pickers and main-process loader (#3361)
 
-### Core ([v0.1.32](https://github.com/coracowork/CoraCore
-/releases/tag/v0.1.32))
+### Core ([v0.1.32](https://github.com/coracowork/CoraCore/releases/tag/v0.1.32))
 
 #### Features
 
-- **team:** centralize team MCP prompt governance ([#490](https://github.com/coracowork/CoraCore
-/issues/490))
+- **team:** centralize team MCP prompt governance ([#490](https://github.com/coracowork/CoraCore/issues/490))
 
 #### Bug Fixes
 
-- **acp:** recover dead ACP connections ([#487](https://github.com/coracowork/CoraCore
-/issues/487))
-- **conversation:** upsert streaming tool calls (AIO-30) ([#484](https://github.com/coracowork/CoraCore
-/issues/484))
+- **acp:** recover dead ACP connections ([#487](https://github.com/coracowork/CoraCore/issues/487))
+- **conversation:** upsert streaming tool calls (AIO-30) ([#484](https://github.com/coracowork/CoraCore/issues/484))
 
 #### Documentation
 
-- **skills:** add cross-platform notes so Windows users translate shell examples ([#489](https://github.com/coracowork/CoraCore
-/issues/489))
+- **skills:** add cross-platform notes so Windows users translate shell examples ([#489](https://github.com/coracowork/CoraCore/issues/489))
 
 ---
 
-## [2.1.20](https://github.com/coracowork/cora-cowork-desktop
-/compare/v2.1.19...v2.1.20) (2026-06-17)
+## [2.1.20](https://github.com/coracowork/cora-cowork-desktop/compare/v2.1.19...v2.1.20) (2026-06-17)
 
 ### Desktop
 
@@ -491,33 +485,24 @@
 - **team:** wait for solo turn before handoff queue drain (#3353)
 - **assistant:** remove leftover gap above assistant list (#3344)
 
-### Core ([v0.1.31](https://github.com/coracowork/CoraCore
-/releases/tag/v0.1.31))
+### Core ([v0.1.31](https://github.com/coracowork/CoraCore/releases/tag/v0.1.31))
 
 #### Features
 
-- **assistant:** add built-in CoraCowork self-management assistant ([#474](https://github.com/coracowork/CoraCore
-/issues/474))
-- **assistant:** expand CoraCowork assistant into a butler with remote-access ([#481](https://github.com/coracowork/CoraCore
-/issues/481))
-- enforce TeamRun ownership for agent turns ([#483](https://github.com/coracowork/CoraCore
-/issues/483))
-- **team:** support queued team_send_message semantics ([#479](https://github.com/coracowork/CoraCore
-/issues/479))
+- **assistant:** add built-in CoraCowork self-management assistant ([#474](https://github.com/coracowork/CoraCore/issues/474))
+- **assistant:** expand CoraCowork assistant into a butler with remote-access ([#481](https://github.com/coracowork/CoraCore/issues/481))
+- enforce TeamRun ownership for agent turns ([#483](https://github.com/coracowork/CoraCore/issues/483))
+- **team:** support queued team_send_message semantics ([#479](https://github.com/coracowork/CoraCore/issues/479))
 
 #### Bug Fixes
 
-- **acp:** persist runtime model and mode into assistant preferences ([#482](https://github.com/coracowork/CoraCore
-/issues/482))
-- harden ACP image path handling ([#477](https://github.com/coracowork/CoraCore
-/issues/477))
-- **team:** retry handoff turns after runtime release ([#480](https://github.com/coracowork/CoraCore
-/issues/480))
+- **acp:** persist runtime model and mode into assistant preferences ([#482](https://github.com/coracowork/CoraCore/issues/482))
+- harden ACP image path handling ([#477](https://github.com/coracowork/CoraCore/issues/477))
+- **team:** retry handoff turns after runtime release ([#480](https://github.com/coracowork/CoraCore/issues/480))
 
 ---
 
-## [2.1.19](https://github.com/coracowork/cora-cowork-desktop
-/compare/v2.1.18...v2.1.19) (2026-06-15)
+## [2.1.19](https://github.com/coracowork/cora-cowork-desktop/compare/v2.1.18...v2.1.19) (2026-06-15)
 
 ### Desktop
 
@@ -541,37 +526,26 @@
 - **agents:** keep disabled custom agents visible in settings (#3319)
 - **stt:** keep recording when streaming fails before it establishes (#3317)
 
-### Core ([v0.1.30](https://github.com/coracowork/CoraCore
-/releases/tag/v0.1.30))
+### Core ([v0.1.30](https://github.com/coracowork/CoraCore/releases/tag/v0.1.30))
 
 #### Features
 
-- **acp:** use observed config options for preferences ([#468](https://github.com/coracowork/CoraCore
-/issues/468))
-- align team shared workspace resolution ([#475](https://github.com/coracowork/CoraCore
-/issues/475))
-- **team:** support slot-scoped team pause and wake flow ([#472](https://github.com/coracowork/CoraCore
-/issues/472))
+- **acp:** use observed config options for preferences ([#468](https://github.com/coracowork/CoraCore/issues/468))
+- align team shared workspace resolution ([#475](https://github.com/coracowork/CoraCore/issues/475))
+- **team:** support slot-scoped team pause and wake flow ([#472](https://github.com/coracowork/CoraCore/issues/472))
 
 #### Bug Fixes
 
-- **agent:** send non-empty clientInfo in ACP initialize handshake ([#471](https://github.com/coracowork/CoraCore
-/issues/471))
-- **agent:** wait for task shutdown during clear ([#446](https://github.com/coracowork/CoraCore
-/issues/446))
-- **assistant:** remove star office helper remnants ([#470](https://github.com/coracowork/CoraCore
-/issues/470))
-- **office:** fetch officecli installer from official mirror before GitHub ([#463](https://github.com/coracowork/CoraCore
-/issues/463))
-- preserve assistant snapshot and skill wiring for cron ([#473](https://github.com/coracowork/CoraCore
-/issues/473))
-- **shell:** reveal file via FileManager1 D-Bus on Linux ([#466](https://github.com/coracowork/CoraCore
-/issues/466))
+- **agent:** send non-empty clientInfo in ACP initialize handshake ([#471](https://github.com/coracowork/CoraCore/issues/471))
+- **agent:** wait for task shutdown during clear ([#446](https://github.com/coracowork/CoraCore/issues/446))
+- **assistant:** remove star office helper remnants ([#470](https://github.com/coracowork/CoraCore/issues/470))
+- **office:** fetch officecli installer from official mirror before GitHub ([#463](https://github.com/coracowork/CoraCore/issues/463))
+- preserve assistant snapshot and skill wiring for cron ([#473](https://github.com/coracowork/CoraCore/issues/473))
+- **shell:** reveal file via FileManager1 D-Bus on Linux ([#466](https://github.com/coracowork/CoraCore/issues/466))
 
 ---
 
-## [2.1.18](https://github.com/coracowork/cora-cowork-desktop
-/compare/v2.1.17...v2.1.18) (2026-06-12)
+## [2.1.18](https://github.com/coracowork/cora-cowork-desktop/compare/v2.1.17...v2.1.18) (2026-06-12)
 
 ### Desktop
 
@@ -598,36 +572,27 @@
 - **conversation:** show AI copy/timestamp row only at turn end
 - **display:** tighten factory default font sizes and zoom
 
-### Core ([v0.1.29](https://github.com/coracowork/CoraCore
-/releases/tag/v0.1.29))
+### Core ([v0.1.29](https://github.com/coracowork/CoraCore/releases/tag/v0.1.29))
 
 #### Features
 
-- converge team mode runtime architecture ([#464](https://github.com/coracowork/CoraCore
-/issues/464))
-- **stt:** streaming transcription proxy over websocket ([#455](https://github.com/coracowork/CoraCore
-/issues/455))
+- converge team mode runtime architecture ([#464](https://github.com/coracowork/CoraCore/issues/464))
+- **stt:** streaming transcription proxy over websocket ([#455](https://github.com/coracowork/CoraCore/issues/455))
 
 #### Bug Fixes
 
-- **agent:** validate managed ACP platform binaries ([#462](https://github.com/coracowork/CoraCore
-/issues/462))
-- **cron:** retry busy jobs from runtime state ([#459](https://github.com/coracowork/CoraCore
-/issues/459))
-- isolate ACP cancel turn completion ([#461](https://github.com/coracowork/CoraCore
-/issues/461))
-- **office:** probe star-office preferred_url host as given ([#456](https://github.com/coracowork/CoraCore
-/issues/456))
+- **agent:** validate managed ACP platform binaries ([#462](https://github.com/coracowork/CoraCore/issues/462))
+- **cron:** retry busy jobs from runtime state ([#459](https://github.com/coracowork/CoraCore/issues/459))
+- isolate ACP cancel turn completion ([#461](https://github.com/coracowork/CoraCore/issues/461))
+- **office:** probe star-office preferred_url host as given ([#456](https://github.com/coracowork/CoraCore/issues/456))
 
 #### Refactoring
 
-- **assistant:** finalize unified governance storage ([#449](https://github.com/coracowork/CoraCore
-/issues/449))
+- **assistant:** finalize unified governance storage ([#449](https://github.com/coracowork/CoraCore/issues/449))
 
 ---
 
-## [2.1.17](https://github.com/coracowork/cora-cowork-desktop
-/compare/v2.1.16...v2.1.17) (2026-06-11)
+## [2.1.17](https://github.com/coracowork/cora-cowork-desktop/compare/v2.1.16...v2.1.17) (2026-06-11)
 
 ### Desktop
 
@@ -649,24 +614,18 @@
 
 - **model-selector:** sticky platform group titles in scrollable dropdown
 
-### Core ([v0.1.28](https://github.com/coracowork/CoraCore
-/releases/tag/v0.1.28))
+### Core ([v0.1.28](https://github.com/coracowork/CoraCore/releases/tag/v0.1.28))
 
 #### Bug Fixes
 
-- **auth:** allow same-origin framing on office preview proxy routes ([#454](https://github.com/coracowork/CoraCore
-/issues/454))
-- **file:** strip Windows verbatim prefix from /api/fs/browse paths ([#453](https://github.com/coracowork/CoraCore
-/issues/453))
-- **stt:** STT compatibility fixes for Groq Whisper and CoraCowork web frontend ([#400](https://github.com/coracowork/CoraCore
-/issues/400))
-- **stt:** treat blank base_url as unset and log malformed config ([#448](https://github.com/coracowork/CoraCore
-/issues/448))
+- **auth:** allow same-origin framing on office preview proxy routes ([#454](https://github.com/coracowork/CoraCore/issues/454))
+- **file:** strip Windows verbatim prefix from /api/fs/browse paths ([#453](https://github.com/coracowork/CoraCore/issues/453))
+- **stt:** STT compatibility fixes for Groq Whisper and CoraCowork web frontend ([#400](https://github.com/coracowork/CoraCore/issues/400))
+- **stt:** treat blank base_url as unset and log malformed config ([#448](https://github.com/coracowork/CoraCore/issues/448))
 
 ---
 
-## [2.1.16](https://github.com/coracowork/cora-cowork-desktop
-/compare/v2.1.15...v2.1.16) (2026-06-10)
+## [2.1.16](https://github.com/coracowork/cora-cowork-desktop/compare/v2.1.15...v2.1.16) (2026-06-10)
 
 ### Desktop
 
@@ -676,24 +635,18 @@
 - **http:** read error response body once to avoid double consumption (#3262)
 - **ci:** handle empty release prefix check (#3263)
 
-### Core ([v0.1.27](https://github.com/coracowork/CoraCore
-/releases/tag/v0.1.27))
+### Core ([v0.1.27](https://github.com/coracowork/CoraCore/releases/tag/v0.1.27))
 
 #### Bug Fixes
 
-- **ai-agent:** auto approve team mcp permissions ([#447](https://github.com/coracowork/CoraCore
-/issues/447))
-- **ai-agent:** trim stderr buffer at UTF-8 char boundary ([#443](https://github.com/coracowork/CoraCore
-/issues/443))
-- **office:** resolve officecli shim from node_modules/.bin after npm prefix install ([#440](https://github.com/coracowork/CoraCore
-/issues/440))
-- **office:** restore OfficeCLI installer resolution ([#444](https://github.com/coracowork/CoraCore
-/issues/444))
+- **ai-agent:** auto approve team mcp permissions ([#447](https://github.com/coracowork/CoraCore/issues/447))
+- **ai-agent:** trim stderr buffer at UTF-8 char boundary ([#443](https://github.com/coracowork/CoraCore/issues/443))
+- **office:** resolve officecli shim from node_modules/.bin after npm prefix install ([#440](https://github.com/coracowork/CoraCore/issues/440))
+- **office:** restore OfficeCLI installer resolution ([#444](https://github.com/coracowork/CoraCore/issues/444))
 
 ---
 
-## [2.1.15](https://github.com/coracowork/cora-cowork-desktop
-/compare/v2.1.14...v2.1.15) (2026-06-09)
+## [2.1.15](https://github.com/coracowork/cora-cowork-desktop/compare/v2.1.14...v2.1.15) (2026-06-09)
 
 ### Desktop
 
@@ -711,27 +664,21 @@
 - **login:** move mobile language selector to its own row to avoid logo overlap
 - **desktop:** pass parent pid to bundled backend (#3250)
 
-### Core ([v0.1.26](https://github.com/coracowork/CoraCore
-/releases/tag/v0.1.26))
+### Core ([v0.1.26](https://github.com/coracowork/CoraCore/releases/tag/v0.1.26))
 
 #### Features
 
-- enforce agent runtime policy and turn-aware state ([#436](https://github.com/coracowork/CoraCore
-/issues/436))
+- enforce agent runtime policy and turn-aware state ([#436](https://github.com/coracowork/CoraCore/issues/436))
 
 #### Bug Fixes
 
-- **app:** use process synchronize access for parent watcher ([#438](https://github.com/coracowork/CoraCore
-/issues/438))
-- **acp:** preserve confirmed model selection ([#437](https://github.com/coracowork/CoraCore
-/issues/437))
-- **app:** stop backend when desktop exits ([#433](https://github.com/coracowork/CoraCore
-/issues/433))
+- **app:** use process synchronize access for parent watcher ([#438](https://github.com/coracowork/CoraCore/issues/438))
+- **acp:** preserve confirmed model selection ([#437](https://github.com/coracowork/CoraCore/issues/437))
+- **app:** stop backend when desktop exits ([#433](https://github.com/coracowork/CoraCore/issues/433))
 
 ---
 
-## [2.1.14](https://github.com/coracowork/cora-cowork-desktop
-/compare/v2.1.13...v2.1.14) (2026-06-08)
+## [2.1.14](https://github.com/coracowork/cora-cowork-desktop/compare/v2.1.13...v2.1.14) (2026-06-08)
 
 ### Desktop
 
@@ -739,35 +686,25 @@
 
 - **bootstrap:** block wrong macOS package architecture at startup (#3232)
 
-### Core ([v0.1.24](https://github.com/coracowork/CoraCore
-/releases/tag/v0.1.24))
+### Core ([v0.1.24](https://github.com/coracowork/CoraCore/releases/tag/v0.1.24))
 
 #### Bug Fixes
 
-- **acp:** prefer config options catalogs ([#425](https://github.com/coracowork/CoraCore
-/issues/425))
-- expose managed resource preparation failure details ([#430](https://github.com/coracowork/CoraCore
-/issues/430))
-- handle Hermes yolo fallback correctly ([#428](https://github.com/coracowork/CoraCore
-/issues/428))
-- harden managed ACP bundle preparation and builtin CLI availability ([#426](https://github.com/coracowork/CoraCore
-/issues/426))
-- scope bundled ACP output under tool directories ([#431](https://github.com/coracowork/CoraCore
-/issues/431))
-- **shell:** support UNC paths in Windows terminal ([#411](https://github.com/coracowork/CoraCore
-/issues/411))
-- validate managed ACP packages via real entrypoints ([#429](https://github.com/coracowork/CoraCore
-/issues/429))
+- **acp:** prefer config options catalogs ([#425](https://github.com/coracowork/CoraCore/issues/425))
+- expose managed resource preparation failure details ([#430](https://github.com/coracowork/CoraCore/issues/430))
+- handle Hermes yolo fallback correctly ([#428](https://github.com/coracowork/CoraCore/issues/428))
+- harden managed ACP bundle preparation and builtin CLI availability ([#426](https://github.com/coracowork/CoraCore/issues/426))
+- scope bundled ACP output under tool directories ([#431](https://github.com/coracowork/CoraCore/issues/431))
+- **shell:** support UNC paths in Windows terminal ([#411](https://github.com/coracowork/CoraCore/issues/411))
+- validate managed ACP packages via real entrypoints ([#429](https://github.com/coracowork/CoraCore/issues/429))
 
 #### Refactoring
 
-- **app:** organize CLI command boundaries ([#423](https://github.com/coracowork/CoraCore
-/issues/423))
+- **app:** organize CLI command boundaries ([#423](https://github.com/coracowork/CoraCore/issues/423))
 
 ---
 
-## [2.1.13](https://github.com/coracowork/cora-cowork-desktop
-/compare/v2.1.12...v2.1.13) (2026-06-07)
+## [2.1.13](https://github.com/coracowork/cora-cowork-desktop/compare/v2.1.12...v2.1.13) (2026-06-07)
 
 ### Desktop
 
@@ -789,34 +726,26 @@
 
 - stabilize conversation runtime view contract (#3224)
 
-### Core ([v0.1.23](https://github.com/coracowork/CoraCore
-/releases/tag/v0.1.23))
+### Core ([v0.1.23](https://github.com/coracowork/CoraCore/releases/tag/v0.1.23))
 
 #### Features
 
-- **cli:** canonicalize CLI and bootstrap boundary errors ([#417](https://github.com/coracowork/CoraCore
-/issues/417))
+- **cli:** canonicalize CLI and bootstrap boundary errors ([#417](https://github.com/coracowork/CoraCore/issues/417))
 
 #### Bug Fixes
 
-- **error:** canonicalize boundary errors ([#415](https://github.com/coracowork/CoraCore
-/issues/415))
-- **runtime:** report bundled resource installation failures ([#420](https://github.com/coracowork/CoraCore
-/issues/420))
-- **team:** inherit workspace for spawned agents ([#413](https://github.com/coracowork/CoraCore
-/issues/413))
+- **error:** canonicalize boundary errors ([#415](https://github.com/coracowork/CoraCore/issues/415))
+- **runtime:** report bundled resource installation failures ([#420](https://github.com/coracowork/CoraCore/issues/420))
+- **team:** inherit workspace for spawned agents ([#413](https://github.com/coracowork/CoraCore/issues/413))
 
 #### Refactoring
 
-- centralize agent runtime session context building ([#419](https://github.com/coracowork/CoraCore
-/issues/419))
-- centralize runtime turn lifecycle ([#421](https://github.com/coracowork/CoraCore
-/issues/421))
+- centralize agent runtime session context building ([#419](https://github.com/coracowork/CoraCore/issues/419))
+- centralize runtime turn lifecycle ([#421](https://github.com/coracowork/CoraCore/issues/421))
 
 ---
 
-## [2.1.12](https://github.com/coracowork/cora-cowork-desktop
-/compare/v2.1.11...v2.1.12) (2026-06-05)
+## [2.1.12](https://github.com/coracowork/cora-cowork-desktop/compare/v2.1.11...v2.1.12) (2026-06-05)
 
 ### Desktop
 
@@ -830,29 +759,22 @@
 - **conversation:** align workspace path availability handling (#3207)
 - **preview:** dedupe @codemirror/language so markdown source highlight survives (#3206)
 
-### Core ([v0.1.22](https://github.com/coracowork/CoraCore
-/releases/tag/v0.1.22))
+### Core ([v0.1.22](https://github.com/coracowork/CoraCore/releases/tag/v0.1.22))
 
 #### Bug Fixes
 
-- **acp:** stabilize mode and model source of truth ([#409](https://github.com/coracowork/CoraCore
-/issues/409))
-- **conversation:** align workspace path availability handling ([#410](https://github.com/coracowork/CoraCore
-/issues/410))
-- **file:** lazy load browse roots ([#406](https://github.com/coracowork/CoraCore
-/issues/406))
-- prepare managed acp tools locally without cdn ([#408](https://github.com/coracowork/CoraCore
-/issues/408))
+- **acp:** stabilize mode and model source of truth ([#409](https://github.com/coracowork/CoraCore/issues/409))
+- **conversation:** align workspace path availability handling ([#410](https://github.com/coracowork/CoraCore/issues/410))
+- **file:** lazy load browse roots ([#406](https://github.com/coracowork/CoraCore/issues/406))
+- prepare managed acp tools locally without cdn ([#408](https://github.com/coracowork/CoraCore/issues/408))
 
 #### Refactoring
 
-- **error:** finish ApiError phase3 ([#398](https://github.com/coracowork/CoraCore
-/issues/398))
+- **error:** finish ApiError phase3 ([#398](https://github.com/coracowork/CoraCore/issues/398))
 
 ---
 
-## [2.1.11](https://github.com/coracowork/cora-cowork-desktop
-/compare/v2.1.10...v2.1.11) (2026-06-04)
+## [2.1.11](https://github.com/coracowork/cora-cowork-desktop/compare/v2.1.10...v2.1.11) (2026-06-04)
 
 ### Desktop
 
@@ -865,30 +787,24 @@
 
 #### Bug Fixes
 
-- **web-host:** use aioncore reported backend port (#3193)
+- **web-host:** use coracore reported backend port (#3193)
 - **settings:** apply UI scale only on slider release (#3190)
 
-### Core ([v0.1.20](https://github.com/coracowork/CoraCore
-/releases/tag/v0.1.20))
+### Core ([v0.1.20](https://github.com/coracowork/CoraCore/releases/tag/v0.1.20))
 
 #### Bug Fixes
 
-- **app:** bind backend before startup services ([#397](https://github.com/coracowork/CoraCore
-/issues/397))
-- stabilize agent runtime terminal lifecycle ([#396](https://github.com/coracowork/CoraCore
-/pull/396))
+- **app:** bind backend before startup services ([#397](https://github.com/coracowork/CoraCore/issues/397))
+- stabilize agent runtime terminal lifecycle ([#396](https://github.com/coracowork/CoraCore/pull/396))
 
 #### Refactoring
 
-- **error:** ACP error classification ([#393](https://github.com/coracowork/CoraCore
-/issues/393))
-- **error:** migrate phase2 service errors ([#395](https://github.com/coracowork/CoraCore
-/issues/395))
+- **error:** ACP error classification ([#393](https://github.com/coracowork/CoraCore/issues/393))
+- **error:** migrate phase2 service errors ([#395](https://github.com/coracowork/CoraCore/issues/395))
 
 ---
 
-## [2.1.10](https://github.com/coracowork/cora-cowork-desktop
-/compare/v2.1.9...v2.1.10) (2026-06-02)
+## [2.1.10](https://github.com/coracowork/cora-cowork-desktop/compare/v2.1.9...v2.1.10) (2026-06-02)
 
 ### Desktop
 
@@ -904,24 +820,18 @@
 - **acp:** fix model state sync after session recovery (#3162)
 - **desktop:** persist close-to-tray setting (#3150)
 
-### Core ([v0.1.19](https://github.com/coracowork/CoraCore
-/releases/tag/v0.1.19))
+### Core ([v0.1.19](https://github.com/coracowork/CoraCore/releases/tag/v0.1.19))
 
 #### Bug Fixes
 
-- **cora-cowork-ai-agent:** classify corars API connection errors ([#389](https://github.com/coracowork/CoraCore
-/issues/389))
-- classify missing MCP launcher runtimes ([#387](https://github.com/coracowork/CoraCore
-/issues/387))
-- enforce workspace path whitespace errors across create and runtime ([#381](https://github.com/coracowork/CoraCore
-/issues/381))
-- **startup:** add startup phase diagnostics ([#388](https://github.com/coracowork/CoraCore
-/issues/388))
+- **cora-cowork-ai-agent:** classify corars API connection errors ([#389](https://github.com/coracowork/CoraCore/issues/389))
+- classify missing MCP launcher runtimes ([#387](https://github.com/coracowork/CoraCore/issues/387))
+- enforce workspace path whitespace errors across create and runtime ([#381](https://github.com/coracowork/CoraCore/issues/381))
+- **startup:** add startup phase diagnostics ([#388](https://github.com/coracowork/CoraCore/issues/388))
 
 ---
 
-## [2.1.9](https://github.com/coracowork/cora-cowork-desktop
-/compare/v2.1.8...v2.1.9) (2026-06-01)
+## [2.1.9](https://github.com/coracowork/cora-cowork-desktop/compare/v2.1.8...v2.1.9) (2026-06-01)
 
 ### Desktop
 
@@ -936,26 +846,19 @@
 
 - Allow importing skill folders and zip archives (#3144)
 
-### Core ([v0.1.18](https://github.com/coracowork/CoraCore
-/releases/tag/v0.1.18))
+### Core ([v0.1.18](https://github.com/coracowork/CoraCore/releases/tag/v0.1.18))
 
 #### Bug Fixes
 
-- **agent:** classify Bedrock 'model identifier is invalid' as model-not-found (AIO-12) ([#377](https://github.com/coracowork/CoraCore
-/issues/377))
-- **agent:** preserve process-group cleanup after leader exit ([#369](https://github.com/coracowork/CoraCore
-/issues/369))
-- **agent:** tighten send_error classifier (AIO-87, AIO-89, AIO-90) ([#375](https://github.com/coracowork/CoraCore
-/issues/375))
-- **cora-cowork-ai-agent:** strip HTML body from sanitized error detail (AIO-13) ([#380](https://github.com/coracowork/CoraCore
-/issues/380))
-- recover deleted conversation workspaces ([#379](https://github.com/coracowork/CoraCore
-/issues/379))
+- **agent:** classify Bedrock 'model identifier is invalid' as model-not-found (AIO-12) ([#377](https://github.com/coracowork/CoraCore/issues/377))
+- **agent:** preserve process-group cleanup after leader exit ([#369](https://github.com/coracowork/CoraCore/issues/369))
+- **agent:** tighten send_error classifier (AIO-87, AIO-89, AIO-90) ([#375](https://github.com/coracowork/CoraCore/issues/375))
+- **cora-cowork-ai-agent:** strip HTML body from sanitized error detail (AIO-13) ([#380](https://github.com/coracowork/CoraCore/issues/380))
+- recover deleted conversation workspaces ([#379](https://github.com/coracowork/CoraCore/issues/379))
 
 ---
 
-## [2.1.8](https://github.com/coracowork/cora-cowork-desktop
-/compare/v2.1.7...v2.1.8) (2026-05-30)
+## [2.1.8](https://github.com/coracowork/cora-cowork-desktop/compare/v2.1.7...v2.1.8) (2026-05-30)
 
 ### Desktop
 
@@ -965,18 +868,15 @@
 - **web-host:** enrich backend health timeout diagnostics (#3120)
 - **feedback:** preserve structured live error tips (#3116)
 
-### Core ([v0.1.17](https://github.com/coracowork/CoraCore
-/releases/tag/v0.1.17))
+### Core ([v0.1.17](https://github.com/coracowork/CoraCore/releases/tag/v0.1.17))
 
 #### Bug Fixes
 
-- **agent:** make codex sandbox sync non-fatal ([#370](https://github.com/coracowork/CoraCore
-/issues/370))
+- **agent:** make codex sandbox sync non-fatal ([#370](https://github.com/coracowork/CoraCore/issues/370))
 
 ---
 
-## [2.1.7](https://github.com/coracowork/cora-cowork-desktop
-/compare/v2.1.6...v2.1.7) (2026-05-29)
+## [2.1.7](https://github.com/coracowork/cora-cowork-desktop/compare/v2.1.6...v2.1.7) (2026-05-29)
 
 ### Desktop
 
@@ -996,55 +896,46 @@
 - **web-host:** add health timeout diagnostics (#3102)
 - **settings:** avoid blue switch during image generation loading (#3091)
 
-### Core ([v0.1.16](https://github.com/coracowork/CoraCore
-/releases/tag/v0.1.16))
+### Core ([v0.1.16](https://github.com/coracowork/CoraCore/releases/tag/v0.1.16))
 
 #### Features
 
-- **agent:** classify structured agent send errors ([#356](https://github.com/coracowork/CoraCore
-/issues/356))
-- **mcp:** support session scoped MCP injection ([#363](https://github.com/coracowork/CoraCore
-/issues/363))
+- **agent:** classify structured agent send errors ([#356](https://github.com/coracowork/CoraCore/issues/356))
+- **mcp:** support session scoped MCP injection ([#363](https://github.com/coracowork/CoraCore/issues/363))
 
 #### Bug Fixes
 
-- channel reply stream cold start ([#366](https://github.com/coracowork/CoraCore
-/issues/366))
-- **mcp:** clean up stdio test process trees ([#368](https://github.com/coracowork/CoraCore
-/issues/368))
+- channel reply stream cold start ([#366](https://github.com/coracowork/CoraCore/issues/366))
+- **mcp:** clean up stdio test process trees ([#368](https://github.com/coracowork/CoraCore/issues/368))
 
 ---
 
-## [2.1.6](https://github.com/coracowork/cora-cowork-desktop
-/compare/v2.1.5...v2.1.6) (2026-05-28)
+## [2.1.6](https://github.com/coracowork/cora-cowork-desktop/compare/v2.1.5...v2.1.6) (2026-05-28)
 
 ### Desktop
 
 #### Bug Fixes
 
 - **model-selector:** trust backend current model and persist preferences (#3084)
-- **build:** align bundled aioncore target arch (#3092)
+- **build:** align bundled coracore target arch (#3092)
 - **settings:** use provider health check probe (#3090)
 - **settings:** use health check error message (#3080)
-- **backend:** handle incomplete bundled aioncore installs (#3078)
+- **backend:** handle incomplete bundled coracore installs (#3078)
 
 #### Performance
 
 - lazy-load full tool message content (#3086)
 - improve message startup latency (#3082)
 
-### Core ([v0.1.15](https://github.com/coracowork/CoraCore
-/releases/tag/v0.1.15))
+### Core ([v0.1.15](https://github.com/coracowork/CoraCore/releases/tag/v0.1.15))
 
 #### Bug Fixes
 
-- **agent:** add provider health check probe ([#358](https://github.com/coracowork/CoraCore
-/issues/358))
+- **agent:** add provider health check probe ([#358](https://github.com/coracowork/CoraCore/issues/358))
 
 ---
 
-## [2.1.5](https://github.com/coracowork/cora-cowork-desktop
-/compare/v2.1.4...v2.1.5) (2026-05-27)
+## [2.1.5](https://github.com/coracowork/cora-cowork-desktop/compare/v2.1.4...v2.1.5) (2026-05-27)
 
 ### Desktop
 
@@ -1075,25 +966,20 @@
 - recover pending permission prompts (#3059)
 - preserve timezone for scheduled tasks (#3056)
 
-### Core ([v0.1.14](https://github.com/coracowork/CoraCore
-/releases/tag/v0.1.14))
+### Core ([v0.1.14](https://github.com/coracowork/CoraCore/releases/tag/v0.1.14))
 
 #### Bug Fixes
 
-- preserve cron timezone on legacy schedule updates ([#344](https://github.com/coracowork/CoraCore
-/issues/344))
-- **startup:** add backend readiness diagnostics ([#346](https://github.com/coracowork/CoraCore
-/issues/346))
+- preserve cron timezone on legacy schedule updates ([#344](https://github.com/coracowork/CoraCore/issues/344))
+- **startup:** add backend readiness diagnostics ([#346](https://github.com/coracowork/CoraCore/issues/346))
 
 #### Refactoring
 
-- four-layer architecture (connect / conv / biz) ([#349](https://github.com/coracowork/CoraCore
-/issues/349))
+- four-layer architecture (connect / conv / biz) ([#349](https://github.com/coracowork/CoraCore/issues/349))
 
 ---
 
-## [2.1.4](https://github.com/coracowork/cora-cowork-desktop
-/compare/v2.1.3...v2.1.4) (2026-05-27)
+## [2.1.4](https://github.com/coracowork/cora-cowork-desktop/compare/v2.1.3...v2.1.4) (2026-05-27)
 
 ### Desktop
 

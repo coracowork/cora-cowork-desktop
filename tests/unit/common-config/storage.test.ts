@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 CoraCowork (coracowork.com)
+ * Copyright 2025 AionUi (cora-cowork.com)
  * SPDX-License-Identifier: Apache-2.0
  *
  * Unit tests for common/config/storage.ts runtime exports (T5 in N3 test checklist).
@@ -9,8 +9,8 @@
 
 import { describe, it, expect, vi } from 'vitest';
 
-// Mock @office-ai/platform with in-memory storage implementation
-vi.mock('@office-ai/platform', () => {
+// Keep this export-surface test focused; the local storage implementation has dedicated tests.
+vi.mock('@/common/platform/storage', () => {
   function buildStorage<T extends Record<string, unknown>>(namespace: string) {
     const store = new Map<keyof T, unknown>();
     return {
@@ -25,7 +25,7 @@ vi.mock('@office-ai/platform', () => {
     };
   }
   return {
-    storage: { buildStorage },
+    buildStorage,
   };
 });
 
@@ -64,7 +64,7 @@ describe('storage runtime exports', () => {
       expect(EnvStorage.namespace).toBe('agent.env');
     });
 
-    it('set/get roundtrip with coracowork.dir object', async () => {
+    it('set/get roundtrip with cora-cowork.dir object', async () => {
       const dirs = {
         workDir: '/a',
         cacheDir: '/b',
@@ -76,8 +76,8 @@ describe('storage runtime exports', () => {
         backupDir: '/h',
       };
 
-      await EnvStorage.set('coracowork.dir', dirs);
-      const result = await EnvStorage.get('coracowork.dir');
+      await EnvStorage.set('cora-cowork.dir', dirs);
+      const result = await EnvStorage.get('cora-cowork.dir');
 
       expect(result).toEqual(dirs);
     });
@@ -89,7 +89,7 @@ describe('storage runtime exports', () => {
       await ConfigStorage.set('language', 'en');
 
       // Set a different key in EnvStorage
-      await EnvStorage.set('coracowork.dir', {
+      await EnvStorage.set('cora-cowork.dir', {
         workDir: '/x',
         cacheDir: '/y',
         dataDir: '/z',
@@ -102,7 +102,7 @@ describe('storage runtime exports', () => {
 
       // Verify values are isolated
       const configLang = await ConfigStorage.get('language');
-      const envDir = await EnvStorage.get('coracowork.dir');
+      const envDir = await EnvStorage.get('cora-cowork.dir');
 
       expect(configLang).toBe('en');
       expect(envDir?.workDir).toBe('/x');
@@ -113,4 +113,3 @@ describe('storage runtime exports', () => {
     });
   });
 });
-

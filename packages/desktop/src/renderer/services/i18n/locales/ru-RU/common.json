@@ -97,7 +97,11 @@
       "sendDiagnostics": "Отправить диагностику",
       "diagnosticsSent": "Диагностика отправлена",
       "diagnosticsReportSuccess": "Диагностический отчёт отправлен",
-      "diagnosticsReportFailed": "Не удалось отправить диагностический отчёт"
+      "diagnosticsReportFailed": "Не удалось отправить диагностический отчёт",
+      "restoreFromBackup": "Восстановить из резервной копии",
+      "restoreFailed": "Не удалось восстановить",
+      "resetDatabase": "Сбросить данные",
+      "resetFailed": "Не удалось сбросить"
     },
     "localDataRepair": {
       "title": "Не удалось восстановить локальные данные",

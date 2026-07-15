@@ -1,5 +1,5 @@
 /**
- * Prepare CoraCore binary for packaging.
+ * Prepare coracore binary for packaging.
  *
  * Resolution order:
  *  1. GitHub Actions artifact download when CORA_COWORK_BACKEND_RUN_ID is set
@@ -7,45 +7,46 @@
  *  3. Complete local bundle from CORA_COWORK_BACKEND_LOCAL_BUNDLE_DIR
  *  4. Local binary fallback from CORA_COWORK_BACKEND_LOCAL_BINARY
  *
- * Output: {projectRoot}/resources/bundled-cora-cowork/{platform}-{arch}/
- *   - CoraCore[.exe]
+ * Output: {projectRoot}/resources/bundled-coracore/{platform}-{arch}/
+ *   - coracore[.exe]
  *   - manifest.json
  *   - managed-resources/...
  *
- * @module prepare-cora-cowork
+ * @module prepare-coracore
  */
 
 const { execSync, execFileSync } = require('child_process');
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
+const { verifyBundledCoracoreResources } = require('./verify-bundled-coracore-resources');
 
-const GITHUB_OWNER = 'coracowork';
+const GITHUB_OWNER = 'iOfficeAI';
 const GITHUB_REPO = 'CoraCore';
 
 const ACTIONS_ARTIFACT_TARGETS = {
   'darwin-arm64': {
-    artifactName: 'cora-cowork-manual-macos-arm64',
+    artifactName: 'coracore-manual-macos-arm64',
     manualPlatform: 'macos-arm64',
   },
   'darwin-x64': {
-    artifactName: 'cora-cowork-manual-macos-x64',
+    artifactName: 'coracore-manual-macos-x64',
     manualPlatform: 'macos-x64',
   },
   'linux-arm64': {
-    artifactName: 'cora-cowork-manual-linux-arm64',
+    artifactName: 'coracore-manual-linux-arm64',
     manualPlatform: 'linux-arm64',
   },
   'linux-x64': {
-    artifactName: 'cora-cowork-manual-linux-x64',
+    artifactName: 'coracore-manual-linux-x64',
     manualPlatform: 'linux-x64',
   },
   'win32-arm64': {
-    artifactName: 'cora-cowork-manual-windows-arm64',
+    artifactName: 'coracore-manual-windows-arm64',
     manualPlatform: 'windows-arm64',
   },
   'win32-x64': {
-    artifactName: 'cora-cowork-manual-windows-x64',
+    artifactName: 'coracore-manual-windows-x64',
     manualPlatform: 'windows-x64',
   },
 };
@@ -86,20 +87,7 @@ function writeJson(filePath, payload) {
 }
 
 function getBinaryName(platform) {
-  return platform === 'win32' ? 'cora-cowork-app.exe' : 'CoraCore';
-}
-
-function getArchiveBinaryNames(platform) {
-  if (platform === 'win32') return ['cora-cowork-app.exe', 'coracore.exe', 'corars.exe'];
-  return ['CoraCore', 'coracore', 'corars'];
-}
-
-function findBinaryInDirMulti(dir, names) {
-  for (const name of names) {
-    const found = findBinaryInDir(dir, name);
-    if (found) return found;
-  }
-  return null;
+  return platform === 'win32' ? 'coracore.exe' : 'coracore';
 }
 
 function getActionsTarget(platform, arch) {
@@ -148,6 +136,19 @@ function prepareManagedResources(binaryPath, targetDir) {
   return bundleOut;
 }
 
+function verifyPreparedCoracoreBundle(projectRoot, platform, arch) {
+  const result = verifyBundledCoracoreResources({
+    resourcesDir: path.join(projectRoot, 'resources'),
+    electronPlatformName: platform,
+    targetArch: arch,
+  });
+  if (result.missing.length > 0 || result.failures.length > 0) {
+    const summary = result.missing.length > 0 ? result.missing.join(', ') : JSON.stringify(result.failures);
+    throw new Error(`Prepared coracore bundle is missing required bundled resource(s): ${summary}`);
+  }
+  return result;
+}
+
 // ---------------------------------------------------------------------------
 // Source resolvers
 // ---------------------------------------------------------------------------
@@ -189,7 +190,7 @@ function resolveLatestTag() {
  * Build the release asset filename for the given platform/arch/tag.
  *
  * Expected asset naming convention:
- *   CoraCore-v0.1.1-aarch64-apple-darwin.tar.gz
+ *   coracore-v0.1.0-aarch64-apple-darwin.tar.gz
  */
 function getAssetName(platform, arch, tag) {
   const archMap = { x64: 'x86_64', arm64: 'aarch64' };
@@ -202,7 +203,7 @@ function getAssetName(platform, arch, tag) {
   const normalizedPlatform = platformMap[platform];
   if (!normalizedArch || !normalizedPlatform) return null;
   const ext = platform === 'win32' ? '.zip' : '.tar.gz';
-  return `CoraCore-${tag}-${normalizedArch}-${normalizedPlatform}${ext}`;
+  return `coracore-${tag}-${normalizedArch}-${normalizedPlatform}${ext}`;
 }
 
 function getDownloadUrl(assetName, tag) {
@@ -210,7 +211,7 @@ function getDownloadUrl(assetName, tag) {
 }
 
 function downloadFile(url, outputPath) {
-  console.log(`  Downloading CoraCore from ${url}`);
+  console.log(`  Downloading coracore from ${url}`);
   if (process.platform === 'win32') {
     const ps = `$ProgressPreference='SilentlyContinue'; Invoke-WebRequest -Uri '${url}' -OutFile '${outputPath.replace(/'/g, "''")}'`;
     execFileSync('powershell', ['-NoProfile', '-NonInteractive', '-Command', ps], {
@@ -258,7 +259,7 @@ function findCoracoreArchiveInDir(dir) {
     const fullPath = path.join(dir, entry.name);
     if (
       entry.isFile() &&
-      entry.name.startsWith('CoraCore-') &&
+      entry.name.startsWith('coracore-') &&
       (entry.name.endsWith('.zip') || entry.name.endsWith('.tar.gz'))
     ) {
       return fullPath;
@@ -362,7 +363,7 @@ function downloadAndExtractActionsArtifact(platform, arch, runId) {
     );
   }
 
-  const tempDir = path.join(os.tmpdir(), 'CoraCore-prepare-actions', runId, `${platform}-${arch}`);
+  const tempDir = path.join(os.tmpdir(), 'coracore-prepare-actions', runId, `${platform}-${arch}`);
   const artifactZipPath = path.join(tempDir, `${expectedArtifactName}.zip`);
   const artifactExtractDir = path.join(tempDir, 'artifact');
   const binaryExtractDir = path.join(tempDir, 'binary');
@@ -373,21 +374,21 @@ function downloadAndExtractActionsArtifact(platform, arch, runId) {
   const downloadUrl =
     artifact.archive_download_url ||
     `https://api.github.com/repos/${GITHUB_OWNER}/${GITHUB_REPO}/actions/artifacts/${artifact.id}/zip`;
-  console.log(`  Downloading CoraCore from CoraCore run ${runId} artifact ${expectedArtifactName}`);
+  console.log(`  Downloading coracore from CoraCore run ${runId} artifact ${expectedArtifactName}`);
   downloadFileWithAuth(downloadUrl, artifactZipPath);
   extractArchive(artifactZipPath, artifactExtractDir, platform);
 
   const archivePath = findCoracoreArchiveInDir(artifactExtractDir);
   if (!archivePath) {
-    throw new Error(`CoraCore artifact ${expectedArtifactName} from run ${runId} does not contain an CoraCore archive`);
+    throw new Error(`CoraCore artifact ${expectedArtifactName} from run ${runId} does not contain an coracore archive`);
   }
 
   extractArchive(archivePath, binaryExtractDir, platform);
 
-  const binaryNames = getArchiveBinaryNames(platform);
-  const binaryPath = findBinaryInDirMulti(binaryExtractDir, binaryNames);
+  const binaryName = getBinaryName(platform);
+  const binaryPath = findBinaryInDir(binaryExtractDir, binaryName);
   if (!binaryPath) {
-    throw new Error(`Binary ${binaryNames.join(' or ')} not found in CoraCore artifact ${expectedArtifactName} from run ${runId}`);
+    throw new Error(`Binary ${binaryName} not found in CoraCore artifact ${expectedArtifactName} from run ${runId}`);
   }
 
   return {
@@ -402,11 +403,11 @@ function downloadAndExtractActionsArtifact(platform, arch, runId) {
 function downloadAndExtract(platform, arch, tag) {
   const assetName = getAssetName(platform, arch, tag);
   if (!assetName) {
-    throw new Error(`Unsupported CoraCore target: ${platform}-${arch}`);
+    throw new Error(`Unsupported coracore target: ${platform}-${arch}`);
   }
 
   const url = getDownloadUrl(assetName, tag);
-  const tempDir = path.join(os.tmpdir(), 'CoraCore-prepare', tag, `${platform}-${arch}`);
+  const tempDir = path.join(os.tmpdir(), 'coracore-prepare', tag, `${platform}-${arch}`);
   const archivePath = path.join(tempDir, assetName);
   const extractDir = path.join(tempDir, 'extracted');
 
@@ -416,10 +417,10 @@ function downloadAndExtract(platform, arch, tag) {
   downloadFile(url, archivePath);
   extractArchive(archivePath, extractDir, platform);
 
-  const archiveNames = getArchiveBinaryNames(platform);
-  const binaryPath = findBinaryInDirMulti(extractDir, archiveNames);
+  const binaryName = getBinaryName(platform);
+  const binaryPath = findBinaryInDir(extractDir, binaryName);
   if (!binaryPath) {
-    throw new Error(`Binary ${archiveNames.join(' or ')} not found in downloaded archive`);
+    throw new Error(`Binary ${binaryName} not found in downloaded archive`);
   }
 
   return { binaryPath, tempDir, url };
@@ -430,7 +431,7 @@ function downloadAndExtract(platform, arch, tag) {
 // ---------------------------------------------------------------------------
 
 /**
- * Prepare CoraCore binary for packaging.
+ * Prepare coracore binary for packaging.
  *
  * @param {object} options - Configuration options
  * @param {string} options.projectRoot - Project root directory
@@ -450,21 +451,21 @@ function prepareCoracore(options) {
     if (version === 'latest') {
       const resolved = resolveLatestTag();
       if (!resolved) {
-        throw new Error('Failed to resolve latest CoraCore release tag from GitHub API');
+        throw new Error('Failed to resolve latest coracore release tag from GitHub API');
       }
       tag = resolved;
-      console.log(`Resolved CoraCore "latest" → ${tag}`);
+      console.log(`Resolved coracore "latest" → ${tag}`);
     } else {
       tag = version.startsWith('v') ? version : `v${version}`;
     }
   }
 
-  const targetDir = path.join(projectRoot, 'resources', 'bundled-cora-cowork', runtimeKey);
+  const targetDir = path.join(projectRoot, 'resources', 'bundled-coracore', runtimeKey);
   const binaryName = getBinaryName(platform);
   const targetBinaryPath = path.join(targetDir, binaryName);
 
   console.log(
-    `Preparing CoraCore for ${runtimeKey} (${actionsRunId ? `actions run: ${actionsRunId}` : `version: ${tag}`})`
+    `Preparing coracore for ${runtimeKey} (${actionsRunId ? `actions run: ${actionsRunId}` : `version: ${tag}`})`
   );
 
   removeDirectorySafe(targetDir);
@@ -493,10 +494,11 @@ function prepareCoracore(options) {
         files: [binaryName, 'managed-resources/'],
       };
       writeJson(path.join(targetDir, 'manifest.json'), manifest);
-      console.log(`  Using local CoraCore bundle: ${resolvedLocalBundleDir}`);
+      verifyPreparedCoracoreBundle(projectRoot, platform, arch);
+      console.log(`  Using local coracore bundle: ${resolvedLocalBundleDir}`);
       return { prepared: true, dir: targetDir, sourceType: 'local-bundle' };
     }
-    console.warn(`  Local CoraCore bundle is incomplete or missing: ${resolvedLocalBundleDir}`);
+    console.warn(`  Local coracore bundle is incomplete or missing: ${resolvedLocalBundleDir}`);
   }
 
   let sourcePath = null;
@@ -541,9 +543,9 @@ function prepareCoracore(options) {
         sourcePath = resolvedLocalBinary;
         sourceType = 'local-binary';
         sourceDetail = { path: resolvedLocalBinary };
-        console.log(`  Using local CoraCore binary: ${resolvedLocalBinary}`);
+        console.log(`  Using local coracore binary: ${resolvedLocalBinary}`);
       } else {
-        console.warn(`  Local CoraCore binary not found: ${resolvedLocalBinary}`);
+        console.warn(`  Local coracore binary not found: ${resolvedLocalBinary}`);
       }
     }
   }
@@ -554,7 +556,7 @@ function prepareCoracore(options) {
     ensureExecutableMode(targetBinaryPath);
     const bundledManagedResourcesDir = prepareManagedResources(targetBinaryPath, targetDir);
 
-    // The release tag is the authoritative version — the CoraCore
+    // The release tag is the authoritative version — the coracore
     // binary does not expose a --version flag (it has --app-version which
     // takes a value, not a self-report).
     const manifest = {
@@ -568,8 +570,9 @@ function prepareCoracore(options) {
     };
 
     writeJson(path.join(targetDir, 'manifest.json'), manifest);
+    verifyPreparedCoracoreBundle(projectRoot, platform, arch);
     console.log(
-      `  Bundled CoraCore prepared: resources/bundled-cora-cowork/${runtimeKey}/${binaryName} [source=${sourceType}]`
+      `  Bundled coracore prepared: resources/bundled-coracore/${runtimeKey}/${binaryName} [source=${sourceType}]`
     );
     console.log(`  Bundled managed resources prepared: ${bundledManagedResourcesDir}`);
 
@@ -577,11 +580,12 @@ function prepareCoracore(options) {
     return { prepared: true, dir: targetDir, sourceType };
   }
 
-  throw new Error(`CoraCore binary not found for ${runtimeKey} (tag: ${tag})`);
+  throw new Error(`coracore binary not found for ${runtimeKey} (tag: ${tag})`);
 }
 
 module.exports = {
   getActionsArtifactMissingMessage,
   getActionsArtifactName,
   prepareCoracore,
+  verifyPreparedCoracoreBundle,
 };

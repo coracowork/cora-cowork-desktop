@@ -21,9 +21,9 @@ import { goToSettings } from '../helpers';
 const FEEDBACK_PILL = 'button:has-text("问题上报"), button:has-text("Report issue")';
 const MODAL_BODY = '[data-testid="feedback-report-scroll-body"]';
 
-/** Close the feedback modal (AionModal sets closable=false so Escape is a no-op). */
+/** Close the feedback modal (CoraModal sets closable=false so Escape is a no-op). */
 async function closeFeedbackModal(page: Page) {
-  // The feedback modal is an AionModal (standard variant); its header close
+  // The feedback modal is an CoraModal (standard variant); its header close
   // button carries aria-label='Close'. Scope to the modal that owns the
   // feedback scroll body so we never match another modal's close button.
   await page
@@ -34,7 +34,7 @@ async function closeFeedbackModal(page: Page) {
   await expect(page.locator(MODAL_BODY)).toBeHidden({ timeout: 5_000 });
 }
 
-/** Close any open AionModal (e.g. the Agent editor) so the next test starts clean. */
+/** Close any open CoraModal (e.g. the Agent editor) so the next test starts clean. */
 async function closeAgentEditor(page: Page) {
   const closeBtn = page.locator('.arco-modal button[aria-label="Close"]').first();
   if (await closeBtn.isVisible().catch(() => false)) {
@@ -85,7 +85,7 @@ test('[1] About → Bug Report entry opens feedback modal', async ({ page }) => 
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function openCustomAgentEditor(page: Page, command: string) {
-  // Defensive: close any AionModal left over from a prior test so the
+  // Defensive: close any CoraModal left over from a prior test so the
   // sidebar/page buttons are clickable.
   await closeAgentEditor(page);
 

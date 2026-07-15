@@ -22,6 +22,8 @@ export interface ElectronBridgeAPI {
   // Forward feedback diagnostics logs to the main process console / 转发反馈诊断日志到主进程控制台
   logFeedbackEvent?: (payload: { details?: unknown; level: 'info' | 'warn' | 'error'; message: string }) => void;
   recoverCorruptedDatabase?: () => Promise<void>;
+  backendRestorePreUpdateBackup?: () => Promise<{ success: boolean; error?: string }>;
+  backendResetDatabase?: () => Promise<{ success: boolean; error?: string }>;
 }
 
 export type BackendStartupFailureReason =
@@ -58,6 +60,8 @@ export interface BackendStartupFailureInfo {
   deviceArch?: string;
   expectedDownloadArch?: string;
   isRosettaTranslated?: boolean;
+  /** Set to true when a pre-update database backup was found */
+  hasPreUpdateBackup?: boolean;
 }
 
 declare global {

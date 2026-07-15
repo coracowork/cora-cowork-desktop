@@ -87,7 +87,7 @@ describe('Layout sider brand Home button', () => {
 
   it('navigates to the recorded last non-settings path when clicked in a settings route', () => {
     currentPathname = '/settings/about';
-    sessionStorage.setItem('aion:last-non-settings-path', '/conversation/abc');
+    sessionStorage.setItem('cora-cowork:last-non-settings-path', '/conversation/abc');
     renderLayout();
 
     fireEvent.click(screen.getByLabelText(BACK_KEY));
@@ -104,7 +104,7 @@ describe('Layout sider brand Home button', () => {
 
   it('falls back to /guid when the recorded path is itself a settings path', () => {
     currentPathname = '/settings/about';
-    sessionStorage.setItem('aion:last-non-settings-path', '/settings/system');
+    sessionStorage.setItem('cora-cowork:last-non-settings-path', '/settings/system');
     renderLayout();
 
     fireEvent.click(screen.getByLabelText(BACK_KEY));
@@ -113,7 +113,7 @@ describe('Layout sider brand Home button', () => {
 
   it('activates via keyboard (Enter and Space) in a settings route', () => {
     currentPathname = '/settings/about';
-    sessionStorage.setItem('aion:last-non-settings-path', '/conversation/abc');
+    sessionStorage.setItem('cora-cowork:last-non-settings-path', '/conversation/abc');
     renderLayout();
 
     const brand = screen.getByLabelText(BACK_KEY);
@@ -125,7 +125,7 @@ describe('Layout sider brand Home button', () => {
 
   it('ignores non-activation keys in a settings route', () => {
     currentPathname = '/settings/about';
-    sessionStorage.setItem('aion:last-non-settings-path', '/conversation/abc');
+    sessionStorage.setItem('cora-cowork:last-non-settings-path', '/conversation/abc');
     renderLayout();
 
     const brand = screen.getByLabelText(BACK_KEY);
@@ -155,11 +155,11 @@ describe('Layout sider brand Home button', () => {
 
   it('clicking the logo icon counts toward the devtools easter-egg and never navigates', () => {
     currentPathname = '/settings/about';
-    sessionStorage.setItem('aion:last-non-settings-path', '/conversation/abc');
+    sessionStorage.setItem('cora-cowork:last-non-settings-path', '/conversation/abc');
     const { container } = renderLayout();
 
-    // The icon is the SVG-wrapping div (bg-black), separate from the wordmark.
-    const icon = container.querySelector('.bg-black') as HTMLElement;
+    // The icon is the SVG-wrapping div, separate from the wordmark.
+    const icon = container.querySelector('.shrink-0.size-32px') as HTMLElement;
     expect(icon).toBeTruthy();
     for (let i = 0; i < 4; i++) fireEvent.click(icon);
     expect(openDevTools).toHaveBeenCalled();
@@ -169,19 +169,19 @@ describe('Layout sider brand Home button', () => {
   it('opens the update notification directly for tray update checks', () => {
     platformMocks.isElectronDesktopMock.mockReturnValue(true);
     const openListener = vi.fn();
-    window.addEventListener('coracowork-open-update-modal', openListener);
+    window.addEventListener('cora-cowork-open-update-modal', openListener);
 
-    try {
-      renderLayout();
+      try {
+        renderLayout();
 
-      window.dispatchEvent(new Event('tray:check-update'));
+        window.dispatchEvent(new Event('tray:check-update'));
 
-      expect(navigate).not.toHaveBeenCalled();
-      expect(openListener).toHaveBeenCalledTimes(1);
-      const event = openListener.mock.calls[0][0] as CustomEvent;
-      expect(event.detail).toEqual({ source: 'tray' });
-    } finally {
-      window.removeEventListener('coracowork-open-update-modal', openListener);
+        expect(navigate).not.toHaveBeenCalled();
+        expect(openListener).toHaveBeenCalledTimes(1);
+        const event = openListener.mock.calls[0][0] as CustomEvent;
+        expect(event.detail).toEqual({ source: 'tray' });
+      } finally {
+        window.removeEventListener('cora-cowork-open-update-modal', openListener);
     }
   });
 });

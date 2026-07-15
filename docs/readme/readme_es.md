@@ -1,9 +1,9 @@
 <p align="center">
-  <img src="../../resources/cora-cowork-banner-1.png" alt="CoraCowork - Cowork with AI Agents" width="100%">
+  <img src="../../resources/aionui-banner-1.png" alt="AionUi - Cowork with AI Agents" width="100%">
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/v/release/iOfficeAI/CoraCowork?style=flat-square&color=32CD32" alt="Version">
+  <img src="https://img.shields.io/github/v/release/iOfficeAI/AionUi?style=flat-square&color=32CD32" alt="Version">
   &nbsp;
   <img src="https://img.shields.io/badge/license-Apache--2.0-32CD32?style=flat-square&logo=apache&logoColor=white" alt="License">
   &nbsp;
@@ -19,66 +19,66 @@
 ---
 
 <p align="center">
-  <strong>Una app Cowork gratuita y de cÛdigo abierto con AI Agents</strong><br>
-  <em>Agent integrado | ConfiguraciÛn cero | Cualquier clave API | Multi-Agents | Acceso remoto | Multiplataforma | AutomatizaciÛn 24/7</em>
+  <strong>Una app Cowork gratuita y de c√≥digo abierto con AI Agents</strong><br>
+  <em>Agent integrado | Configuraci√≥n cero | Cualquier clave API | Multi-Agents | Acceso remoto | Multiplataforma | Automatizaci√≥n 24/7</em>
 </p>
 
 <p align="center">
-  <a href="https://github.com/coracowork/cora-cowork-desktop/releases/">
-    <img src="https://img.shields.io/badge/??%20Descargar%20ahora-⁄ltima%20versiÛn-32CD32?style=for-the-badge&logo=github&logoColor=white" alt="Descargar ˙ltima versiÛn" height="50">
+  <a href="https://github.com/iOfficeAI/AionUi/releases">
+    <img src="https://img.shields.io/badge/‚¨áÔ∏è%20Descargar%20ahora-√öltima%20versi√≥n-32CD32?style=for-the-badge&logo=github&logoColor=white" alt="Descargar √∫ltima versi√≥n" height="50">
   </a>
 </p>
 
 <p align="center">
-  <a href="../../readme.md">English</a> | <a href="./readme_ch.md">????</a> | <a href="./readme_tw.md">????</a> | <a href="./readme_jp.md">???</a> | <a href="./readme_ko.md">???</a> | <strong>EspaÒol</strong> | <a href="./readme_pt.md">PortuguÍs</a> | <a href="./readme_tr.md">T¸rkÁe</a> | <a href="./readme_ru.md">???????</a> | <a href="./readme_uk.md">??????????</a> | <a href="https://www.cora-cowork.com" target="_blank">Sitio oficial</a>
+  <a href="../../readme.md">English</a> | <a href="./readme_ch.md">ÁÆÄ‰Ωì‰∏≠Êñá</a> | <a href="./readme_tw.md">ÁπÅÈ´î‰∏≠Êñá</a> | <a href="./readme_jp.md">Êó•Êú¨Ë™û</a> | <a href="./readme_ko.md">ÌïúÍµ≠Ïñ¥</a> | <strong>Espa√±ol</strong> | <a href="./readme_pt.md">Portugu√™s</a> | <a href="./readme_tr.md">T√ºrk√ße</a> | <a href="./readme_ru.md">–†—É—Å—Å–∫–∏–π</a> | <a href="./readme_uk.md">–£–∫—Ä–∞—ó–Ω—Å—å–∫–∞</a> | <a href="https://www.aionui.com" target="_blank">Sitio oficial</a>
 </p>
 
 <p align="center">
-  <strong>?? Comunidad:</strong> <a href="https://discord.gg/2QAwJn7Egx" target="_blank">Discord (English)</a> | <a href="../../resources/wx-15.png" target="_blank">?? (???)</a> | <a href="https://twitter.com/CoraCowork" target="_blank">Twitter</a>
+  <strong>üí¨ Comunidad:</strong> <a href="https://discord.gg/2QAwJn7Egx" target="_blank">Discord (English)</a> | <a href="../../resources/wx-16.png" target="_blank">ÂæÆ‰ø° (‰∏≠ÊñáÁæ§)</a> | <a href="https://twitter.com/AionUI" target="_blank">Twitter</a>
 </p>
 
 ---
 
-## ?? NavegaciÛn r·pida
+## üìã Navegaci√≥n r√°pida
 
 <p align="center">
 
-[? Cowork en acciÛn](#-cowork-en-acciÛn) ∑
-[?? øPor quÈ elegir CoraCowork?](#-por-quÈ-elegir-cora-cowork-sobre-claude-cowork) ∑
-[?? Inicio r·pido](#-inicio-r·pido) ∑
-[?? Comunidad](#-comunidad-y-soporte)
+[‚ú® Cowork en acci√≥n](#-cowork-en-acci√≥n) ¬∑
+[ü§î ¬øPor qu√© elegir AionUi?](#-por-qu√©-elegir-aionui-sobre-claude-cowork) ¬∑
+[üöÄ Inicio r√°pido](#-inicio-r√°pido) ¬∑
+[üí¨ Comunidad](#-comunidad-y-soporte)
 
 </p>
 
 ---
 
-## Cowork ó AI Agents que trabajan contigo
+## Cowork ‚Äî AI Agents que trabajan contigo
 
-**CoraCowork es m·s que un cliente de chat.** Es una plataforma Cowork donde los AI Agents trabajan contigo en tu computadora ó leyendo archivos, escribiendo cÛdigo, navegando por la web y automatizando tareas. Puedes ver todo lo que hace el Agent y siempre tienes el control.
+**AionUi es m√°s que un cliente de chat.** Es una plataforma Cowork donde los AI Agents trabajan contigo en tu computadora ‚Äî leyendo archivos, escribiendo c√≥digo, navegando por la web y automatizando tareas. Puedes ver todo lo que hace el Agent y siempre tienes el control.
 
-|                                             | Clientes de chat AI tradicionales | **CoraCowork (Cowork)**                                                                                                                |
+|                                             | Clientes de chat AI tradicionales | **AionUi (Cowork)**                                                                                                                |
 | :------------------------------------------ | :-------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------- |
-| AI puede operar en tus archivos             | Limitado o No                     | **SÌ ó Agent integrado con acceso completo a archivos**                                                                            |
-| AI puede ejecutar tareas de m˙ltiples pasos | Limitado                          | **SÌ ó autÛnomo con tu aprobaciÛn**                                                                                                |
-| Acceso remoto desde el telÈfono             | Raramente                         | **WebUI + Telegram / Lark / DingTalk**                                                                                             |
-| AutomatizaciÛn programada                   | No                                | **Cron ó 24/7 sin supervisiÛn**                                                                                                    |
-| M˙ltiples AI Agents a la vez                | No                                | **Claude Code, Codex, Qwen Code, Hermes Agent, Snow CLI, Cursor Agent y 13+ m·s ó detectados autom·ticamente, interfaz unificada** |
-| Precio                                      | Gratis / Pago                     | **Gratis y de cÛdigo abierto**                                                                                                     |
+| AI puede operar en tus archivos             | Limitado o No                     | **S√≠ ‚Äî Agent integrado con acceso completo a archivos**                                                                            |
+| AI puede ejecutar tareas de m√∫ltiples pasos | Limitado                          | **S√≠ ‚Äî aut√≥nomo con tu aprobaci√≥n**                                                                                                |
+| Acceso remoto desde el tel√©fono             | Raramente                         | **WebUI + Telegram / Lark / DingTalk**                                                                                             |
+| Automatizaci√≥n programada                   | No                                | **Cron ‚Äî 24/7 sin supervisi√≥n**                                                                                                    |
+| M√∫ltiples AI Agents a la vez                | No                                | **Claude Code, Codex, Qwen Code, Hermes Agent, Snow CLI, Cursor Agent y 13+ m√°s ‚Äî detectados autom√°ticamente, interfaz unificada** |
+| Precio                                      | Gratis / Pago                     | **Gratis y de c√≥digo abierto**                                                                                                     |
 
 <p align="center">
-  <img src="../../resources/offica-ai BANNER-function.png" alt="CoraCowork Cowork Platform" width="800">
+  <img src="../../resources/offica-ai BANNER-function.png" alt="AionUi Cowork Platform" width="800">
 </p>
 
 ---
 
-## Agent integrado ó Instalar y usar, configuraciÛn cero
+## Agent integrado ‚Äî Instalar y usar, configuraci√≥n cero
 
-CoraCowork viene con un motor de Agent AI completo. A diferencia de las herramientas que requieren instalar CLI Agents por separado, **CoraCowork funciona en el momento en que lo instalas**.
+AionUi viene con un motor de Agent AI completo. A diferencia de las herramientas que requieren instalar CLI Agents por separado, **AionUi funciona en el momento en que lo instalas**.
 
-- **No hay herramientas CLI que instalar** ó el motor Agent est· integrado
-- **Sin configuraciÛn compleja** ó pega cualquier clave API para empezar
-- **Capacidades completas del Agent** ó lectura/escritura de archivos, b˙squeda web, generaciÛn de im·genes, herramientas MCP
-- **Asistentes listos para usar** ó 21 asistentes profesionales integrados (Cowork, PPT Creator, Morph PPT, Morph PPT 3D, Word Creator, Word Form Creator, Excel Creator, Pitch Deck Creator, Dashboard Creator, Academic Paper Writer, Financial Model Creator y m·s) listos para usar de inmediato
+- **No hay herramientas CLI que instalar** ‚Äî el motor Agent est√° integrado
+- **Sin configuraci√≥n compleja** ‚Äî pega cualquier clave API para empezar
+- **Capacidades completas del Agent** ‚Äî lectura/escritura de archivos, b√∫squeda web, generaci√≥n de im√°genes, herramientas MCP
+- **Asistentes listos para usar** ‚Äî 21 asistentes profesionales integrados (Cowork, PPT Creator, Morph PPT, Morph PPT 3D, Word Creator, Word Form Creator, Excel Creator, Pitch Deck Creator, Dashboard Creator, Academic Paper Writer, Financial Model Creator y m√°s) listos para usar de inmediato
 
 <p align="center">
   <img src="../../resources/homepage.png" alt="Built-in Agents" width="800">
@@ -86,44 +86,44 @@ CoraCowork viene con un motor de Agent AI completo. A diferencia de las herramie
 
 ---
 
-## Modo Multi-Agent ó øYa tienes CLI Agents? Tr·elos
+## Modo Multi-Agent ‚Äî ¬øYa tienes CLI Agents? Tr√°elos
 
-Si ya usas Claude Code, Codex, Hermes Agent u OpenClaw, CoraCowork los detecta autom·ticamente y te permite hacer Cowork con todos ellos ó junto con el Agent integrado.
+Si ya usas Claude Code, Codex, Hermes Agent u OpenClaw, AionUi los detecta autom√°ticamente y te permite hacer Cowork con todos ellos ‚Äî junto con el Agent integrado.
 
-**Agents compatibles:** Agent integrado (configuraciÛn cero) ï Claude Code ï Codex ï Qwen Code ï Goose AI ï OpenClaw ï Augment Code ï CodeBuddy ï Kimi CLI ï OpenCode ï Factory Droid ï GitHub Copilot ï Qoder CLI ï Mistral Vibe ï Nanobot ï Cora CLI (corars, el servicio backend en Rust distribuido con CoraCowork) ï Snow CLI ï Hermes Agent ï Cursor Agent y m·s
-
-<p align="center">
-  <img src="../../resources/multi-agent??openclaw.gif" alt="Multi-Agent Cowork" width="800">
-</p>
-
-- **DetecciÛn autom·tica** ó reconoce autom·ticamente las herramientas CLI instaladas
-- **Interfaz unificada** ó una plataforma Cowork para todos tus AI Agents
-- **Sesiones paralelas** ó ejecuta m˙ltiples Agents simult·neamente con contexto independiente
-- **GestiÛn unificada MCP** ó configura las herramientas MCP (Model Context Protocol) una vez, se sincronizan autom·ticamente con todos los Agents ó no necesitas configurar cada Agent por separado
-- **YOLO Mode** (aprobar autom·ticamente todas las acciones del Agent sin confirmaciÛn manual) / **Modo completamente autom·tico** ó un clic para omitir los prompts de permisos; todos los Agents admiten el modo completamente autom·tico para ejecuciÛn desatendida
-
-### Team Mode ó ColaboraciÛn Multi-Agent Coordinada
-
-Ejecuta m˙ltiples AI Agents como un equipo organizado: un agente **Leader** recibe tus instrucciones, las divide en subtareas y las delega a agentes **Teammate** a travÈs de un Team MCP Server integrado. Los Teammates se ejecutan en paralelo, comparten resultados a travÈs de un buzÛn asÌncrono y escriben en un tablero de tareas compartido.
+**Agents compatibles:** Agent integrado (configuraci√≥n cero) ‚Ä¢ Claude Code ‚Ä¢ Codex ‚Ä¢ Qwen Code ‚Ä¢ Goose AI ‚Ä¢ OpenClaw ‚Ä¢ Augment Code ‚Ä¢ CodeBuddy ‚Ä¢ Kimi CLI ‚Ä¢ OpenCode ‚Ä¢ Factory Droid ‚Ä¢ GitHub Copilot ‚Ä¢ Qoder CLI ‚Ä¢ Mistral Vibe ‚Ä¢ Nanobot ‚Ä¢ Aion CLI (aionrs, el servicio backend en Rust distribuido con AionUi) ‚Ä¢ Snow CLI ‚Ä¢ Hermes Agent ‚Ä¢ Cursor Agent y m√°s
 
 <p align="center">
-  <img src="../../resources/CoraCowork_team.gif" alt="Team Mode overview" width="800">
+  <img src="../../resources/multi-agentÊîØÊåÅopenclaw.gif" alt="Multi-Agent Cowork" width="800">
 </p>
 
-- **EjecuciÛn paralela multi-agent** ó Leader divide las tareas en subtareas y las delega a agentes Teammate que se ejecutan en paralelo; cada Teammate usa su propio modelo a travÈs de ACP (Agent Communication Protocol, la capa de coordinaciÛn multi-agent de CoraCowork), Gemini o Corars
-- **OrquestaciÛn del Leader** ó Leader asigna, rastrea y agrega resultados; backends compatibles: Claude Code, Codex, Hermes Agent, Gemini, Snow CLI y Cora CLI
-- **Espacio de trabajo aislado por equipo** ó todos los Agents comparten la misma carpeta; cada uno tiene su propio di·logo de permisos con badge en la barra lateral para aprobaciones pendientes
+- **Detecci√≥n autom√°tica** ‚Äî reconoce autom√°ticamente las herramientas CLI instaladas
+- **Interfaz unificada** ‚Äî una plataforma Cowork para todos tus AI Agents
+- **Sesiones paralelas** ‚Äî ejecuta m√∫ltiples Agents simult√°neamente con contexto independiente
+- **Gesti√≥n unificada MCP** ‚Äî configura las herramientas MCP (Model Context Protocol) una vez, se sincronizan autom√°ticamente con todos los Agents ‚Äî no necesitas configurar cada Agent por separado
+- **YOLO Mode** (aprobar autom√°ticamente todas las acciones del Agent sin confirmaci√≥n manual) / **Modo completamente autom√°tico** ‚Äî un clic para omitir los prompts de permisos; todos los Agents admiten el modo completamente autom√°tico para ejecuci√≥n desatendida
+
+### Team Mode ‚Äî Colaboraci√≥n Multi-Agent Coordinada
+
+Ejecuta m√∫ltiples AI Agents como un equipo organizado: un agente **Leader** recibe tus instrucciones, las divide en subtareas y las delega a agentes **Teammate** a trav√©s de un Team MCP Server integrado. Los Teammates se ejecutan en paralelo, comparten resultados a trav√©s de un buz√≥n as√≠ncrono y escriben en un tablero de tareas compartido.
+
+<p align="center">
+  <img src="../../resources/AionUi_team.gif" alt="Team Mode overview" width="800">
+</p>
+
+- **Ejecuci√≥n paralela multi-agent** ‚Äî Leader divide las tareas en subtareas y las delega a agentes Teammate que se ejecutan en paralelo; cada Teammate usa su propio modelo a trav√©s de ACP (Agent Communication Protocol, la capa de coordinaci√≥n multi-agent de AionUi), Gemini o Aionrs
+- **Orquestaci√≥n del Leader** ‚Äî Leader asigna, rastrea y agrega resultados; backends compatibles: Claude Code, Codex, Hermes Agent, Gemini, Snow CLI y Aion CLI
+- **Espacio de trabajo aislado por equipo** ‚Äî todos los Agents comparten la misma carpeta; cada uno tiene su propio di√°logo de permisos con badge en la barra lateral para aprobaciones pendientes
 
 <details>
-<summary><strong>?? Ver detalles del Team Mode ??</strong></summary>
+<summary><strong>üîç Ver detalles del Team Mode ‚ñ∂Ô∏è</strong></summary>
 
 <br>
 
-- **Espacio de trabajo compartido** ó todos los Agents leen/escriben en la misma carpeta; el panel de archivos permanece visible durante todo el proceso
-- **Backends compatibles** ó Claude Code, Codex, Gemini, Snow CLI, Cora CLI (corars); otros backends ACP con `mcpCapabilities.stdio` son compatibles autom·ticamente
-- **Escalado din·mico** ó agrega o elimina Teammates mientras el equipo est· en ejecuciÛn; los agentes silenciosos se escalan autom·ticamente a fallido con eliminaciÛn en un clic
-- **Permisos granulares** ó cada Agent tiene su propio di·logo de confirmaciÛn de permisos; el badge en la barra lateral muestra aprobaciones pendientes
-- **Compartir archivos** ó Leader puede pasar archivos adjuntos a los Teammates
+- **Espacio de trabajo compartido** ‚Äî todos los Agents leen/escriben en la misma carpeta; el panel de archivos permanece visible durante todo el proceso
+- **Backends compatibles** ‚Äî Claude Code, Codex, Gemini, Snow CLI, Aion CLI (aionrs); otros backends ACP con `mcpCapabilities.stdio` son compatibles autom√°ticamente
+- **Escalado din√°mico** ‚Äî agrega o elimina Teammates mientras el equipo est√° en ejecuci√≥n; los agentes silenciosos se escalan autom√°ticamente a fallido con eliminaci√≥n en un clic
+- **Permisos granulares** ‚Äî cada Agent tiene su propio di√°logo de confirmaci√≥n de permisos; el badge en la barra lateral muestra aprobaciones pendientes
+- **Compartir archivos** ‚Äî Leader puede pasar archivos adjuntos a los Teammates
 
 </details>
 
@@ -131,7 +131,7 @@ Ejecuta m˙ltiples AI Agents como un equipo organizado: un agente **Leader** reci
 
 ## Cualquier clave API, poder completo del Cowork Agent
 
-Otras apps de AI te dan una caja de chat con tu clave API. **CoraCowork te da un Cowork Agent completo.**
+Otras apps de AI te dan una caja de chat con tu clave API. **AionUi te da un Cowork Agent completo.**
 
 | Tu clave API               | Lo que obtienes                   |
 | :------------------------- | :-------------------------------- |
@@ -141,26 +141,26 @@ Otras apps de AI te dan una caja de chat con tu clave API. **CoraCowork te da un
 | Ollama / LM Studio (local) | Cowork Agent de modelo local      |
 | NewAPI Gateway             | Acceso unificado a 20+ modelos    |
 
-Las mismas capacidades del Agent ó lectura/escritura de archivos, b˙squeda web, generaciÛn de im·genes, uso de herramientas ó independientemente del modelo que lo impulse. CoraCowork admite **30+ plataformas AI** incluyendo servicios en la nube y despliegues locales.
+Las mismas capacidades del Agent ‚Äî lectura/escritura de archivos, b√∫squeda web, generaci√≥n de im√°genes, uso de herramientas ‚Äî independientemente del modelo que lo impulse. AionUi admite **30+ plataformas AI** incluyendo servicios en la nube y despliegues locales.
 
 <p align="center">
   <img src="../../resources/llm_newapi.png" alt="Multi-Model Support" width="800">
 </p>
 
 <details>
-<summary><strong>?? Ver todas las 30+ plataformas compatibles ??</strong></summary>
+<summary><strong>üîç Ver todas las 30+ plataformas compatibles ‚ñ∂Ô∏è</strong></summary>
 
 <br>
 
 **Soporte integral de plataformas:**
 
-- **Plataformas oficiales** ó Gemini, Gemini (Vertex AI), Anthropic (Claude), OpenAI
-- **Proveedores en la nube** ó AWS Bedrock, New API (puerta de enlace unificada de modelos AI)
-- **Plataformas chinas** ó Dashscope (Qwen), Dashscope Coding Plan, Zhipu, Moonshot (Kimi), Qianfan (Baidu), Hunyuan (Tencent), Lingyi, ModelScope, InfiniAI, Ctyun, StepFun, SiliconFlow-CN, PPIO
-- **Plataformas internacionales** ó DeepSeek, MiniMax, Novita, OpenRouter, SiliconFlow, xAI, Ark (Volcengine), Poe
-- **Modelos locales** ó Ollama, LM Studio (a travÈs de plataforma personalizada con endpoint API local)
+- **Plataformas oficiales** ‚Äî Gemini, Gemini (Vertex AI), Anthropic (Claude), OpenAI
+- **Proveedores en la nube** ‚Äî AWS Bedrock, New API (puerta de enlace unificada de modelos AI)
+- **Plataformas chinas** ‚Äî Dashscope (Qwen), Dashscope Coding Plan, Zhipu, Moonshot (Kimi), Qianfan (Baidu), Hunyuan (Tencent), Lingyi, ModelScope, InfiniAI, Ctyun, StepFun, SiliconFlow-CN, PPIO
+- **Plataformas internacionales** ‚Äî DeepSeek, MiniMax, Novita, OpenRouter, SiliconFlow, xAI, Ark (Volcengine), Poe
+- **Modelos locales** ‚Äî Ollama, LM Studio (a trav√©s de plataforma personalizada con endpoint API local)
 
-CoraCowork tambiÈn admite el servicio de puerta de enlace [NewAPI](https://github.com/QuantumNous/new-api) ó un centro unificado de modelos AI que agrega y distribuye varios LLMs. Cambia flexiblemente entre diferentes modelos en la misma interfaz para satisfacer diversos requisitos de tareas.
+AionUi tambi√©n admite el servicio de puerta de enlace [NewAPI](https://github.com/QuantumNous/new-api) ‚Äî un centro unificado de modelos AI que agrega y distribuye varios LLMs. Cambia flexiblemente entre diferentes modelos en la misma interfaz para satisfacer diversos requisitos de tareas.
 
 </details>
 
@@ -170,43 +170,43 @@ CoraCowork tambiÈn admite el servicio de puerta de enlace [NewAPI](https://githu
 
 _Sistema de asistentes extensible con 21 asistentes profesionales integrados y un sistema de habilidades de tres niveles. Crea y gestiona tus propios asistentes y habilidades._
 
-- **Crear asistentes personalizados** ó Define tus propios asistentes con reglas y capacidades personalizadas
-- **Habilidades de tres niveles** ó Habilidades integradas (incluidas con CoraCowork), habilidades personalizadas (las tuyas) y habilidades de Extension (aportadas por extensiones de terceros); habilita/deshabilita por conversaciÛn con el indicador de habilidades
-- **Control por conversaciÛn** ó Un indicador de habilidades en el encabezado del chat muestra las habilidades activas para la conversaciÛn actual; busca y excluye habilidades seg˙n sea necesario
+- **Crear asistentes personalizados** ‚Äî Define tus propios asistentes con reglas y capacidades personalizadas
+- **Habilidades de tres niveles** ‚Äî Habilidades integradas (incluidas con AionUi), habilidades personalizadas (las tuyas) y habilidades de Extension (aportadas por extensiones de terceros); habilita/deshabilita por conversaci√≥n con el indicador de habilidades
+- **Control por conversaci√≥n** ‚Äî Un indicador de habilidades en el encabezado del chat muestra las habilidades activas para la conversaci√≥n actual; busca y excluye habilidades seg√∫n sea necesario
 
 <p align="center">
   <img src="../../resources/assitants.png" alt="AI Assistants & Skills Ecosystem" width="800">
 </p>
 
 <details>
-<summary><strong>?? Ver detalles de asistentes y habilidades personalizadas ??</strong></summary>
+<summary><strong>üîç Ver detalles de asistentes y habilidades personalizadas ‚ñ∂Ô∏è</strong></summary>
 
 <br>
 
-CoraCowork incluye **21 asistentes profesionales** con capacidades predefinidas, extensibles a travÈs de habilidades personalizadas:
+AionUi incluye **21 asistentes profesionales** con capacidades predefinidas, extensibles a trav√©s de habilidades personalizadas:
 
-- **?? Cowork** ó EjecuciÛn autÛnoma de tareas (operaciones de archivos, procesamiento de documentos, planificaciÛn de flujos de trabajo)
-- **?? PPT Creator / Morph PPT / Morph PPT 3D** ó Genera y anima presentaciones PPTX con transiciones Morph
-- **?? Pitch Deck Creator** ó GeneraciÛn de pitch decks listos para inversores
-- **?? Dashboard Creator** ó GeneraciÛn de paneles de datos
-- **?? Word Creator** ó GeneraciÛn de documentos Word (`.docx`) listos para producciÛn
-- **?? Word Form Creator** ó GeneraciÛn estructurada de formularios Word y plantillas de contratos
-- **?? Excel Creator** ó GeneraciÛn de hojas de c·lculo con an·lisis, gr·ficos y formato autom·tico
-- **?? Academic Paper Writer** ó Escritura estructurada de artÌculos acadÈmicos
-- **?? Financial Model Creator** ó Modelos financieros y proyecciones
-- **?? Juego 3D** ó GeneraciÛn de juegos 3D de un solo archivo
-- **?? UI/UX Pro Max** ó DiseÒo UI/UX profesional (57 estilos, 95 paletas de colores)
-- **?? PlanificaciÛn con archivos** ó PlanificaciÛn basada en archivos para tareas complejas (planificaciÛn persistente de Markdown estilo Manus)
-- **?? Entrenador HUMAN 3.0** ó Entrenador de desarrollo personal
-- **?? Publicador de trabajos sociales** ó PublicaciÛn y publicaciÛn de trabajos
-- **?? moltbook** ó Redes sociales de AI Agent sin despliegue
-- **?? Beautiful Mermaid** ó Diagramas de flujo, diagramas de secuencia y m·s
-- **?? ConfiguraciÛn OpenClaw** ó Asistente de configuraciÛn e instalaciÛn para integraciÛn OpenClaw
-- **?? Rol de historia** ó Rol de historia inmersivo con tarjetas de personajes e informaciÛn del mundo (compatible con SillyTavern)
+- **ü§ù Cowork** ‚Äî Ejecuci√≥n aut√≥noma de tareas (operaciones de archivos, procesamiento de documentos, planificaci√≥n de flujos de trabajo)
+- **üìä PPT Creator / Morph PPT / Morph PPT 3D** ‚Äî Genera y anima presentaciones PPTX con transiciones Morph
+- **üìê Pitch Deck Creator** ‚Äî Generaci√≥n de pitch decks listos para inversores
+- **üìä Dashboard Creator** ‚Äî Generaci√≥n de paneles de datos
+- **üìù Word Creator** ‚Äî Generaci√≥n de documentos Word (`.docx`) listos para producci√≥n
+- **üìã Word Form Creator** ‚Äî Generaci√≥n estructurada de formularios Word y plantillas de contratos
+- **üìó Excel Creator** ‚Äî Generaci√≥n de hojas de c√°lculo con an√°lisis, gr√°ficos y formato autom√°tico
+- **üéì Academic Paper Writer** ‚Äî Escritura estructurada de art√≠culos acad√©micos
+- **üí∞ Financial Model Creator** ‚Äî Modelos financieros y proyecciones
+- **üéÆ Juego 3D** ‚Äî Generaci√≥n de juegos 3D de un solo archivo
+- **üé® UI/UX Pro Max** ‚Äî Dise√±o UI/UX profesional (57 estilos, 95 paletas de colores)
+- **üìã Planificaci√≥n con archivos** ‚Äî Planificaci√≥n basada en archivos para tareas complejas (planificaci√≥n persistente de Markdown estilo Manus)
+- **üß≠ Entrenador HUMAN 3.0** ‚Äî Entrenador de desarrollo personal
+- **üì£ Publicador de trabajos sociales** ‚Äî Publicaci√≥n y publicaci√≥n de trabajos
+- **ü¶û moltbook** ‚Äî Redes sociales de AI Agent sin despliegue
+- **üìà Beautiful Mermaid** ‚Äî Diagramas de flujo, diagramas de secuencia y m√°s
+- **üîß Configuraci√≥n OpenClaw** ‚Äî Asistente de configuraci√≥n e instalaci√≥n para integraci√≥n OpenClaw
+- **üìñ Rol de historia** ‚Äî Rol de historia inmersivo con tarjetas de personajes e informaci√≥n del mundo (compatible con SillyTavern)
 
-**Habilidades personalizadas**: Crea habilidades en el directorio `skills/`, habilita/deshabilita habilidades para asistentes para extender las capacidades AI. Las habilidades provienen de tres fuentes: integradas (incluidas con CoraCowork), personalizadas (las tuyas) y Extension (aportadas a travÈs del SDK de Extension). Las habilidades integradas incluyen `pptx`, `docx`, `pdf`, `xlsx`, `mermaid` y m·s.
+**Habilidades personalizadas**: Crea habilidades en el directorio `skills/`, habilita/deshabilita habilidades para asistentes para extender las capacidades AI. Las habilidades provienen de tres fuentes: integradas (incluidas con AionUi), personalizadas (las tuyas) y Extension (aportadas a trav√©s del SDK de Extension). Las habilidades integradas incluyen `pptx`, `docx`, `pdf`, `xlsx`, `mermaid` y m√°s.
 
-> ?? Cada asistente est· definido por un archivo markdown. Consulta el directorio `assistant/` para ver ejemplos.
+> üí° Cada asistente est√° definido por un archivo markdown. Consulta el directorio `assistant/` para ver ejemplos.
 
 </details>
 
@@ -214,306 +214,306 @@ CoraCowork incluye **21 asistentes profesionales** con capacidades predefinidas,
 
 ## Cowork desde cualquier lugar
 
-_Tu asistente AI 24/7 ó accede a CoraCowork desde cualquier dispositivo, en cualquier lugar._
+_Tu asistente AI 24/7 ‚Äî accede a AionUi desde cualquier dispositivo, en cualquier lugar._
 
-- **Modo WebUI** ó accede a travÈs del navegador desde telÈfono, tableta o cualquier computadora. Admite LAN, red cruzada y despliegue en servidor. Inicio de sesiÛn con cÛdigo QR o contraseÒa.
+- **Modo WebUI** ‚Äî accede a trav√©s del navegador desde tel√©fono, tableta o cualquier computadora. Admite LAN, red cruzada y despliegue en servidor. Inicio de sesi√≥n con c√≥digo QR o contrase√±a.
 
-- **IntegraciÛn de plataformas de chat**
-  - **Telegram** ó Haz Cowork con tu AI Agent directamente desde Telegram
-  - **Lark (Feishu)** ó Cowork a travÈs de bots Feishu para colaboraciÛn empresarial
-  - **DingTalk** ó Streaming de AI Card con fallback autom·tico
-  - **WeChat** ó IntegraciÛn con cuenta personal de WeChat
-  - **WeCom (????), Slack, Discord** y m·s plataformas prÛximamente
+- **Integraci√≥n de plataformas de chat**
+  - **Telegram** ‚Äî Haz Cowork con tu AI Agent directamente desde Telegram
+  - **Lark (Feishu)** ‚Äî Cowork a trav√©s de bots Feishu para colaboraci√≥n empresarial
+  - **DingTalk** ‚Äî Streaming de AI Card con fallback autom√°tico
+  - **WeChat** ‚Äî Integraci√≥n con cuenta personal de WeChat
+  - **WeCom (‰ºÅ‰∏öÂæÆ‰ø°), Slack, Discord** y m√°s plataformas pr√≥ximamente
 
-> **ConfiguraciÛn:** CoraCowork Settings ? WebUI Settings ? Channel, configura el Bot Token.
+> **Configuraci√≥n:** AionUi Settings ‚Üí WebUI Settings ‚Üí Channel, configura el Bot Token.
 
 <p align="center">
   <img src="../../resources/webui-remote.gif" alt="WebUI remote access demo" width="800">
 </p>
 
-<p align="center"><em>Controla y supervisa tu agente en remoto ó Claude, Gemini, Codex. Desde el navegador o el mÛvil, como Claude Code remote.</em></p>
+<p align="center"><em>Controla y supervisa tu agente en remoto ‚Äî Claude, Gemini, Codex. Desde el navegador o el m√≥vil, como Claude Code remote.</em></p>
 
-> [Tutorial de acceso remoto a Internet](https://github.com/coracowork/cora-cowork-desktop/wiki/Remote-Internet-Access-Guide-Chinese)
+> [Tutorial de acceso remoto a Internet](https://github.com/iOfficeAI/AionUi/wiki/Remote-Internet-Access-Guide-Chinese)
 
-## ? Cowork en acciÛn
+## ‚ú® Cowork en acci√≥n
 
-### **Tareas programadas ó Cowork en piloto autom·tico**
+### **Tareas programadas ‚Äî Cowork en piloto autom√°tico**
 
-_Config˙ralo una vez, el AI Agent se ejecuta autom·ticamente seg˙n el horario ó verdadera operaciÛn 24/7 sin supervisiÛn._
+_Config√∫ralo una vez, el AI Agent se ejecuta autom√°ticamente seg√∫n el horario ‚Äî verdadera operaci√≥n 24/7 sin supervisi√≥n._
 
-- **Lenguaje natural** ó dile al Agent quÈ hacer, como si estuvieras chateando
-- **Tres modos de programaciÛn** ó expresiÛn cron est·ndar (con zona horaria), intervalo fijo (cada N minutos/horas) o activaciÛn ˙nica
-- **Tareas creadas por AI** ó los agentes pueden crear tareas programadas de forma autÛnoma durante una conversaciÛn
-- **Casos de uso:** agregaciÛn de datos programada, generaciÛn de informes, organizaciÛn de archivos, recordatorios
+- **Lenguaje natural** ‚Äî dile al Agent qu√© hacer, como si estuvieras chateando
+- **Tres modos de programaci√≥n** ‚Äî expresi√≥n cron est√°ndar (con zona horaria), intervalo fijo (cada N minutos/horas) o activaci√≥n √∫nica
+- **Tareas creadas por AI** ‚Äî los agentes pueden crear tareas programadas de forma aut√≥noma durante una conversaci√≥n
+- **Casos de uso:** agregaci√≥n de datos programada, generaci√≥n de informes, organizaci√≥n de archivos, recordatorios
 
 <p align="center">
   <img src="../../resources/alart-task.png" alt="Scheduled Tasks" width="800">
 </p>
 
 <details>
-<summary><strong>?? Ver detalles de tareas programadas ??</strong></summary>
+<summary><strong>üîç Ver detalles de tareas programadas ‚ñ∂Ô∏è</strong></summary>
 
 <br>
 
-**Modos de programaciÛn:**
+**Modos de programaci√≥n:**
 
-- `ExpresiÛn cron` ó cron est·ndar de 5 campos con soporte de zona horaria (ej. `0 9 * * 1`, `Asia/Shanghai`)
-- `Cada N minutos/horas` ó intervalo fijo, ej. ejecutar cada 30 minutos
-- `Una sola vez` ó activar una vez en una fecha y hora especÌfica, luego se desactiva autom·ticamente
+- `Expresi√≥n cron` ‚Äî cron est√°ndar de 5 campos con soporte de zona horaria (ej. `0 9 * * 1`, `Asia/Shanghai`)
+- `Cada N minutos/horas` ‚Äî intervalo fijo, ej. ejecutar cada 30 minutos
+- `Una sola vez` ‚Äî activar una vez en una fecha y hora espec√≠fica, luego se desactiva autom√°ticamente
 
-**Modos de ejecuciÛn:**
+**Modos de ejecuci√≥n:**
 
-- `Continuar en conversaciÛn existente` ó agrega a la conversaciÛn vinculada para que la AI conserve el historial de contexto completo
-- `Crear nueva conversaciÛn cada vez` ó abre una sesiÛn nueva en cada activaciÛn, ideal para informes periÛdicos independientes
+- `Continuar en conversaci√≥n existente` ‚Äî agrega a la conversaci√≥n vinculada para que la AI conserve el historial de contexto completo
+- `Crear nueva conversaci√≥n cada vez` ‚Äî abre una sesi√≥n nueva en cada activaci√≥n, ideal para informes peri√≥dicos independientes
 
 **Otras capacidades:**
 
-- **Vinculado a conversaciÛn** ó Cada tarea programada est· vinculada a una conversaciÛn, manteniendo el contexto y el historial
-- **EjecuciÛn autom·tica** ó Las tareas se ejecutan autom·ticamente en los horarios programados, enviando mensajes a la conversaciÛn
-- **GestiÛn f·cil** ó Crea, modifica, habilita/deshabilita, elimina y visualiza tareas programadas en cualquier momento
-- **Evitar suspensiÛn** ó CoraCowork previene autom·ticamente la suspensiÛn del sistema mientras las tareas est·n activas y detecta activaciones perdidas tras el despertar
-- **ConfiguraciÛn avanzada** ó cada tarea puede tener su propio modelo, directorio de espacio de trabajo y configuraciÛn de esfuerzo de razonamiento
+- **Vinculado a conversaci√≥n** ‚Äî Cada tarea programada est√° vinculada a una conversaci√≥n, manteniendo el contexto y el historial
+- **Ejecuci√≥n autom√°tica** ‚Äî Las tareas se ejecutan autom√°ticamente en los horarios programados, enviando mensajes a la conversaci√≥n
+- **Gesti√≥n f√°cil** ‚Äî Crea, modifica, habilita/deshabilita, elimina y visualiza tareas programadas en cualquier momento
+- **Evitar suspensi√≥n** ‚Äî AionUi previene autom√°ticamente la suspensi√≥n del sistema mientras las tareas est√°n activas y detecta activaciones perdidas tras el despertar
+- **Configuraci√≥n avanzada** ‚Äî cada tarea puede tener su propio modelo, directorio de espacio de trabajo y configuraci√≥n de esfuerzo de razonamiento
 
 **Ejemplos del mundo real:**
 
-- GeneraciÛn diaria de informes meteorolÛgicos
-- AgregaciÛn semanal de datos de ventas
-- OrganizaciÛn mensual de archivos de respaldo
+- Generaci√≥n diaria de informes meteorol√≥gicos
+- Agregaci√≥n semanal de datos de ventas
+- Organizaci√≥n mensual de archivos de respaldo
 - Notificaciones de recordatorios personalizadas
 
 </details>
 
 ---
 
-### **Panel de vista previa ó Visualiza instant·neamente los resultados generados por AI**
+### **Panel de vista previa ‚Äî Visualiza instant√°neamente los resultados generados por AI**
 
-_10+ formatos: PDF, Word, Excel, PPT, cÛdigo, Markdown, im·genes, HTML, Diff ó visualiza todo sin cambiar de aplicaciones._
+_10+ formatos: PDF, Word, Excel, PPT, c√≥digo, Markdown, im√°genes, HTML, Diff ‚Äî visualiza todo sin cambiar de aplicaciones._
 
-- **Vista previa instant·nea** ó despuÈs de que el Agent genera archivos, visualiza los resultados inmediatamente sin cambiar de aplicaciones
-- **Seguimiento en tiempo real + editable** ó rastrea autom·ticamente los cambios de archivos; admite ediciÛn en vivo de Markdown, cÛdigo, HTML
-- **Soporte de m˙ltiples pestaÒas** ó abre m˙ltiples archivos simult·neamente, cada uno en su propia pestaÒa
-- **Historial de versiones** ó visualiza y restaura versiones histÛricas de archivos (basado en Git)
+- **Vista previa instant√°nea** ‚Äî despu√©s de que el Agent genera archivos, visualiza los resultados inmediatamente sin cambiar de aplicaciones
+- **Seguimiento en tiempo real + editable** ‚Äî rastrea autom√°ticamente los cambios de archivos; admite edici√≥n en vivo de Markdown, c√≥digo, HTML
+- **Soporte de m√∫ltiples pesta√±as** ‚Äî abre m√∫ltiples archivos simult√°neamente, cada uno en su propia pesta√±a
+- **Historial de versiones** ‚Äî visualiza y restaura versiones hist√≥ricas de archivos (basado en Git)
 
 <p align="center">
   <img src="../../resources/preview.gif" alt="Preview Panel" width="800">
 </p>
 
 <details>
-<summary><strong>?? Ver lista completa de formatos ??</strong></summary>
+<summary><strong>üîç Ver lista completa de formatos ‚ñ∂Ô∏è</strong></summary>
 
 <br>
 
 **Formatos de vista previa compatibles:**
 
-- **Documentos** ó PDF, Word (`.doc`, `.docx`, `.odt`), Excel (`.xls`, `.xlsx`, `.ods`, `.csv`), PowerPoint (`.ppt`, `.pptx`, `.odp`)
-- **CÛdigo** ó JavaScript, TypeScript, Python, Java, Go, Rust, C/C++, CSS, JSON, XML, YAML, scripts Shell y 30+ lenguajes de programaciÛn
-- **Marcado** ó Markdown (`.md`, `.markdown`), HTML (`.html`, `.htm`)
-- **Im·genes** ó PNG, JPG, JPEG, GIF, SVG, WebP, BMP, ICO, TIFF, AVIF
-- **Otros** ó Archivos Diff (`.diff`, `.patch`)
+- **Documentos** ‚Äî PDF, Word (`.doc`, `.docx`, `.odt`), Excel (`.xls`, `.xlsx`, `.ods`, `.csv`), PowerPoint (`.ppt`, `.pptx`, `.odp`)
+- **C√≥digo** ‚Äî JavaScript, TypeScript, Python, Java, Go, Rust, C/C++, CSS, JSON, XML, YAML, scripts Shell y 30+ lenguajes de programaci√≥n
+- **Marcado** ‚Äî Markdown (`.md`, `.markdown`), HTML (`.html`, `.htm`)
+- **Im√°genes** ‚Äî PNG, JPG, JPEG, GIF, SVG, WebP, BMP, ICO, TIFF, AVIF
+- **Otros** ‚Äî Archivos Diff (`.diff`, `.patch`)
 
 </details>
 
 ---
 
-### **GestiÛn inteligente de archivos ó Operaciones de archivos automatizadas**
+### **Gesti√≥n inteligente de archivos ‚Äî Operaciones de archivos automatizadas**
 
-_Renombrado por lotes, organizaciÛn autom·tica, clasificaciÛn inteligente, fusiÛn de archivos ó el Cowork Agent lo maneja por ti._
+_Renombrado por lotes, organizaci√≥n autom√°tica, clasificaci√≥n inteligente, fusi√≥n de archivos ‚Äî el Cowork Agent lo maneja por ti._
 
 <p align="center">
-  <img src="../../resources/cora-cowork sort file 2.gif" alt="Smart File Management" width="800">
+  <img src="../../resources/aionui sort file 2.gif" alt="Smart File Management" width="800">
 </p>
 
 <details>
-<summary><strong>?? Ver detalles de funciones de gestiÛn de archivos ??</strong></summary>
+<summary><strong>üîç Ver detalles de funciones de gesti√≥n de archivos ‚ñ∂Ô∏è</strong></summary>
 
 <br>
 
-- **OrganizaciÛn autom·tica** ó Identifica inteligentemente el contenido y clasifica autom·ticamente, manteniendo las carpetas ordenadas
-- **Lote eficiente** ó Renombra con un clic, fusiona archivos, di adiÛs a las tareas manuales tediosas
-- **EjecuciÛn automatizada** ó Los AI Agents pueden ejecutar operaciones de archivos de forma independiente, leer/escribir archivos y completar tareas autom·ticamente
+- **Organizaci√≥n autom√°tica** ‚Äî Identifica inteligentemente el contenido y clasifica autom√°ticamente, manteniendo las carpetas ordenadas
+- **Lote eficiente** ‚Äî Renombra con un clic, fusiona archivos, di adi√≥s a las tareas manuales tediosas
+- **Ejecuci√≥n automatizada** ‚Äî Los AI Agents pueden ejecutar operaciones de archivos de forma independiente, leer/escribir archivos y completar tareas autom√°ticamente
 
 **Casos de uso:**
 
 - Organiza carpetas de descarga desordenadas por tipo de archivo
 - Renombra fotos por lotes con nombres significativos
-- Fusiona m˙ltiples documentos en uno
-- Clasifica archivos autom·ticamente por contenido
+- Fusiona m√∫ltiples documentos en uno
+- Clasifica archivos autom√°ticamente por contenido
 
 </details>
 
 ---
 
-### **Procesamiento de datos Excel ó An·lisis impulsado por AI**
+### **Procesamiento de datos Excel ‚Äî An√°lisis impulsado por AI**
 
-_Analiza profundamente los datos de Excel, embellece autom·ticamente los informes y genera insights ó todo impulsado por AI Agents._
+_Analiza profundamente los datos de Excel, embellece autom√°ticamente los informes y genera insights ‚Äî todo impulsado por AI Agents._
 
 <p align="center">
   <img src="../../resources/readme-demo-generate-excel.gif" alt="Excel Processing" width="800">
 </p>
 
 <details>
-<summary><strong>?? Ver funciones de procesamiento de Excel ??</strong></summary>
+<summary><strong>üîç Ver funciones de procesamiento de Excel ‚ñ∂Ô∏è</strong></summary>
 
 <br>
 
-- **An·lisis inteligente** ó AI analiza patrones de datos y genera insights
-- **Formato autom·tico** ó Embellece autom·ticamente los informes de Excel con estilos profesionales
-- **TransformaciÛn de datos** ó Convierte, fusiona y reestructura datos con comandos de lenguaje natural
-- **GeneraciÛn de informes** ó Crea informes completos a partir de datos sin procesar
+- **An√°lisis inteligente** ‚Äî AI analiza patrones de datos y genera insights
+- **Formato autom√°tico** ‚Äî Embellece autom√°ticamente los informes de Excel con estilos profesionales
+- **Transformaci√≥n de datos** ‚Äî Convierte, fusiona y reestructura datos con comandos de lenguaje natural
+- **Generaci√≥n de informes** ‚Äî Crea informes completos a partir de datos sin procesar
 
 **Casos de uso:**
 
 - Analiza datos de ventas y genera informes mensuales
 - Limpia y formatea archivos de Excel desordenados
-- Fusiona m˙ltiples hojas de c·lculo de forma inteligente
-- Crea visualizaciones de datos y gr·ficos
+- Fusiona m√∫ltiples hojas de c√°lculo de forma inteligente
+- Crea visualizaciones de datos y gr√°ficos
 
 </details>
 
 ---
 
-### **GeneraciÛn y ediciÛn de im·genes AI**
+### **Generaci√≥n y edici√≥n de im√°genes AI**
 
-_GeneraciÛn, ediciÛn y reconocimiento inteligente de im·genes, impulsado por Gemini_
+_Generaci√≥n, edici√≥n y reconocimiento inteligente de im√°genes, impulsado por Gemini_
 
 <p align="center">
   <img src="../../resources/Image_Generation.gif" alt="AI Image Generation" width="800">
 </p>
 
 <details>
-<summary><strong>?? Ver funciones de generaciÛn de im·genes ??</strong></summary>
+<summary><strong>üîç Ver funciones de generaci√≥n de im√°genes ‚ñ∂Ô∏è</strong></summary>
 
 <br>
 
-- **Texto a imagen** ó Genera im·genes a partir de descripciones de lenguaje natural
-- **EdiciÛn de im·genes** ó Modifica y mejora im·genes existentes
-- **Reconocimiento de im·genes** ó Analiza y describe el contenido de im·genes
-- **Procesamiento por lotes** ó Genera m˙ltiples im·genes a la vez
+- **Texto a imagen** ‚Äî Genera im√°genes a partir de descripciones de lenguaje natural
+- **Edici√≥n de im√°genes** ‚Äî Modifica y mejora im√°genes existentes
+- **Reconocimiento de im√°genes** ‚Äî Analiza y describe el contenido de im√°genes
+- **Procesamiento por lotes** ‚Äî Genera m√∫ltiples im√°genes a la vez
 
 </details>
 
-> [GuÌa de configuraciÛn del modelo de generaciÛn de im·genes](https://github.com/coracowork/cora-cowork-desktop/wiki/CoraCowork-Image-Generation-Tool-Model-Configuration-Guide)
+> [Gu√≠a de configuraci√≥n del modelo de generaci√≥n de im√°genes](https://github.com/iOfficeAI/AionUi/wiki/AionUi-Image-Generation-Tool-Model-Configuration-Guide)
 
 ---
 
-### **GeneraciÛn de documentos ó PPT, Word, Markdown**
+### **Generaci√≥n de documentos ‚Äî PPT, Word, Markdown**
 
-_Genera autom·ticamente documentos profesionales ó presentaciones, informes y m·s ó con AI Agents._
+_Genera autom√°ticamente documentos profesionales ‚Äî presentaciones, informes y m√°s ‚Äî con AI Agents._
 
 <p align="center">
   <img src="../../resources/file_generation_preview.png" alt="Document Generation" width="800">
 </p>
 
 <details>
-<summary><strong>?? Ver funciones de generaciÛn de documentos ??</strong></summary>
+<summary><strong>üîç Ver funciones de generaci√≥n de documentos ‚ñ∂Ô∏è</strong></summary>
 
 <br>
 
-- **Generador PPTX** ó Crea presentaciones profesionales a partir de esquemas o temas
-- **Documentos Word** ó Genera documentos Word formateados con estructura adecuada
-- **Archivos Markdown** ó Crea y formatea documentos Markdown para documentaciÛn
-- **ConversiÛn PDF** ó Convierte entre varios formatos de documentos
+- **Generador PPTX** ‚Äî Crea presentaciones profesionales a partir de esquemas o temas
+- **Documentos Word** ‚Äî Genera documentos Word formateados con estructura adecuada
+- **Archivos Markdown** ‚Äî Crea y formatea documentos Markdown para documentaci√≥n
+- **Conversi√≥n PDF** ‚Äî Convierte entre varios formatos de documentos
 
 **Casos de uso:**
 
 - Genera presentaciones comerciales trimestrales
-- Crea documentaciÛn tÈcnica
+- Crea documentaci√≥n t√©cnica
 - Convierte PDF a formatos editables
-- Formatea autom·ticamente documentos de investigaciÛn
+- Formatea autom√°ticamente documentos de investigaci√≥n
 
 </details>
 
-### **PersonalizaciÛn de interfaz personalizada**
+### **Personalizaci√≥n de interfaz personalizada**
 
-_Personaliza con tu propio cÛdigo CSS, haz que tu interfaz coincida con tus preferencias_
+_Personaliza con tu propio c√≥digo CSS, haz que tu interfaz coincida con tus preferencias_
 
 <p align="center">
   <img src="../../resources/css with skin.gif" alt="CSS Customization" width="800">
 </p>
 
-- ? **Totalmente personalizable** ó Personaliza libremente colores, estilos y diseÒo de la interfaz a travÈs de cÛdigo CSS, crea tu experiencia exclusiva
+- ‚úÖ **Totalmente personalizable** ‚Äî Personaliza libremente colores, estilos y dise√±o de la interfaz a trav√©s de c√≥digo CSS, crea tu experiencia exclusiva
 
 ---
 
-### **Procesamiento paralelo de m˙ltiples tareas**
+### **Procesamiento paralelo de m√∫ltiples tareas**
 
-_Abre m˙ltiples conversaciones, las tareas no se mezclan, memoria independiente, eficiencia doble_
+_Abre m√∫ltiples conversaciones, las tareas no se mezclan, memoria independiente, eficiencia doble_
 
 <p align="center">
   <img src="../../resources/multichat-side-by-side.gif" alt="Multi-Task Parallel" width="800">
 </p>
 
-- ? **Contexto independiente** ó Cada conversaciÛn mantiene su propio contexto e historial
-- ? **EjecuciÛn paralela** ó Ejecuta m˙ltiples tareas simult·neamente sin interferencia
-- ? **GestiÛn inteligente** ó Cambio f·cil entre conversaciones con indicadores visuales
+- ‚úÖ **Contexto independiente** ‚Äî Cada conversaci√≥n mantiene su propio contexto e historial
+- ‚úÖ **Ejecuci√≥n paralela** ‚Äî Ejecuta m√∫ltiples tareas simult√°neamente sin interferencia
+- ‚úÖ **Gesti√≥n inteligente** ‚Äî Cambio f√°cil entre conversaciones con indicadores visuales
 
 ---
 
-## ?? øPor quÈ elegir CoraCowork sobre Claude Cowork?
+## ü§î ¬øPor qu√© elegir AionUi sobre Claude Cowork?
 
 <details>
-<summary><strong>Haz clic para ver la comparaciÛn detallada</strong></summary>
+<summary><strong>Haz clic para ver la comparaci√≥n detallada</strong></summary>
 
 <br>
 
-CoraCowork es un **Escritorio Multi-AI Agent gratuito y de cÛdigo abierto**. En comparaciÛn con Claude Cowork que solo se ejecuta en macOS y est· bloqueado a Claude, CoraCowork es su versiÛn mejorada de modelo completo y multiplataforma.
+AionUi es un **Escritorio Multi-AI Agent gratuito y de c√≥digo abierto**. En comparaci√≥n con Claude Cowork que solo se ejecuta en macOS y est√° bloqueado a Claude, AionUi es su versi√≥n mejorada de modelo completo y multiplataforma.
 
-| DimensiÛn          | Claude Cowork     | CoraCowork                                                 |
+| Dimensi√≥n          | Claude Cowork     | AionUi                                                 |
 | :----------------- | :---------------- | :----------------------------------------------------- |
 | SO                 | Solo macOS        | macOS / Windows / Linux                                |
 | Soporte de modelos | Solo Claude       | Gemini, Claude, DeepSeek, OpenAI, Ollama, ...          |
-| InteracciÛn        | GUI de escritorio | GUI de escritorio + WebUI + Telegram / Lark / DingTalk |
-| AutomatizaciÛn     | Solo manual       | Tareas programadas Cron ó 24/7 sin supervisiÛn         |
-| Costo              | $100/mes          | Gratis y de cÛdigo abierto                             |
+| Interacci√≥n        | GUI de escritorio | GUI de escritorio + WebUI + Telegram / Lark / DingTalk |
+| Automatizaci√≥n     | Solo manual       | Tareas programadas Cron ‚Äî 24/7 sin supervisi√≥n         |
+| Costo              | $100/mes          | Gratis y de c√≥digo abierto                             |
 
 Soporte de escenarios de oficina AI profundos:
 
-- **GestiÛn de archivos**: Organiza inteligentemente carpetas locales y renombra por lotes con un clic.
-- **Procesamiento de datos**: Analiza profundamente y embellece autom·ticamente informes de Excel.
-- **GeneraciÛn de documentos**: Escribe y formatea autom·ticamente documentos PPT, Word y Markdown.
-- **Vista previa instant·nea**: Paneles de vista previa de 10+ formatos integrados, resultados de colaboraciÛn AI visibles instant·neamente.
+- **Gesti√≥n de archivos**: Organiza inteligentemente carpetas locales y renombra por lotes con un clic.
+- **Procesamiento de datos**: Analiza profundamente y embellece autom√°ticamente informes de Excel.
+- **Generaci√≥n de documentos**: Escribe y formatea autom√°ticamente documentos PPT, Word y Markdown.
+- **Vista previa instant√°nea**: Paneles de vista previa de 10+ formatos integrados, resultados de colaboraci√≥n AI visibles instant√°neamente.
 
 </details>
 
 ---
 
-## Preguntas y respuestas r·pidas
+## Preguntas y respuestas r√°pidas
 
 <details>
-<summary><strong>P: øNecesito instalar primero Gemini CLI o Claude Code?</strong></summary>
-R: <strong>No.</strong> CoraCowork tiene un AI Agent integrado que funciona inmediatamente despuÈs de la instalaciÛn. Solo ingresa cualquier clave API para empezar. Si tambiÈn tienes herramientas CLI como Claude Code o Gemini CLI instaladas, CoraCowork las detectar· e integrar· autom·ticamente para a˙n m·s capacidades.
+<summary><strong>P: ¬øNecesito instalar primero Gemini CLI o Claude Code?</strong></summary>
+R: <strong>No.</strong> AionUi tiene un AI Agent integrado que funciona inmediatamente despu√©s de la instalaci√≥n. Solo ingresa cualquier clave API para empezar. Si tambi√©n tienes herramientas CLI como Claude Code o Gemini CLI instaladas, AionUi las detectar√° e integrar√° autom√°ticamente para a√∫n m√°s capacidades.
 </details>
 
 <details>
-<summary><strong>P: øQuÈ puedo hacer con CoraCowork?</strong></summary>
-R: CoraCowork es tu <strong>espacio de trabajo Cowork privado</strong>. El Agent integrado puede organizar carpetas por lotes, procesar datos de Excel, generar documentos, buscar en la web y generar im·genes. Con el Modo Multi-Agent, tambiÈn puedes aprovechar Claude Code, Codex y otros Agents CLI poderosos a travÈs de la misma interfaz.
+<summary><strong>P: ¬øQu√© puedo hacer con AionUi?</strong></summary>
+R: AionUi es tu <strong>espacio de trabajo Cowork privado</strong>. El Agent integrado puede organizar carpetas por lotes, procesar datos de Excel, generar documentos, buscar en la web y generar im√°genes. Con el Modo Multi-Agent, tambi√©n puedes aprovechar Claude Code, Codex y otros Agents CLI poderosos a trav√©s de la misma interfaz.
 </details>
 
 <details>
-<summary><strong>P: øEs gratis?</strong></summary>
-R: CoraCowork es completamente gratuito y de cÛdigo abierto. Solo pagas por el uso de la API del proveedor que elijas, y puedes usar claves API de cualquier proveedor que prefieras.
+<summary><strong>P: ¬øEs gratis?</strong></summary>
+R: AionUi es completamente gratuito y de c√≥digo abierto. Solo pagas por el uso de la API del proveedor que elijas, y puedes usar claves API de cualquier proveedor que prefieras.
 </details>
 
 <details>
-<summary><strong>P: øMis datos est·n seguros?</strong></summary>
-R: Todos los datos se almacenan localmente en una base de datos SQLite. No se sube nada a ning˙n servidor.
+<summary><strong>P: ¬øMis datos est√°n seguros?</strong></summary>
+R: Todos los datos se almacenan localmente en una base de datos SQLite. No se sube nada a ning√∫n servidor.
 </details>
 
 ---
 
-## Ver cÛmo la gente usa CoraCowork
+## Ver c√≥mo la gente usa AionUi
 
 <p align="center">
   <a href="https://www.youtube.com/watch?v=vWxE6VO9TKo" target="_blank">
-    <img src="https://img.youtube.com/vi/vWxE6VO9TKo/maxresdefault.jpg" alt="Hermes + Cora UI is Insane (FREE)!" width="400">
+    <img src="https://img.youtube.com/vi/vWxE6VO9TKo/maxresdefault.jpg" alt="Hermes + Aion UI is Insane (FREE)!" width="400">
   </a>
   &nbsp;&nbsp;
   <a href="https://www.youtube.com/watch?v=RgSLdOhICZw" target="_blank">
-    <img src="https://img.youtube.com/vi/RgSLdOhICZw/maxresdefault.jpg" alt="OpenClaw + Cora UI is Insane (FREE!)" width="400">
+    <img src="https://img.youtube.com/vi/RgSLdOhICZw/maxresdefault.jpg" alt="OpenClaw + Aion UI is Insane (FREE!)" width="400">
   </a>
 </p>
 <p align="center">
-  <em>Julian Goldie SEO ó Hermes + Cora UI is Insane (FREE!) ∑ 27K views</em> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>Julian Goldie SEO ó OpenClaw + Cora UI is Insane (FREE!) ∑ 11K views</em>
+  <em>Julian Goldie SEO ‚Äî Hermes + Aion UI is Insane (FREE!) ¬∑ 27K views</em> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>Julian Goldie SEO ‚Äî OpenClaw + Aion UI is Insane (FREE!) ¬∑ 11K views</em>
 </p>
 
 <p align="center">
@@ -529,17 +529,17 @@ R: Todos los datos se almacenan localmente en una base de datos SQLite. No se su
   <em>WorldofAI (200K suscriptores)</em> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <em>Julian Goldie SEO (384K suscriptores)</em>
 </p>
 
-### ArtÌculos de la comunidad
+### Art√≠culos de la comunidad
 
-- [Cowork gratuito de cÛdigo abierto, integraciÛn completa de modelos + operaciones de archivos autÛnomas](https://mp.weixin.qq.com/s/F3f-CCsVPaK3lK00jXhOOg) ó ImplementaciÛn de proyecto AI de cÛdigo abierto
-- [Hacer que la gente com˙n use Claude Code como una APP](https://mp.weixin.qq.com/s/TsMojSbkUUFvsd-HQCazZg) ó Gato perezoso ama pescar
-- [5500 Stars: CÛmo el cÛdigo abierto rompe el foso de herramientas AI de Anthropic](https://mp.weixin.qq.com/s/saEk49cYV6MqBgw19Lw6Gw) ó Momento de silicio AI
+- [Cowork gratuito de c√≥digo abierto, integraci√≥n completa de modelos + operaciones de archivos aut√≥nomas](https://mp.weixin.qq.com/s/F3f-CCsVPaK3lK00jXhOOg) ‚Äî Implementaci√≥n de proyecto AI de c√≥digo abierto
+- [Hacer que la gente com√∫n use Claude Code como una APP](https://mp.weixin.qq.com/s/TsMojSbkUUFvsd-HQCazZg) ‚Äî Gato perezoso ama pescar
+- [5500 Stars: C√≥mo el c√≥digo abierto rompe el foso de herramientas AI de Anthropic](https://mp.weixin.qq.com/s/saEk49cYV6MqBgw19Lw6Gw) ‚Äî Momento de silicio AI
 
-> **øHiciste un video sobre CoraCowork?** [AvÌsanos en X](https://x.com/CoraCowork) y lo destacaremos aquÌ!
+> **¬øHiciste un video sobre AionUi?** [Av√≠sanos en X](https://x.com/AionUi) y lo destacaremos aqu√≠!
 
 ---
 
-## ?? Inicio r·pido
+## üöÄ Inicio r√°pido
 
 ### Requisitos del sistema
 
@@ -552,106 +552,106 @@ R: Todos los datos se almacenan localmente en una base de datos SQLite. No se su
 ### Instalar
 
 <p>
-  <a href="https://github.com/coracowork/cora-cowork-desktop/releases/">
-    <img src="https://img.shields.io/badge/Descargar-⁄ltima%20versiÛn-32CD32?style=for-the-badge&logo=github&logoColor=white" alt="Descargar ˙ltima versiÛn" height="50">
+  <a href="https://github.com/iOfficeAI/AionUi/releases">
+    <img src="https://img.shields.io/badge/Descargar-√öltima%20versi√≥n-32CD32?style=for-the-badge&logo=github&logoColor=white" alt="Descargar √∫ltima versi√≥n" height="50">
   </a>
 </p>
 
-Haz clic en el botÛn de arriba para ir a la p·gina de Releases y descargar el instalador para tu plataforma (macOS / Windows / Linux).
+Haz clic en el bot√≥n de arriba para ir a la p√°gina de Releases y descargar el instalador para tu plataforma (macOS / Windows / Linux).
 
 ```bash
 # Alternatively, macOS via Homebrew
-brew install cora-cowork
+brew install aionui
 ```
 
 ### Comenzar en 3 pasos
 
-1. **Instalar** CoraCowork
+1. **Instalar** AionUi
 2. **Ingresa** cualquier clave API para empezar
-3. **Comenzar a hacer Cowork** ó el AI Agent integrado est· listo para usar
+3. **Comenzar a hacer Cowork** ‚Äî el AI Agent integrado est√° listo para usar
 
-### ?? GuÌas detalladas
+### üìñ Gu√≠as detalladas
 
 <details>
-<summary><strong>?? Expandir para ver la guÌa de uso completa</strong></summary>
+<summary><strong>üìñ Expandir para ver la gu√≠a de uso completa</strong></summary>
 
 <br>
 
-**?? Inicio r·pido**
+**üöÄ Inicio r√°pido**
 
-- [?? GuÌa de instalaciÛn completa](https://github.com/coracowork/cora-cowork-desktop/wiki/Getting-Started) ó Pasos detallados desde la descarga hasta la configuraciÛn
-- [?? GuÌa de configuraciÛn LLM](https://github.com/coracowork/cora-cowork-desktop/wiki/LLM-Configuration) ó ConfiguraciÛn de modelos AI multiplataforma
-- [?? ConfiguraciÛn del modo Multi-Agent](https://github.com/coracowork/cora-cowork-desktop/wiki/ACP-Setup) ó Integrar Agents AI de terminal
-- [?? ConfiguraciÛn de herramientas MCP](https://github.com/coracowork/cora-cowork-desktop/wiki/MCP-Configuration-Guide) ó ConfiguraciÛn del servidor Model Context Protocol
-- [?? GuÌa de configuraciÛn WebUI](https://github.com/coracowork/cora-cowork-desktop/wiki/WebUI-Configuration-Guide) ó Tutorial completo de configuraciÛn y configuraciÛn de WebUI
+- [üìñ Gu√≠a de instalaci√≥n completa](https://github.com/iOfficeAI/AionUi/wiki/Getting-Started) ‚Äî Pasos detallados desde la descarga hasta la configuraci√≥n
+- [‚öôÔ∏è Gu√≠a de configuraci√≥n LLM](https://github.com/iOfficeAI/AionUi/wiki/LLM-Configuration) ‚Äî Configuraci√≥n de modelos AI multiplataforma
+- [ü§ñ Configuraci√≥n del modo Multi-Agent](https://github.com/iOfficeAI/AionUi/wiki/ACP-Setup) ‚Äî Integrar Agents AI de terminal
+- [üîå Configuraci√≥n de herramientas MCP](https://github.com/iOfficeAI/AionUi/wiki/MCP-Configuration-Guide) ‚Äî Configuraci√≥n del servidor Model Context Protocol
+- [üåê Gu√≠a de configuraci√≥n WebUI](https://github.com/iOfficeAI/AionUi/wiki/WebUI-Configuration-Guide) ‚Äî Tutorial completo de configuraci√≥n y configuraci√≥n de WebUI
 
-**?? Casos de uso**
+**üéØ Casos de uso**
 
-- [?? GestiÛn de archivos](https://github.com/coracowork/cora-cowork-desktop/wiki/file-management) ó OrganizaciÛn inteligente de archivos
-- [?? Procesamiento de Excel](https://github.com/coracowork/cora-cowork-desktop/wiki/excel-processing) ó Procesamiento de datos impulsado por AI
-- [?? GeneraciÛn de im·genes](https://github.com/coracowork/cora-cowork-desktop/wiki/CoraCowork-Image-Generation-Tool-Model-Configuration-Guide) ó CreaciÛn de im·genes AI
-- [?? M·s casos de uso](https://github.com/coracowork/cora-cowork-desktop/wiki/Use-Cases-Overview)
+- [üìÅ Gesti√≥n de archivos](https://github.com/iOfficeAI/AionUi/wiki/file-management) ‚Äî Organizaci√≥n inteligente de archivos
+- [üìä Procesamiento de Excel](https://github.com/iOfficeAI/AionUi/wiki/excel-processing) ‚Äî Procesamiento de datos impulsado por AI
+- [üé® Generaci√≥n de im√°genes](https://github.com/iOfficeAI/AionUi/wiki/AionUi-Image-Generation-Tool-Model-Configuration-Guide) ‚Äî Creaci√≥n de im√°genes AI
+- [üìö M√°s casos de uso](https://github.com/iOfficeAI/AionUi/wiki/Use-Cases-Overview)
 
-**? Soporte y ayuda**
+**‚ùì Soporte y ayuda**
 
-- [? FAQ](https://github.com/coracowork/cora-cowork-desktop/wiki/FAQ) ó Preguntas y soluciÛn de problemas
-- [?? Tutoriales de configuraciÛn y uso](https://github.com/coracowork/cora-cowork-desktop/wiki/Configuration-Guides) ó DocumentaciÛn de configuraciÛn completa
+- [‚ùì FAQ](https://github.com/iOfficeAI/AionUi/wiki/FAQ) ‚Äî Preguntas y soluci√≥n de problemas
+- [üîß Tutoriales de configuraci√≥n y uso](https://github.com/iOfficeAI/AionUi/wiki/Configuration-Guides) ‚Äî Documentaci√≥n de configuraci√≥n completa
 
 </details>
 
 ---
 
-## ?? Comunidad y soporte
+## üí¨ Comunidad y soporte
 
-**°Tus ideas importan!** Valoramos cada sugerencia y comentario.
+**¬°Tus ideas importan!** Valoramos cada sugerencia y comentario.
 
 <p align="center">
-  <a href="https://x.com/CoraCowork" target="_blank">
+  <a href="https://x.com/AionUi" target="_blank">
     <img src="../../resources/contactus-x.png" alt="Contact Us on X" width="600">
   </a>
 </p>
 
-- [GitHub Discussions](https://github.com/coracowork/cora-cowork-desktop/discussions) ó comparte ideas e intercambia consejos
-- [Reportar problemas](https://github.com/coracowork/cora-cowork-desktop/issues) ó errores y solicitudes de funciones
-- [Actualizaciones de lanzamiento](https://github.com/coracowork/cora-cowork-desktop/releases/) ó obtÈn la ˙ltima versiÛn
-- [Comunidad Discord](https://discord.gg/2QAwJn7Egx) ó comunidad en inglÈs
-- [Grupo WeChat](../../resources/wx-15.png) ó comunidad china
+- [GitHub Discussions](https://github.com/iOfficeAI/AionUi/discussions) ‚Äî comparte ideas e intercambia consejos
+- [Reportar problemas](https://github.com/iOfficeAI/AionUi/issues) ‚Äî errores y solicitudes de funciones
+- [Actualizaciones de lanzamiento](https://github.com/iOfficeAI/AionUi/releases) ‚Äî obt√©n la √∫ltima versi√≥n
+- [Comunidad Discord](https://discord.gg/2QAwJn7Egx) ‚Äî comunidad en ingl√©s
+- [Grupo WeChat](../../resources/wx-16.png) ‚Äî comunidad china
 
 ### Contribuir
 
 Por favor, lee [CONTRIBUTING.md](../../CONTRIBUTING.md) antes de abrir un PR.
 
 1. Haz fork de este proyecto
-2. Crea una rama de funciÛn (`git checkout -b feature/AmazingFeature`)
+2. Crea una rama de funci√≥n (`git checkout -b feature/AmazingFeature`)
 3. Confirma tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. EnvÌa a la rama (`git push origin feature/AmazingFeature`)
+4. Env√≠a a la rama (`git push origin feature/AmazingFeature`)
 5. Abre un Pull Request
 
-### ConfiguraciÛn de desarrollo
+### Configuraci√≥n de desarrollo
 
-El desarrollo local de CoraCowork usa dos repositorios: CoraCowork para el frontend de Electron y CoraCore para el backend local. Consulta la [guÌa de desarrollo](../contributing/development.md) para la configuraciÛn completa en macOS, Linux y Windows.
+El desarrollo local de AionUi usa dos repositorios: AionUi para el frontend de Electron y AionCore para el backend local. Consulta la [gu√≠a de desarrollo](../contributing/development.md) para la configuraci√≥n completa en macOS, Linux y Windows.
 
 ---
 
 ## Licencia
 
-Este proyecto est· licenciado bajo [Apache-2.0](../../LICENSE).
+Este proyecto est√° licenciado bajo [Apache-2.0](../../LICENSE).
 
 ---
 
 ## Contribuidores
 
 <p align="center">
-  <a href="https://github.com/coracowork/cora-cowork-desktop/graphs/contributors">
-    <img src="https://contrib.rocks/image?repo=iOfficeAI/CoraCowork&max=100" alt="Contributors" />
+  <a href="https://github.com/iOfficeAI/AionUi/graphs/contributors">
+    <img src="https://contrib.rocks/image?repo=iOfficeAI/AionUi&max=100" alt="Contributors" />
   </a>
 </p>
 
 ## Historial de estrellas
 
 <p align="center">
-  <a href="https://www.star-history.com/#iOfficeAI/cora-cowork&Date" target="_blank">
-    <img src="https://api.star-history.com/svg?repos=iOfficeAI/cora-cowork&type=Date" alt="Star History" width="600">
+  <a href="https://www.star-history.com/#iOfficeAI/aionui&Date" target="_blank">
+    <img src="https://api.star-history.com/svg?repos=iOfficeAI/aionui&type=Date" alt="Star History" width="600">
   </a>
 </p>
 
@@ -659,6 +659,6 @@ Este proyecto est· licenciado bajo [Apache-2.0](../../LICENSE).
 
 **Si te gusta, danos una estrella**
 
-[Reportar error](https://github.com/coracowork/cora-cowork-desktop/issues) ∑ [Solicitar funciÛn](https://github.com/coracowork/cora-cowork-desktop/issues)
+[Reportar error](https://github.com/iOfficeAI/AionUi/issues) ¬∑ [Solicitar funci√≥n](https://github.com/iOfficeAI/AionUi/issues)
 
 </div>

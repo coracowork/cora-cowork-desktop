@@ -49,6 +49,8 @@ contextBridge.exposeInMainWorld('electronAPI', {
   logFeedbackEvent: (payload: { details?: unknown; level: 'info' | 'warn' | 'error'; message: string }) =>
     ipcRenderer.send('feedback:renderer-log', payload),
   recoverCorruptedDatabase: () => ipcRenderer.invoke('backend:recover-corrupted-database'),
+  backendRestorePreUpdateBackup: () => ipcRenderer.invoke('backend:restore-pre-update-backup'),
+  backendResetDatabase: () => ipcRenderer.invoke('backend:reset-database'),
 });
 
 // Synchronously fetch the CoraCore port and expose it to the renderer

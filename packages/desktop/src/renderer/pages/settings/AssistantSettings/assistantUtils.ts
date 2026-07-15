@@ -162,7 +162,7 @@ export const filterByEnabled = (
 };
 
 const byAssistantSortOrder = (a: AssistantListItem, b: AssistantListItem) => a.sort_order - b.sort_order;
-const ASSISTANT_EDITOR_AGENT_TYPES = new Set(['acp', 'corars']);
+const ASSISTANT_EDITOR_AGENT_TYPES = new Set(['acp', 'corars', 'corars']);
 
 const isAssistantEditorAgent = (agent: ManagedAgent): boolean => ASSISTANT_EDITOR_AGENT_TYPES.has(agent.agent_type);
 

@@ -433,29 +433,29 @@ async processDroppedFiles(files: FileList, ...) {
 #### 4. TC-A-13 方案（环境变量注入）
 
 **问题**（L757）:
-操作步骤称"设置环境变量：`process.env.AION_CLI_PATH = '/dev/null'`"
+操作步骤称"设置环境变量：`process.env.CORA_CLI_PATH = '/dev/null'`"
 
 **E2E 环境评估**:
 
 - `process.env` 在 **Node.js 测试进程**中修改，但 **不影响已启动的 Electron 子进程**
-- Corars binary 解析在 **main process**（`binaryResolver.ts`），读取 `process.env.AION_CLI_PATH`
+- Corars binary 解析在 **main process**（`binaryResolver.ts`），读取 `process.env.CORA_CLI_PATH`
 
 **建议调整**:
 
 - 方案 A（推荐）：在 `test.beforeAll()` **启动 Electron 前** 设置环境变量
   ```typescript
   test.beforeAll(async () => {
-    process.env.AION_CLI_PATH = '/dev/null';
+    process.env.CORA_CLI_PATH = '/dev/null';
     // Electron 启动会继承此环境变量
   });
   ```
 - 方案 B（更复杂）：通过 `electronApp.evaluate()` 动态修改 main process 环境
   ```typescript
   await electronApp.evaluate(() => {
-    process.env.AION_CLI_PATH = '/dev/null';
+    process.env.CORA_CLI_PATH = '/dev/null';
   });
   ```
-- **TC-A-13 调整**：操作步骤改为"在测试启动前设置 `AION_CLI_PATH=/dev/null`（通过 `test.beforeAll` 或命令行 `AION_CLI_PATH=/dev/null npm run test:e2e`）"
+- **TC-A-13 调整**：操作步骤改为"在测试启动前设置 `CORA_CLI_PATH=/dev/null`（通过 `test.beforeAll` 或命令行 `CORA_CLI_PATH=/dev/null npm run test:e2e`）"
 
 ---
 

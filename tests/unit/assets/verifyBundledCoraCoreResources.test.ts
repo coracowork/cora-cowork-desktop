@@ -1,31 +1,16 @@
 import { afterEach, beforeEach, describe, expect, it } from 'vitest';
-import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs';
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 
 const {
-  verifyBundledCoraCoreResources,
+  verifyBundledCoracoreResources,
 } = require('../../../packages/shared-scripts/src/verify-bundled-cora-cowork-resources');
 
 const CODEX_ENTRYPOINT = 'node_modules/@agentclientprotocol/codex-acp/dist/index.js';
-const CODEX_WIN32_X64_EXECUTABLE_PARTS = [
-  'node_modules',
-  '@openai',
-  'codex-win32-x64',
-  'vendor',
-  'x86_64-pc-windows-msvc',
-  'bin',
-  'codex.exe',
-];
-const CODEX_WIN32_ARM64_EXECUTABLE_PARTS = [
-  'node_modules',
-  '@openai',
-  'codex-win32-arm64',
-  'vendor',
-  'aarch64-pc-windows-msvc',
-  'bin',
-  'codex.exe',
-];
+const CLAUDE_ENTRYPOINT = 'node_modules/@agentclientprotocol/claude-agent-acp/dist/index.js';
+const CODEX_WIN32_X64_EXECUTABLE = 'node_modules/@openai/codex-win32-x64/vendor/x86_64-pc-windows-msvc/bin/codex.exe';
+const CLAUDE_WIN32_X64_EXECUTABLE = 'node_modules/@anthropic-ai/claude-agent-sdk-win32-x64/claude.exe';
 
 function writeFile(filePath: string) {
   mkdirSync(dirname(filePath), { recursive: true });
@@ -34,7 +19,7 @@ function writeFile(filePath: string) {
 
 function writeJson(filePath: string, value: unknown) {
   mkdirSync(dirname(filePath), { recursive: true });
-  writeFileSync(filePath, JSON.stringify(value), { flush: true });
+  writeFileSync(filePath, `${JSON.stringify(value, null, 2)}\n`, { flush: true });
 }
 
 function createManagedAcpToolFixture({
@@ -43,77 +28,132 @@ function createManagedAcpToolFixture({
   version,
   runtimeKey,
   entrypoint,
-  platformExecutableParts = [],
+  platformExecutable,
 }: {
   managedResourcesDir: string;
   toolId: string;
   version: string;
   runtimeKey: string;
   entrypoint: string;
-  platformExecutableParts?: string[];
+  platformExecutable: string;
 }) {
   const platformRoot = join(managedResourcesDir, 'acp', toolId, version, runtimeKey);
 
-  writeJson(join(platformRoot, 'manifest.json'), { entrypoint, path_entries: [] });
+  writeJson(join(platformRoot, 'manifest.json'), { entrypoint, path_entries: ['node_modules/.bin'] });
   writeFile(join(platformRoot, entrypoint));
   writeJson(join(platformRoot, 'package.json'), {});
   writeJson(join(platformRoot, 'package-lock.json'), {});
   mkdirSync(join(platformRoot, 'node_modules'), { recursive: true });
-
-  if (platformExecutableParts.length > 0) {
-    writeFile(join(platformRoot, ...platformExecutableParts));
-  }
+  mkdirSync(join(platformRoot, 'node_modules', '.bin'), { recursive: true });
+  writeFile(join(platformRoot, platformExecutable));
 
   return platformRoot;
 }
 
-describe('verifyBundledCoraCoreResources', () => {
+function contractTool({
+  slug,
+  version,
+  packageName,
+  runtimeKey,
+  entrypoint,
+  platformExecutable,
+}: {
+  slug: string;
+  version: string;
+  packageName: string;
+  runtimeKey: string;
+  entrypoint: string;
+  platformExecutable: string;
+}) {
+  return {
+    slug,
+    version,
+    packageName,
+    root: `acp/${slug}/${version}/${runtimeKey}`,
+    platformDirectory: runtimeKey,
+    manifest: 'manifest.json',
+    entrypoint,
+    pathEntries: ['node_modules/.bin'],
+    requiredFiles: ['package.json', 'package-lock.json'],
+    requiredDirectories: ['node_modules'],
+    platformExecutable,
+  };
+}
+
+function writeManagedResourcesContract(managedResourcesDir: string, runtimeKey = 'win32-x64') {
+  writeJson(join(managedResourcesDir, 'manifest.json'), {
+    schemaVersion: 1,
+    runtimeKey,
+    node: {
+      version: '24.11.0',
+      root: 'node/node-v24.11.0-win-x64',
+      executable: 'node.exe',
+    },
+    acpTools: [
+      contractTool({
+        slug: 'codex-acp',
+        version: '1.1.2',
+        packageName: '@agentclientprotocol/codex-acp',
+        runtimeKey,
+        entrypoint: CODEX_ENTRYPOINT,
+        platformExecutable: CODEX_WIN32_X64_EXECUTABLE,
+      }),
+      contractTool({
+        slug: 'claude-agent-acp',
+        version: '0.58.1',
+        packageName: '@agentclientprotocol/claude-agent-acp',
+        runtimeKey,
+        entrypoint: CLAUDE_ENTRYPOINT,
+        platformExecutable: CLAUDE_WIN32_X64_EXECUTABLE,
+      }),
+    ],
+  });
+}
+
+describe('verifyBundledCoracoreResources', () => {
   let tmp: string;
   let resourcesDir: string;
   let managedResourcesDir: string;
   let codexRoot: string;
 
   beforeEach(() => {
-    tmp = mkdtempSync(join(tmpdir(), 'coracowork-bundled-resources-'));
+    tmp = mkdtempSync(join(tmpdir(), 'cora-cowork-bundled-resources-'));
     resourcesDir = join(tmp, 'resources');
-    managedResourcesDir = join(resourcesDir, 'bundled-cora-cowork', 'win32-x64', 'managed-resources');
+    managedResourcesDir = join(resourcesDir, 'bundled-coracore', 'win32-x64', 'managed-resources');
 
-    mkdirSync(join(resourcesDir, 'bundled-cora-cowork', 'win32-x64'), { recursive: true });
-    writeFile(join(resourcesDir, 'bundled-cora-cowork', 'win32-x64', 'Corars.exe'));
-    writeJson(join(resourcesDir, 'bundled-cora-cowork', 'win32-x64', 'manifest.json'), {
+    mkdirSync(join(resourcesDir, 'bundled-coracore', 'win32-x64'), { recursive: true });
+    writeFile(join(resourcesDir, 'bundled-coracore', 'win32-x64', 'coracore.exe'));
+    writeJson(join(resourcesDir, 'bundled-coracore', 'win32-x64', 'manifest.json'), {
       platform: 'win32',
       arch: 'x64',
     });
 
-    const nodeRoot = join(managedResourcesDir, 'node', 'node-v24.11.0-win-x64');
-    mkdirSync(nodeRoot, { recursive: true });
-    writeFile(join(nodeRoot, 'node.exe'));
-
+    writeFile(join(managedResourcesDir, 'node', 'node-v24.11.0-win-x64', 'node.exe'));
     codexRoot = createManagedAcpToolFixture({
       managedResourcesDir,
       toolId: 'codex-acp',
       version: '1.1.2',
       runtimeKey: 'win32-x64',
       entrypoint: CODEX_ENTRYPOINT,
-      platformExecutableParts: CODEX_WIN32_X64_EXECUTABLE_PARTS,
+      platformExecutable: CODEX_WIN32_X64_EXECUTABLE,
     });
-
     createManagedAcpToolFixture({
       managedResourcesDir,
       toolId: 'claude-agent-acp',
-      version: '0.13.0',
+      version: '0.58.1',
       runtimeKey: 'win32-x64',
-      entrypoint: 'node_modules/@anthropic-ai/claude-agent-sdk-win32-x64/claude.exe',
-      platformExecutableParts: ['node_modules', '@anthropic-ai', 'claude-agent-sdk-win32-x64', 'claude.exe'],
+      entrypoint: CLAUDE_ENTRYPOINT,
+      platformExecutable: CLAUDE_WIN32_X64_EXECUTABLE,
     });
+    writeManagedResourcesContract(managedResourcesDir);
   });
 
   afterEach(() => {
     rmSync(tmp, { recursive: true, force: true });
   });
 
-  it('passes when node and managed ACP entrypoints exist', () => {
-    const result = verifyBundledCoraCoreResources({
+  it('passes when the managed resources contract points to existing resources', () => {
+    const result = verifyBundledCoracoreResources({
       resourcesDir,
       electronPlatformName: 'win32',
       targetArch: 'x64',
@@ -121,181 +161,160 @@ describe('verifyBundledCoraCoreResources', () => {
 
     expect(result.runtimeKey).toBe('win32-x64');
     expect(result.missing).toEqual([]);
+    expect(result.failures).toEqual([]);
   });
 
-  it('passes with the managed Codex ACP Windows arm64 platform executable', () => {
-    const arm64ResourcesDir = join(tmp, 'win32-arm64-resources');
-    const arm64ManagedResourcesDir = join(arm64ResourcesDir, 'bundled-cora-cowork', 'win32-arm64', 'managed-resources');
+  it('fails when managed resources contract is missing', () => {
+    rmSync(join(managedResourcesDir, 'manifest.json'));
 
-    mkdirSync(join(arm64ResourcesDir, 'bundled-cora-cowork', 'win32-arm64'), { recursive: true });
-    writeFile(join(arm64ResourcesDir, 'bundled-cora-cowork', 'win32-arm64', 'Corars.exe'));
-    writeJson(join(arm64ResourcesDir, 'bundled-cora-cowork', 'win32-arm64', 'manifest.json'), {
-      platform: 'win32',
-      arch: 'arm64',
+    const result = verifyBundledCoracoreResources({
+      resourcesDir,
+      electronPlatformName: 'win32',
+      targetArch: 'x64',
     });
-    writeFile(join(arm64ManagedResourcesDir, 'node', 'node-v24.11.0-win-arm64', 'node.exe'));
 
+    expect(result.missing).toContain('bundled-coracore/win32-x64/managed-resources/manifest.json');
+    expect(result.failures).toContainEqual(
+      expect.objectContaining({
+        component: 'managed-resources',
+        reason: 'missing_file',
+      })
+    );
+  });
+
+  it('fails when only an old Codex ACP version exists even if it is structurally complete', () => {
+    rmSync(join(managedResourcesDir, 'acp', 'codex-acp', '1.1.2'), { recursive: true, force: true });
     createManagedAcpToolFixture({
-      managedResourcesDir: arm64ManagedResourcesDir,
+      managedResourcesDir,
       toolId: 'codex-acp',
-      version: '1.1.2',
-      runtimeKey: 'win32-arm64',
+      version: '0.16.0',
+      runtimeKey: 'win32-x64',
       entrypoint: CODEX_ENTRYPOINT,
-      platformExecutableParts: CODEX_WIN32_ARM64_EXECUTABLE_PARTS,
-    });
-    createManagedAcpToolFixture({
-      managedResourcesDir: arm64ManagedResourcesDir,
-      toolId: 'claude-agent-acp',
-      version: '0.13.0',
-      runtimeKey: 'win32-arm64',
-      entrypoint: 'node_modules/@anthropic-ai/claude-agent-sdk-win32-arm64/claude.exe',
-      platformExecutableParts: ['node_modules', '@anthropic-ai', 'claude-agent-sdk-win32-arm64', 'claude.exe'],
+      platformExecutable: CODEX_WIN32_X64_EXECUTABLE,
     });
 
-    const result = verifyBundledCoraCoreResources({
-      resourcesDir: arm64ResourcesDir,
-      electronPlatformName: 'win32',
-      targetArch: 'arm64',
-    });
-
-    expect(result.missing).toEqual([]);
-  });
-
-  it('reports missing managed node runtime executable', () => {
-    rmSync(join(managedResourcesDir, 'node', 'node-v24.11.0-win-x64', 'node.exe'));
-
-    const result = verifyBundledCoraCoreResources({
+    const result = verifyBundledCoracoreResources({
       resourcesDir,
       electronPlatformName: 'win32',
       targetArch: 'x64',
     });
 
     expect(result.missing).toContain(
-      'bundled-cora-cowork/win32-x64/managed-resources/node/node-v24.11.0-win-x64/node.exe'
+      'bundled-coracore/win32-x64/managed-resources/acp/codex-acp/1.1.2/win32-x64/manifest.json'
     );
   });
 
-  it('reports bundle manifest platform and architecture mismatches', () => {
-    writeJson(join(resourcesDir, 'bundled-cora-cowork', 'win32-x64', 'manifest.json'), {
-      platform: 'darwin',
-      arch: 'arm64',
-    });
+  it('fails when contract node root points to the required version but only a wrong node directory exists', () => {
+    rmSync(join(managedResourcesDir, 'node', 'node-v24.11.0-win-x64'), { recursive: true, force: true });
+    writeFile(join(managedResourcesDir, 'node', 'node-v20.0.0-win-x64', 'node.exe'));
 
-    const result = verifyBundledCoraCoreResources({
-      resourcesDir,
-      electronPlatformName: 'win32',
-      targetArch: 'x64',
-    });
-
-    expect(result.missing).toContain('bundled-cora-cowork/win32-x64/manifest.json<platform:win32>');
-    expect(result.missing).toContain('bundled-cora-cowork/win32-x64/manifest.json<arch:x64>');
-  });
-
-  it('passes for non-Windows node runtime layout', () => {
-    const darwinResourcesDir = join(tmp, 'darwin-resources');
-    const darwinManagedResourcesDir = join(darwinResourcesDir, 'bundled-cora-cowork', 'darwin-arm64', 'managed-resources');
-
-    mkdirSync(join(darwinResourcesDir, 'bundled-cora-cowork', 'darwin-arm64'), { recursive: true });
-    writeFile(join(darwinResourcesDir, 'bundled-cora-cowork', 'darwin-arm64', 'CoraCore'));
-    writeJson(join(darwinResourcesDir, 'bundled-cora-cowork', 'darwin-arm64', 'manifest.json'), {
-      platform: 'darwin',
-      arch: 'arm64',
-    });
-    mkdirSync(join(darwinManagedResourcesDir, 'node', 'node-v24.11.0-darwin-arm64', 'bin'), { recursive: true });
-    writeFile(join(darwinManagedResourcesDir, 'node', 'node-v24.11.0-darwin-arm64', 'bin', 'node'));
-
-    createManagedAcpToolFixture({
-      managedResourcesDir: darwinManagedResourcesDir,
-      toolId: 'codex-acp',
-      version: '0.14.0',
-      runtimeKey: 'darwin-arm64',
-      entrypoint: 'codex-acp',
-    });
-
-    createManagedAcpToolFixture({
-      managedResourcesDir: darwinManagedResourcesDir,
-      toolId: 'claude-agent-acp',
-      version: '0.13.0',
-      runtimeKey: 'darwin-arm64',
-      entrypoint: 'claude-agent-acp',
-    });
-
-    const result = verifyBundledCoraCoreResources({
-      resourcesDir: darwinResourcesDir,
-      electronPlatformName: 'darwin',
-      targetArch: 'arm64',
-    });
-
-    expect(result.missing).toEqual([]);
-    expect(result.checked).toContain(
-      'bundled-cora-cowork/darwin-arm64/managed-resources/node/node-v24.11.0-darwin-arm64/bin/node'
-    );
-  });
-
-  it('reports missing non-Windows managed node runtime executable', () => {
-    const linuxResourcesDir = join(tmp, 'linux-resources');
-    const linuxManagedResourcesDir = join(linuxResourcesDir, 'bundled-cora-cowork', 'linux-x64', 'managed-resources');
-
-    mkdirSync(join(linuxResourcesDir, 'bundled-cora-cowork', 'linux-x64'), { recursive: true });
-    writeFile(join(linuxResourcesDir, 'bundled-cora-cowork', 'linux-x64', 'CoraCore'));
-    writeJson(join(linuxResourcesDir, 'bundled-cora-cowork', 'linux-x64', 'manifest.json'), {
-      platform: 'linux',
-      arch: 'x64',
-    });
-    mkdirSync(join(linuxManagedResourcesDir, 'node', 'node-v24.11.0-linux-x64'), { recursive: true });
-
-    const result = verifyBundledCoraCoreResources({
-      resourcesDir: linuxResourcesDir,
-      electronPlatformName: 'linux',
-      targetArch: 'x64',
-    });
-
-    expect(result.missing).toContain(
-      'bundled-cora-cowork/linux-x64/managed-resources/node/node-v24.11.0-linux-x64/bin/node'
-    );
-  });
-
-  it('reports missing managed ACP manifest', () => {
-    rmSync(join(codexRoot, 'manifest.json'));
-
-    const result = verifyBundledCoraCoreResources({
+    const result = verifyBundledCoracoreResources({
       resourcesDir,
       electronPlatformName: 'win32',
       targetArch: 'x64',
     });
 
     expect(result.missing).toContain(
-      'bundled-cora-cowork/win32-x64/managed-resources/acp/codex-acp/1.1.2/win32-x64/manifest.json'
+      'bundled-coracore/win32-x64/managed-resources/node/node-v24.11.0-win-x64/node.exe'
     );
   });
 
-  it('reports missing managed ACP entrypoint declared by manifest', () => {
-    rmSync(join(codexRoot, CODEX_ENTRYPOINT));
+  it('ignores unknown contract fields but rejects duplicate tool slugs', () => {
+    const manifestPath = join(managedResourcesDir, 'manifest.json');
+    const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
+    manifest.extraDiagnostic = { ignored: true };
+    manifest.acpTools.push({ ...manifest.acpTools[0] });
+    writeJson(manifestPath, manifest);
 
-    const result = verifyBundledCoraCoreResources({
+    const result = verifyBundledCoracoreResources({
       resourcesDir,
       electronPlatformName: 'win32',
       targetArch: 'x64',
     });
 
-    expect(result.missing).toContain(
-      `bundled-cora-cowork/win32-x64/managed-resources/acp/codex-acp/1.1.2/win32-x64/${CODEX_ENTRYPOINT}`
+    expect(result.failures).toContainEqual(
+      expect.objectContaining({
+        component: 'codex-acp',
+        reason: 'duplicate_tool_slug',
+      })
     );
+    expect(result.missing).toContain('bundled-coracore/win32-x64/managed-resources/manifest.json<contract_failure>');
   });
 
-  it('reports missing managed Codex ACP platform executable', () => {
-    rmSync(join(codexRoot, ...CODEX_WIN32_X64_EXECUTABLE_PARTS));
+  it('fails when the contract is invalid JSON', () => {
+    writeFileSync(join(managedResourcesDir, 'manifest.json'), '{');
 
-    const result = verifyBundledCoraCoreResources({
+    const result = verifyBundledCoracoreResources({
       resourcesDir,
       electronPlatformName: 'win32',
       targetArch: 'x64',
     });
 
-    expect(result.missing).toContain(
-      'bundled-cora-cowork/win32-x64/managed-resources/acp/codex-acp/1.1.2/win32-x64/node_modules/@openai/codex-win32-x64/vendor/x86_64-pc-windows-msvc/bin/codex.exe'
+    expect(result.failures).toContainEqual(expect.objectContaining({ reason: 'invalid_json' }));
+  });
+
+  it('fails when the contract schema version is unsupported', () => {
+    const manifestPath = join(managedResourcesDir, 'manifest.json');
+    const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
+    manifest.schemaVersion = 2;
+    writeJson(manifestPath, manifest);
+
+    const result = verifyBundledCoracoreResources({
+      resourcesDir,
+      electronPlatformName: 'win32',
+      targetArch: 'x64',
+    });
+
+    expect(result.failures).toContainEqual(expect.objectContaining({ reason: 'unsupported_schema_version' }));
+  });
+
+  it('fails when required contract fields have invalid types', () => {
+    const manifestPath = join(managedResourcesDir, 'manifest.json');
+    const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
+    manifest.node.root = 42;
+    writeJson(manifestPath, manifest);
+
+    const result = verifyBundledCoracoreResources({
+      resourcesDir,
+      electronPlatformName: 'win32',
+      targetArch: 'x64',
+    });
+
+    expect(result.failures).toContainEqual(expect.objectContaining({ reason: 'invalid_schema' }));
+  });
+
+  it('fails when a tool platform directory does not match the runtime key', () => {
+    const manifestPath = join(managedResourcesDir, 'manifest.json');
+    const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
+    manifest.acpTools[0].platformDirectory = 'linux-x64';
+    writeJson(manifestPath, manifest);
+
+    const result = verifyBundledCoracoreResources({
+      resourcesDir,
+      electronPlatformName: 'win32',
+      targetArch: 'x64',
+    });
+
+    expect(result.failures).toContainEqual(expect.objectContaining({ reason: 'runtime_key_mismatch' }));
+  });
+
+  it('fails when a local tool manifest entrypoint disagrees with the contract', () => {
+    writeJson(join(codexRoot, 'manifest.json'), {
+      entrypoint: 'node_modules/@agentclientprotocol/codex-acp/dist/other.js',
+      path_entries: ['node_modules/.bin'],
+    });
+
+    const result = verifyBundledCoracoreResources({
+      resourcesDir,
+      electronPlatformName: 'win32',
+      targetArch: 'x64',
+    });
+
+    expect(result.failures).toContainEqual(
+      expect.objectContaining({
+        component: 'codex-acp',
+        reason: 'manifest_entrypoint_mismatch',
+      })
     );
   });
 });
-
-

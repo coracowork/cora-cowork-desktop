@@ -98,7 +98,11 @@
       "sendDiagnostics": "发送诊断报告",
       "diagnosticsSent": "诊断报告已发送",
       "diagnosticsReportSuccess": "诊断报告已发送",
-      "diagnosticsReportFailed": "诊断报告发送失败"
+      "diagnosticsReportFailed": "诊断报告发送失败",
+      "restoreFromBackup": "从备份恢复",
+      "restoreFailed": "从备份恢复失败",
+      "resetDatabase": "重置数据",
+      "resetFailed": "重置数据失败"
     },
     "localDataRepair": {
       "title": "本地数据修复失败",

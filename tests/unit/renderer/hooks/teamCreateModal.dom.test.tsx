@@ -34,6 +34,15 @@ vi.mock('react-i18next', () => ({
   }),
 }));
 
+vi.mock('@/renderer/hooks/context/ThemeContext', () => ({
+  ThemeProvider: ({ children }: { children: React.ReactNode }) => <>{children}</>,
+  useThemeContext: () => ({
+    theme: 'light',
+    setTheme: vi.fn(),
+    resolvedTheme: 'light',
+  }),
+}));
+
 vi.mock('@renderer/hooks/context/AuthContext', () => ({
   useAuth: () => ({ user: { id: 'user-1' } }),
 }));
