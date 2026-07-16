@@ -23,7 +23,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # Windows x64
+          # Windows x64 (funciona no CI)
           - os: windows-latest
             platform: win
             arch: x64
@@ -32,16 +32,6 @@ jobs:
               out/CoraCowork-*.exe
               dist/CoraCowork-*.exe
             output_name: CoraCowork-Windows-x64
-            
-          # Windows ARM64
-          - os: windows-latest
-            platform: win
-            arch: arm64
-            script: build-win:arm64
-            artifact_path: |
-              out/CoraCowork-*.exe
-              dist/CoraCowork-*.exe
-            output_name: CoraCowork-Windows-arm64
             
           # macOS x64 (Intel)
           - os: macos-latest
@@ -53,7 +43,7 @@ jobs:
               out/CoraCowork-*.zip
             output_name: CoraCowork-macOS-x64
             
-          # macOS ARM64 (Apple Silicon)
+          # macOS ARM64 (Apple Silicon) - funciona no macos-latest
           - os: macos-latest
             platform: mac
             arch: arm64
@@ -72,16 +62,6 @@ jobs:
               out/CoraCowork-*.deb
               out/CoraCowork-*.AppImage
             output_name: CoraCowork-Linux-x64
-            
-          # Linux ARM64
-          - os: ubuntu-latest
-            platform: linux
-            arch: arm64
-            script: build-deb
-            artifact_path: |
-              out/CoraCowork-*.deb
-              out/CoraCowork-*.AppImage
-            output_name: CoraCowork-Linux-arm64
 
     steps:
       - name: Checkout code
@@ -103,10 +83,6 @@ jobs:
         run: echo "NODE_OPTIONS=--max-old-space-size=8192" >> $GITHUB_ENV
         shell: bash
 
-      - name: Install dependencies
-        run: |
-          bun install || true
-          bun add @office-ai/platform || true
 
       - name: Build ${{ matrix.platform }} ${{ matrix.arch }}
         run: bun run ${{ matrix.script }}
