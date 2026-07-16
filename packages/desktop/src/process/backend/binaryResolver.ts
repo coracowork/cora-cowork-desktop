@@ -11,7 +11,7 @@ import { existsSync, readdirSync } from 'node:fs';
 import { join } from 'node:path';
 import { execSync } from 'node:child_process';
 
-const BINARY_NAME = 'cora-cowork-app';
+const BINARY_NAME = 'coracore';
 const MAX_DIR_ENTRIES = 20;
 const MAX_LOOKUP_TEXT_LENGTH = 1000;
 
@@ -97,7 +97,7 @@ export function resolveBinaryPath(): string {
 
 /**
  * Check bundled binary in resources directory (packaged app).
- * Layout: bundled-coracore/{platform}-{arch}/cora-cowork-app[.exe]
+ * Layout: bundled-coracore/{platform}-{arch}/coracore[.exe]
  */
 function bundledPath(
   runtimeKey: string,

@@ -58,4 +58,4 @@
 
 <!-- Commits and PR titles must NOT contain AI signatures (Co-Authored-By, "Generated with", etc.). -->
 
-**Thank you for contributing to CoraUi! 🎉**
+**Thank you for contributing to CoraCowork! 🎉**
