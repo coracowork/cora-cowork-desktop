@@ -1,0 +1,188 @@
+﻿# .github/workflows/build.yml
+name: Build and Release
+
+on:
+  push:
+    branches: [ main, master ]
+    tags:
+      - 'v*'
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+    inputs:
+      platform:
+        description: 'Platform to build'
+        required: false
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - windows
+          - mac
+          - linux
+
+permissions:
+  contents: write
+  packages: write
+
+env:
+  NODE_VERSION: '22'
+  BUN_VERSION: '1.2.14'
+
+jobs:
+  build:
+    name: Build ${{ matrix.platform }} (${{ matrix.arch }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: windows-latest
+            platform: win
+            arch: x64
+            script: dist:win
+            output_name: CoraCowork-Windows-x64
+            artifact_path: |
+              out/CoraCowork-*.exe
+              dist/CoraCowork-*.exe
+            
+          - os: macos-latest
+            platform: mac
+            arch: x64
+            script: dist:mac
+            output_name: CoraCowork-macOS-x64
+            artifact_path: |
+              out/CoraCowork-*.dmg
+              out/CoraCowork-*.zip
+            
+          - os: macos-latest
+            platform: mac
+            arch: arm64
+            script: build-mac:arm64
+            output_name: CoraCowork-macOS-arm64
+            artifact_path: |
+              out/CoraCowork-*.dmg
+              out/CoraCowork-*.zip
+            
+          - os: ubuntu-latest
+            platform: linux
+            arch: x64
+            script: dist:linux
+            output_name: CoraCowork-Linux-x64
+            artifact_path: |
+              out/CoraCowork-*.deb
+              out/CoraCowork-*.AppImage
+              out/CoraCowork-*.tar.gz
+            
+          - os: ubuntu-latest
+            platform: linux
+            arch: arm64
+            script: dist:linux
+            output_name: CoraCowork-Linux-arm64
+            artifact_path: |
+              out/CoraCowork-*.deb
+              out/CoraCowork-*.AppImage
+              out/CoraCowork-*.tar.gz
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: recursive
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: ${{ env.BUN_VERSION }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'bun'
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build web-host
+        run: bun run build:web-host
+
+      - name: Build ${{ matrix.platform }} ${{ matrix.arch }}
+        run: bun run ${{ matrix.script }} -- --arch ${{ matrix.arch }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
+          CORA_COWORK_BACKEND_VERSION: v0.2.5
+          ELECTRON_BUILDER_COMPRESSION_LEVEL: 9
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.output_name }}
+          path: ${{ matrix.artifact_path }}
+          if-no-files-found: warn
+
+      - name: Upload to release (on tag)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ matrix.artifact_path }}
+          fail_on_unmatched_files: false
+          generate_release_notes: true
+          draft: false
+          prerelease: ${{ contains(github.ref_name, '-beta') || contains(github.ref_name, '-rc') }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish-release:
+    name: Publish Release
+    needs: build
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+          merge-multiple: true
+
+      - name: List artifacts
+        run: ls -la artifacts/
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: artifacts/*
+          generate_release_notes: true
+          draft: false
+          prerelease: ${{ contains(github.ref_name, '-beta') || contains(github.ref_name, '-rc') }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  check:
+    name: Code Quality
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: ${{ env.BUN_VERSION }}
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Lint
+        run: bun run lint
+
+      - name: Format check
+        run: bun run format:check
+
+      - name: Run tests
+        run: bun run test

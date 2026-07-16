@@ -1,0 +1,6 @@
+appId: com.coracowork.desktop
+
+productName: CoraCowork
+
+directories:
+  output: dist
