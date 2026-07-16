@@ -52,7 +52,7 @@ export type BackendInstallDiagnostics = {
 };
 
 const MANIFEST_FILE_NAME = 'manifest.json';
-const BUNDLED_CoraCore_DIR = 'bundled-cora-cowork';
+const BUNDLED_CoraCore_DIR = 'bundled-coracore';
 
 function getString(value: unknown): string | undefined {
   return typeof value === 'string' && value.length > 0 ? value : undefined;

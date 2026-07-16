@@ -15,7 +15,7 @@
  *   CORA_COWORK_LOG_DIR        : override log dir (default <dataDir>/logs)
  *   CORA_COWORK_STATIC_DIR     : override static dir (default out/renderer)
  *   CORA_COWORK_BACKEND_BIN    : absolute path to CoraCore binary (else PATH lookup)
- *   CORA_COWORK_BACKEND_BUNDLED_DIR : dir containing bundled-cora-cowork/<plat-arch>/binary
+ *   CORA_COWORK_BACKEND_BUNDLED_DIR : dir containing bundled-coracore/<plat-arch>/binary
  *   CORA_COWORK_OPEN_BROWSER   : "1"/"true" to force open, "0"/"false" to disable
  */
 

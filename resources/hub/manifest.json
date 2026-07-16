@@ -1,0 +1,49 @@
+{
+  "tag": "dist-latest",
+  "generatedAt": "2026-07-16T18:55:19.763Z",
+  "indexUrl": "https://raw.githubusercontent.com/coracowork/CoraHub/dist-latest/index.json",
+  "extensions": [
+    {
+      "name": "coraext-auggie",
+      "file": "coraext-auggie.zip",
+      "size": 3105,
+      "url": "https://raw.githubusercontent.com/coracowork/CoraHub/dist-latest/coraext-auggie.zip"
+    },
+    {
+      "name": "coraext-claude",
+      "file": "coraext-claude.zip",
+      "size": 2685,
+      "url": "https://raw.githubusercontent.com/coracowork/CoraHub/dist-latest/coraext-claude.zip"
+    },
+    {
+      "name": "coraext-codebuddy",
+      "file": "coraext-codebuddy.zip",
+      "size": 3553,
+      "url": "https://raw.githubusercontent.com/coracowork/CoraHub/dist-latest/coraext-codebuddy.zip"
+    },
+    {
+      "name": "coraext-codex",
+      "file": "coraext-codex.zip",
+      "size": 2201,
+      "url": "https://raw.githubusercontent.com/coracowork/CoraHub/dist-latest/coraext-codex.zip"
+    },
+    {
+      "name": "coraext-goose",
+      "file": "coraext-goose.zip",
+      "size": 3693,
+      "url": "https://raw.githubusercontent.com/coracowork/CoraHub/dist-latest/coraext-goose.zip"
+    },
+    {
+      "name": "coraext-opencode",
+      "file": "coraext-opencode.zip",
+      "size": 2515,
+      "url": "https://raw.githubusercontent.com/coracowork/CoraHub/dist-latest/coraext-opencode.zip"
+    },
+    {
+      "name": "coraext-qwen",
+      "file": "coraext-qwen.zip",
+      "size": 2777,
+      "url": "https://raw.githubusercontent.com/coracowork/CoraHub/dist-latest/coraext-qwen.zip"
+    }
+  ]
+}

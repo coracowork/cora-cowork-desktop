@@ -17,7 +17,7 @@ function verifyBundledResourcesStandalone(resourcesDir, electronPlatformName, ta
       return { runtimeKey, checked, missing, failures };
     }
 
-    const baseDir = path.join(resourcesDir, 'bundled-cora-cowork', runtimeKey);
+    const baseDir = path.join(resourcesDir, 'bundled-coracore', runtimeKey);
     
     if (!fs.existsSync(baseDir)) {
       fs.mkdirSync(baseDir, { recursive: true });
@@ -97,7 +97,7 @@ module.exports = async function afterPack(context) {
     fs.mkdirSync(resourcesDir, { recursive: true });
   }
 
-  const requiredDirs = ['bundled-cora-cowork', 'bundled-coracore', 'hub', 'pet-states'];
+  const requiredDirs = ['bundled-coracore', 'bundled-coracore', 'hub', 'pet-states'];
 
   for (var i = 0; i < requiredDirs.length; i++) {
     var dir = requiredDirs[i];

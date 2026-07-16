@@ -34,8 +34,8 @@ cd "$TEMP_DIR/cora-cowork-web"
 #   ├── cora-cowork-web           ← single compiled executable (no bin/, no dist/, no node_modules)
 #   ├── package.json         ← for version lookup
 #   ├── static/              ← SPA assets
-#   └── bundled-cora-cowork/<plat-arch>/...
-for dir in static bundled-cora-cowork; do
+#   └── bundled-coracore/<plat-arch>/...
+for dir in static bundled-coracore; do
   if [ ! -d "$dir" ]; then
     echo "❌ Missing $dir directory"
     exit 1
@@ -71,7 +71,7 @@ echo "✓ Version: $VERSION"
 # 5. Test backend binary
 echo ""
 echo "5. Checking backend binary..."
-BACKEND_DIR="bundled-cora-cowork/$(uname -s | tr '[:upper:]' '[:lower:]')-$(uname -m | sed 's/aarch64/arm64/; s/x86_64/x64/')"
+BACKEND_DIR="bundled-coracore/$(uname -s | tr '[:upper:]' '[:lower:]')-$(uname -m | sed 's/aarch64/arm64/; s/x86_64/x64/')"
 BACKEND_BINARY="$BACKEND_DIR/CoraCore"
 if [ ! -x "$BACKEND_BINARY" ]; then
   echo "❌ Backend binary missing or not executable: $BACKEND_BINARY"

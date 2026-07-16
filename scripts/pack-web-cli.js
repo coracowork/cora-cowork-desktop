@@ -23,7 +23,7 @@ const tarballPath = path.join(distDir, tarballName);
 
 console.log(`Packing web-cli for ${platform}-${arch}...`);
 
-// 1. Prepare bundled-cora-cowork
+// 1. Prepare bundled-coracore
 console.log('1. Preparing CoraCore...');
 prepareCoracore({
   projectRoot,
@@ -78,8 +78,8 @@ if (fs.existsSync(rendererOutDir)) {
 }
 
 // 7. Copy bundled-cora-cowork
-const backendSrc = path.join(projectRoot, 'resources/bundled-cora-cowork', `${platform}-${arch}`);
-const backendDest = path.join(tarballContentDir, 'bundled-cora-cowork', `${platform}-${arch}`);
+const backendSrc = path.join(projectRoot, 'resources/bundled-coracore', `${platform}-${arch}`);
+const backendDest = path.join(tarballContentDir, 'bundled-coracore', `${platform}-${arch}`);
 if (!fs.existsSync(backendSrc)) {
   throw new Error(`Backend bundle dir missing at ${backendSrc}. Ensure prepareCoracore succeeded.`);
 }

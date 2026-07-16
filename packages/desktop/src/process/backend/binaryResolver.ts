@@ -97,7 +97,7 @@ export function resolveBinaryPath(): string {
 
 /**
  * Check bundled binary in resources directory (packaged app).
- * Layout: bundled-cora-cowork/{platform}-{arch}/cora-cowork-app[.exe]
+ * Layout: bundled-coracore/{platform}-{arch}/cora-cowork-app[.exe]
  */
 function bundledPath(
   runtimeKey: string,
@@ -108,7 +108,7 @@ function bundledPath(
   if (!resourcesPath) return null;
   diagnostics.resourcesPath = resourcesPath;
 
-  const bundledDir = join(resourcesPath, 'bundled-cora-cowork');
+  const bundledDir = join(resourcesPath, 'bundled-coracore');
   const runtimeDir = join(bundledDir, runtimeKey);
   const candidate = join(runtimeDir, binaryName);
   diagnostics.checkedBundledPath = candidate;
@@ -136,7 +136,7 @@ function projectDevPath(
   const projectResourcesPath = join(__dirname, '..', '..', 'resources');
   diagnostics.projectDevResourcesPath = projectResourcesPath;
 
-  const bundledDir = join(projectResourcesPath, 'bundled-cora-cowork');
+  const bundledDir = join(projectResourcesPath, 'bundled-coracore');
   const runtimeDir = join(bundledDir, runtimeKey);
   const candidate = join(runtimeDir, binaryName);
   diagnostics.checkedDevPath = candidate;

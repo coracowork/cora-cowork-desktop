@@ -121,11 +121,11 @@ function classifyIncompleteInstallation(details: ErrorWithDetails['details']): B
   const hasPackagedApp = resourcesDirEntries.some((entry) => PACKAGED_APP_MARKER_ENTRIES.has(entry));
   if (!hasPackagedApp) return undefined;
 
-  const missingBundledCoraCoworkDir = !resourcesDirEntries.includes('bundled-cora-cowork/');
+  const missingBundledCoraCoworkDir = !resourcesDirEntries.includes('bundled-coracore/');
   const missingRuntimeDir = details.runtimeDirExists === false && typeof details.runtimeKey === 'string';
-  const missingResources = missingBundledCoraCoworkDir ? ['bundled-cora-cowork/'] : [];
+  const missingResources = missingBundledCoraCoworkDir ? ['bundled-coracore/'] : [];
   if (details.runtimeDirExists === false && typeof details.runtimeKey === 'string') {
-    missingResources.push(`bundled-cora-cowork/${details.runtimeKey}/`);
+    missingResources.push(`bundled-coracore/${details.runtimeKey}/`);
   }
   const runtimeDirEntries = getStringArray(details.runtimeDirEntries);
   const missingManagedResourcesDir =
@@ -134,7 +134,7 @@ function classifyIncompleteInstallation(details: ErrorWithDetails['details']): B
     runtimeDirEntries !== undefined &&
     !runtimeDirEntries.includes('managed-resources/');
   if (missingManagedResourcesDir && typeof details.runtimeKey === 'string') {
-    missingResources.push(`bundled-cora-cowork/${details.runtimeKey}/managed-resources/`);
+    missingResources.push(`bundled-coracore/${details.runtimeKey}/managed-resources/`);
   }
   const missingRuntimeBinary =
     details.runtimeDirExists === true &&
@@ -143,7 +143,7 @@ function classifyIncompleteInstallation(details: ErrorWithDetails['details']): B
     runtimeDirEntries !== undefined &&
     !runtimeDirEntries.includes(details.binaryName);
   if (missingRuntimeBinary && typeof details.runtimeKey === 'string' && typeof details.binaryName === 'string') {
-    missingResources.push(`bundled-cora-cowork/${details.runtimeKey}/${details.binaryName}`);
+    missingResources.push(`bundled-coracore/${details.runtimeKey}/${details.binaryName}`);
   }
 
   if (missingResources.length === 0) return undefined;

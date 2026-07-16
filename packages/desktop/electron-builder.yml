@@ -112,8 +112,8 @@ extraResources:
   - from: resources/app.png
     to: app.png
   # CoraCore binary (pre-compiled per platform/arch, ships its own bun runtime)
-  - from: resources/bundled-cora-cowork
-    to: bundled-cora-cowork
+  - from: resources/bundled-coracore
+    to: bundled-coracore
   - from: resources/hub
     to: hub
 win:

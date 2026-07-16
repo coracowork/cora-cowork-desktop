@@ -12,7 +12,7 @@ import { ensureAdminPassword } from './ensureAdminPassword.js';
 //   cora-cowork-web/
 //   ├── cora-cowork-web              ← bun-compiled standalone binary (process.execPath)
 //   ├── package.json             ← for runtime version lookup
-//   ├── bundled-cora-cowork/<plat-arch>/CoraCore[.exe]
+//   ├── bundled-coracore/<plat-arch>/coracore[.exe]
 //   └── static/                  ← SPA assets
 //
 // Under `bun build --compile`, import.meta.url resolves to a virtual /$bunfs/
@@ -79,7 +79,7 @@ function resolveBackendBinary(flags: Map<string, string | true>): string {
   const envOverride = process.env.CORA_COWORK_BACKEND_BIN;
   if (envOverride) return path.resolve(envOverride);
   const platArch = `${process.platform}-${process.arch}`;
-  const bundled = path.join(cliRoot, 'bundled-cora-cowork', platArch, BACKEND_BINARY);
+  const bundled = path.join(cliRoot, 'bundled-coracore', platArch, BACKEND_BINARY);
   return bundled;
 }
 

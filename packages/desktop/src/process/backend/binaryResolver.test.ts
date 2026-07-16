@@ -42,14 +42,14 @@ describe('resolveBinaryPath', () => {
     const resourcesPath = '/app/resources';
     const runtimeKey = `${process.platform}-${process.arch}`;
     const binaryName = process.platform === 'win32' ? 'coracore.exe' : 'coracore.exe';
-    const bundledDir = join(resourcesPath, 'bundled-cora-cowork');
+    const bundledDir = join(resourcesPath, 'bundled-coracore');
     const runtimeDir = join(bundledDir, runtimeKey);
     const checkedBundledPath = join(runtimeDir, binaryName);
 
     setResourcesPath(resourcesPath);
     vi.mocked(existsSync).mockReturnValue(false);
     vi.mocked(readdirSync).mockImplementation((path) => {
-      if (path === resourcesPath) return [dirEntry('bundled-cora-cowork', true)];
+      if (path === resourcesPath) return [dirEntry('bundled-coracore', true)];
       if (path === runtimeDir) return [dirEntry('manifest.json')];
       return [] as ReturnType<typeof readdirSync>;
     });
@@ -71,9 +71,9 @@ describe('resolveBinaryPath', () => {
           checkedBundledPath,
           bundledDirExists: false,
           runtimeDirExists: false,
-          resourcesDirEntries: ['bundled-cora-cowork/'],
+          resourcesDirEntries: ['bundled-coracore/'],
           runtimeDirEntries: ['manifest.json'],
-          pathLookupCommand: process.platform === 'win32' ? 'where cora-cowork-app' : 'which cora-cowork-app',
+          pathLookupCommand: process.platform === 'win32' ? 'where coracore' : 'which coracore',
           pathLookupError: expect.stringContaining('not found on PATH'),
         }),
       });
@@ -93,7 +93,7 @@ describe('resolveBinaryPath', () => {
     existsMock.mockImplementation((path) => {
       const p = String(path);
       // Only the project dev path has the binary
-      if (p.endsWith(join('bundled-cora-cowork', runtimeKey, binaryName))) return true;
+      if (p.endsWith(join('bundled-coracore', runtimeKey, binaryName))) return true;
       // Project-level resources dir exists
       if (p.endsWith(join('resources'))) return true;
       return false;
@@ -103,7 +103,7 @@ describe('resolveBinaryPath', () => {
     const result = resolveBinaryPath();
     expect(result).toBeTruthy();
     // The project dev path candidate should end with the runtime dir + binary
-    expect(result).toMatch(/bundled-cora-cowork[\\/]win/);
+    expect(result).toMatch(/bundled-coracore[\\/]win/);
     expect(result).toMatch(/cora-cowork-app/);
   });
 
@@ -121,7 +121,7 @@ describe('resolveBinaryPath', () => {
     const result = resolveBinaryPath();
     expect(result).toBeTruthy();
     // Should contain the runtime dir + binary name (from packaged resourcesPath)
-    expect(result).toContain(join('bundled-cora-cowork', runtimeKey, binaryName));
+    expect(result).toContain(join('bundled-coracore', runtimeKey, binaryName));
     // The first search (bundled) hits, so result should start with resourcesPath
     // Normalize both to forward slashes for comparison (Windows uses backslashes)
     expect(result.replace(/\\/g, '/')).toMatch(
@@ -133,7 +133,7 @@ describe('resolveBinaryPath', () => {
     const resourcesPath = '/app/resources';
     setResourcesPath(resourcesPath);
 
-    const systemPath = '/usr/local/bin/cora-cowork-app';
+    const systemPath = '/usr/local/bin/coracore';
     const existsMock = vi.mocked(existsSync);
     existsMock.mockImplementation((path) => {
       // bundled and dev paths → not found, system path → found
@@ -164,7 +164,7 @@ describe('resolveBinaryPath', () => {
       expect(error).toMatchObject({
         name: 'BackendBinaryResolveError',
         diagnostics: expect.objectContaining({
-          checkedDevPath: expect.stringContaining('bundled-cora-cowork'),
+          checkedDevPath: expect.stringContaining('bundled-coracore'),
           devResourcesDirExists: false,
         }),
       });
