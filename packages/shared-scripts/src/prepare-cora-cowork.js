@@ -203,7 +203,7 @@ function getAssetName(platform, arch, tag) {
   const normalizedPlatform = platformMap[platform];
   if (!normalizedArch || !normalizedPlatform) return null;
   const ext = platform === 'win32' ? '.zip' : '.tar.gz';
-  return `coracore-${tag}-${normalizedArch}-${normalizedPlatform}${ext}`;
+  return `CoraCore-${tag}-${normalizedArch}-${normalizedPlatform}${ext}`;
 }
 
 function getDownloadUrl(assetName, tag) {
@@ -259,7 +259,7 @@ function findCoracoreArchiveInDir(dir) {
     const fullPath = path.join(dir, entry.name);
     if (
       entry.isFile() &&
-      entry.name.startsWith('coracore-') &&
+      entry.name.startsWith('CoraCore-') &&
       (entry.name.endsWith('.zip') || entry.name.endsWith('.tar.gz'))
     ) {
       return fullPath;
