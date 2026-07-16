@@ -23,7 +23,7 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # Windows x64 (funciona no CI)
+          # Windows x64
           - os: windows-latest
             platform: win
             arch: x64
@@ -43,7 +43,7 @@ jobs:
               out/CoraCowork-*.zip
             output_name: CoraCowork-macOS-x64
             
-          # macOS ARM64 (Apple Silicon) - funciona no macos-latest
+          # macOS ARM64 (Apple Silicon)
           - os: macos-latest
             platform: mac
             arch: arm64
@@ -62,6 +62,16 @@ jobs:
               out/CoraCowork-*.deb
               out/CoraCowork-*.AppImage
             output_name: CoraCowork-Linux-x64
+            
+          # Linux ARM64 (runner ARM64)
+          - os: ubuntu-24.04-arm
+            platform: linux
+            arch: arm64
+            script: build-deb
+            artifact_path: |
+              out/CoraCowork-*.deb
+              out/CoraCowork-*.AppImage
+            output_name: CoraCowork-Linux-arm64
 
     steps:
       - name: Checkout code
@@ -83,6 +93,19 @@ jobs:
         run: echo "NODE_OPTIONS=--max-old-space-size=8192" >> $GITHUB_ENV
         shell: bash
 
+      - name: Install dependencies
+        run: |
+          bun install || true
+          bun add @office-ai/platform || true
+
+      - name: Fix CoraCore asset naming (if needed)
+        run: |
+          # Garantir que o prepare-cora-cowork.js use CoraCore- no nome do asset
+          if grep -q "coracore-" packages/shared-scripts/src/prepare-cora-cowork.js; then
+            sed -i 's/coracore-/CoraCore-/g' packages/shared-scripts/src/prepare-cora-cowork.js
+            sed -i "s/entry\.name\.startsWith('coracore-')/entry.name.startsWith('CoraCore-')/g" packages/shared-scripts/src/prepare-cora-cowork.js
+          fi
+        shell: bash
 
       - name: Build ${{ matrix.platform }} ${{ matrix.arch }}
         run: bun run ${{ matrix.script }}
