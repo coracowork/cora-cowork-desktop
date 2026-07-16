@@ -43,7 +43,7 @@ jobs:
               dist/CoraCowork-*.exe
             output_name: CoraCowork-Windows-arm64
             
-          # macOS x64 (Intel)
+          # macOS x64
           - os: macos-latest
             platform: mac
             arch: x64
@@ -53,7 +53,7 @@ jobs:
               out/CoraCowork-*.zip
             output_name: CoraCowork-macOS-x64
             
-          # macOS ARM64 (Apple Silicon)
+          # macOS ARM64
           - os: macos-latest
             platform: mac
             arch: arm64
@@ -108,13 +108,10 @@ jobs:
           bun install || true
           bun add @office-ai/platform || true
 
-      - name: Patch prepare script for Windows ARM64
+      - name: Patch prepare for Windows ARM64
         if: matrix.platform == 'win' && matrix.arch == 'arm64'
+        run: node scripts/patch-prepare-arm64.js
         shell: bash
-        run: |
-          # Adicionar patch para pular prepareManagedResources no Windows ARM64
-          echo "Patching prepare-cora-cowork.js for Windows ARM64..."
-          # Isso será feito via sed ou podemos criar um arquivo de patch
 
       - name: Build ${{ matrix.platform }} ${{ matrix.arch }}
         run: bun run ${{ matrix.script }}
@@ -124,7 +121,6 @@ jobs:
           ELECTRON_BUILDER_COMPRESSION_LEVEL: 9
           CORA_COWORK_BACKEND_VERSION: v0.2.5
           NODE_OPTIONS: --max-old-space-size=8192
-          # Forçar o build a aceitar que não pode executar ARM64 em x64
           CORA_COWORK_SKIP_ARM64_EXEC: true
 
       - name: Upload artifacts
