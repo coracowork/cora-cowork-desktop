@@ -14,7 +14,7 @@ On Windows, install the Rust MSVC toolchain. If Rust compilation fails because n
 
 CoraCowork development uses two repositories:
 
-- **CoraCore** (`https://github.com/iOfficeAI/CoraCore.git`) builds the local backend binary: `CoraCore` on macOS/Linux and `cora-cowork-app.exe` on Windows.
+- **CoraCore** (`https://github.com/iOfficeAI/CoraCore.git`) builds the local backend binary: `CoraCore` on macOS/Linux and `coracore.exe` on Windows.
 - **CoraCowork** (`https://github.com/coracowork/cora-cowork-desktop.git`) starts the Electron desktop app and launches the backend binary automatically.
 
 Keep the repositories side by side when possible:

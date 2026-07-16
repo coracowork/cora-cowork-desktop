@@ -85,7 +85,7 @@ bun install
 bun run start
 ```
 
-O Electron inicia o `cora-cowork-app.exe` automaticamente.
+O Electron inicia o `coracore.exe` automaticamente.
 
 ---
 
@@ -117,7 +117,7 @@ bun run start
 | --------------------------------------- | -------------------------------------------------------------------------------------- |
 | Build backend (release)                 | `cargo +stable-x86_64-pc-windows-gnu build --release`                                  |
 | Build backend (check rápido)            | `cargo +stable-x86_64-pc-windows-gnu check --release`                                  |
-| Rodar backend standalone                | `.\target\release\cora-cowork-app.exe --data-dir data --local`                         |
+| Rodar backend standalone                | `.\target\release\coracore.exe --data-dir data --local`                         |
 | Rodar testes do backend                 | `cargo +stable-x86_64-pc-windows-gnu test`                                             |
 | Iniciar frontend dev                    | `bun run start`                                                                        |
 | Iniciar frontend WebUI                  | `bun run webui`                                                                        |

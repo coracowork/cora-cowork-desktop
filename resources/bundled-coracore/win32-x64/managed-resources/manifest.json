@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "runtimeKey": "win32-x64",
+  "node": {
+    "version": "24.11.0",
+    "root": "node/node-v24.11.0-win-x64",
+    "executable": "node.exe"
+  },
+  "acpTools": [
+    {
+      "slug": "codex-acp",
+      "version": "1.1.2",
+      "packageName": "@agentclientprotocol/codex-acp",
+      "root": "acp/codex-acp/1.1.2/win32-x64",
+      "platformDirectory": "win32-x64",
+      "manifest": "manifest.json",
+      "entrypoint": "node_modules/@agentclientprotocol/codex-acp/dist/index.js",
+      "pathEntries": [
+        "node_modules/.bin"
+      ],
+      "requiredFiles": [
+        "package.json",
+        "package-lock.json"
+      ],
+      "requiredDirectories": [
+        "node_modules"
+      ],
+      "platformExecutable": "node_modules/@openai/codex-win32-x64/vendor/x86_64-pc-windows-msvc/bin/codex.exe"
+    },
+    {
+      "slug": "claude-agent-acp",
+      "version": "0.58.1",
+      "packageName": "@agentclientprotocol/claude-agent-acp",
+      "root": "acp/claude-agent-acp/0.58.1/win32-x64",
+      "platformDirectory": "win32-x64",
+      "manifest": "manifest.json",
+      "entrypoint": "node_modules/@agentclientprotocol/claude-agent-acp/dist/index.js",
+      "pathEntries": [
+        "node_modules/.bin"
+      ],
+      "requiredFiles": [
+        "package.json",
+        "package-lock.json"
+      ],
+      "requiredDirectories": [
+        "node_modules"
+      ],
+      "platformExecutable": "node_modules/@anthropic-ai/claude-agent-sdk-win32-x64/claude.exe"
+    }
+  ]
+}

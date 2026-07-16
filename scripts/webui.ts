@@ -33,7 +33,7 @@ const DEFAULT_PORT = (() => {
   if (process.env.CORA_COWORK_MULTI_INSTANCE === '1') return 25810;
   return 25809;
 })();
-const BACKEND_BINARY = process.platform === 'win32' ? 'cora-cowork-app.exe' : 'CoraCore';
+const BACKEND_BINARY = process.platform === 'win32' ? 'coracore.exe' : 'CoraCore';
 
 const __filename = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(__filename), '..');

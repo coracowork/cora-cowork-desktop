@@ -862,7 +862,19 @@ try {
     cleanupWindowsPackOutput();
   }
 
-  const builderCommand = `bunx electron-builder --config packages/desktop/electron-builder.yml ${builderArgs} ${archFlag} ${nsisInclude} ${publishArg}`;
+  // Build the command, ensuring we don't have empty = signs
+let commandParts = ['bunx electron-builder', '--config packages/desktop/electron-builder.yml'];
+if (builderArgs && builderArgs.trim()) {
+  commandParts.push(builderArgs.trim());
+}
+if (archFlag && archFlag.trim()) {
+  commandParts.push(archFlag.trim());
+}
+if (nsisInclude && nsisInclude.trim()) {
+  commandParts.push(nsisInclude.trim());
+}
+commandParts.push(publishArg);
+const builderCommand = commandParts.join(' ');
   try {
     buildWithDmgRetry(builderCommand, targetArch);
   } catch (error) {

@@ -1,0 +1,14 @@
+{
+  "platform": "win32",
+  "arch": "x64",
+  "version": "v0.2.5",
+  "generatedAt": "2026-07-16T18:23:37.537Z",
+  "sourceType": "download",
+  "source": {
+    "url": "https://github.com/coracowork/CoraCore/releases/download/v0.2.5/coracore-v0.2.5-x86_64-pc-windows-msvc.zip"
+  },
+  "files": [
+    "coracore.exe",
+    "managed-resources/"
+  ]
+}

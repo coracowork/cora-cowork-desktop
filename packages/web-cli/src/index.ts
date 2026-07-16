@@ -49,7 +49,7 @@ const isPackaged = (() => {
   return exeName === 'cora-cowork-web' || exeName === 'cora-cowork-web.exe';
 })();
 
-const BACKEND_BINARY = process.platform === 'win32' ? 'cora-cowork-app.exe' : 'CoraCore';
+const BACKEND_BINARY = process.platform === 'win32' ? 'coracore.exe' : 'CoraCore';
 const DEFAULT_PORT = 25808;
 const RESET_COMMAND = isPackaged ? 'cora-cowork-web resetpass' : 'bun run resetpass';
 

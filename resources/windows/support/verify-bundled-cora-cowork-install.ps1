@@ -22,7 +22,7 @@ function Write-VerifyLog {
     arch = $RuntimeKey
     updated = $false
     instDir = $InstallDir
-    event = 'verify-bundled-coracore'
+    event = 'verify-bundled-cora-cowork'
     message = $Message
   }
   Add-Content -LiteralPath $LogPath -Encoding UTF8 -Value ($payload | ConvertTo-Json -Compress -Depth 8)
@@ -396,16 +396,16 @@ function Test-BundledResourcesOnce {
 for ($attempt = 1; $attempt -le 5; $attempt++) {
   $failures = @(Test-BundledResourcesOnce)
   if ($failures.Count -eq 0) {
-    Write-VerifyLog "verify-bundled-coracore result=ok runtime=$RuntimeKey attempts=$attempt"
+    Write-VerifyLog "verify-bundled-cora-cowork result=ok runtime=$RuntimeKey attempts=$attempt"
     exit 0
   }
 
   $summary = ($failures | ConvertTo-Json -Compress -Depth 5)
   if ($attempt -lt 5) {
-    Write-VerifyLog "verify-bundled-coracore result=retry classification=resource_pending_landing runtime=$RuntimeKey attempt=$attempt failures=$summary"
+    Write-VerifyLog "verify-bundled-cora-cowork result=retry classification=resource_pending_landing runtime=$RuntimeKey attempt=$attempt failures=$summary"
     Start-Sleep -Milliseconds 500
   } else {
-    Write-VerifyLog "verify-bundled-coracore result=fail runtime=$RuntimeKey failures=$summary"
+    Write-VerifyLog "verify-bundled-cora-cowork result=fail runtime=$RuntimeKey failures=$summary"
   }
 }
 

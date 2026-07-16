@@ -82,7 +82,7 @@ try {
       'Uninstall CoraCowork.exe',
       'resources\app.asar',
       'resources\app-update.yml',
-      'resources\bundled-cora-cowork\win32-x64\cora-cowork-app.exe'
+      'resources\bundled-coracore\win32-x64\coracore.exe'
     )
     $known = @(
       $knownRelative |

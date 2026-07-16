@@ -106,7 +106,7 @@ Var /GLOBAL CoraCoworkCurrentOutDir
         } elseif ($$targetPath -and (Test-Path -LiteralPath $$targetPath -PathType Container)) { \
           $$root = [System.IO.Path]::GetFullPath($$targetPath); \
           $$topLevel = @(Get-ChildItem -LiteralPath $$root -Force -File -ErrorAction SilentlyContinue | ForEach-Object { $$_.FullName }); \
-          $$knownRelative = @('${CORA_COWORK_APP_EXECUTABLE_FILENAME}', '${UNINSTALL_FILENAME}', 'resources\app.asar', 'resources\app-update.yml', 'resources\bundled-cora-cowork\win32-x64\cora-cowork-app.exe'); \
+          $$knownRelative = @('${CORA_COWORK_APP_EXECUTABLE_FILENAME}', '${UNINSTALL_FILENAME}', 'resources\app.asar', 'resources\app-update.yml', 'resources\bundled-coracore\win32-x64\coracore.exe'); \
           $$known = @($$knownRelative | ForEach-Object { Join-Path $$root $$_ } | Where-Object { Test-Path -LiteralPath $$_ -PathType Leaf }); \
           $$resources = @($$topLevel + $$known | Where-Object { $$_ -and $$_.Trim().Length -gt 0 } | Select-Object -Unique | Select-Object -First 512); \
         } \

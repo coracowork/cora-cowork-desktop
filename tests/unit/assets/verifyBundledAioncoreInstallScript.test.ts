@@ -4,7 +4,7 @@ import { tmpdir } from 'node:os';
 import { dirname, join } from 'node:path';
 import { spawnSync } from 'node:child_process';
 
-const scriptPath = 'resources/windows/support/verify-bundled-coracore-install.ps1';
+const scriptPath = 'resources/windows/support/verify-bundled-cora-cowor-install.ps1';
 const script = readFileSync(scriptPath, 'utf8');
 
 function writeFile(filePath: string, contents = '') {

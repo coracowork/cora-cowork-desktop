@@ -41,7 +41,7 @@ describe('resolveBinaryPath', () => {
   it('attaches bundled path diagnostics when backend cannot be resolved', () => {
     const resourcesPath = '/app/resources';
     const runtimeKey = `${process.platform}-${process.arch}`;
-    const binaryName = process.platform === 'win32' ? 'cora-cowork-app.exe' : 'cora-cowork-app';
+    const binaryName = process.platform === 'win32' ? 'coracore.exe' : 'coracore.exe';
     const bundledDir = join(resourcesPath, 'bundled-cora-cowork');
     const runtimeDir = join(bundledDir, runtimeKey);
     const checkedBundledPath = join(runtimeDir, binaryName);
@@ -86,7 +86,7 @@ describe('resolveBinaryPath', () => {
     setResourcesPath(resourcesPath);
 
     const runtimeKey = `${process.platform}-${process.arch}`;
-    const binaryName = process.platform === 'win32' ? 'cora-cowork-app.exe' : 'cora-cowork-app';
+    const binaryName = process.platform === 'win32' ? 'coracore.exe' : 'coracore';
 
     const existsMock = vi.mocked(existsSync);
     const readdirMock = vi.mocked(readdirSync);
@@ -112,7 +112,7 @@ describe('resolveBinaryPath', () => {
     setResourcesPath(resourcesPath);
 
     const runtimeKey = `${process.platform}-${process.arch}`;
-    const binaryName = process.platform === 'win32' ? 'cora-cowork-app.exe' : 'cora-cowork-app';
+    const binaryName = process.platform === 'win32' ? 'coracore.exe' : 'coracore';
 
     const existsMock = vi.mocked(existsSync);
     existsMock.mockReturnValue(true);

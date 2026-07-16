@@ -240,10 +240,10 @@ Invoke-Git $repoRoot @('diff', '--binary', 'HEAD', "--output=$patchPath") | Out-
 $hasPatch = (Get-Item -LiteralPath $patchPath).Length -gt 0
 $baseRef = (Invoke-Git $repoRoot @('rev-parse', 'HEAD')).Trim()
 $nodeModules = Join-Path $repoRoot 'node_modules'
-$LocalCoraCoworkAppBinary = Join-Path $repoRoot 'resources\bundled-cora-cowork\win32-x64\cora-cowork-app.exe'
-$LocalCoraCoworkAppBundleDir = Join-Path $repoRoot 'out\win-unpacked\resources\bundled-cora-cowork\win32-x64'
+$LocalCoraCoworkAppBinary = Join-Path $repoRoot 'resources\bundled-coracore\win32-x64\coracore.exe.exe'
+$LocalCoraCoworkAppBundleDir = Join-Path $repoRoot 'out\win-unpacked\bundled-coracore\win32-x64\'
 if (-not (Test-Path -LiteralPath (Join-Path $LocalCoraCoworkAppBundleDir 'managed-resources') -PathType Container)) {
-  $LocalCoraCoworkAppBundleDir = Join-Path $env:LOCALAPPDATA 'Programs\CoraCowork\resources\bundled-cora-cowork\win32-x64'
+  $LocalCoraCoworkAppBundleDir = Join-Path $env:LOCALAPPDATA 'Programs\CoraCowork\bundled-coracore\win32-x64\'
 }
 if (Test-Path -LiteralPath (Join-Path $LocalCoraCoworkAppBundleDir 'managed-resources') -PathType Container) {
   $LocalCoraCoworkAppBundleDir = (Resolve-Path -LiteralPath $LocalCoraCoworkAppBundleDir).Path

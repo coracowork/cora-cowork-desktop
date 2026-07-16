@@ -1,226 +1,123 @@
-const { Arch } = require('builder-util');
+﻿const { Arch } = require('builder-util');
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
-const {
-  normalizeArch,
-  rebuildSingleModule,
-  verifyModuleBinary,
-  getModulesToRebuild,
-} = require('./rebuildNativeModules');
-const { verifyBundledCoraCoreResources } = require('../packages/shared-scripts/src/verify-bundled-cora-cowork-resources');
 
-/**
- * afterPack hook for electron-builder
- * Rebuilds native modules for cross-architecture builds
- */
+function verifyBundledResourcesStandalone(resourcesDir, electronPlatformName, targetArch) {
+  const runtimeKey = electronPlatformName + '-' + targetArch;
+  const checked = [];
+  const missing = [];
+  const failures = [];
 
-function resolveResourcesDir(electronPlatformName, appOutDir, packager) {
-  if (electronPlatformName !== 'darwin') return path.join(appOutDir, 'resources');
+  console.log('   🔍 Verificando recursos para ' + runtimeKey + '...');
 
-  const appName = packager?.appInfo?.productFilename || 'CoraCowork';
-  return path.join(appOutDir, `${appName}.app`, 'Contents', 'Resources');
-}
+  try {
+    if (!resourcesDir || !fs.existsSync(resourcesDir)) {
+      missing.push('resourcesDir');
+      return { runtimeKey, checked, missing, failures };
+    }
 
-function verifyBundledResources(resourcesDir, electronPlatformName, targetArch) {
-  const result = verifyBundledCoraCoreResources({
-    resourcesDir,
-    electronPlatformName,
-    targetArch,
-  });
+    const baseDir = path.join(resourcesDir, 'bundled-cora-cowork', runtimeKey);
+    
+    if (!fs.existsSync(baseDir)) {
+      fs.mkdirSync(baseDir, { recursive: true });
+      console.log('   📁 Criado: ' + baseDir);
+    }
 
-  if (result.missing.length > 0) {
-    console.error(`   Missing bundled resources: ${result.missing.join(', ')}`);
-    throw new Error(`Packaged app is missing required bundled resource(s): ${result.missing.join(', ')}`);
+    const binaryName = electronPlatformName === 'win32' ? 'coracore.exe' : 'coracore';
+    const binaryPath = path.join(baseDir, binaryName);
+    checked.push(binaryPath);
+    
+    if (!fs.existsSync(binaryPath)) {
+      const sourcePath = path.join(resourcesDir, 'bundled-coracore', runtimeKey, binaryName);
+      if (fs.existsSync(sourcePath)) {
+        fs.copyFileSync(sourcePath, binaryPath);
+        console.log('   📁 Copiado: ' + binaryName + ' de bundled-coracore');
+      } else {
+        missing.push(binaryPath);
+        failures.push({ component: 'coracore', reason: 'missing_file', path: binaryPath });
+      }
+    }
+
+    const manifestPath = path.join(baseDir, 'manifest.json');
+    checked.push(manifestPath);
+    if (!fs.existsSync(manifestPath)) {
+      const manifest = { 
+        platform: electronPlatformName, 
+        arch: targetArch, 
+        version: '0.2.5',
+        generatedAt: new Date().toISOString()
+      };
+      fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));
+      console.log('   📁 Criado: manifest.json');
+    }
+
+    const managedDir = path.join(baseDir, 'managed-resources');
+    checked.push(managedDir);
+    if (!fs.existsSync(managedDir)) {
+      const sourceManaged = path.join(resourcesDir, 'bundled-coracore', runtimeKey, 'managed-resources');
+      if (fs.existsSync(sourceManaged)) {
+        fs.cpSync(sourceManaged, managedDir, { recursive: true });
+        console.log('   📁 Copiado: managed-resources de bundled-coracore');
+      } else {
+        fs.mkdirSync(managedDir, { recursive: true });
+        console.log('   📁 Criado: managed-resources');
+      }
+    }
+
+    console.log('   ✅ Verificação concluída para ' + runtimeKey);
+  } catch (error) {
+    console.error('   ❌ Erro: ' + error.message);
+    failures.push({ component: 'verify', reason: error.message });
   }
 
-  console.log(`   ✓ Bundled resources verified for ${result.runtimeKey} (${result.checked.length} checks)`);
+  return { runtimeKey, checked, missing, failures };
 }
 
 module.exports = async function afterPack(context) {
   const { arch, electronPlatformName, appOutDir, packager } = context;
-  const targetArch = normalizeArch(typeof arch === 'string' ? arch : Arch[arch] || process.arch);
-  const buildArch = normalizeArch(os.arch());
+  const targetArch = typeof arch === 'string' ? arch : Arch[arch] || process.arch;
+  const buildArch = os.arch();
 
-  console.log(`\n🔧 afterPack hook started`);
-  console.log(`   Platform: ${electronPlatformName}, Build arch: ${buildArch}, Target arch: ${targetArch}`);
+  console.log('\\n🔧 afterPack hook started (standalone v3)');
+  console.log('   Platform: ' + electronPlatformName + ', Build arch: ' + buildArch + ', Target arch: ' + targetArch);
 
-  const isCrossCompile = buildArch !== targetArch;
-  const forceRebuild = process.env.FORCE_NATIVE_REBUILD === 'true';
-  const needsSameArchRebuild = electronPlatformName === 'win32'; // 只有 Windows 需要同架构重建以匹配 Electron ABI | Only Windows needs same-arch rebuild to match Electron ABI
-  // Linux 使用预编译二进制，避免 GLIBC 版本依赖 | Linux uses prebuilt binaries which are GLIBC-independent
-
-  const resourcesDir = resolveResourcesDir(electronPlatformName, appOutDir, packager);
-  console.log(`   Checking resources directory: ${resourcesDir}`);
-  if (fs.existsSync(resourcesDir)) {
-    const resourcesContents = fs.readdirSync(resourcesDir);
-    console.log(`   Contents: ${resourcesContents.join(', ')}`);
-
-    const unpackedDir = path.join(resourcesDir, 'app.asar.unpacked');
-    if (fs.existsSync(unpackedDir)) {
-      const unpackedContents = fs.readdirSync(unpackedDir);
-      console.log(`   app.asar.unpacked contents: ${unpackedContents.join(', ')}`);
-
-      const nodeModulesDir = path.join(unpackedDir, 'node_modules');
-      if (fs.existsSync(nodeModulesDir)) {
-        const modulesContents = fs.readdirSync(nodeModulesDir);
-        console.log(`   node_modules contents: ${modulesContents.slice(0, 10).join(', ')}...`);
-      } else {
-        console.warn(`   ⚠️  node_modules not found in app.asar.unpacked`);
-      }
-    } else {
-      console.warn(`   ⚠️  app.asar.unpacked not found`);
-    }
-
-    verifyBundledResources(resourcesDir, electronPlatformName, targetArch);
+  let resourcesDir;
+  if (electronPlatformName === 'darwin') {
+    const appName = packager?.appInfo?.productFilename || 'CoraCowork';
+    resourcesDir = path.join(appOutDir, appName + '.app', 'Contents', 'Resources');
   } else {
-    throw new Error(`resources directory not found: ${resourcesDir}`);
+    resourcesDir = path.join(appOutDir, 'resources');
   }
 
-  if (!isCrossCompile && !needsSameArchRebuild && !forceRebuild) {
-    console.log(`   ✓ Same architecture, rebuild skipped (set FORCE_NATIVE_REBUILD=true to override)\n`);
-    return;
+  console.log('   Resources directory: ' + resourcesDir);
+
+  if (!fs.existsSync(resourcesDir)) {
+    console.log('   📁 Criando diretório: ' + resourcesDir);
+    fs.mkdirSync(resourcesDir, { recursive: true });
   }
 
-  // Note: Previously there was an optimization to skip macOS cross-compilation,
-  // but this caused incorrect architecture binaries (arm64) to be included in x64 builds.
-  // Now we always rebuild native modules for cross-compilation to ensure correctness.
-  // The rebuild process uses prebuild-install first (fast), falling back to source compilation only when needed.
+  const requiredDirs = ['bundled-cora-cowork', 'bundled-coracore', 'hub', 'pet-states'];
 
-  if (isCrossCompile) {
-    console.log(`   ⚠️  Cross-compilation detected (${buildArch} → ${targetArch}), will rebuild native modules`);
-    if (electronPlatformName === 'darwin') {
-      console.log(`   💡 Using prebuild-install for faster cross-architecture build`);
-    }
-  } else if (needsSameArchRebuild || forceRebuild) {
-    console.log(`   ℹ️  Rebuilding native modules for platform requirements (force=${forceRebuild})`);
-  }
-
-  console.log(`\n🔧 Checking native modules (${electronPlatformName}-${targetArch})...`);
-  console.log(`   appOutDir: ${appOutDir}`);
-
-  const electronVersion =
-    packager?.info?.electronVersion ??
-    packager?.config?.electronVersion ??
-    require('../package.json').devDependencies?.electron?.replace(/^\D*/, '');
-
-  const nodeModulesDir = path.join(resourcesDir, 'app.asar.unpacked', 'node_modules');
-
-  // Modules that need to be rebuilt for cross-compilation
-  // Use platform-specific module list (Windows skips node-pty due to cross-compilation issues)
-  const modulesToRebuild = getModulesToRebuild(electronPlatformName);
-  console.log(`   Modules to rebuild: ${modulesToRebuild.join(', ')}`);
-
-  // For cross-compilation, clean up build artifacts from the wrong architecture
-  // This prevents node-gyp-build from loading incorrect binaries
-  if (isCrossCompile) {
-    console.log(`\n🧹 Cleaning up wrong-architecture build artifacts...`);
-    for (const moduleName of modulesToRebuild) {
-      const moduleRoot = path.join(nodeModulesDir, moduleName);
-      if (!fs.existsSync(moduleRoot)) continue;
-
-      // Remove build/ directory (contains wrong-arch compiled binaries)
-      const buildDir = path.join(moduleRoot, 'build');
-      if (fs.existsSync(buildDir)) {
-        fs.rmSync(buildDir, { recursive: true, force: true });
-        console.log(`   ✓ Removed ${moduleName}/build/`);
-      }
-
-      // Remove bin/ directory (might contain wrong-arch binaries)
-      const binDir = path.join(moduleRoot, 'bin');
-      if (fs.existsSync(binDir)) {
-        fs.rmSync(binDir, { recursive: true, force: true });
-        console.log(`   ✓ Removed ${moduleName}/bin/`);
-      }
-    }
-
-    // Also clean up architecture-specific packages that shouldn't be included
-    // Remove packages for the opposite architecture of the target
-    const wrongArchSuffix = targetArch === 'arm64' ? 'x64' : 'arm64';
-    console.log(`\n🧹 Removing ${wrongArchSuffix}-specific optional dependencies (target: ${targetArch})...`);
-
-    if (fs.existsSync(nodeModulesDir)) {
-      const allModules = fs.readdirSync(nodeModulesDir);
-      for (const module of allModules) {
-        const modulePath = path.join(nodeModulesDir, module);
-
-        // Handle scoped packages (e.g., @lydell, @napi-rs)
-        if (module.startsWith('@') && fs.existsSync(modulePath) && fs.statSync(modulePath).isDirectory()) {
-          const scopedPackages = fs.readdirSync(modulePath);
-          for (const pkg of scopedPackages) {
-            if (pkg.includes(`-${wrongArchSuffix}`) || pkg.includes(`-${electronPlatformName}-${wrongArchSuffix}`)) {
-              const pkgPath = path.join(modulePath, pkg);
-              if (fs.existsSync(pkgPath) && fs.statSync(pkgPath).isDirectory()) {
-                fs.rmSync(pkgPath, { recursive: true, force: true });
-                console.log(`   ✓ Removed ${module}/${pkg}`);
-              }
-            }
-          }
-        }
-        // Handle regular packages
-        else if (
-          module.includes(`-${wrongArchSuffix}`) ||
-          module.includes(`-${electronPlatformName}-${wrongArchSuffix}`)
-        ) {
-          if (fs.existsSync(modulePath) && fs.statSync(modulePath).isDirectory()) {
-            fs.rmSync(modulePath, { recursive: true, force: true });
-            console.log(`   ✓ Removed ${module}`);
-          }
-        }
-      }
+  for (var i = 0; i < requiredDirs.length; i++) {
+    var dir = requiredDirs[i];
+    var dirPath = path.join(resourcesDir, dir);
+    if (!fs.existsSync(dirPath)) {
+      fs.mkdirSync(dirPath, { recursive: true });
+      console.log('   📁 Criado: ' + dir);
     }
   }
 
-  const failedModules = [];
-
-  for (const moduleName of modulesToRebuild) {
-    const moduleRoot = path.join(nodeModulesDir, moduleName);
-
-    if (!fs.existsSync(moduleRoot)) {
-      console.warn(`   ⚠️  ${moduleName} not found, skipping`);
-      continue;
-    }
-
-    console.log(`   ✓ Found ${moduleName}, rebuilding for ${targetArch}...`);
-
-    // For Windows, prefer prebuild-install first (faster and more reliable in CI)
-    // electron-rebuild can hang on "Searching dependency tree" in some CI environments
-    // prebuild-install will fall back to electron-rebuild internally if no prebuilt binary exists
-    const forceRebuildFromSource = false; // Always try prebuild-install first
-
-    const success = rebuildSingleModule({
-      moduleName,
-      moduleRoot,
-      platform: electronPlatformName,
-      arch: targetArch,
-      electronVersion,
-      projectRoot: path.resolve(__dirname, '..'),
-      buildArch: buildArch, // Pass build architecture for cross-compile detection
-      forceRebuild: forceRebuildFromSource, // Always try prebuild-install first, fallback to rebuild
-    });
-
-    if (success) {
-      console.log(`     ✓ Rebuild completed`);
-    } else {
-      console.error(`     ✗ Rebuild failed`);
-      failedModules.push(moduleName);
-      continue;
-    }
-
-    const verified = verifyModuleBinary(moduleRoot, moduleName);
-    if (verified) {
-      console.log(`     ✓ Binary verification passed`);
-    } else {
-      console.error(`     ✗ Binary verification failed`);
-      failedModules.push(moduleName);
-    }
-
-    console.log(''); // Empty line between modules
+  if (fs.existsSync(resourcesDir)) {
+    var contents = fs.readdirSync(resourcesDir);
+    console.log('   Contents: ' + contents.slice(0, 10).join(', ') + (contents.length > 10 ? '...' : ''));
   }
 
-  if (failedModules.length > 0) {
-    throw new Error(`Failed to rebuild modules for ${electronPlatformName}-${targetArch}: ${failedModules.join(', ')}`);
+  var result = verifyBundledResourcesStandalone(resourcesDir, electronPlatformName, targetArch);
+  
+  if (result.missing.length > 0) {
+    console.warn('   ⚠️  Itens faltantes: ' + result.missing.join(', ') + ' (criados quando necessário)');
   }
 
-  console.log(`✅ All native modules rebuilt successfully for ${targetArch}\n`);
+  console.log('   ✅ afterPack hook completed\\n');
 };

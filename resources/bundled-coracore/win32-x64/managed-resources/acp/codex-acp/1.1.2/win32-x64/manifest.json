@@ -1,0 +1,6 @@
+{
+  "entrypoint": "node_modules/@agentclientprotocol/codex-acp/dist/index.js",
+  "path_entries": [
+    "node_modules/.bin"
+  ]
+}

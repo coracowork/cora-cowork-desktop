@@ -19,9 +19,9 @@ const { execSync, execFileSync } = require('child_process');
 const fs = require('fs');
 const os = require('os');
 const path = require('path');
-const { verifyBundledCoracoreResources } = require('./verify-bundled-coracore-resources');
+const { verifyBundledCoracoreResources } = require('./verify-bundled-cora-cowork-resources');
 
-const GITHUB_OWNER = 'iOfficeAI';
+const GITHUB_OWNER = 'coracowork';
 const GITHUB_REPO = 'CoraCore';
 
 const ACTIONS_ARTIFACT_TARGETS = {

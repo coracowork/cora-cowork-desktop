@@ -30,7 +30,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import { startBackend, stopBackend } from '@cora-cowork/web-host';
 
-const BACKEND_BINARY = process.platform === 'win32' ? 'cora-cowork-app.exe' : 'CoraCore';
+const BACKEND_BINARY = process.platform === 'win32' ? 'coracore.exe' : 'CoraCore';
 
 const __filename = fileURLToPath(import.meta.url);
 const repoRoot = path.resolve(path.dirname(__filename), '..');
