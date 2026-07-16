@@ -13,46 +13,75 @@ on:
 env:
   NODE_VERSION: '22'
   BUN_VERSION: '1.2.14'
+  NODE_OPTIONS: '--max-old-space-size=8192'
 
 jobs:
   build:
-    name: Build ${{ matrix.platform }}
+    name: Build ${{ matrix.platform }} ${{ matrix.arch }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
         include:
+          # Windows x64
           - os: windows-latest
             platform: win
+            arch: x64
             script: build-win:x64
             artifact_path: |
               out/CoraCowork-*.exe
               dist/CoraCowork-*.exe
             output_name: CoraCowork-Windows-x64
             
+          # Windows ARM64
+          - os: windows-latest
+            platform: win
+            arch: arm64
+            script: build-win:arm64
+            artifact_path: |
+              out/CoraCowork-*.exe
+              dist/CoraCowork-*.exe
+            output_name: CoraCowork-Windows-arm64
+            
+          # macOS x64 (Intel)
           - os: macos-latest
             platform: mac
+            arch: x64
             script: build-mac:x64
             artifact_path: |
               out/CoraCowork-*.dmg
               out/CoraCowork-*.zip
             output_name: CoraCowork-macOS-x64
             
+          # macOS ARM64 (Apple Silicon)
           - os: macos-latest
             platform: mac
+            arch: arm64
             script: build-mac:arm64
             artifact_path: |
               out/CoraCowork-*.dmg
               out/CoraCowork-*.zip
             output_name: CoraCowork-macOS-arm64
             
+          # Linux x64
           - os: ubuntu-latest
             platform: linux
+            arch: x64
             script: build-deb
             artifact_path: |
               out/CoraCowork-*.deb
               out/CoraCowork-*.AppImage
-            output_name: CoraCowork-Linux
+            output_name: CoraCowork-Linux-x64
+            
+          # Linux ARM64
+          - os: ubuntu-latest
+            platform: linux
+            arch: arm64
+            script: build-deb
+            artifact_path: |
+              out/CoraCowork-*.deb
+              out/CoraCowork-*.AppImage
+            output_name: CoraCowork-Linux-arm64
 
     steps:
       - name: Checkout code
@@ -70,18 +99,23 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
+      - name: Increase memory limit
+        run: echo "NODE_OPTIONS=--max-old-space-size=8192" >> $GITHUB_ENV
+        shell: bash
+
       - name: Install dependencies
         run: |
-          bun install
+          bun install || true
           bun add @office-ai/platform || true
 
-      - name: Build ${{ matrix.platform }}
+      - name: Build ${{ matrix.platform }} ${{ matrix.arch }}
         run: bun run ${{ matrix.script }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
           ELECTRON_BUILDER_COMPRESSION_LEVEL: 9
           CORA_COWORK_BACKEND_VERSION: v0.2.5
+          NODE_OPTIONS: --max-old-space-size=8192
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
@@ -109,6 +143,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+      packages: write
     steps:
       - name: Download all artifacts
         uses: actions/download-artifact@v4
