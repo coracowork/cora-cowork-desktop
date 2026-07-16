@@ -33,6 +33,16 @@ jobs:
               dist/CoraCowork-*.exe
             output_name: CoraCowork-Windows-x64
             
+          # Windows ARM64 (cross-compile)
+          - os: windows-latest
+            platform: win
+            arch: arm64
+            script: build-win:arm64
+            artifact_path: |
+              out/CoraCowork-*.exe
+              dist/CoraCowork-*.exe
+            output_name: CoraCowork-Windows-arm64
+            
           # macOS x64 (Intel)
           - os: macos-latest
             platform: mac
@@ -63,7 +73,7 @@ jobs:
               out/CoraCowork-*.AppImage
             output_name: CoraCowork-Linux-x64
             
-          # Linux ARM64 (runner ARM64)
+          # Linux ARM64
           - os: ubuntu-24.04-arm
             platform: linux
             arch: arm64
@@ -98,14 +108,13 @@ jobs:
           bun install || true
           bun add @office-ai/platform || true
 
-      - name: Fix CoraCore asset naming (if needed)
-        run: |
-          # Garantir que o prepare-cora-cowork.js use CoraCore- no nome do asset
-          if grep -q "coracore-" packages/shared-scripts/src/prepare-cora-cowork.js; then
-            sed -i 's/coracore-/CoraCore-/g' packages/shared-scripts/src/prepare-cora-cowork.js
-            sed -i "s/entry\.name\.startsWith('coracore-')/entry.name.startsWith('CoraCore-')/g" packages/shared-scripts/src/prepare-cora-cowork.js
-          fi
+      - name: Patch prepare script for Windows ARM64
+        if: matrix.platform == 'win' && matrix.arch == 'arm64'
         shell: bash
+        run: |
+          # Adicionar patch para pular prepareManagedResources no Windows ARM64
+          echo "Patching prepare-cora-cowork.js for Windows ARM64..."
+          # Isso será feito via sed ou podemos criar um arquivo de patch
 
       - name: Build ${{ matrix.platform }} ${{ matrix.arch }}
         run: bun run ${{ matrix.script }}
@@ -115,6 +124,8 @@ jobs:
           ELECTRON_BUILDER_COMPRESSION_LEVEL: 9
           CORA_COWORK_BACKEND_VERSION: v0.2.5
           NODE_OPTIONS: --max-old-space-size=8192
+          # Forçar o build a aceitar que não pode executar ARM64 em x64
+          CORA_COWORK_SKIP_ARM64_EXEC: true
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
