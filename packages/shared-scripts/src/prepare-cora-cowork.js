@@ -600,7 +600,11 @@ function prepareCoracore(options) {
     };
 
     writeJson(path.join(targetDir, 'manifest.json'), manifest);
-    verifyPreparedCoracoreBundle(projectRoot, platform, arch);
+    if (!isWinArm64OnX64(platform, arch) || process.env.CORA_COWORK_SKIP_ARM64_EXEC !== 'true') {
+      verifyPreparedCoracoreBundle(projectRoot, platform, arch);
+    } else {
+      console.log('  ⏭️  Skipping bundle verification for Windows ARM64 cross-compile');
+    }
     console.log(
       `  Bundled coracore prepared: resources/bundled-coracore/${runtimeKey}/${binaryName} [source=${sourceType}]`
     );
