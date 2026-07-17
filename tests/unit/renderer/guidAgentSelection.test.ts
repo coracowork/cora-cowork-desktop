@@ -9,7 +9,7 @@ import {
 describe('guid assistant selection helpers', () => {
   const assistants: Assistant[] = [
     assistant({ id: 'builtin-writer', source: 'builtin', runtimeKey: 'claude', sort_order: 20 }),
-    assistant({ id: 'bare-aionrs', source: 'generated', runtimeKey: 'aionrs', sort_order: 10 }),
+    assistant({ id: 'bare-aionrs', source: 'generated', runtimeKey: 'corars', agent: { type: 'corars' }, sort_order: 10 }),
     assistant({ id: 'user-research', source: 'user', runtimeKey: 'gemini', sort_order: 30 }),
   ];
 

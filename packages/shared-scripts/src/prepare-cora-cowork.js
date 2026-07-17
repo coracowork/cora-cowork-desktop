@@ -114,9 +114,39 @@ function getActionsArtifactMissingMessage({ runId, platform, arch, expectedArtif
   ].join(' ');
 }
 
-function prepareManagedResources(binaryPath, targetDir) {
+function isWinArm64OnX64(platform, arch) {
+  return platform === 'win32' && arch === 'arm64' && process.arch !== 'arm64';
+}
+
+function prepareManagedResources(binaryPath, targetDir, platform, arch) {
   const bundleOut = path.join(targetDir, 'managed-resources');
   const dataDir = path.join(targetDir, '.prepare-data');
+
+  if (isWinArm64OnX64(platform, arch) && process.env.CORA_COWORK_SKIP_ARM64_EXEC === 'true') {
+    console.log('  ⏭️  Skipping managed resources preparation for Windows ARM64 (running on x64 host)');
+    removeDirectorySafe(bundleOut);
+    ensureDirectory(bundleOut);
+    const nodeVersion = '24.11.0';
+    const nodeDir = path.join(bundleOut, 'node', `node-v${nodeVersion}-win-arm64`);
+    ensureDirectory(nodeDir);
+    const dummyNode = path.join(nodeDir, 'node.exe');
+    if (!fs.existsSync(dummyNode)) {
+      fs.writeFileSync(dummyNode, '');
+      console.log(`  📁 Created: dummy node.exe in ${nodeDir}`);
+    }
+    const manifest = {
+      schemaVersion: 1,
+      runtimeKey: `${platform}-${arch}`,
+      node: {
+        version: nodeVersion,
+        root: `node/node-v${nodeVersion}-win-arm64`,
+        executable: 'node.exe',
+      },
+      acpTools: [],
+    };
+    writeJson(path.join(bundleOut, 'manifest.json'), manifest);
+    return bundleOut;
+  }
 
   removeDirectorySafe(bundleOut);
   removeDirectorySafe(dataDir);
@@ -554,7 +584,7 @@ function prepareCoracore(options) {
   if (sourcePath) {
     copyFileSafe(sourcePath, targetBinaryPath);
     ensureExecutableMode(targetBinaryPath);
-    const bundledManagedResourcesDir = prepareManagedResources(targetBinaryPath, targetDir);
+    const bundledManagedResourcesDir = prepareManagedResources(targetBinaryPath, targetDir, platform, arch);
 
     // The release tag is the authoritative version — the coracore
     // binary does not expose a --version flag (it has --app-version which

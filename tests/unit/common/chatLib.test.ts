@@ -429,7 +429,7 @@ describe('transformMessage', () => {
         error: {
           message: 'AionUI failed while sending the message',
           code: 'CORA_COWORK_INTERNAL_ERROR',
-          ownership: 'coracowork',
+          ownership: 'cora-cowork',
           detail: 'Failed to write Codex sandbox config',
           retryable: true,
           feedback_recommended: true,
@@ -449,7 +449,7 @@ describe('transformMessage', () => {
     expect(transformed.content.error).toEqual({
       message: 'AionUI failed while sending the message',
       code: 'CORA_COWORK_INTERNAL_ERROR',
-      ownership: 'coracowork',
+      ownership: 'cora-cowork',
       detail: 'Failed to write Codex sandbox config',
       retryable: true,
       feedback_recommended: true,

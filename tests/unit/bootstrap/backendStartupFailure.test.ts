@@ -11,8 +11,8 @@ describe('classifyBackendStartupFailure', () => {
     error.details = {
       stage: 'early_exit',
       stderrTail:
-        "/opt/CoraCowork/resources/bundled-CoraCore/linux-x64/CoraCore.bin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found\n" +
-        "/opt/CoraCowork/resources/bundled-CoraCore/linux-x64/CoraCore.bin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found",
+        "/opt/CoraCowork/resources/bundled-coracore/linux-x64/CoraCore.bin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.34' not found\n" +
+        "/opt/CoraCowork/resources/bundled-coracore/linux-x64/CoraCore.bin: /lib/x86_64-linux-gnu/libc.so.6: version `GLIBC_2.32' not found",
     };
 
     expect(classifyBackendStartupFailure(error)).toEqual({
@@ -240,11 +240,11 @@ describe('classifyBackendStartupFailure', () => {
       reason: 'backend_incomplete_installation',
       incompleteInstallationKind: 'missing_directory_resources',
       missingBackendBinary: true,
-      missingBundledCoraCoreDir: true,
+      missingBundledCoraCoworkDir: true,
       missingHubDir: true,
       missingPetStatesDir: true,
       missingPwaDir: true,
-      missingResources: ['bundled-CoraCore/', 'bundled-CoraCore/win32-x64/'],
+      missingResources: ['bundled-coracore/', 'bundled-coracore/win32-x64/'],
       missingRuntimeDir: true,
     });
   });
@@ -265,7 +265,7 @@ describe('classifyBackendStartupFailure', () => {
         'app.asar',
         'app.asar.unpacked/',
         'app.png',
-        'bundled-CoraCore/',
+        'bundled-coracore/',
         'elevate.exe',
         'hub/',
         'manifest.webmanifest',
@@ -280,11 +280,11 @@ describe('classifyBackendStartupFailure', () => {
       reason: 'backend_incomplete_installation',
       incompleteInstallationKind: 'missing_directory_resources',
       missingBackendBinary: true,
-      missingBundledCoraCoreDir: false,
+      missingBundledCoraCoworkDir: false,
       missingHubDir: false,
       missingPetStatesDir: false,
       missingPwaDir: false,
-      missingResources: ['bundled-CoraCore/win32-x64/managed-resources/', 'bundled-CoraCore/win32-x64/Corars.exe'],
+      missingResources: ['bundled-coracore/win32-x64/managed-resources/', 'bundled-coracore/win32-x64/Corars.exe'],
       missingRuntimeDir: false,
     });
   });

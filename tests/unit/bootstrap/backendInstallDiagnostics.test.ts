@@ -6,9 +6,9 @@ describe('collectBackendInstallDiagnostics', () => {
   it('records packaged runtime manifest and missing backend binary metadata', () => {
     const files = new Map<string, { mtimeMs: number; size: number; content?: string }>([
       ['C:\\CoraCowork\\resources', { mtimeMs: 1000, size: 0 }],
-      ['C:\\CoraCowork\\resources\\bundled-CoraCore\\win32-x64', { mtimeMs: 2000, size: 0 }],
+      ['C:\\CoraCowork\\resources\\bundled-coracore\\win32-x64', { mtimeMs: 2000, size: 0 }],
       [
-        'C:\\CoraCowork\\resources\\bundled-CoraCore\\win32-x64\\manifest.json',
+        'C:\\CoraCowork\\resources\\bundled-coracore\\win32-x64\\manifest.json',
         {
           mtimeMs: 3000,
           size: 88,
@@ -27,7 +27,7 @@ describe('collectBackendInstallDiagnostics', () => {
         runtimeKey: 'win32-x64',
         binaryName: 'Corars.exe',
         resourcesPath: 'C:\\CoraCowork\\resources',
-        checkedBundledPath: 'C:\\CoraCowork\\resources\\bundled-CoraCore\\win32-x64\\Corars.exe',
+        checkedBundledPath: 'C:\\CoraCowork\\resources\\bundled-coracore\\win32-x64\\Corars.exe',
       },
       {
         appVersion: '2.1.7',
@@ -45,14 +45,14 @@ describe('collectBackendInstallDiagnostics', () => {
       arch: 'x64',
       binaryExists: false,
       binaryName: 'Corars.exe',
-      binaryPath: 'C:\\CoraCowork\\resources\\bundled-CoraCore\\win32-x64\\Corars.exe',
-      bundledDirPath: 'C:\\CoraCowork\\resources\\bundled-CoraCore',
+      binaryPath: 'C:\\CoraCowork\\resources\\bundled-coracore\\win32-x64\\Corars.exe',
+      bundledDirPath: 'C:\\CoraCowork\\resources\\bundled-coracore',
       execPath: 'C:\\CoraCowork\\CoraCowork.exe',
       isPackaged: true,
       manifestExists: true,
       manifestFiles: ['Corars.exe', 'managed-resources/'],
       manifestGeneratedAt: '2026-05-29T12:00:00.000Z',
-      manifestPath: 'C:\\CoraCowork\\resources\\bundled-CoraCore\\win32-x64\\manifest.json',
+      manifestPath: 'C:\\CoraCowork\\resources\\bundled-coracore\\win32-x64\\manifest.json',
       manifestSize: 88,
       manifestMtimeMs: 3000,
       manifestSourceType: 'download',
@@ -61,7 +61,7 @@ describe('collectBackendInstallDiagnostics', () => {
       resourcesDirMtimeMs: 1000,
       resourcesPath: 'C:\\CoraCowork\\resources',
       runtimeDirMtimeMs: 2000,
-      runtimeDirPath: 'C:\\CoraCowork\\resources\\bundled-CoraCore\\win32-x64',
+      runtimeDirPath: 'C:\\CoraCowork\\resources\\bundled-coracore\\win32-x64',
       runtimeKey: 'win32-x64',
     });
   });

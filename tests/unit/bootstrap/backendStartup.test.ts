@@ -74,7 +74,7 @@ describe('startBackendOrExit', () => {
     });
 
     expect(result).toEqual({ ok: false });
-    expect(logError).toHaveBeenCalledWith('[CoraCowork] Failed to start CoraCore:', error);
+    expect(logError).toHaveBeenCalledWith('[CoraCowork] Failed to start coracore:', error);
     expect(captureFailure).toHaveBeenCalledWith(error);
     expect(exitApp).toHaveBeenCalledWith(1);
     expect(calls).toEqual(['capture-start', 'capture-end', 'exit']);
@@ -100,7 +100,7 @@ describe('startBackendOrExit', () => {
     });
 
     expect(result).toEqual({ ok: false });
-    expect(logError).toHaveBeenCalledWith('[CoraCowork] Failed to start CoraCore:', error);
+    expect(logError).toHaveBeenCalledWith('[CoraCowork] Failed to start coracore:', error);
     expect(captureFailure).toHaveBeenCalledWith(error);
     expect(exitApp).not.toHaveBeenCalled();
     expect(onStarted).not.toHaveBeenCalled();
@@ -131,7 +131,8 @@ describe('startBackendOrExit', () => {
     expect(onStarted).not.toHaveBeenCalled();
   });
 
-  it('recovers backend port from a nested log file path', async () => {
+  it('does not recover backend port from a nested log file path (port recovery removed)', async () => {
+    const error = new Error('backend startup failed');
     const onStarted = vi.fn();
     const captureFailure = vi.fn();
     const exitApp = vi.fn();
@@ -169,7 +170,7 @@ describe('startBackendOrExit', () => {
 
     const result = await startBackendOrExit({
       startBackend: async () => {
-        throw new Error('backend startup failed');
+        throw error;
       },
       onStarted,
       captureFailure,
@@ -179,9 +180,9 @@ describe('startBackendOrExit', () => {
       exitOnFailure: false,
     });
 
-    expect(result).toEqual({ ok: true, port: 55555 });
-    expect(onStarted).toHaveBeenCalledWith(55555);
-    expect(captureFailure).not.toHaveBeenCalled();
+    expect(result).toEqual({ ok: false });
+    expect(onStarted).not.toHaveBeenCalled();
+    expect(captureFailure).toHaveBeenCalledWith(error);
     expect(exitApp).not.toHaveBeenCalled();
   });
 });

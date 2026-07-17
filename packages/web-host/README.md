@@ -11,7 +11,7 @@ WebUI host package for CoraCowork - zero Electron dependency.
 ## Usage
 
 ```ts
-import { startWebHost } from '@aionui/web-host';
+import { startWebHost } from '@cora-cowork/web-host';
 
 const handle = await startWebHost({
   app: {

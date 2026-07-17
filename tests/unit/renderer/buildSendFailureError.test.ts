@@ -25,7 +25,7 @@ describe('buildSendFailureError', () => {
     expect(result).toEqual({
       message: 'Conflict: Conversation is already processing a message',
       code: 'CORA_COWORK_CONVERSATION_BUSY',
-      ownership: 'aionui',
+      ownership: 'cora-cowork',
       detail: 'Conflict: Conversation is already processing a message',
       retryable: false,
       feedback_recommended: false,
@@ -40,7 +40,7 @@ describe('buildSendFailureError', () => {
 
     expect(result).toMatchObject({
       code: 'CORA_COWORK_CONVERSATION_BUSY',
-      ownership: 'aionui',
+      ownership: 'cora-cowork',
       retryable: false,
       feedback_recommended: false,
       resolution: { kind: 'wait_for_current_response' },
@@ -110,7 +110,7 @@ describe('buildSendFailureError', () => {
     expect(result).toEqual({
       message: 'The existing workspace path "/tmp/Archive " is no longer supported for send or warmup.',
       code: 'WORKSPACE_PATH_RUNTIME_UNAVAILABLE',
-      ownership: 'aionui',
+      ownership: 'cora-cowork',
       detail: 'The existing workspace path "/tmp/Archive " is no longer supported for send or warmup.',
       workspacePath: '/tmp/Archive ',
       retryable: false,
@@ -131,7 +131,7 @@ describe('buildSendFailureError', () => {
     const result = buildSendFailureError(new Error('boom'), 'boom');
 
     expect(result.code).toBe('CORA_COWORK_INTERNAL_ERROR');
-    expect(result.ownership).toBe('aionui');
+    expect(result.ownership).toBe('cora-cowork');
     expect(result.retryable).toBe(true);
   });
 

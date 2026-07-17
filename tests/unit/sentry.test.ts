@@ -218,7 +218,7 @@ describe('captureBackendStartupFailure', () => {
         'CoraCore_startup_classification',
         expect.objectContaining({
           incompleteInstallationKind: 'missing_directory_resources',
-          missingBundledCoraCoreDir: true,
+          missingBundledCoraCoworkDir: true,
           missingRuntimeDir: true,
           missingBackendBinary: true,
         })
