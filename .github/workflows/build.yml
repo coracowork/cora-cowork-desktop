@@ -34,14 +34,14 @@ jobs:
             output_name: CoraCowork-Windows-x64
             
           # Windows ARM64
-          - os: windows-11-arm64
-            platform: win
-            arch: arm64
-            script: build-win:arm64
-            artifact_path: |
-              out/CoraCowork-*.exe
-              dist/CoraCowork-*.exe
-            output_name: CoraCowork-Windows-arm64
+          #- os: windows-11-arm64
+           # platform: win
+          #  arch: arm64
+           # script: build-win:arm64
+            #artifact_path: |
+            #  out/CoraCowork-*.exe
+           #   dist/CoraCowork-*.exe
+          #  output_name: CoraCowork-Windows-arm64
             
           # macOS x64
           - os: macos-latest
