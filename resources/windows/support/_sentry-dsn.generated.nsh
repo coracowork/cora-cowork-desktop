@@ -1,1 +1,0 @@
-!define CORA_COWORK_SENTRY_DSN ""
