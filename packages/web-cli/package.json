@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@cora-cowork/shared-scripts": "workspace:*",
-    "@cora-cowork/web-host": "workspace:*"
+    "@aionui/web-host": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
