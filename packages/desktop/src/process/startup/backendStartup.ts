@@ -13,6 +13,7 @@ type StartBackendOrExitOptions = {
   exitApp: (code: number) => void;
   exitOnFailure?: boolean;
   logError?: (message: string, error: unknown) => void;
+  logDir?: string;
 };
 
 function isBackendStartupCancelledError(error: unknown): boolean {

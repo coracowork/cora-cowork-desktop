@@ -44,7 +44,7 @@
 <p align="center">
 
 [✨ Cowork 演示](#-cowork-演示) ·
-[🤔 为什么选择 AionUi？](#-为什么选择-aionui-而非-claude-cowork) ·
+[🤔 为什么选择 CoraCowork？](#-为什么选择-CoraCowork-而非-claude-cowork) ·
 [🚀 快速开始](#-快速开始) ·
 [💬 社区](#-社区与支持)
 
@@ -52,11 +52,11 @@
 
 ---
 
-## Cowork — AI Agent 与您并肩工作
+## CoraCowork — AI Agent 与您并肩工作
 
-**AionUi 不只是个聊天工具。** 它是一个真正的 Cowork 平台，AI Agent 就像您的得力助手，在电脑上帮您处理各种任务——读文件、写代码、查资料、自动化工作流。Agent 的一举一动都在您的掌控之中，透明可见。
+**CoraCowork 不只是个聊天工具。** 它是一个真正的 CoraCowork 平台，AI Agent 就像您的得力助手，在电脑上帮您处理各种任务——读文件、写代码、查资料、自动化工作流。Agent 的一举一动都在您的掌控之中，透明可见。
 
-|                       | 传统 AI 聊天客户端 | **AionUi (Cowork)**                                                                                    |
+|                       | 传统 AI 聊天客户端 | **CoraCowork (CoraCowork)**                                                                                    |
 | :-------------------- | :----------------- | :----------------------------------------------------------------------------------------------------- |
 | AI 可以操作您的文件   | 有限或不可用       | **是 — 内置 Agent，完全文件访问**                                                                      |
 | AI 可以执行多步骤任务 | 有限               | **是 — 自主执行，需您批准**                                                                            |
@@ -66,14 +66,14 @@
 | 价格                  | 免费 / 付费        | **免费且开源**                                                                                         |
 
 <p align="center">
-  <img src="../../resources/offica-ai BANNER-function.png" alt="AionUi Cowork Platform" width="800">
+  <img src="../../resources/offica-ai BANNER-function.png" alt="CoraCowork  Platform" width="800">
 </p>
 
 ---
 
 ## 内置 Agent — 安装即用，零配置
 
-AionUi 自带完整的 AI Agent。不像其他工具需要你手动安装各种 CLI 工具，**AionUi 装好就能用，开箱即用**。
+CoraCowork 自带完整的 AI Agent。不像其他工具需要你手动安装各种 CLI 工具，**CoraCowork 装好就能用，开箱即用**。
 
 - **无需安装 CLI 工具** — Agent 引擎已内置
 - **无需复杂配置** — 粘贴任意 API 密钥即可开始
@@ -86,7 +86,7 @@ AionUi 自带完整的 AI Agent。不像其他工具需要你手动安装各种 
 
 ### **办公助手（PPT / Word / Excel）**
 
-想把文档/表格直接交给 Agent？AionUi 内置 **[OfficeCLI](https://github.com/iOfficeAI/OfficeCLI)**，让 PPT（Morph 转场）、Word（`.docx`）与 Excel（`.xlsx/.xlsm/.csv`）从需求到可交付结果更高效、更稳定。
+想把文档/表格直接交给 Agent？CoraCowork 内置 **[OfficeCLI](https://github.com/iOfficeAI/OfficeCLI)**，让 PPT（Morph 转场）、Word（`.docx`）与 Excel（`.xlsx/.xlsm/.csv`）从需求到可交付结果更高效、更稳定。
 三类助手对应各自的文件工作流：生成的成稿可直接编辑、可复用。
 
 #### **PPT 助手**
@@ -141,9 +141,9 @@ AionUi 自带完整的 AI Agent。不像其他工具需要你手动安装各种 
 
 ## 多 Agent 模式 — 已有 CLI 工具？一起用起来
 
-如果你已经在用 Claude Code、Codex、Hermes Agent 或 OpenClaw，AionUi 会自动发现它们，让你同时和这些 Agent 一起协作——当然，还有内置 Agent。
+如果你已经在用 Claude Code、Codex、Hermes Agent 或 OpenClaw，CoraCowork 会自动发现它们，让你同时和这些 Agent 一起协作——当然，还有内置 Agent。
 
-**支持的 Agent：** 内置 Agent（零配置） • Claude Code • Codex • Qwen Code • Goose AI • OpenClaw • Augment Code • CodeBuddy • Kimi CLI • OpenCode • Factory Droid • GitHub Copilot • Qoder CLI • Mistral Vibe • Nanobot • Aion CLI（corars，AionUi 随附的 Rust 后端服务） • Snow CLI • Hermes Agent • Cursor Agent 等
+**支持的 Agent：** 内置 Agent（零配置） • Claude Code • Codex • Qwen Code • Goose AI • OpenClaw • Augment Code • CodeBuddy • Kimi CLI • OpenCode • Factory Droid • GitHub Copilot • Qoder CLI • Mistral Vibe • Nanobot • Cora CLI（corars，CoraCowork 随附的 Rust 后端服务） • Snow CLI • Hermes Agent • Cursor Agent 等
 
 <p align="center">
   <img src="../../resources/multi-agent支持openclaw.gif" alt="Multi-Agent Cowork" width="800">
@@ -163,8 +163,8 @@ AionUi 自带完整的 AI Agent。不像其他工具需要你手动安装各种 
   <img src="../../resources/AionUi_team.gif" alt="Team Mode overview" width="800">
 </p>
 
-- **多 Agent 并行执行** — Leader 将任务分解为子任务并委派给并行运行的 Teammate Agent；每个 Teammate 通过 ACP（Agent Communication Protocol，AionUi 的多 Agent 协调层）、Gemini 或 Aionrs 使用独立模型
-- **Leader 统筹编排** — Leader 分配、追踪并汇总结果；支持的后端包括 Claude Code、Codex、Hermes Agent、Gemini、Snow CLI 和 Aion CLI
+- **多 Agent 并行执行** — Leader 将任务分解为子任务并委派给并行运行的 Teammate Agent；每个 Teammate 通过 ACP（Agent Communication Protocol，CoraCowork 的多 Agent 协调层）、Gemini 或 Corars 使用独立模型
+- **Leader 统筹编排** — Leader 分配、追踪并汇总结果；支持的后端包括 Claude Code、Codex、Hermes Agent、Gemini、Snow CLI 和 Cora CLI
 - **团队隔离工作空间** — 所有 Agent 共享同一文件夹；每个 Agent 有独立的权限确认弹窗，侧边栏角标显示待确认项
 
 <details>
@@ -173,7 +173,7 @@ AionUi 自带完整的 AI Agent。不像其他工具需要你手动安装各种 
 <br>
 
 - **共享工作空间** — 所有 Agent 读写同一文件夹；文件面板全程可见
-- **支持的后端** — Claude Code、Codex、Gemini、Snow CLI、Aion CLI（aionrs）；其他具备 `mcpCapabilities.stdio` 的 ACP 后端自动支持
+- **支持的后端** — Claude Code、Codex、Gemini、Snow CLI、Cora CLI（corars）；其他具备 `mcpCapabilities.stdio` 的 ACP 后端自动支持
 - **动态伸缩** — 可在团队运行时添加或移除 Teammate；静默 Agent 自动升级为失败状态，支持一键移除
 - **细粒度权限** — 每个 Agent 有独立的权限确认弹窗；侧边栏角标显示待确认项
 - **文件共享** — Leader 可向 Teammate 传递文件附件

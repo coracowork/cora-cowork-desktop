@@ -10,11 +10,51 @@ import { Menu, Tooltip } from '@arco-design/web-react';
 import React, { useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-/** Above this model count the model list gains a search box. */
-export const MODEL_SEARCH_THRESHOLD = 5;
+/** Above this option count a dropdown list gains a search box. Shared by every searchable dropdown. */
+export const DROPDOWN_SEARCH_THRESHOLD = 5;
 
 /** Trigger props for a Menu.SubMenu: fly out to the left, auto-flip when there is no room. */
 export const RUNTIME_SUBMENU_TRIGGER_PROPS = { position: 'lt', autoFitPosition: true } as const;
+
+/** A horizontal divider line inside a runtime-selector menu. */
+export const RuntimeSelectorMenuDivider: React.FC = () => (
+  <div className='my-4px mx-8px border-b border-b-solid border-b-[var(--color-border-2)]' />
+);
+
+/** Render a titled group of thought-level options as Menu items. */
+export const renderThoughtLevelMenuGroup = ({
+  thoughtLevel,
+  setStatus,
+  title,
+  onSelect,
+}: {
+  thoughtLevel: AcpDerivedOption | null | undefined;
+  setStatus?: AcpConfigSetStatus;
+  title: string;
+  onSelect: (value: string) => void;
+}): React.ReactNode => {
+  if (!thoughtLevel) return null;
+  const isSetting = setStatus?.state === 'setting';
+  return (
+    <Menu.ItemGroup title={title}>
+      {thoughtLevel.options.map((item) => (
+        <Menu.Item
+          key={item.value}
+          className={item.value === thoughtLevel.currentValue ? 'bg-2!' : ''}
+          disabled={isSetting}
+          onClick={() => onSelect(item.value)}
+        >
+          <RuntimeSelectorCheckedItem
+            selected={item.value === thoughtLevel.currentValue}
+            description={item.description}
+          >
+            {item.label}
+          </RuntimeSelectorCheckedItem>
+        </Menu.Item>
+      ))}
+    </Menu.ItemGroup>
+  );
+};
 
 type RuntimeSelectorModel = { id: string; label?: string; description?: string };
 
@@ -86,7 +126,7 @@ export const RuntimeSelectorSubMenuTitle: React.FC<{ label: string; value: strin
  * Model options with search + fixed-height scroll. Reused by:
  * - the direct dropdown (no thought level) and the model submenu — flat via `models`;
  * - the corars selector — provider-grouped via `groups`.
- * Search box shows only when the total model count exceeds MODEL_SEARCH_THRESHOLD;
+ * Search box shows only when the total model count exceeds DROPDOWN_SEARCH_THRESHOLD;
  * filtering is client-side, case-insensitive on label/id, and spans all groups.
  */
 export const RuntimeSelectorModelList: React.FC<{
@@ -100,7 +140,7 @@ export const RuntimeSelectorModelList: React.FC<{
   const [query, setQuery] = useState('');
 
   const totalCount = groups ? groups.reduce((sum, group) => sum + group.models.length, 0) : (models?.length ?? 0);
-  const showSearch = totalCount > MODEL_SEARCH_THRESHOLD;
+  const showSearch = totalCount > DROPDOWN_SEARCH_THRESHOLD;
   const keyword = query.trim().toLowerCase();
 
   const filteredModels = useMemo(() => {
@@ -136,9 +176,9 @@ export const RuntimeSelectorModelList: React.FC<{
   const isEmpty = groups ? filteredGroups.length === 0 : filteredModels.length === 0;
 
   // Layout: a fixed (non-scrolling) search box on top, and a single scroll
-  // container below for the list (`.runtime-model-scroll`). The host Arco popup's
+  // container below for the list (`.dropdown-search-scroll`). The host Arco popup's
   // own scroll/height cap is disabled via a CSS override keyed off
-  // `:has(.runtime-model-scroll)`, so there is exactly one scrollbar — this one.
+  // `:has(.dropdown-search-scroll)`, so there is exactly one scrollbar — this one.
   // The search box lives outside it, so it never moves or leaves a gap, and
   // provider group titles pin to the top of the scroll container cleanly.
   return (
@@ -153,7 +193,7 @@ export const RuntimeSelectorModelList: React.FC<{
           />
         </div>
       ) : null}
-      <div className='runtime-model-scroll max-h-280px overflow-y-auto'>
+      <div className='dropdown-search-scroll max-h-280px overflow-y-auto'>
         {isEmpty ? (
           <div className='px-12px py-10px text-12px text-t-tertiary text-center'>
             {t('agent.model.noResults', { defaultValue: 'No matching models' })}
@@ -169,44 +209,5 @@ export const RuntimeSelectorModelList: React.FC<{
         )}
       </div>
     </>
-  );
-};
-
-export const RuntimeSelectorMenuDivider: React.FC = () => <Menu.Divider />;
-
-export const renderThoughtLevelMenuGroup = ({
-  thoughtLevel,
-  setStatus,
-  title,
-  onSelect,
-}: {
-  thoughtLevel?: AcpDerivedOption | null;
-  setStatus?: AcpConfigSetStatus;
-  title: string;
-  onSelect: (value: string) => void;
-}): React.ReactNode => {
-  if (!thoughtLevel) return null;
-  const isRuntimeSetting = isConfigSetting(setStatus);
-
-  return (
-    <Menu.SubMenu
-      key='thought-level'
-      triggerProps={RUNTIME_SUBMENU_TRIGGER_PROPS}
-      title={<RuntimeSelectorSubMenuTitle label={title} value={getCurrentThoughtLevelLabel(thoughtLevel)} />}
-    >
-      {thoughtLevel.options.map((item) => (
-        <Menu.Item
-          key={item.value}
-          className={item.value === thoughtLevel.currentValue ? 'bg-2!' : ''}
-          onClick={() => {
-            if (!isRuntimeSetting) onSelect(item.value);
-          }}
-        >
-          <RuntimeSelectorCheckedItem selected={item.value === thoughtLevel.currentValue} description={item.description}>
-            {item.label}
-          </RuntimeSelectorCheckedItem>
-        </Menu.Item>
-      ))}
-    </Menu.SubMenu>
   );
 };

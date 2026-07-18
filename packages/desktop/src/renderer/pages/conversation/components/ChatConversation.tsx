@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 CoraCowork (cora-cowork.com)
+ * Copyright 2025 CoraCowork (coracowork.shop)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -28,9 +28,9 @@ import AcpModelSelector from '@/renderer/components/agent/AcpModelSelector';
 import { getConversationOrNull } from '@/renderer/pages/conversation/utils/conversationCache';
 import { getConversationCreateErrorMessage } from '@/renderer/pages/conversation/utils/conversationCreateError';
 import GoogleModelSelector from '../platforms/gemini/GoogleModelSelector';
-import CoraCoworkrsChat from '../platforms/corars/CoraCoworkrsChat';
-import CoraCoworkrsModelSelector from '../platforms/corars/CoraCoworkrsModelSelector';
-import { useCoraCoworkrsModelSelection } from '../platforms/corars/useCoraCoworkrsModelSelection';
+import CoraCoworkChat from '../platforms/corars/CoraCoworkChat';
+import CoraCoworkModelSelector from '../platforms/corars/CoraCoworkModelSelector';
+import { useCoraCoworkModelSelection } from '../platforms/corars/useCoraCoworkModelSelection';
 import { useConversationRuntimeView } from '../runtime/useConversationRuntimeView';
 import { isLegacyReadOnlyConversationType } from '../utils/conversationRuntime';
 import { resolveConversationBackend } from '../utils/conversationAssistantIdentity';
@@ -163,7 +163,7 @@ const CorarsConversationPanel: React.FC<{ conversation: CorarsConversation; slid
     [conversation.id, runtimeView]
   );
 
-  const modelSelection = useCoraCoworkrsModelSelection({
+  const modelSelection = useCoraCoworkModelSelection({
     initialModel: conversation.model,
     onSelectModel,
   });
@@ -202,7 +202,7 @@ const CorarsConversationPanel: React.FC<{ conversation: CorarsConversation; slid
       <div className='flex items-center gap-8px'>
         <CronJobManager conversation_id={conversation.id} cron_job_id={cronJobId} />
         {!isMobile && (
-          <CoraCoworkrsModelSelector
+          <CoraCoworkModelSelector
             selection={modelSelection}
             thoughtLevel={runtimeConfig.thoughtLevel}
             setStatus={runtimeConfig.setStatus}
@@ -221,7 +221,7 @@ const CorarsConversationPanel: React.FC<{ conversation: CorarsConversation; slid
 
   return (
     <ChatLayout {...chatLayoutProps} conversation_id={conversation.id}>
-      <CoraCoworkrsChat
+      <CoraCoworkChat
         conversation_id={conversation.id}
         workspace={conversation.extra.workspace}
         modelSelection={modelSelection}

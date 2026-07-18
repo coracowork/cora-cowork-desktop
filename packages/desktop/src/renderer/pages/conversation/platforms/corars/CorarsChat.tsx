@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 CoraCowork (cora-cowork.com)
+ * Copyright 2025 CoraCowork (coracowork.shop)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -22,13 +22,13 @@ import HOC from '@renderer/utils/ui/HOC';
 import React, { useEffect, useMemo } from 'react';
 import LocalImageView from '@renderer/components/media/LocalImageView';
 import type { TeamSendBoxRuntime } from '@/renderer/pages/team/components/teamSendRuntime';
-import CoraCoworkrsSendBox from './CoraCoworkrsSendBox';
-import type { CoraCoworkrsModelSelection } from './useCoraCoworkrsModelSelection';
+import CoraCoworkSendBox from './CoraCoworkSendBox';
+import type { CoraCoworkModelSelection } from './useCoraCoworkModelSelection';
 
-const CoraCoworkrsChat: React.FC<{
+const CoraCoworkChat: React.FC<{
   conversation_id: string;
   workspace: string;
-  modelSelection: CoraCoworkrsModelSelection;
+  modelSelection: CoraCoworkModelSelection;
   session_mode?: string;
   cron_job_id?: string;
   emptySlot?: React.ReactNode;
@@ -80,7 +80,7 @@ const CoraCoworkrsChat: React.FC<{
           <FlexFullContainer>
             <MessageList className='flex-1' emptySlot={emptySlot} />
           </FlexFullContainer>
-          <CoraCoworkrsSendBox
+          <CoraCoworkSendBox
             conversation_id={conversation_id}
             modelSelection={modelSelection}
             session_mode={session_mode}
@@ -99,4 +99,4 @@ export default HOC.Wrapper(
   MessageListLoadingProvider,
   MessagePaginationProvider,
   LocalImageView.Provider
-)(CoraCoworkrsChat);
+)(CoraCoworkChat);

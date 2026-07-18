@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2026 CoraCowork (aionui.com)
+ * Copyright 2026 CoraCowork (coracowork.shop)
  * SPDX-License-Identifier: Apache-2.0
  */
 

@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { type FeedbackEventTags, submitFeedbackReport } from '@/renderer/services/feedback/submitFeedbackReport';
 
-const CORA_COWORK_DOWNLOAD_URL = 'https://www.cora-cowork.com/';
+const CORA_COWORK_DOWNLOAD_URL = 'https://www.coracowork.shop/';
 const INSTALLATION_INTEGRITY_REPORT_FLUSH_TIMEOUT_MS = 2000;
 
 type InstallationIntegrityDialogKind =

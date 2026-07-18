@@ -422,12 +422,12 @@ describe('transformMessage', () => {
     const message: IResponseMessage = {
       type: 'tips',
       data: {
-        content: 'AionUI failed while sending the message',
+        content: 'CoraCowork failed while sending the message',
         type: 'error',
         source: 'send_failed',
         code: 'INTERNAL_ERROR',
         error: {
-          message: 'AionUI failed while sending the message',
+          message: 'CoraCowork failed while sending the message',
           code: 'CORA_COWORK_INTERNAL_ERROR',
           ownership: 'cora-cowork',
           detail: 'Failed to write Codex sandbox config',
@@ -447,7 +447,7 @@ describe('transformMessage', () => {
 
     expect(transformed.type).toBe('tips');
     expect(transformed.content.error).toEqual({
-      message: 'AionUI failed while sending the message',
+      message: 'CoraCowork failed while sending the message',
       code: 'CORA_COWORK_INTERNAL_ERROR',
       ownership: 'cora-cowork',
       detail: 'Failed to write Codex sandbox config',

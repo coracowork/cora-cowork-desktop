@@ -138,7 +138,7 @@
     "loading": "Запуск предпросмотра PPT...",
     "installing": "Установка компонента предпросмотра...",
     "startFailed": "Не удалось запустить предпросмотр PPT",
-    "installHint": "Установите OfficeCLI со страницы официальных выпусков iOfficeAI/OfficeCLI"
+    "installHint": "Установите OfficeCLI со страницы официальных выпусков coracowork/cora-cowork-desktop"
   }
 }
 

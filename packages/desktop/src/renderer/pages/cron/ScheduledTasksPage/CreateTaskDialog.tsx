@@ -609,7 +609,7 @@ const CreateTaskDialog: React.FC<CreateTaskDialogProps> = ({
   };
 
   return (
-    <CoraModal
+    <CoraCoworkModal
       variant='standard'
       header={{ title: isEditMode ? t('cron.page.editTask') : t('cron.page.createTask'), showClose: true }}
       visible={visible}
@@ -1000,7 +1000,7 @@ const CreateTaskDialog: React.FC<CreateTaskDialogProps> = ({
           )}
         </Form>
       </div>
-    </CoraModal>
+    </CoraCoworkModal>
   );
 };
 

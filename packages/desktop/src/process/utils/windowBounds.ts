@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 CoraCowork (cora-cowork.com)
+ * Copyright 2025 CoraCowork (coracowork.shop)
  * SPDX-License-Identifier: Apache-2.0
  *
  * Main-window bounds persistence: restore the last-known size and position

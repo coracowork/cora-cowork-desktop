@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 CoraCowork (cora-cowork.com)
+ * Copyright 2025 CoraCowork (coracowork.shop)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -8,7 +8,7 @@ import type { IProvider, TProviderWithModel } from '@/common/config/storage';
 import { useModelProviderList } from '@/renderer/hooks/agent/useModelProviderList';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-export type CoraCoworkrsModelSelection = {
+export type CoraCoworkModelSelection = {
   current_model?: TProviderWithModel;
   providers: IProvider[];
   getAvailableModels: (provider: IProvider) => string[];
@@ -16,15 +16,15 @@ export type CoraCoworkrsModelSelection = {
   getDisplayModelName: (modelName?: string) => string;
 };
 
-export type UseCoraCoworkrsModelSelectionOptions = {
+export type UseCoraCoworkModelSelectionOptions = {
   initialModel: TProviderWithModel | undefined;
   onSelectModel: (provider: IProvider, modelName: string) => Promise<boolean>;
 };
 
-export const useCoraCoworkrsModelSelection = ({
+export const useCoraCoworkModelSelection = ({
   initialModel,
   onSelectModel,
-}: UseCoraCoworkrsModelSelectionOptions): CoraCoworkrsModelSelection => {
+}: UseCoraCoworkModelSelectionOptions): CoraCoworkModelSelection => {
   const [current_model, setCurrentModel] = useState<TProviderWithModel | undefined>(initialModel);
 
   useEffect(() => {
@@ -74,4 +74,4 @@ export const useCoraCoworkrsModelSelection = ({
 
 // Aliases for backward compatibility with importers using the short names
 // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-arguments
-export { useCoraCoworkrsModelSelection as useCorarsModelSelection, CoraCoworkrsModelSelection as CorarsModelSelection };
+export { useCoraCoworkModelSelection as useCorarsModelSelection, CoraCoworkModelSelection as CorarsModelSelection };

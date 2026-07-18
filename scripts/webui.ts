@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
 /**
  * @license
- * Copyright 2025 CoraCowork (cora-cowork.com)
+ * Copyright 2025 CoraCowork (coracowork.shop)
  * SPDX-License-Identifier: Apache-2.0
  *
  * Pure Bun CLI — launches the WebUI (backend + static server + auth) without
@@ -107,9 +107,12 @@ function resolvePort(): number {
 
 function resolveAllowRemote(): boolean {
   if (has('--remote')) return true;
+  if (has('--no-remote')) return false;
   const host = process.env.CORA_COWORK_HOST?.trim();
   if (host && ['0.0.0.0', '::', '::0'].includes(host)) return true;
-  return parseBoolean(process.env.CORA_COWORK_ALLOW_REMOTE ?? process.env.CORA_COWORK_REMOTE);
+  const envRemote = process.env.CORA_COWORK_ALLOW_REMOTE ?? process.env.CORA_COWORK_REMOTE;
+  if (envRemote !== undefined) return parseBoolean(envRemote);
+  return process.env.NODE_ENV !== 'production';
 }
 
 function resolveStaticDir(): string {

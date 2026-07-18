@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2026 CoraCowork (cora-cowork.com)
+ * Copyright 2026 CoraCowork (coracowork.shop)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -61,9 +61,9 @@ export function detectStartupArchitectureMismatch(
     return null;
   }
 
-  const execFileSync = env.execFileSync ?? defaultExecFileSync;
-  const isRosettaTranslated = readSysctlInt('sysctl.proc_translated', execFileSync) === 1;
-  const deviceSupportsArm64 = readSysctlInt('hw.optional.arm64', execFileSync) === 1;
+  const resolvedExecFile = env.execFileSync ?? execFileSync;
+  const isRosettaTranslated = readSysctlInt('sysctl.proc_translated', resolvedExecFile) === 1;
+  const deviceSupportsArm64 = readSysctlInt('hw.optional.arm64', resolvedExecFile) === 1;
   if (!isRosettaTranslated && !deviceSupportsArm64) {
     return null;
   }

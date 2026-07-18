@@ -138,6 +138,6 @@
     "loading": "Starting PPT preview...",
     "installing": "Installing preview component...",
     "startFailed": "Failed to start PPT preview",
-    "installHint": "Install OfficeCLI from the official coracowork/corars releases page"
+    "installHint": "Install OfficeCLI from the official coracowork/cora-cowork-desktop releases page"
   }
 }

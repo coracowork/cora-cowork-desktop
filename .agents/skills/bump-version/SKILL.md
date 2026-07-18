@@ -48,7 +48,7 @@ Display: "Bumping CoraCowork: {current} → {target}"
 **Skip entirely if `--skip-core` is set.**
 
 ```bash
-gh release view --repo iOfficeAI/CoraCore --json tagName,body
+gh release view --repo coracowork/CoraCore --json tagName,body
 ```
 
 - If `--core <version>` provided → use that tag instead of latest
@@ -131,7 +131,7 @@ Prepend the new entry in this format:
 
 - **thinking:** add streaming indicator (#3015)
 
-### Core ([{core tag}](https://github.com/iOfficeAI/CoraCore/releases/tag/{core tag}))
+### Core ([{core tag}](https://github.com/coracowork/CoraCore/releases/tag/{core tag}))
 
 #### Bug Fixes
 

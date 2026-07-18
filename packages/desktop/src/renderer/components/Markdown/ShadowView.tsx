@@ -1,10 +1,9 @@
 /**
  * @license
- * Copyright 2025 CoraCowork (cora-cowork.com)
+ * Copyright 2025 CoraCowork (coracowork.shop)
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { theme } from '@office-ai/platform';
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import { addImportantToAll } from '@renderer/utils/theme/customCssProcessor';
@@ -69,7 +68,7 @@ const createInitStyle = (
     margin-block-end: 6px;
   }
   a{
-    color:${theme.Color.PrimaryColor};
+    color:var(--primary);
     text-decoration: none;
     cursor: pointer;
     word-break: break-all;

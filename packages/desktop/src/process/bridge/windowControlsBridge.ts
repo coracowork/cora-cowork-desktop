@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2026 CoraCowork (cora-cowork.com)
+ * Copyright 2026 CoraCowork (coracowork.shop)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -15,6 +15,15 @@
 import { BrowserWindow } from 'electron';
 import { ipcBridge } from '@/common';
 
+let targetWindow: BrowserWindow | null = null;
+
+function getTargetWindow(): BrowserWindow | null {
+  if (targetWindow && !targetWindow.isDestroyed()) {
+    return targetWindow;
+  }
+  return BrowserWindow.getFocusedWindow() ?? BrowserWindow.getAllWindows()[0] ?? null;
+}
+
 /**
  * 为指定窗口注册最大化状态监听器
  * Register maximize state listeners for a specific window
@@ -22,6 +31,8 @@ import { ipcBridge } from '@/common';
  * @param window - 要监听的 BrowserWindow 实例 / BrowserWindow instance to listen to
  */
 export function registerWindowMaximizeListeners(window: BrowserWindow): void {
+  targetWindow = window;
+
   // 当窗口最大化时通知渲染进程 / Notify renderer when window is maximized
   window.on('maximize', () => {
     ipcBridge.windowControls.maximizedChanged.emit({ is_maximized: true });
@@ -43,7 +54,7 @@ export function registerWindowMaximizeListeners(window: BrowserWindow): void {
 export function initWindowControlsBridge(): void {
   // 最小化窗口 / Minimize window
   ipcBridge.windowControls.minimize.provider(() => {
-    const window = BrowserWindow.getFocusedWindow();
+    const window = getTargetWindow();
     if (window) {
       window.minimize();
     }
@@ -52,7 +63,7 @@ export function initWindowControlsBridge(): void {
 
   // 最大化窗口 / Maximize window
   ipcBridge.windowControls.maximize.provider(() => {
-    const window = BrowserWindow.getFocusedWindow();
+    const window = getTargetWindow();
     if (window) {
       window.maximize();
     }
@@ -61,7 +72,7 @@ export function initWindowControlsBridge(): void {
 
   // 取消最大化窗口 / Unmaximize window
   ipcBridge.windowControls.unmaximize.provider(() => {
-    const window = BrowserWindow.getFocusedWindow();
+    const window = getTargetWindow();
     if (window) {
       window.unmaximize();
     }
@@ -70,7 +81,7 @@ export function initWindowControlsBridge(): void {
 
   // 关闭窗口 / Close window
   ipcBridge.windowControls.close.provider(() => {
-    const window = BrowserWindow.getFocusedWindow();
+    const window = getTargetWindow();
     if (window) {
       window.close();
     }
@@ -79,7 +90,7 @@ export function initWindowControlsBridge(): void {
 
   // 获取窗口是否最大化状态 / Get window maximized state
   ipcBridge.windowControls.isMaximized.provider(() => {
-    const window = BrowserWindow.getFocusedWindow();
+    const window = getTargetWindow();
     return Promise.resolve(window?.isMaximized() ?? false);
   });
 

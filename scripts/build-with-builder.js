@@ -30,10 +30,15 @@ const DEBUG_AUTO_UPDATE_CURRENT_VERSION_ENV = 'CORA_COWORK_DEBUG_AUTO_UPDATE_CUR
 
 function patchElectronBuilderNsisInstaller() {
   const rootDir = path.resolve(__dirname, '..');
+  // Resolve app-builder-lib inside THIS repo first. require.resolve walks up
+  // parent directories, so in a git worktree (whose bun install has no
+  // top-level node_modules/app-builder-lib) it would escape to the main
+  // checkout's copy and patch the wrong file.
   let appBuilderDir = '';
-  try {
-    appBuilderDir = path.dirname(require.resolve('app-builder-lib/package.json'));
-  } catch (error) {
+  const directDir = path.join(rootDir, 'node_modules', 'app-builder-lib');
+  if (fs.existsSync(path.join(directDir, 'package.json'))) {
+    appBuilderDir = directDir;
+  } else {
     const bunModulesDir = path.join(rootDir, 'node_modules', '.bun');
     if (fs.existsSync(bunModulesDir)) {
       const candidates = fs
@@ -44,7 +49,11 @@ function patchElectronBuilderNsisInstaller() {
         .sort();
       appBuilderDir = candidates[0] || '';
     }
-    if (!appBuilderDir) {
+  }
+  if (!appBuilderDir) {
+    try {
+      appBuilderDir = path.dirname(require.resolve('app-builder-lib/package.json'));
+    } catch (error) {
       console.warn(`Warning: app-builder-lib is not resolvable; skipping NSIS template patch: ${error.message}`);
       return;
     }
@@ -109,9 +118,9 @@ function patchElectronBuilderNsisInstaller() {
     '  !insertmacro copyFile "$uninstallerFileName" "$uninstallerFileNameTemp"',
   ].join('\n');
   const bundledUninstallerOverride = [
-    '  ${if} ${FileExists} "$PLUGINSDIR\\CoraCowork-fixed-uninstaller.exe"',
-    '    DetailPrint `CoraCowork-bundled-uninstaller override source.`',
-    '    StrCpy $uninstallerFileName "$PLUGINSDIR\\CoraCowork-fixed-uninstaller.exe"',
+    '  ${if} ${FileExists} "$PLUGINSDIR\\Cora-Cowork-fixed-uninstaller.exe"',
+    '    DetailPrint `Cora-Cowork-bundled-uninstaller override source.`',
+    '    StrCpy $uninstallerFileName "$PLUGINSDIR\\Cora-Cowork-fixed-uninstaller.exe"',
     '  ${endIf}',
   ].join('\n');
   const bundledUninstallerCopySource = [
@@ -705,14 +714,6 @@ try {
   // 2. Check if we can skip Vite build (incremental build)
   const skipViteBuild = shouldSkipViteBuild(skipVite, forceBuild);
 
-  // 0. Build @cora-cowork/web-host workspace package (TS → JS) so its compiled
-  //    output is available for electron-vite to resolve via "exports".
-  console.log('📦 Building @cora-cowork/web-host...');
-  execSync('bunx tsc -p packages/web-host/tsconfig.json', {
-    stdio: 'inherit',
-    shell: process.platform === 'win32',
-  });
-
   if (!skipViteBuild) {
     // Run electron-vite to build all bundles (main + preload + renderer)
     console.log(`📦 Building ${targetArch}...`);
@@ -762,16 +763,16 @@ try {
     return;
   }
 
-  // 5. Prepare CoraCore binary (for packaged runtime usage)
-  const { prepareCoracore } = require('../packages/shared-scripts/src/prepare-cora-cowork.js');
-  const { resolveCoraCoworkVersion } = require('./resolveCoraCoworkVersion.js');
+  // 5. Prepare coracore binary (for packaged runtime usage)
+  const { prepareCoracore } = require('../packages/shared-scripts/src/prepare-coracore.js');
+  const { resolveCoracoreVersion } = require('./resolveCoracoreVersion.js');
   const projectRoot = path.resolve(__dirname, '..');
   writeGeneratedSentryDsnInclude(projectRoot);
   prepareCoracore({
     projectRoot,
     platform: process.platform,
     arch: targetArch,
-    version: resolveCoraCoworkVersion(projectRoot),
+    version: resolveCoracoreVersion(projectRoot),
   });
 
   // 6. Prepare hub resources (index.json + extension zips for offline fallback)
@@ -862,19 +863,7 @@ try {
     cleanupWindowsPackOutput();
   }
 
-  // Build the command, ensuring we don't have empty = signs
-let commandParts = ['bunx electron-builder', '--config packages/desktop/electron-builder.yml'];
-if (builderArgs && builderArgs.trim()) {
-  commandParts.push(builderArgs.trim());
-}
-if (archFlag && archFlag.trim()) {
-  commandParts.push(archFlag.trim());
-}
-if (nsisInclude && nsisInclude.trim()) {
-  commandParts.push(nsisInclude.trim());
-}
-commandParts.push(publishArg);
-const builderCommand = commandParts.join(' ');
+  const builderCommand = `bunx electron-builder --config packages/desktop/electron-builder.yml ${builderArgs} ${archFlag} ${nsisInclude} ${publishArg}`;
   try {
     buildWithDmgRetry(builderCommand, targetArch);
   } catch (error) {

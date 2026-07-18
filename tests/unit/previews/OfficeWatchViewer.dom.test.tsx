@@ -39,7 +39,7 @@ describe('OfficeWatchViewer module shape', () => {
     expect((mod.default as { length: number }).length).toBeLessThanOrEqual(2);
   });
 
-  it('uses official iOfficeAI OfficeCLI releases page', async () => {
+  it('uses official coracowork/cora-cowork-desktop releases page', async () => {
     const mod = await import('@/renderer/pages/conversation/Preview/components/viewers/OfficeWatchViewer');
     expect(mod.OFFICECLI_INSTALL_URL).toBe('https://github.com/coracowork/cora-cowork-desktop/releases');
   });

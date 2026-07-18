@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2025 CoraCowork (cora-cowork.com)
+ * Copyright 2025 CoraCowork (coracowork.shop)
  * SPDX-License-Identifier: Apache-2.0
  */
 
@@ -12,6 +12,8 @@ import { getSystemDir } from './initStorage';
 import { httpRequest } from '@/common/adapter/httpBridge';
 import { startWebHost, addPortMapping, removePortMapping, type WebHostHandle } from '@cora-cowork/web-host';
 import { getDataPath } from './utils';
+
+export const RENDERER_URL = process.env['ELECTRON_RENDERER_URL'] || '';
 
 const WEBUI_CONFIG_FILE = 'webui.config.json';
 const DESKTOP_WEBUI_ENABLED_KEY = 'webui.desktop.enabled';

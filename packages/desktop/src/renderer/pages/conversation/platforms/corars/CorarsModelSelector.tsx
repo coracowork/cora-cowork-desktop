@@ -1,10 +1,10 @@
 /**
  * @license
- * Copyright 2025 CoraCowork (cora-cowork.com)
+ * Copyright 2025 CoraCowork (coracowork.shop)
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import type { CoraCoworkrsModelSelection } from './useCoraCoworkrsModelSelection';
+import type { CoraCoworkModelSelection } from './useCoraCoworkModelSelection';
 import type { AcpConfigSetStatus, AcpDerivedOption } from '@/renderer/hooks/agent/useAcpConfigOptions';
 import {
   composeRuntimeSelectorLabel,
@@ -22,8 +22,8 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import classNames from 'classnames';
 
-const CoraCoworkrsModelSelector: React.FC<{
-  selection?: CoraCoworkrsModelSelection;
+const CoraCoworkModelSelector: React.FC<{
+  selection?: CoraCoworkModelSelection;
   disabled?: boolean;
   thoughtLevel?: AcpDerivedOption | null;
   setStatus?: AcpConfigSetStatus;
@@ -137,4 +137,4 @@ const CoraCoworkrsModelSelector: React.FC<{
   );
 };
 
-export default CoraCoworkrsModelSelector;
+export default CoraCoworkModelSelector;
