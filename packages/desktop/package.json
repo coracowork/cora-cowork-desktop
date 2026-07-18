@@ -1,5 +1,5 @@
 {
-  "name": "@aionui/web-host",
+  "name": "@cora-cowork/web-host",
   "version": "0.0.0",
   "private": true,
   "description": "CoraCowork desktop Electron application",
