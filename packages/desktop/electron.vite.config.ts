@@ -99,9 +99,9 @@ export default defineConfig(({ mode }) => {
       plugins: [
         // externalizeDepsPlugin replaces our custom getExternalDeps() + pluginExternalizeDynamicImports.
         // 'fix-path' excluded so it gets bundled inline (only 3KB).
-        // '@cora-cowork/web-host' excluded so its compiled JS sources are bundled by esbuild
+        // '@aionui/web-host' excluded so its compiled JS sources are bundled by esbuild
         // rather than left as external require() calls, keeping the dependency self-contained.
-        externalizeDepsPlugin({ exclude: ['fix-path', '@cora-cowork/web-host'] }),
+        externalizeDepsPlugin({ exclude: ['fix-path', '@aionui/web-host'] }),
         ...(isDevelopment
           ? [
               {
