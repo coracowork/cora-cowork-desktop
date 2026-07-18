@@ -10,7 +10,7 @@ import * as path from 'path';
 import { networkInterfaces } from 'os';
 import { getSystemDir } from './initStorage';
 import { httpRequest } from '@/common/adapter/httpBridge';
-import { startWebHost, addPortMapping, removePortMapping, type WebHostHandle } from '@cora-cowork/web-host';
+import { startWebHost, addPortMapping, removePortMapping, type WebHostHandle } from '@aionui/web-host';
 import { getDataPath } from './utils';
 
 export const RENDERER_URL = process.env['ELECTRON_RENDERER_URL'] || '';
