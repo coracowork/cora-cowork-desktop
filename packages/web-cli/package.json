@@ -1,5 +1,5 @@
 {
-  "name": "@cora-cowork/web-cli",
+  "name": "@aionui/web-cli",
   "version": "1.9.26",
   "private": true,
   "description": "CoraCowork WebUI CLI - standalone web runtime (no Electron)",
