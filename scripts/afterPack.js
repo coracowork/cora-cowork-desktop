@@ -45,7 +45,7 @@ function verifyBundledResourcesStandalone(resourcesDir, electronPlatformName, ta
       const manifest = { 
         platform: electronPlatformName, 
         arch: targetArch, 
-        version: '0.2.5',
+        version: '0.2.6',
         generatedAt: new Date().toISOString()
       };
       fs.writeFileSync(manifestPath, JSON.stringify(manifest, null, 2));

@@ -115,7 +115,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
           ELECTRON_BUILDER_COMPRESSION_LEVEL: 9
-          CORA_COWORK_BACKEND_VERSION: v0.2.5
+          CORA_COWORK_BACKEND_VERSION: v0.2.6
           NODE_OPTIONS: --max-old-space-size=8192
           CORA_COWORK_SKIP_ARM64_EXEC: true
       - name: Upload artifacts
