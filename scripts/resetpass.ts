@@ -28,7 +28,7 @@ import fs from 'fs';
 import os from 'os';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { startBackend, stopBackend } from '@cora-cowork/web-host';
+import { startBackend, stopBackend } from '@aionui/web-host';
 
 const BACKEND_BINARY = process.platform === 'win32' ? 'coracore.exe' : 'CoraCore';
 
