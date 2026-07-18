@@ -100,9 +100,7 @@ jobs:
         shell: bash
 
       - name: Install dependencies
-        run: |
-          bun install || true
-          bun add @office-ai/platform || true
+        run: bun install
 
       - name: Patch prepare for Windows ARM64
         if: matrix.platform == 'win' && matrix.arch == 'arm64'

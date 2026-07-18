@@ -764,15 +764,15 @@ try {
   }
 
   // 5. Prepare coracore binary (for packaged runtime usage)
-  const { prepareCoracore } = require('../packages/shared-scripts/src/prepare-coracore.js');
-  const { resolveCoracoreVersion } = require('./resolveCoracoreVersion.js');
+  const { prepareCoracore } = require('../packages/shared-scripts/src/prepare-cora-cowork.js');
+  const { resolveCoraCoworkVersion } = require('./resolveCoraCoworkVersion.js');
   const projectRoot = path.resolve(__dirname, '..');
   writeGeneratedSentryDsnInclude(projectRoot);
   prepareCoracore({
     projectRoot,
     platform: process.platform,
     arch: targetArch,
-    version: resolveCoracoreVersion(projectRoot),
+    version: resolveCoraCoworkVersion(projectRoot),
   });
 
   // 6. Prepare hub resources (index.json + extension zips for offline fallback)
