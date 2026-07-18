@@ -221,7 +221,7 @@ var uno_config_default = defineConfig({
 
 // packages/desktop/electron.vite.config.ts
 import { viteStaticCopy } from "vite-plugin-static-copy";
-var __electron_vite_injected_dirname = "D:\\Download\\Cora Cowork UI Desktop\\Cora Cowork UI Deskto 1.0\\packages\\desktop";
+var __electron_vite_injected_dirname = "D:\\Download\\ Cowork UI Desktop\\ Cowork UI Deskto 1.0\\packages\\desktop";
 var rootPackageJson = JSON.parse(readFileSync(resolve(__electron_vite_injected_dirname, "../../package.json"), "utf-8"));
 function buildMcpServersPlugin() {
   return {
@@ -293,9 +293,9 @@ var electron_vite_config_default = defineConfig2(({ mode }) => {
       plugins: [
         // externalizeDepsPlugin replaces our custom getExternalDeps() + pluginExternalizeDynamicImports.
         // 'fix-path' excluded so it gets bundled inline (only 3KB).
-        // '@cora-cowork/web-host' excluded so its compiled JS sources are bundled by esbuild
+        // '@aionui/web-host' excluded so its compiled JS sources are bundled by esbuild
         // rather than left as external require() calls, keeping the dependency self-contained.
-        externalizeDepsPlugin({ exclude: ["fix-path", "@cora-cowork/web-host"] }),
+        externalizeDepsPlugin({ exclude: ["fix-path", "@aionui/web-host"] }),
         ...isDevelopment ? [
           {
             name: "dev-build-mcp-servers",
